@@ -1,0 +1,6 @@
+.project-index-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 700px;
+}

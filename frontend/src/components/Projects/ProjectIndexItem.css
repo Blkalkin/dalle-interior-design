@@ -1,0 +1,11 @@
+.project-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project-details-container a{
+    border: 2px dashed red;
+    width: 200px;
+    height: 200px;
+}
