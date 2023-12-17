@@ -6,7 +6,9 @@
 }
 .projects-index {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 15px;
-    width: 800px;
+    width: 900px;
+    padding: 0;
 }
