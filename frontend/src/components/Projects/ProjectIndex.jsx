@@ -15,16 +15,20 @@ const ProjectIndex = () => {
         )
         
     }
-    console.log(projects)
+
+
     return (
-        <ul className="project-index-container">
-            {projects.map(project => (
-                <ProjectIndexItem
-                    key={project.id}
-                    project={project}
-                />
-            ))}
-        </ul>
+        <div className="project-index-container">
+            <h2>Your Projects</h2>
+            <ul className="projects-index">
+                {projects.map(project => (
+                    <ProjectIndexItem
+                        key={project.id}
+                        project={project}
+                    />
+                ))}
+            </ul>
+        </div>
     )
 }
 
