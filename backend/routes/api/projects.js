@@ -26,6 +26,23 @@ router.get('/user/:userId', async (req, res, next) => {
     }
 })
 
+router.post('/projects/:projectId', requireUser, async (req, res, next) => {
+  try {
+      const newComment = new Comment({
+      author: req.user.id,
+      project:  await Project.findById(req.params.projectId),
+      body: req.body.body
+    });
+
+    let comment = await newComment.save();
+    comment = await comment.populate('author', '_id username');
+    return res.json(comment);
+  }
+  catch(err) {
+    next(err);
+  }
+});
+
 
 
 module.exports = router;

@@ -8,6 +8,7 @@ const Project = mongoose.model('Project');
 
 router.get('/project/:projectId', async (req, res, next) => {
     let project;
+
     try {
       project = await Project.findById(req.params.projectId);
     } catch(err) {
@@ -24,6 +25,23 @@ router.get('/project/:projectId', async (req, res, next) => {
     catch(err) {
       return res.json([]);
     }
-})
+});
+
+router.post('/projects/:projectId', requireUser, async (req, res, next) => {
+    try {
+        const newComment = new Comment({
+        author: req.user.id,
+        project:  await Project.findById(req.params.projectId),
+        body: req.body.body
+      });
+  
+      let comment = await newComment.save();
+      comment = await comment.populate('author', '_id username');
+      return res.json(comment);
+    }
+    catch(err) {
+      next(err);
+    }
+});
 
 module.exports = router;
