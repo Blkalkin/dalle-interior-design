@@ -1,0 +1,61 @@
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+
+import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
+
+
+import LandingPage from './components/LandingPage/LandingPage';
+import NavBar from './components/NavBar/NavBar';
+import LoginForm from './components/SessionForms/LoginForm';
+import SignupForm from './components/SessionForms/SignupForm';
+// import Tweets from './components/Tweets/Tweets';
+// import Profile from './components/Profile/Profile';
+// import TweetCompose from './components/Tweets/TweetCompose';
+
+import { getCurrentUser } from './store/session';
+
+const Layout = () => {
+  return (
+    <>
+      <NavBar />
+      <Outlet />
+    </>
+  );
+};
+
+const router = createBrowserRouter([
+  {
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <LandingPage />
+      },
+      {
+        path: "login",
+        element: <LoginForm />
+      },
+      {
+        path: "signup",
+        element: <SignupForm />
+      },
+      // {
+      //   path: "profile",
+      //   element: <ProtectedRoute component={Profile} />
+      // }
+    ]
+  }
+]);
+
+function App() {
+  const [loaded, setLoaded] = useState(false);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCurrentUser()).finally(() => setLoaded(true));
+  }, [dispatch]);
+
+  return loaded && <RouterProvider router={router} />;
+}
+
+export default App;
