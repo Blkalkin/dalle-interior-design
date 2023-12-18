@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './SessionForms.css';
 import { signup } from '../../store/session';
 import { clearSessionErrors } from '../../store/errorReducer/SessionError';
 
 function SignupForm () {
+  const loggedIn = useSelector(state => !!state.session.user);
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -52,6 +53,8 @@ function SignupForm () {
 
     dispatch(signup(user));
   }
+
+  if(loggedIn) return <Navigate to='/profile' replace={true}/>
 
   return (
     <form className="session-form" onSubmit={handleSubmit}>

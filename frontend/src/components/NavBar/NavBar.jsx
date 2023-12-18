@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './NavBar.css';
 import { logout } from '../../store/session';
@@ -32,7 +32,7 @@ function NavBar () {
        </div>
        <div className='left-navlinks-logged-in'>
           <Link to={'/createProject'} className='text'>create project</Link>
-          <Link to={'/signup'} onClick={logoutUser} className='text'>Log Out</Link> 
+          <Link to={'/'} onClick={logoutUser} className='text'>Log Out</Link> 
        </div>   
       </>
       }     
