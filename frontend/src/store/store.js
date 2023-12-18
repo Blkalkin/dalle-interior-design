@@ -4,7 +4,6 @@ import sessionReducer from './session';
 import RootErrorReducer from './errorReducer/RootErrorReducer';
 
 
-
 const rootReducer = combineReducers({
     //reducers
     session: sessionReducer,
