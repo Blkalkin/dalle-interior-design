@@ -1,0 +1,62 @@
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+
+  .session-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+
+  .session-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .session-form label {
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  .session-form span {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .session-form input[type="text"],
+  .session-form input[type="password"] {
+    width: calc(100% - 10px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .session-form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: orange;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .session-form input[type="submit"]:hover {
+    background-color: orange;
+  }
+
+  /* Error messages */
+  .session-form .errors {
+    color: red;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
