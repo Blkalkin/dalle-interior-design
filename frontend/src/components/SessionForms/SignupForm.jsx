@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './SessionForms.css';
 import { signup } from '../../store/session';
@@ -98,7 +99,11 @@ function SignupForm () {
         value="Sign Up"
         disabled={!email || !username || !password || password !== password2}
       />
+        <div className="links-auth">
+          <Link to={'/login'}>Already have and account? Login</Link>
+        </div>
     </form>
+
   );
 }
 
