@@ -15,6 +15,7 @@
 
 .project-name-NB {
     font-size: 30px;
+    margin-left: 10vw;
 }
 
 .right-navlinks-logged-out{
@@ -22,7 +23,8 @@
     justify-content: space-between;
     align-items: center;
     height: 6vh;
-    margin-left: 60vw;
+    margin-left: 50vw;
+    margin-right: 10vw;
     width: 16vw;
     /* background-color: aqua; */
 }
