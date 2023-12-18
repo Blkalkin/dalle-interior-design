@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
+
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 
 
@@ -9,9 +10,8 @@ import LandingPage from './components/LandingPage/LandingPage';
 import NavBar from './components/NavBar/NavBar';
 import LoginForm from './components/SessionForms/LoginForm';
 import SignupForm from './components/SessionForms/SignupForm';
-// import Tweets from './components/Tweets/Tweets';
-// import Profile from './components/Profile/Profile';
-// import TweetCompose from './components/Tweets/TweetCompose';
+import ProjectIndex from './components/Projects/ProjectIndex';
+import Profile from './components/Profile/Profile';
 
 import { getCurrentUser } from './store/session';
 
@@ -39,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignupForm />
+      },
+      {
+        path: "profile",
+        element: <Profile />
+      },
+      {
+        path: "projects",
+        element: <ProjectIndex />
       },
       // {
       //   path: "profile",
