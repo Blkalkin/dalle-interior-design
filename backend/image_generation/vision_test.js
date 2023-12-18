@@ -24,7 +24,7 @@ Comment on the room's condition (tidy, cluttered, pristine, worn) and notable fe
 
 Finally, based on the user's input, add modifications to the room's design, maintaining the level of detail as the original description. This might include adding or rearranging furniture, altering color schemes, or introducing new decorative elements. Ensure the language is clear, focused, and aligns with safety guidelines for DALL-E 3 while being under 4000 characters total (try for 700-800 words).
 
-This end result will be directly fed into Dalle 3's as a prompt, so enure there are not any unnecessary explanations to the user.
+This end result will be directly fed into Dalle 3's as a prompt, so ensure there are not any unnecessary explanations to the user.
           `
         },
         {
