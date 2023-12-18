@@ -1,0 +1,13 @@
+.whole-navbar {
+    display: flex;
+    align-items: center;
+    background-color: aqua;
+}
+
+.nav-logo {
+    height: 6vh;
+}
+
+.project-name-NB {
+    font-size: 30px;
+}

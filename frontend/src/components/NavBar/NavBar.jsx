@@ -33,10 +33,23 @@ function NavBar () {
   };
 
   return (
-    <>
-      <h1>??? (project name)</h1>
-      { getLinks() }
-    </>
+    <div className='whole-navbar'>
+      <Link className='project-name-NB'> 
+        <img className='nav-logo' src="https://media.istockphoto.com/id/673584626/vector/wizard.jpg?s=612x612&w=0&k=20&c=byLcsx_78OpIzs7dH6hbV7_K7aR60rmP7IZ3KHwW8-U=" alt="" />
+        Project Name
+      </Link>
+      <div>
+
+       {!loggedIn ? 
+       <>
+           <Link to={'/profile'}>Profile</Link>
+           <Link to={'/tweets/new'}>Write a Tweet</Link> 
+       </>
+           </div>
+       : null}
+      {/* { getLinks() } */}
+  
+    </div>
   );
 }
 
