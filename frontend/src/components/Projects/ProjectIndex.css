@@ -1,0 +1,14 @@
+.project-index-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.projects-index {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 900px;
+    padding: 0;
+}
