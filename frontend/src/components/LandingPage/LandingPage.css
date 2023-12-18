@@ -1,0 +1,21 @@
+.whole-landing-page{
+    display: flex;
+    flex-direction: column;
+}
+
+.photos-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10vh;
+    
+}
+
+.landing-photo {
+    width: 45vw;
+    height: 70vh;
+}
+
+.before {
+    margin-right: 2vw;
+}
