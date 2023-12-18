@@ -3,11 +3,12 @@ import { useDispatch } from 'react-redux';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
-// import NavBar from './components/NavBar/NavBar';
 
-import MainPage from './components/MainPage/MainPage';
-// import LoginForm from './components/SessionForms/LoginForm';
-// import SignupForm from './components/SessionForms/SignupForm';
+
+import LandingPage from './components/LandingPage/LandingPage';
+import NavBar from './components/NavBar/NavBar';
+import LoginForm from './components/SessionForms/LoginForm';
+import SignupForm from './components/SessionForms/SignupForm';
 // import Tweets from './components/Tweets/Tweets';
 // import Profile from './components/Profile/Profile';
 // import TweetCompose from './components/Tweets/TweetCompose';
@@ -29,34 +30,20 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <AuthRoute component={MainPage} />
+        element: <LandingPage />
       },
       {
         path: "login",
-        element: <AuthRoute component={LoginForm} />
+        element: <LoginForm />
       },
       {
         path: "signup",
-        element: <AuthRoute component={SignupForm} />
+        element: <SignupForm />
       },
-      {
-        path: "tweets",
-        element: <Outlet />,
-        children: [
-          {
-            index: true,
-            element: <ProtectedRoute component={Tweets} />
-          },
-          {
-            path: "new",
-            element: <ProtectedRoute component={TweetCompose} />
-          }
-        ]
-      },
-      {
-        path: "profile",
-        element: <ProtectedRoute component={Profile} />
-      }
+      // {
+      //   path: "profile",
+      //   element: <ProtectedRoute component={Profile} />
+      // }
     ]
   }
 ]);

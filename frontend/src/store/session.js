@@ -1,4 +1,5 @@
 import jwtFetch from './jwt';
+import { receiveErrors } from './errorReducer/SessionError';
 
 export const RECEIVE_CURRENT_USER = "session/RECEIVE_CURRENT_USER";
 export const RECEIVE_USER_LOGOUT = "session/RECEIVE_USER_LOGOUT";
@@ -12,9 +13,7 @@ const logoutUser = () => ({
   type: RECEIVE_USER_LOGOUT
 });
 
-export const clearSessionErrors = () => ({
-  type: CLEAR_SESSION_ERRORS
-});
+
 
 export const signup = user => startSession(user, 'api/users/register');
 export const login = user => startSession(user, 'api/users/login');

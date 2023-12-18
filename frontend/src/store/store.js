@@ -1,9 +1,14 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import {thunk} from 'redux-thunk';
+import sessionReducer from './session';
+import RootErrorReducer from './errorReducer/RootErrorReducer';
+
 
 
 const rootReducer = combineReducers({
     //reducers
+    session: sessionReducer,
+    errors: RootErrorReducer
 });
 
 let enhancer;
