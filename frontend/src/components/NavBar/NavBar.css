@@ -1,0 +1,39 @@
+.whole-navbar {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    top: 0;
+    position: fixed;
+    border: rgb(210, 154, 15) solid 2px;
+
+}
+
+.nav-logo {
+    height: 6vh;
+}
+
+.project-name-NB {
+    font-size: 30px;
+    margin-left: 10vw;
+}
+
+.right-navlinks-logged-out{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 6vh;
+    margin-left: 50vw;
+    margin-right: 10vw;
+    width: 16vw;
+    /* background-color: aqua; */
+}
+
+.log-in {
+    font-size: 20px;
+    color: rgb(111, 157, 185);
+}
+
+.get-started {
+
+}
