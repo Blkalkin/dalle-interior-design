@@ -16,7 +16,7 @@ function Profile () {
         return (
             <>
                 <ProjectIndex title="My Projects"/>
-                <Link to={'/createProject'} className='text get-started'>create project</Link>
+                <Link to={'/createProject'} className='text get-started'>Add project</Link>
             </>
         );
     } else {
