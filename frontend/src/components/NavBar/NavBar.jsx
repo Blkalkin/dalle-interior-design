@@ -12,26 +12,6 @@ function NavBar () {
       dispatch(logout());
   };
 
-  const getLinks = () => {
-    if (loggedIn) {
-      return (
-        <div className="links-nav">
-          {/* <Link to={'/tweets'}>All Tweets</Link>
-          <Link to={'/profile'}>Profile</Link>
-          <Link to={'/tweets/new'}>Write a Tweet</Link> */}
-          <button onClick={logoutUser}>Logout</button>
-        </div>
-      );
-    } else {
-      return (
-        <div className="links-auth">
-          <Link to={'/signup'}>Signup</Link>
-          <Link to={'/login'}>Login</Link>
-        </div>
-      );
-    }
-  };
-
   return (
     <div className='whole-navbar'>
       <Link className='project-name-NB'> 
@@ -52,7 +32,7 @@ function NavBar () {
        </div>
        <div className='left-navlinks-logged-in'>
           <Link to={'/createProject'} className='text'>create project</Link>
-          <Link to={'/signup'} className='text'>Log Out</Link> 
+          <Link to={'/signup'} onClick={logoutUser} className='text'>Log Out</Link> 
        </div>   
       </>
       }     
