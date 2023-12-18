@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './SessionForms.css';
-
 import { login } from '../../store/session';
 import { clearSessionErrors } from '../../store/errorReducer/SessionError';
 
 function LoginForm () {
+  const loggedIn = useSelector(state => !!state.session.user);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(state => state.errors.session);
@@ -27,6 +27,8 @@ function LoginForm () {
     e.preventDefault();
     dispatch(login({ email, password }));
   }
+
+  if(loggedIn) return <Navigate to='/profile' replace={true}/>
 
   return (
     <form className="session-form" onSubmit={handleSubmit}>
