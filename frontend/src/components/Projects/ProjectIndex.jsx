@@ -13,9 +13,8 @@ const ProjectIndex = () => {
                 description: `TEST description ${i}`
             }
         )
-        
-    }
 
+    }
 
     return (
         <div className="project-index-container">
