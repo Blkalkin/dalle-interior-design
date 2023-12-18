@@ -41,18 +41,18 @@ function NavBar () {
 
        {!loggedIn ? 
         <div className='right-navlinks-logged-out'>
-           <Link to={'/login'}>Log In</Link>
-           <Link to={'/signup'}>Get Started</Link>       
+           <Link to={'/login'} className='text log-in'>Log In</Link>
+           <Link to={'/signup'} className='text get-started'>Get Started</Link>       
         </div>
        : 
        <>
        <div className='right-navlinks-logged-in'>
-          <Link to={'/howitworks'}>How It Works</Link>
-          <Link to={'/community'}>Community</Link> 
+          <Link to={'/howitworks'} className='text'>How It Works</Link>
+          <Link to={'/community'} className='text'>Community</Link> 
        </div>
        <div className='left-navlinks-logged-in'>
-          <Link to={'/createProject'}>create project</Link>
-          <Link to={'/signup'}>Log Out</Link> 
+          <Link to={'/createProject'} className='text'>create project</Link>
+          <Link to={'/signup'} className='text'>Log Out</Link> 
        </div>   
       </>
       }     

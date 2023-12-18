@@ -4,7 +4,8 @@
     box-sizing: border-box;
     width: 100%;
     top: 0;
-   border: rgb(210, 154, 15) solid 2px;
+    position: fixed;
+    border: rgb(210, 154, 15) solid 2px;
 
 }
 
@@ -16,6 +17,21 @@
     font-size: 30px;
 }
 
-.right-side-links-logged-out{
+.right-navlinks-logged-out{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 6vh;
+    margin-left: 60vw;
+    width: 16vw;
+    /* background-color: aqua; */
+}
+
+.log-in {
+    font-size: 20px;
+    color: rgb(111, 157, 185);
+}
+
+.get-started {
 
 }
