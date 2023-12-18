@@ -38,17 +38,24 @@ function NavBar () {
         <img className='nav-logo' src="https://media.istockphoto.com/id/673584626/vector/wizard.jpg?s=612x612&w=0&k=20&c=byLcsx_78OpIzs7dH6hbV7_K7aR60rmP7IZ3KHwW8-U=" alt="" />
         Project Name
       </Link>
-      <div>
 
        {!loggedIn ? 
+        <div className='right-navlinks-logged-out'>
+           <Link to={'/login'}>Log In</Link>
+           <Link to={'/signup'}>Get Started</Link>       
+        </div>
+       : 
        <>
-           <Link to={'/profile'}>Profile</Link>
-           <Link to={'/tweets/new'}>Write a Tweet</Link> 
-       </>
-           </div>
-       : null}
-      {/* { getLinks() } */}
-  
+       <div className='right-navlinks-logged-in'>
+          <Link to={'/howitworks'}>How It Works</Link>
+          <Link to={'/community'}>Community</Link> 
+       </div>
+       <div className='left-navlinks-logged-in'>
+          <Link to={'/createProject'}>create project</Link>
+          <Link to={'/signup'}>Log Out</Link> 
+       </div>   
+      </>
+      }     
     </div>
   );
 }

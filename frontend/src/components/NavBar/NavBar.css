@@ -1,7 +1,11 @@
 .whole-navbar {
     display: flex;
     align-items: center;
-    background-color: aqua;
+    box-sizing: border-box;
+    width: 100%;
+    top: 0;
+   border: rgb(210, 154, 15) solid 2px;
+
 }
 
 .nav-logo {
@@ -10,4 +14,8 @@
 
 .project-name-NB {
     font-size: 30px;
+}
+
+.right-side-links-logged-out{
+
 }
