@@ -14,8 +14,11 @@
 }
 
 .project-name-NB {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
     font-size: 30px;
-    margin-left: 10vw;
+    margin-left: 2vw;
 }
 
 .right-navlinks-logged-out{
@@ -34,6 +37,22 @@
     color: rgb(111, 157, 185);
 }
 
-.get-started {
+.right-navlinks-logged-in {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4vh;
+    width: 25vw;
+    margin-left: 3vw;
+    color: rgb(36, 132, 227);
+    /* background-color: hotpink; */
+}
 
+.left-navlinks-logged-in {
+    margin-left: 40vw;
+    width: 15vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: pink; */
 }

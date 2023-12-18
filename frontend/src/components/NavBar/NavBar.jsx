@@ -16,7 +16,7 @@ function NavBar () {
     <div className='whole-navbar'>
       <Link className='project-name-NB'> 
         <img className='nav-logo' src="https://media.istockphoto.com/id/673584626/vector/wizard.jpg?s=612x612&w=0&k=20&c=byLcsx_78OpIzs7dH6hbV7_K7aR60rmP7IZ3KHwW8-U=" alt="" />
-        Project Name
+        Roominate
       </Link>
 
        {!loggedIn ? 
@@ -28,10 +28,11 @@ function NavBar () {
        <>
        <div className='right-navlinks-logged-in'>
           <Link to={'/howitworks'} className='text'>How It Works</Link>
+          <Link to={'/profile'} className='text'>Your Projects</Link>
           <Link to={'/community'} className='text'>Community</Link> 
        </div>
        <div className='left-navlinks-logged-in'>
-          <Link to={'/createProject'} className='text'>create project</Link>
+          <Link to={'/createProject'} className='text get-started'>create project</Link>
           <Link to={'/'} onClick={logoutUser} className='text'>Log Out</Link> 
        </div>   
       </>
