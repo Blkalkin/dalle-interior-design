@@ -1,9 +1,8 @@
 import ProjectIndexItem from "./ProjectIndexItem"
 import "./ProjectIndex.css"
 import { useEffect } from "react"
-import { getCurrentUser } from "../../store/session"
 
-const ProjectIndex = ({title = null, id}) => {
+const ProjectIndex = ({title = "Some other persons projects", id}) => {
     const projects = []
 
 
@@ -22,7 +21,6 @@ const ProjectIndex = ({title = null, id}) => {
     return (
         <div className="project-index-container">
             <h2>{title}</h2>
-            <h2>{currentU}</h2>
             <ul className="projects-index">
                 {projects.map(project => (
                     <ProjectIndexItem

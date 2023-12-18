@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import ProjectIndex from '../Projects/ProjectIndex';
 import LoginForm from '../SessionForms/LoginForm';
 
@@ -16,6 +16,7 @@ function Profile () {
         return (
             <>
                 <ProjectIndex title="My Projects"/>
+                <Link to={'/createProject'} className='text get-started'>create project</Link>
             </>
         );
     } else {

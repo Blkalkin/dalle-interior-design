@@ -11,6 +11,7 @@ function LoginForm () {
   const [password, setPassword] = useState('');
   const errors = useSelector(state => state.errors.session);
   const dispatch = useDispatch();
+  const currUser = useSelector(state => state.session.user)
 
   useEffect(() => {
     return () => {
@@ -28,7 +29,7 @@ function LoginForm () {
     dispatch(login({ email, password }));
   }
 
-  if(loggedIn) return <Navigate to='/profile' replace={true}/>
+  if(loggedIn) return <Navigate to={`/profile/${currUser._id}`} replace={true}/>
 
   return (
     <form className="session-form" onSubmit={handleSubmit}>
