@@ -34,6 +34,7 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
   })(req, res, next);
 });
 
+console.log("test")
 
 
 router.post('/register', validateRegisterInput, async (req, res, next) => {
@@ -100,7 +101,7 @@ router.get('/current', restoreUser, (req, res) => {
 
 router.get('/:id', async (req, res, next) => {
   let user;
-  
+
   try {
     user = await User.findById(req.params.id);
     return res.json(user);
