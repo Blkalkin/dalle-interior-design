@@ -1,4 +1,4 @@
-import jwtFetch from './jwt';
+import jwtFetch from '../utils/jwt';
 import { receiveErrors } from './errorReducer/SessionError';
 
 export const RECEIVE_CURRENT_USER = "session/RECEIVE_CURRENT_USER";

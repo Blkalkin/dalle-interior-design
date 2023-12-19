@@ -1,4 +1,4 @@
-import jwtFetch from './jwt';
+import jwtFetch from '../utils/jwt';
 // import { RECEIVE_CURRENT_USER } from './session';
 
 export const RECEIVE_USER = "users/RECEIVE_CURRENT_USER";

@@ -15,16 +15,13 @@ export const receiveProject = project => ({
 })
 
 export const fetchProjects = () => async(dispatch) => {
+    const res = await getProjects();
     let data;
-    try{
-        const res = await getProjects();
-        
-
-    }
 
     if (res.ok) {
         data = await res.json()
-
+        
+        dispatch(receiveProjects())
     } else (
         data = await res.json()
     )
