@@ -35,6 +35,7 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
 });
 
 console.log("test")
+console.log("test 2")
 
 
 router.post('/register', validateRegisterInput, async (req, res, next) => {
