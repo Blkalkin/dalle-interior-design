@@ -12,6 +12,7 @@ import LoginForm from './components/SessionForms/LoginForm';
 import SignupForm from './components/SessionForms/SignupForm';
 import ProjectIndex from './components/Projects/ProjectIndex';
 import Profile from './components/Profile/Profile';
+import CommunityPage from './components/Community/CommunityPage';
 
 import { getCurrentUser } from './store/session';
 
@@ -44,10 +45,10 @@ const router = createBrowserRouter([
         path: "profile/:id",
         element: <Profile />
       },
-      // {
-      //   path: "profile",
-      //   element: <ProtectedRoute component={Profile} />
-      // }
+      {
+        path: "community",
+        element: <CommunityPage />
+      }
     ]
   }
 ]);
