@@ -1,8 +1,10 @@
-import { getProject, getProjects } from "../utils/project_api_util"
+import jwtFetch from "../utils/jwt";
+import { getProject, getProjects, postProject } from "../utils/project_api_util"
 import { createSelector } from 'reselect';
 
 const RECEIVE_PROJECTS = "RECEIVE_PROJECTS"
 const RECEIVE_PROJECT = "RECEIVE_PROJECT"
+const REMOVE_PROJECT = "REMOVE_PROJECT"
 
 export const receiveProjects = projects => ({
     type: RECEIVE_PROJECTS,
@@ -14,28 +16,59 @@ export const receiveProject = project => ({
     project
 })
 
-export const fetchProjects = () => async(dispatch) => {
-    const res = await getProjects();
-    let data;
+export const removeProject = projectId => ({
+    type: REMOVE_PROJECT,
+    projectId
+})
 
-    if (res.ok) {
-        data = await res.json()
-        
-        dispatch(receiveProjects())
-    } else (
-        data = await res.json()
-    )
+export const fetchProjects = () => async(dispatch) => {
+    try {
+        const res = await jwtFetch("???")
+        const projects = await res.json()
+        return dispatch(receiveProjects(projects))
+    } catch(err) {
+        const res = await err.json()
+        console.log(res)
+    }
 }
 
 export const fetchProject = projectId => async(dispatch) => {
-    const res = await getProject(projectId);
-    let data;
+    try {
+        const res = await jwtFetch(`???/${projectId}`)
+        const project = await res.json()
+        return dispatch(receiveProject(project))
+    } catch(err) {
+        const res = await err.json()
+        console.log(res)
+    }
+}
 
-    if (res.ok) {
-        data = await res.json()
-    } else (
-        data = await res.json()
-    )
+export const createProject = project => async(dispatch) => {
+    try{
+        const res =  await jwtFetch("/api/projects", {
+            method: "POST",
+            body: JSON.stringify(project)
+        });
+        const data = await res.json();
+        return dispatch(receiveProject(data))
+    } catch(err) {
+        const res = await err.json();
+        console.log(res)
+    }
+}
+
+export const deleteProject = projectId => async(dispatch) => {
+    try {
+        const res = await jwtFetch(`???/${projectId}`,{
+            method: "DELETE"
+        })
+
+        return dispatch(removeProject(projectId))
+        
+    } catch(err) {
+        const res = await err.json()
+        console.log(res)
+    }
 }
 
 export const selectProject = projectId => state => state.projects[projectId]
@@ -52,7 +85,10 @@ const projectReducer = (state = {}, action) => {
         case RECEIVE_PROJECTS:
             return action.projects
         case RECEIVE_PROJECT:
-            newState[action.project.id] = action.project
+            newState[action.project._id] = action.project
+            return newState
+        case REMOVE_PROJECT:
+            delete newState[action.projectId]
             return newState
         default:
             return state

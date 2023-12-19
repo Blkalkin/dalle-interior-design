@@ -8,3 +8,10 @@ export const getProjects = userId => (
 export const getProject = projectId => (
     jwtFetch(`/api/project/${projectId}`)
 )
+
+export const postProject = project => (
+    jwtFetch("/api/projects", {
+        method: "POST",
+        body: JSON.stringify(project)
+    })
+)
