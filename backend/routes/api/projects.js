@@ -62,6 +62,7 @@ router.post('/', async (req, res, next) => {
     return res.json(project);
   }catch(err) {
     const error = new Error('Project failed to save');
+    error.statusCode = 422;
     return next(error);
   }
 })
