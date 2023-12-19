@@ -1,3 +1,4 @@
+import './Profile.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Navigate, Link } from 'react-router-dom';

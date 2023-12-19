@@ -9,7 +9,6 @@ function NavBar () {
   const currUser = useSelector(state => state.session.user)
 
   const logoutUser = e => {
-      e.preventDefault();
       dispatch(logout());
   };
 
@@ -34,7 +33,7 @@ function NavBar () {
        </div>
        <div className='left-navlinks-logged-in'>
           <Link to={'/createProject'} className='text get-started'>create project</Link>
-          <Link to={'/'} onClick={logoutUser} className='text'>Log Out</Link>
+          <Link to={'/login'} onClick={logoutUser} className='text'>Log Out</Link>
        </div>
       </>
       }

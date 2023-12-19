@@ -63,7 +63,6 @@ function LoginForm () {
         type="submit"
         className='text'
         value="Log In"
-        disabled={!email || !password}
       />
        <input
         type="submit"
