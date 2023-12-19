@@ -3,6 +3,7 @@ import './CreateProject.css'
 
 
 const CreateProject = () => {
+    const test =test 
     const [prompt, setPrompt] = useState("")
     const [title, setTitle] = useState("")
     const [image, setImage] = useState("")
