@@ -27,6 +27,19 @@ router.get('/user/:userId', async (req, res, next) => {
     }
 })
 
+router.get("/", async (req, res) => {
+   try {
+      const projects = await Project.find()
+                                    .populate("author", "_id username")
+      return res.json(projects)
+   }
+   catch(err) {
+    return res.json([])
+   }
+})
+
+
+
 router.post('/', async (req, res, next) => {
   try {
       const newProject = new Project({

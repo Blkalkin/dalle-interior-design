@@ -3,12 +3,14 @@ import {thunk} from 'redux-thunk';
 import sessionReducer from './session';
 import RootErrorReducer from './errorReducer/RootErrorReducer';
 import userReducer from './user';
+import projectReducer from './project';
 
 const rootReducer = combineReducers({
     //reducers
     session: sessionReducer,
     user: userReducer,
-    errors: RootErrorReducer
+    errors: RootErrorReducer,
+    projects: projectReducer,
 });
 
 let enhancer;
