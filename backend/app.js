@@ -18,7 +18,7 @@ const usersRouter = require('./routes/api/users');
 const commentsRouter = require('./routes/api/comments');
 const csrfRouter = require('./routes/api/csrf');
 const projectsRouter = require('./routes/api/projects');
-const imagesRouter = require('./routes/api/images')
+const imagesRouter = require('./routes/api/images');
 
 
 
