@@ -41,7 +41,7 @@ for (let i = 1; i < NUM_SEED_USERS; i++) {
 const projects = [];
 
 for (let i = 0; i < NUM_SEED_PROJECTS; i++) {
-  comments.push(
+  projects.push(
     new Project ({
       author: users[Math.floor(Math.random() * NUM_SEED_USERS)]._id,
       title: faker.lorem.sentence(),
