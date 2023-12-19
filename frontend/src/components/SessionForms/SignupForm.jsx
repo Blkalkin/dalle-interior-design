@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './SessionForms.css';
-import { signup } from '../../store/session';
+import { login, signup } from '../../store/session';
 import { clearSessionErrors } from '../../store/errorReducer/SessionError';
 
 function SignupForm () {
   const loggedIn = useSelector(state => !!state.session.user);
+  const currUser = useSelector(state => state.session.user)
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -54,15 +55,21 @@ function SignupForm () {
     dispatch(signup(user));
   }
 
-  if(loggedIn) return <Navigate to='/profile' replace={true}/>
+  // const handleDemoSubmit = (e) => {
+  //   e.preventDefault();
+  //   dispatch(login({ email: "demo@graphic.com", password: "demoword" }));
+  // }
+
+  if(loggedIn) return <Navigate to={`/profile/${currUser._id}`} replace={true}/>
 
   return (
-    <form className="session-form" onSubmit={handleSubmit}>
-      <h2>Sign Up Form</h2>
-      <div className="errors">{errors?.email}</div>
+    <form className="session-form" onSubmit={handleSubmit} >
+      <h2 className='text'>Sign Up Form</h2>
+      <div className="errors text">{errors?.email}</div>
       <label>
-        <span>Email</span>
+        <span className='text'>Email</span>
         <input type="text"
+          className='text'
           value={email}
           onChange={update('email')}
           placeholder="Email"
@@ -70,27 +77,29 @@ function SignupForm () {
       </label>
       <div className="errors">{errors?.username}</div>
       <label>
-        <span>Username</span>
+        <span className='text'>Username</span>
         <input type="text"
+         className='text'
           value={username}
           onChange={update('username')}
           placeholder="Username"
         />
       </label>
-      <div className="errors">{errors?.password}</div>
+      <div className="errors text">{errors?.password}</div>
       <label>
-        <span>Password</span>
+        <span className='text'>Password</span>
         <input type="password"
+          className='text'
           value={password}
           onChange={update('password')}
           placeholder="Password"
         />
       </label>
-      <div className="errors">
+      <div className="errors text">
         {password !== password2 && 'Confirm Password field must match'}
       </div>
       <label>
-        <span>Confirm Password</span>
+        <span className='text'>Confirm Password</span>
         <input type="password"
           value={password2}
           onChange={update('password2')}
@@ -99,10 +108,18 @@ function SignupForm () {
       </label>
       <input
         type="submit"
+        className='text'
         value="Sign Up"
         disabled={!email || !username || !password || password !== password2}
       />
-        <div className="links-auth">
+       {/* <input
+        type="submit"
+        className='text'
+        value="Sign in as Demo"
+        onClick={handleDemoSubmit}
+        disabled={!email || !username || !password || password !== password2}
+      /> */}
+        <div className="links-auth text">
           <Link to={'/login'}>Already have and account? Login</Link>
         </div>
     </form>
