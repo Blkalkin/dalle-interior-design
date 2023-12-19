@@ -30,14 +30,14 @@ router.get('/project/:projectId', async (req, res, next) => {
 
 router.post('/projects', async (req, res, next) => {
     try {
-            const newComment = new Comment({
-                author: req.body.authorId,
-                project: req.body.projectId,
-                body: req.body.body
-            });
+      const newComment = new Comment({
+          author: req.body.authorId,
+          project: req.body.projectId,
+          body: req.body.body
+      });
   
       let comment = await newComment.save();
-    // comment = await comment.populate('author', '_id username');
+      // comment = await comment.populate('author', '_id username');
       return res.json(comment);
     }
     catch(err) {
