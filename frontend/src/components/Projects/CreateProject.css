@@ -1,0 +1,32 @@
+.whole-create-project-container {
+    margin-top: 15vh;
+    /* background-color: green; */
+    margin-left: 5vw;
+    margin-right: 5vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+.example-images {
+    display: flex;
+    flex-direction: column;
+}
+
+.demo-img {
+    height: 40vh;
+    width: 30vw;
+    margin-bottom: 3vh;
+
+}
+
+.upload-photo-section {
+    /* background-color: lavender; */
+    width: 40vw;
+    /* height: 60vh; */
+}
+
+.drag-n-drop-area {
+    height: 40vh;
+    border: rgb(229, 176, 44) solid 2px;
+    /* background-color: palegoldenrod; */
+}
