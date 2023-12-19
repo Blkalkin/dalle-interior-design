@@ -51,6 +51,9 @@ router.post('/projects', async (req, res, next) => {
       }
       try{
         let comment = await newComment.save();
+        comment = await comment.populate("author", "_id");
+        comment = await comment.populate("project", '_id');
+
         return res.json(comment);
       }catch{}
           const error = new Error('Comment failed to save');
