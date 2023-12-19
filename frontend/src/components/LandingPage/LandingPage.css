@@ -1,0 +1,57 @@
+.whole-landing-page{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.photos-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10vh;
+    
+}
+
+.landing-photo {
+    width: 45vw;
+    height: 70vh;
+}
+
+.before {
+    margin-right: 2vw;
+}
+
+.how-it-works-container {
+    margin-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    font-size: 70px;
+
+    /* background-color: purple; */
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10vh;
+    border-bottom:  rgb(229, 176, 44) solid 2px;
+    /* background-color: yellow; */
+
+}
+
+.count {
+    font-size: 100px;
+}
+
+.steps-text {
+    font-size: 30px;
+    width: 50vw;
+    text-overflow: wrap;
+    display: flex;
+    align-items: center;
+    /* background-color: aquamarine; */
+}

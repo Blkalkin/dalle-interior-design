@@ -11,6 +11,7 @@
 
 .nav-logo {
     height: 6vh;
+    margin-left: 2vw;
 }
 
 .project-name-NB {
@@ -26,9 +27,9 @@
     justify-content: space-between;
     align-items: center;
     height: 6vh;
-    margin-left: 50vw;
-    margin-right: 10vw;
-    width: 16vw;
+    margin-left: 69vw;
+    margin-right: 2vw;
+    width: 12vw;
     /* background-color: aqua; */
 }
 
