@@ -1,5 +1,4 @@
-import jwtFetch from "../utils/jwt";
-import { getProject, getProjects, postProject } from "../utils/project_api_util"
+import jwtFetch from "./jwt";
 import { createSelector } from 'reselect';
 
 const RECEIVE_PROJECTS = "RECEIVE_PROJECTS"
