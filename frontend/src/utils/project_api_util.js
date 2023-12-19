@@ -1,8 +1,8 @@
 import jwtFetch from "./jwt";
 
 
-export const getProjects = () => (
-    jwtFetch("/api/projects")
+export const getProjects = userId => (
+    jwtFetch(`/api/projects/user/${userId}`)
 )
 
 export const getProject = projectId => (
