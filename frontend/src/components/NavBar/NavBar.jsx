@@ -6,7 +6,6 @@ import { logout } from '../../store/session';
 function NavBar () {
   const loggedIn = useSelector(state => !!state.session.user);
   const dispatch = useDispatch();
-  const currUser = useSelector(state => state.session.user)
 
   const logoutUser = e => {
       dispatch(logout());
@@ -20,21 +19,26 @@ function NavBar () {
       </Link>
 
        {!loggedIn ?
-        <div className='right-navlinks-logged-out'>
-           <Link to={'/login'} className='text log-in'>Log In</Link>
-           <Link to={'/signup'} className='text get-started'>Get Started</Link>
-        </div>
+       <>
+          <div className='right-navlinks-logged-in'>
+            <Link to={'/community'} className='text'>Community</Link>
+          </div>
+          <div className='right-navlinks-logged-out'>
+            <Link to={'/login'} className='text log-in'>Log In</Link>
+            <Link to={'/signup'} className='text get-started'>Get Started</Link>
+          </div>
+       </>
        :
        <>
-       <div className='right-navlinks-logged-in'>
-          <Link to={'/howitworks'} className='text'>How It Works</Link>
-          <Link to={`/profile/${currUser._id}`} className='text'>Your Projects</Link>
-          <Link to={'/community'} className='text'>Community</Link>
-       </div>
-       <div className='left-navlinks-logged-in'>
-          <Link to={'/createProject'} className='text get-started'>create project</Link>
-          <Link to={'/login'} onClick={logoutUser} className='text'>Log Out</Link>
-       </div>
+        <div className='right-navlinks-logged-in'>
+            <Link to={'/howitworks'} className='text'>How It Works</Link>
+            <Link to={'/profile'} className='text'>Your Projects</Link>
+            <Link to={'/community'} className='text'>Community</Link>
+        </div>
+        <div className='left-navlinks-logged-in'>
+            <Link to={'/createProject'} className='text get-started'>create project</Link>
+            <Link to={'/'} onClick={logoutUser} className='text'>Log Out</Link>
+        </div>
       </>
       }
     </div>
