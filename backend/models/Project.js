@@ -13,7 +13,6 @@ const projectSchema = new Schema({
     },
     description: {
         type: String,
-        required: true
     },
     photoUrls: {
         type: [String],
