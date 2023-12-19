@@ -2,12 +2,12 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import {thunk} from 'redux-thunk';
 import sessionReducer from './session';
 import RootErrorReducer from './errorReducer/RootErrorReducer';
-
-
+import userReducer from './user';
 
 const rootReducer = combineReducers({
     //reducers
     session: sessionReducer,
+    user: userReducer,
     errors: RootErrorReducer
 });
 

@@ -1,11 +1,13 @@
 import ProjectIndexItem from "./ProjectIndexItem"
 import "./ProjectIndex.css"
 import { useEffect } from "react"
+import { useDispatch, useSelector} from "react-redux"
+import { getUser } from "../../store/user"
 
-const ProjectIndex = ({title = "Some other persons projects", id}) => {
+const ProjectIndex = ({title, user}) => {
     const projects = []
 
-
+    if (!title) title = `${user.username}'s Projects`
     // Placeholder projects
     for (let i = 1; i < 11; i++) {
         projects.push(
@@ -15,7 +17,6 @@ const ProjectIndex = ({title = "Some other persons projects", id}) => {
                 description: `TEST description ${i}`
             }
         )
-
     }
 
     return (
