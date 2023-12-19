@@ -27,11 +27,11 @@ router.get('/user/:userId', async (req, res, next) => {
     }
 })
 
-router.post('/projects/:projectId', requireUser, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
       const newProject = new Project({
 
-        author: req.user.id,
+        author: req.body.authorId,
         title: req.body.title,
         description: req.body.description,
         photoUrls: req.body.photoUrls,
