@@ -1,34 +1,31 @@
-import { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { fetchUserTweets, clearTweetErrors, selectUserTweetsArray } from '../../store/tweets';
-// import TweetBox from '../Tweets/TweetBox';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
+import ProjectIndex from '../Projects/ProjectIndex';
+import LoginForm from '../SessionForms/LoginForm';
+
 
 function Profile () {
-//   const dispatch = useDispatch();
-//   const currentUser = useSelector(state => state.session.user);
-//   const userTweets = useSelector(selectUserTweetsArray);
+    const { id } = useParams();
+    const dispatch = useDispatch()
+    const currUser = useSelector(state => state.session.user)
 
-//   useEffect(() => {
-//     dispatch(fetchUserTweets(currentUser._id));
-//     return () => dispatch(clearTweetErrors());
-//   }, [currentUser, dispatch]);
+    if (!currUser) return <Navigate to='/login' replace={true}/>
 
-//   if (userTweets.length === 0) {
-//     return <div>{currentUser.username} has no Tweets</div>;
-//   } else {
-    return (
-      <>
-        {/* <h2>All of {currentUser.username}&apos;s Tweets</h2>
-        {userTweets.map(tweet => (
-          <TweetBox
-            key={tweet._id}
-            tweet={tweet}
-          />
-        ))} */}
-        <h1>test1</h1>
-      </>
-    );
-  }
-// }
+    if (id === currUser._id) {
+        return (
+            <>
+                <ProjectIndex title="My Projects"/>
+                <Link to={'/createProject'} className='text get-started'>Add project</Link>
+            </>
+        );
+    } else {
+        return (
+            <>
+                <ProjectIndex id={id} />
+            </>
+        )
+    }
+}
 
 export default Profile;

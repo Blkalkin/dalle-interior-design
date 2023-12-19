@@ -1,8 +1,10 @@
 import ProjectIndexItem from "./ProjectIndexItem"
 import "./ProjectIndex.css"
+import { useEffect } from "react"
 
-const ProjectIndex = () => {
+const ProjectIndex = ({title = "Some other persons projects", id}) => {
     const projects = []
+
 
     // Placeholder projects
     for (let i = 1; i < 11; i++) {
@@ -13,13 +15,12 @@ const ProjectIndex = () => {
                 description: `TEST description ${i}`
             }
         )
-        
-    }
 
+    }
 
     return (
         <div className="project-index-container">
-            <h2>Your Projects</h2>
+            <h2>{title}</h2>
             <ul className="projects-index">
                 {projects.map(project => (
                     <ProjectIndexItem
