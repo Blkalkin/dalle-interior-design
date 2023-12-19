@@ -30,3 +30,27 @@
     border: rgb(229, 176, 44) solid 2px;
     /* background-color: palegoldenrod; */
 }
+
+.new-project-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-size: 20px;
+    padding-top: 2vh;
+    padding-bottom: 3px;
+}
+
+.title-input {
+    height: 4vh;
+    font-size: 20px;
+    
+}
+
+.description-input {
+    height: 10vh;
+    text-wrap: wrap;
+    font-size: 15px;
+    text-overflow: wrap;
+}
