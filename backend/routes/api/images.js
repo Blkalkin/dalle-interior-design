@@ -3,7 +3,10 @@ const router = express.Router();
 const { OpenAI } = require('openai');
 
 
-const openai = new OpenAI('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'); 
+const apiKey =  "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"
+
+const openai = new OpenAI({apiKey: apiKey});
+
 router.post('/', async (req, res) => {
     const { imageUrl, promptText } = req.body;
 
