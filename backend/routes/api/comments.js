@@ -29,20 +29,37 @@ router.get('/project/:projectId', async (req, res, next) => {
 });
 
 router.post('/projects', async (req, res, next) => {
-    try {
-            const newComment = new Comment({
-                author: req.body.authorId,
-                project: req.body.projectId,
-                body: req.body.body
-            });
-  
-      let comment = await newComment.save();
-    // comment = await comment.populate('author', '_id username');
-      return res.json(comment);
-    }
-    catch(err) {
-      next(err);
-    }
-});
+
+      const newComment = new Comment({
+          body: req.body.body
+      });
+      try {
+        newComment.author = await User.findById(req.body.authorId);
+      }catch{
+        const error = new Error('User not found');
+        error.statusCode = 404;
+        error.errors = { message: "No user found with that id" };
+        return next(error);
+      }
+      try{
+        newComment.project = await Project.findById(req.body.projectId);
+      }catch{
+        const error = new Error('Project not found');
+        error.statusCode = 404;
+        error.errors = { message: "No project found with that id" };
+        return next(error);
+      }
+      try{
+        let comment = await newComment.save();
+        comment = await comment.populate("author", "_id");
+        comment = await comment.populate("project", '_id');
+
+        return res.json(comment);
+      }catch{}
+          const error = new Error('Comment failed to save');
+          error.statusCode = 422;
+          return next(error);
+      }
+);
 
 module.exports = router;
