@@ -7,7 +7,7 @@ const apiKey =  "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"
 
 const openai = new OpenAI({apiKey: apiKey});
 
-router.post('/', async (req, res) => {
+router.post('/generate', async (req, res) => {
     const { imageUrl, promptText } = req.body;
 
     try {
@@ -45,12 +45,14 @@ This end result will be directly fed into Dalle 3's as a prompt, so ensure there
             ],
         });
 
+        //console.log(descriptionResponse);
         let responseText = descriptionResponse.choices[0].message.content;
+        //console.log(responseText);
         let formattedText = responseText.replace(/\n/g, ' ');
 
         const image_generated = await openai.images.generate({
             model: "dall-e-3",
-            prompt: formatted_text + "DO NOT REVISE THIS DESCRIPTION IT IS EXTEREMELY DETAILED, DO NOT REDUCE ITS LENGTH"
+            prompt: formattedText + "DO NOT REVISE THIS DESCRIPTION IT IS EXTEREMELY DETAILED, DO NOT REDUCE ITS LENGTH"
           });
         res.json({ description: formattedText, imageResponse: image_generated });
     } catch (error) {
