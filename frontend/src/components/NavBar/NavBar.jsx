@@ -21,7 +21,7 @@ function NavBar () {
        {!loggedIn ?
        <>
           <div className='right-navlinks-logged-in'>
-            <Link to={'/community'} className='text'>Community</Link>
+            <Link to={'/community'} className='text'>Community Feed</Link>
           </div>
           <div className='right-navlinks-logged-out'>
             <Link to={'/login'} className='text log-in'>Log In</Link>
