@@ -34,7 +34,7 @@ function NavBar () {
        <>
         <div className='right-navlinks-logged-in'>
             <Link to={'/howitworks'} className='text'>How It Works</Link>
-            <Link to={`/profile/${currUser._id}`} className='text'>Your Projects</Link>
+            <Link to={'/profile'} className='text'>Your Projects</Link>
             <Link to={'/community'} className='text'>Community</Link>
         </div>
         <div className='left-navlinks-logged-in'>
