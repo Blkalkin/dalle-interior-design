@@ -9,11 +9,16 @@ const cors = require('cors');
 const { isProduction } = require('./config/keys');
 
 require('./models/User');
+require('./models/Comment');
+require('./models/Project');
 require('./config/passport');
 const passport = require('passport');
 
 const usersRouter = require('./routes/api/users');
+const commentsRouter = require('./routes/api/comments');
 const csrfRouter = require('./routes/api/csrf');
+const projectsRouter = require('./routes/api/projects');
+
 
 
 const app = express();
@@ -40,7 +45,10 @@ app.use(
 );
 
 app.use('/api/users', usersRouter);
+app.use('/api/comments', commentsRouter);
 app.use('/api/csrf', csrfRouter);
+app.use('/api/projects', projectsRouter);
+
 
 
 
