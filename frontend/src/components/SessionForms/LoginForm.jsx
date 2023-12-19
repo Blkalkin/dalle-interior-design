@@ -70,7 +70,6 @@ function LoginForm () {
         className='text'
         value="Log In As Demo"
         onClick={handleDemoSubmit}
-        disabled={!email || !password}
       />
         <div className="links-auth text">
           <Link to={'/signup'}>Don't have an account? Signup</Link>
