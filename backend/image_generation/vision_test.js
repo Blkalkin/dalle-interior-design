@@ -47,7 +47,7 @@ This end result will be directly fed into Dalle 3's as a prompt, so ensure there
 
     const image_generated = await openai.images.generate({
       model: "dall-e-3",
-      prompt: formatted_text + "DO NOT REVISE THIS DESCRIPTION IT IS EXTEREMELY DETAILED, DO NOT REDUCE ITS LENGTH"
+      prompt: formatted_text + "DO NOT REVISE THIS DESCRIPTION IT IS EXTREMELY DETAILED, DO NOT REDUCE ITS LENGTH"
     });
     console.log(image_generated)
     }

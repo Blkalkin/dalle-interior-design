@@ -18,7 +18,8 @@ async function processImage(imagePath, outputPath) {
       const cropX = (image.bitmap.width - minDimension) / 2;
       const cropY = (image.bitmap.height - minDimension) / 2;
       image = await image.crop(cropX, cropY, minDimension, minDimension);
-      await image.writeAsync("cropped_image");
+      await image.writeAsync("cropped_image.png");
+      console.log("Image processed and saved to: cropped_image.png");
 
       // Calculate the size of the transparent square (80% of the cropped image)
       const squareSize = Math.floor(minDimension * 0.8);
@@ -49,25 +50,23 @@ async function generate_image_with_local(imagePath,base64Image, userPrompt) {
       {
         role: "system",
         content: `
-        Analyze the image and deliver a very detailed description, keeping a high degree of photo realism, focusing on observable elements and perspective. Describe the room, noting its ambiance, layout, size, ceiling height, and the angle of the photograph (corner, eye level, high, low). Explain how this perspective affects the visibility and arrangement of objects.
+        Analyze the image and concisely describe key elements with high realism. Focus on the room's ambiance, layout, size, ceiling height, and the photo's angle, explaining its impact on object visibility and arrangement.
 
-Detail the color scheme, lighting (natural or artificial, dim or bright), and flooring type (e.g., wooden floorboards, marble tiles, carpeting), including any rugs with their patterns and textures.
+Detail the color scheme and lighting, whether natural or artificial, dim or bright. Describe the flooring, like wooden floorboards or marble tiles, and any rugs, noting their patterns and textures.
 
-Enumerate furniture pieces, noting styles, colors, materials, and their relative positions from the camera's view (e.g., a forest green velvet armchair in the foreground left). Highlight decorative items like paintings, sculptures, or plants, describing sizes, colors, positions, and textures.
+Enumerate furniture pieces, specifying styles, colors, materials, and positions relative to the camera's perspective (e.g., a forest green velvet armchair in the foreground left). Highlight decorative items such as paintings, sculptures, or plants, including sizes, colors, positions, and textures.
 
-Describe visible appliances, electronics (brand, model, condition), and any wall hangings, window treatments, or bookshelves, including contents and appearances.
+Describe visible appliances and electronics, stating brands, models, and conditions, along with wall hangings, window treatments, or bookshelves, and their contents.
 
-Comment on the room's condition (tidy, cluttered, pristine, worn) and notable features like fireplaces, beams, or architectural details. Include sensory details like textures, sounds, and smells, and any emotional or atmospheric responses they evoke.
+Comment on the room's overall condition (tidy, cluttered, pristine, worn) and notable features like fireplaces or beams. Include sensory details and emotional responses they evoke.
 
-Ensure the language is clear, focused, and aligns with safety guidelines for DALL-E 3 be absolutely descriptive as possible about the locations of objects in the image.
-
-This end result will be directly fed into Dalle 3's as a prompt, so ensure there are not any unnecessary explanations to the user.
+Use the user's input to guide any modifications in the room's design, focusing on specific areas for inpainting. Keep the language clear and within safety guidelines, aiming for a description under 1000 characters.
         `
       },
       {
         role: "user",
         content: [
-          { type: "text", text: userPrompt + "use the input as a guide to shape the description, the output needs to be just detailed descriptions and locations in the photo"},
+          { type: "text", text: userPrompt},
           {
             type: 'image_url',
                     image_url: {
@@ -82,17 +81,14 @@ This end result will be directly fed into Dalle 3's as a prompt, so ensure there
   let formatted_text = response_text.replace(/\n/g, ' ');
   console.log(formatted_text)
 
-  const baseImageStream = fs.createReadStream(imagePath);
-  const maskImageStream = fs.createReadStream('proccessed_image.png');
+  const baseImageStream = fs.createReadStream('cropped_image.png');
+  const maskImageStream = fs.createReadStream('output.png');
 
-  const image_generated = await await openai.createImageEdit(
-    baseImageStream,
-    maskImageStream,
-    "dall-e-2",  // Assuming you are using the dall-e-2 model
-    formatted_text + "DO NOT REVISE THIS DESCRIPTION IT IS EXTREMELY DETAILED, DO NOT REDUCE ITS LENGTH",
-    1,           // Number of images to generate
-    "1024x1024"  // Output size
-  );
+  const image_generated = await openai.images.edit({
+    image: baseImageStream,
+    mask: maskImageStream,
+    prompt: formatted_text,
+  });
   console.log(image_generated)
   }
 
@@ -101,7 +97,7 @@ processImage(image, 'output.png')
 let base64Image = imageToBase64(image)
 const userPrompt = process.argv[3];
 
-//generate_image_with_local(image,base64Image, userPrompt);
+generate_image_with_local(image,base64Image, userPrompt);
 
 
 //processImage('input.png', 'output.png');
