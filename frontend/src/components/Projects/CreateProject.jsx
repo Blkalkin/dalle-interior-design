@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react'
 import './CreateProject.css'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { createProject } from '../../store/project'
 
 
 const CreateProject = () => {
+    const dispatch = useDispatch();
+    const 
     const [errors, setErrors] = useState([])
     const [disable, setDisable] = useState(true)
     const [prompt, setPrompt] = useState("")
     const [title, setTitle] = useState("")
     const [image, setImage] = useState("")
-    const [public, setpublic] = useState(true)
     const [description, setDescription] = useState("")
     const [imageLoading, setImageLoading] = useState(false)
     const promptImg1 = "https://t4.ftcdn.net/jpg/04/55/10/71/360_F_455107170_36Is8hwPMPdg9fN78WaFiSwY57dkXBu3.jpg"
@@ -38,17 +40,17 @@ const CreateProject = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (errors.length > 0) return
-        const formData = new FormData();
-        formData.append("project[photo]", image);
-        formData.append("project[title]", title)
-        formData.append("project[description]", description)
-        formData.append("project[prompt]", prompt)
-        formData.append('project[author]', currentUserId)
-        // if (album > 0) formData.append("albums", +album)
-
+        const payload = {
+            photoUrls: ['https://cdn.sanity.io/images/32lej2m6/production/3b2719424a0b4b4a1bdd5c5fc6a0720a72cac601-1280x720.jpg?auto=format'],
+            title: title,
+            description,
+            athorId: currentUserId,
+            public: true
+        }
+        // console.log(formData)
         setImageLoading(true);
 
-        const res = await dispatch((formData))
+        const res = dispatch(createProject(payload))
         if (res.ok) {
             setImage(null);
             setPrompt('');
@@ -114,7 +116,7 @@ const CreateProject = () => {
                         type="text"
                         onChange={updatePrompt}
                         value={prompt}
-                        required />
+                         />
                     <div className='submit-new-project'>
                         <button disabled={disable} className='sign-up-submit-button' type='submit'>Create </button>
                     {(imageLoading) && <p>Loading...</p>}
