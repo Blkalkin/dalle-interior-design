@@ -22,7 +22,7 @@ export const removeProject = projectId => ({
 
 export const fetchProjects = () => async(dispatch) => {
     try {
-        const res = await jwtFetch("???")
+        const res = await jwtFetch("/api/projects")
         const projects = await res.json()
         return dispatch(receiveProjects(projects))
     } catch(err) {
