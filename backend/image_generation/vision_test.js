@@ -56,7 +56,6 @@ const imageUrl = process.argv[2];
 const userPrompt = process.argv[3];
 
 
-
 generate_image(imageUrl, userPrompt);
 
 // To use this, make sure you are in the image generation directory and then just type the command: node vision_test.js "url" "prompt"
