@@ -58,7 +58,7 @@ router.post('/', async (req, res, next) => {
     return next(error);
   }try {
     let project = await newProject.save();
-    project = await project.populate('author', 'username email');
+    project = await project.populate('author', '_id');
     return res.json(project);
   }catch(err) {
     const error = new Error('Project failed to save');
