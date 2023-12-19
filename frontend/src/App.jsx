@@ -14,6 +14,7 @@ import ProjectIndex from './components/Projects/ProjectIndex';
 import Profile from './components/Profile/Profile';
 
 import { getCurrentUser } from './store/session';
+import CreateProject from './components/Projects/CreateProject';
 
 const Layout = () => {
   return (
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "profile/:id",
         element: <Profile />
+      },
+      {
+        path: "createProject",
+        element: <CreateProject/>
       },
       // {
       //   path: "profile",
