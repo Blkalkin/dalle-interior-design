@@ -15,6 +15,7 @@ import Profile from './components/Profile/Profile';
 import CommunityPage from './components/Community/CommunityPage';
 
 import { getCurrentUser } from './store/session';
+import CreateProject from './components/Projects/CreateProject';
 
 const Layout = () => {
   return (
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "profile/:id",
         element: <Profile />
+      },
+      {
+        path: "createProject",
+        element: <CreateProject/>
       },
       {
         path: "community",
