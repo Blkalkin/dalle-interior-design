@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const { requireUser } = require('../../config/passport');
 const User = mongoose.model('User');
 const Comment = mongoose.model('Comment');
 const Project = mongoose.model('Project');
@@ -29,11 +30,11 @@ router.get('/project/:projectId', async (req, res, next) => {
 
 router.post('/projects/:projectId', requireUser, async (req, res, next) => {
     try {
-        const newComment = new Comment({
-        author: req.user.id,
-        project:  await Project.findById(req.params.projectId),
-        body: req.body.body
-      });
+            const newComment = new Comment({
+                author: req.user.id,
+                project:  await Project.findById(req.params.projectId),
+                body: req.body
+            });
   
       let comment = await newComment.save();
       comment = await comment.populate('author', '_id username');
