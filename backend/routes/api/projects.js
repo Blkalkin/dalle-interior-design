@@ -41,23 +41,29 @@ router.get("/", async (req, res) => {
 
 
 router.post('/', async (req, res, next) => {
-  try {
-      const newProject = new Project({
+  
+  const newProject = new Project({
+    title: req.body.title,
+    description: req.body.description,
+    photoUrls: req.body.photoUrls,
+    public: req.body.public
+  });
 
-        author: req.body.authorId,
-        title: req.body.title,
-        description: req.body.description,
-        photoUrls: req.body.photoUrls,
-        public: req.body.public
-    });
-
+  try{
+    newProject.author = await User.findById(req.body.authorId);
+  }catch(err) {
+    const error = new Error('User not found');
+    error.statusCode = 404;
+    error.errors = { message: "No user found with that id" };
+    return next(error);
+  }try {
     let project = await newProject.save();
-    project = await project.populate('author', '_id username');
+    project = await project.populate('author', 'username email');
     return res.json(project);
+  }catch(err) {
+    const error = new Error('Project failed to save');
+    return next(error);
   }
-  catch(err) {
-    next(err);
-  }
-});
+})
 
 module.exports = router;
