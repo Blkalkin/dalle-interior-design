@@ -29,24 +29,31 @@ function LoginForm () {
     dispatch(login({ email, password }));
   }
 
+  const handleDemoSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login({ email: "demo@graphic.com", password: "demoword" }));
+  }
+
   if(loggedIn) return <Navigate to={`/profile/${currUser._id}`} replace={true}/>
 
   return (
     <form className="session-form" onSubmit={handleSubmit}>
       <h2>Log In Form</h2>
-      <div className="errors">{errors?.email}</div>
+      <div className="errors text">{errors?.email}</div>
       <label>
         <span>Email</span>
         <input type="text"
+         className='text'
           value={email}
           onChange={update('email')}
           placeholder="Email"
         />
       </label>
-      <div className="errors">{errors?.password}</div>
+      <div className="errors text">{errors?.password}</div>
       <label>
         <span>Password</span>
         <input type="password"
+         className='text'
           value={password}
           onChange={update('password')}
           placeholder="Password"
@@ -54,10 +61,18 @@ function LoginForm () {
       </label>
       <input
         type="submit"
+        className='text'
         value="Log In"
         disabled={!email || !password}
       />
-        <div className="links-auth">
+       <input
+        type="submit"
+        className='text'
+        value="Log In As Demo"
+        onClick={handleDemoSubmit}
+        disabled={!email || !password}
+      />
+        <div className="links-auth text">
           <Link to={'/signup'}>Don't have an account? Signup</Link>
         </div>
     </form>

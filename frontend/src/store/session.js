@@ -13,8 +13,6 @@ const logoutUser = () => ({
   type: RECEIVE_USER_LOGOUT
 });
 
-
-
 export const signup = user => startSession(user, 'api/users/register');
 export const login = user => startSession(user, 'api/users/login');
 
