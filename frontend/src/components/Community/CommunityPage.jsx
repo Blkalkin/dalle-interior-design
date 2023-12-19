@@ -1,8 +1,9 @@
 import ProjectIndexItem from "../Projects/ProjectIndexItem";
+import './Community.css';
 
 function CommunityPage () {
     const projects = []
-    
+
     for (let i = 1; i < 11; i++) {
         projects.push(
             {
