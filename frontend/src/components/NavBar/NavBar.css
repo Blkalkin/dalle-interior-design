@@ -4,9 +4,9 @@
     box-sizing: border-box;
     width: 100%;
     top: 0;
+    background-color: white;
     position: fixed;
-    border: rgb(210, 154, 15) solid 2px;
-
+    border-bottom: rgb(210, 154, 15) solid 2px;
 }
 
 .nav-logo {
@@ -50,8 +50,8 @@
 }
 
 .left-navlinks-logged-in {
-    margin-left: 40vw;
-    width: 15vw;
+    margin-left: 38vw;
+    width: 14vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
