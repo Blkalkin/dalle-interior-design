@@ -1,17 +1,22 @@
 import './LandingPage.css'
 import photo0 from '../../../assets/landingPagePhotos/1-livingroom-before.jpeg'
 import photo1 from '../../../assets/landingPagePhotos/1-livingroom-after.png'
+import photo2 from '../../../assets/landingPagePhotos/2-office-before.jpeg'
+import photo3 from '../../../assets/landingPagePhotos/2-office-after.png'
+import photo4 from '../../../assets/landingPagePhotos/3-bathroom-before.jpeg'
+import photo5 from '../../../assets/landingPagePhotos/3-bathroom-after.png'
+import photo6 from '../../../assets/landingPagePhotos/4-kids-room-before.jpeg'
+import photo7 from '../../../assets/landingPagePhotos/4-kids-room-after.png'
 import { useCallback, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
 
 
 function LandingPage() {
   const loggedIn = useSelector(state => !!state.session.user);
   const [beforeImg, setBeforeImg] = useState(0)
   const [afterImg, setAfterImg] = useState(1)
-  const imagesArr = [photo0, photo1]
+  const imagesArr = [photo0, photo1,photo2, photo3, photo4, photo5, photo6, photo7]
 
   const rotateImg = useCallback(() => {
   const beforeIndex = (beforeImg + 2) % imagesArr.length
