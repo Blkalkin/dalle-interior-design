@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
                 {
                     role: "user",
                     content: [
-                        { type: "text", text: promptText },
+                        { type: "text", text: promptText + "use the input as a guide to shape the description, the output needs to be just detailed descriptions and locations in the photo" },
                         {
                             type: "image_url",
                             image_url: { "url": imageUrl },
