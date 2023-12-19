@@ -6,7 +6,6 @@ const User = mongoose.model('User');
 const Comment = mongoose.model('Comment');
 const Project = mongoose.model('Project');
 
-
 router.get('/user/:userId', async (req, res, next) => {
     let user;
     try {
@@ -37,8 +36,6 @@ router.get("/", async (req, res) => {
     return res.json([])
    }
 })
-
-
 
 router.post('/', async (req, res, next) => {
   
