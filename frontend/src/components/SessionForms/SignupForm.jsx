@@ -55,10 +55,10 @@ function SignupForm () {
     dispatch(signup(user));
   }
 
-  const handleDemoSubmit = (e) => {
-    e.preventDefault();
-    dispatch(login({ email: "demo@graphic.com", password: "demoword" }));
-  }
+  // const handleDemoSubmit = (e) => {
+  //   e.preventDefault();
+  //   dispatch(login({ email: "demo@graphic.com", password: "demoword" }));
+  // }
 
   if(loggedIn) return <Navigate to={`/profile/${currUser._id}`} replace={true}/>
 
@@ -112,13 +112,13 @@ function SignupForm () {
         value="Sign Up"
         disabled={!email || !username || !password || password !== password2}
       />
-       <input
+       {/* <input
         type="submit"
         className='text'
         value="Sign in as Demo"
         onClick={handleDemoSubmit}
         disabled={!email || !username || !password || password !== password2}
-      />
+      /> */}
         <div className="links-auth text">
           <Link to={'/login'}>Already have and account? Login</Link>
         </div>
