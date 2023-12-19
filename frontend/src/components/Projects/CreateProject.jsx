@@ -7,7 +7,7 @@ import { createProject } from '../../store/project'
 
 const CreateProject = () => {
     const dispatch = useDispatch();
-    const 
+
     const [errors, setErrors] = useState([])
     const [disable, setDisable] = useState(true)
     const [prompt, setPrompt] = useState("")
@@ -25,10 +25,6 @@ const CreateProject = () => {
         setImage(file);
     }
 
-    const updateDescription = (e) => {
-        setDescription(e.target.value)
-    }
-
     const updateTitle = (e) => {
         setTitle(e.target.value)
     }
@@ -43,7 +39,6 @@ const CreateProject = () => {
         const payload = {
             photoUrls: ['https://cdn.sanity.io/images/32lej2m6/production/3b2719424a0b4b4a1bdd5c5fc6a0720a72cac601-1280x720.jpg?auto=format'],
             title: title,
-            description,
             athorId: currentUserId,
             public: true
         }
@@ -57,7 +52,6 @@ const CreateProject = () => {
             setTitle('');
             setErrors([]);
             setDisable(true);
-            setDescription('');
             setImageLoading(false)
             navigate(`/photos/${currentUserId}`)
         } 
@@ -81,11 +75,11 @@ const CreateProject = () => {
 
     return (
         <div className='whole-create-project-container'>
-            <div className='example-images text'> Test it out with one of these images!
+            <div className='example-images text'> Get started with one of these images, or upload
                 <img src={promptImg1} className='demo-img' alt="promptImg1" />
                 <img src={promptImg2} className='demo-img' alt="promptImg2" />
             </div>
-            <div className='upload-photo-section'>
+            <div className='upload-photo-section'> 
                 <div className='drag-n-drop-area'>Drag and drop your photo here! </div>
                 <form className='new-project-form' onSubmit={handleSubmit}>
                     <input 
@@ -101,13 +95,6 @@ const CreateProject = () => {
                         onChange={updateTitle} 
                         value={title}
                         required />
-                     <label className='form-label text'>Description</label>
-                    <input
-                        className='description-input'
-                        placeholder="optional"
-                        type="text"
-                        onChange={updateDescription}
-                        value={description} />
                     <label className='form-label text'>Prompt</label>
                     <button >Public</button>
                     <input
