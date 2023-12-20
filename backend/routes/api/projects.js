@@ -64,6 +64,32 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+router.patch('/:id/edit', async (req, res, next) => {
+  let project;
+
+  try{
+    project = await Project.findById(req.params.id);
+  }catch(err) {
+    const error = new Error('Project not found');
+    error.statusCode = 404;
+    error.errors = { message: "No project found with that id" };
+    return next(error);
+  }try {
+    project.title = req.body.title;
+    project.description = req.body.description;
+    project.photoUrls = req.body.photoUrls;
+    project.public = req.body.public;
+
+    let editedProject = await project.save();
+    editedProject = await project.populate('author', '_id');
+    return res.json(editedProject);
+  }catch(err) {
+    const error = new Error('Project failed to save');
+    error.statusCode = 422;
+    return next(error);
+  }
+})
+
 router.get('/:id', async (req, res, next) => {
   let project;
   try {
@@ -81,5 +107,6 @@ router.get('/:id', async (req, res, next) => {
     return res.json([]);
   }
 })
+
 
 module.exports = router;
