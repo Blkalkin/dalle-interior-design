@@ -146,4 +146,22 @@ router.patch('/:id/edit', async (req, res, next) => {
   }
 })
 
+router.delete('/:projectId', async (req, res, next) => {
+
+  try {
+    let project = await Project.deleteOne({ _id: req.params.projectId});
+
+    if (!project) {
+      const error = new Error('Project not found');
+      error.statusCode = 404;
+      error.errors = { message: 'No project found with that id' };
+      throw error;
+    }
+
+    return res.status(200).json({ message: 'Project deleted successfully' });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

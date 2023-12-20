@@ -20,7 +20,7 @@ const CreateProject = () => {
     const currentUserId = useSelector(state => state.session.user._id);
     const photo1 = useRef()
     const photo2 = useRef()
-    let imageFile;
+
 
     const updateImage = (e) => {
         const file = e.target.files[0];
@@ -41,9 +41,7 @@ const CreateProject = () => {
         formData.append("authorId", currentUserId)
         formData.append("public", isPublic)
 
-        for (const [key, value] of formData) {
-            console.log(`${key}: ${value}\n`);
-        }
+      
 
         setImageLoading(true);
         dispatch(createProject(formData))

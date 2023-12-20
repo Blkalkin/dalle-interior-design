@@ -26,9 +26,22 @@ export const fetchProjects = () => async(dispatch) => {
         const projects = await res.json()
         return dispatch(receiveProjects(projects))
     } catch(err) {
-        const res = await err.json()
-        console.log(res)
+        const data = await err.json()
+        console.log(data)
     }
+}
+
+export const fetchUserProjects = (userId) => async(dispatch) => {
+    try {
+        const res = jwtFetch(`/api/projects/user/${userId}`)
+        const projects = await res.json()
+        return dispatch(receiveProjects(projects))
+    } catch(err) {
+        const data = await err.json()
+        console.log(data)
+    }
+
+    
 }
 
 export const fetchProject = projectId => async(dispatch) => {
@@ -46,7 +59,7 @@ export const createProject = project => async(dispatch) => {
     const jwtToken = localStorage.getItem("jwtToken");
     let authToken;
     if (jwtToken) authToken = 'Bearer ' +  jwtToken;
-    
+
     try{
         const res =  await fetch("/api/projects", {
             method: "POST",
@@ -82,7 +95,7 @@ export const editProject = (projectId, project) => async(dispatch) => {
 
 export const deleteProject = projectId => async(dispatch) => {
     try {
-        const res = await jwtFetch(`/???/${projectId}`,{
+        const res = await jwtFetch(`/api/projects/${projectId}`,{
             method: "DELETE"
         })
 
