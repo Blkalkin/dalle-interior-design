@@ -20,7 +20,8 @@ router.get('/project/:projectId', async (req, res, next) => {
     }
     try {
       const comments = await Comment.find({ project: project._id })
-                                .populate("author", "_id username");
+                                .populate("author", "_id username")
+                                .sort({ createdAt: "desc"});
       return res.json(comments);
     }
     catch(err) {
@@ -28,7 +29,7 @@ router.get('/project/:projectId', async (req, res, next) => {
     }
 });
 
-router.post('/projects', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
 
       const newComment = new Comment({
           body: req.body.body
