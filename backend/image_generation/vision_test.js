@@ -1,8 +1,7 @@
 const OpenAI = require("openai");
+require('dotenv').config({ path: '../.env' });
 
-const apiKey =  "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"
-
-const openai = new OpenAI({apiKey: apiKey});
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 async function generate_image(imageUrl, userPrompt) {
     const response = await openai.chat.completions.create({
