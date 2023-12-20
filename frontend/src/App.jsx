@@ -65,15 +65,13 @@ const router = createBrowserRouter([
         element: <CommentIndex/>
       },
       {
-        path: "project/:id",
+        path: "edit-project/:projectId",
         element: <EditProject />
       },
       {
         path: "projectDetails/:projectId",
         element: <ProjectDetailsShow/>
-
       }
-      
     ]
   }
 ]);
