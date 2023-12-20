@@ -5,6 +5,7 @@ import RootErrorReducer from './errorReducer/RootErrorReducer';
 import userReducer from './user';
 import projectReducer from './project';
 import commentReducer from './comment';
+import newImageReducer from './photoGen';
 
 const rootReducer = combineReducers({
     //reducers
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     user: userReducer,
     errors: RootErrorReducer,
     projects: projectReducer,
-    comments: commentReducer
+    comments: commentReducer,
+    newImages: newImageReducer 
 });
 
 let enhancer;
