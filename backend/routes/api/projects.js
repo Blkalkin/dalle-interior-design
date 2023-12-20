@@ -26,8 +26,6 @@ const upload = multer({ storage: storage }) // upload function
 
 upload.single('photo'); // 'photo' must match 'name' field in the html form image input
 
-
-
 router.get('/user/:userId', async (req, res, next) => {
     let user;
     try {
@@ -58,7 +56,6 @@ router.get("/", async (req, res) => {
     return res.json([])
    }
 })
-
 
 
 router.post('/', upload.single('photo'), async (req, res, next) => {
@@ -100,16 +97,23 @@ router.post('/', upload.single('photo'), async (req, res, next) => {
   }
 })
 
-router.post('/photos', upload.single('photo'), async (req, res, next) => {
-  // photo data will be in req.file. Buffer is the actual photo
-
-  // req.file.buffer
-
-  
-});
-
-
-
+router.get('/:id', async (req, res, next) => {
+  let project;
+  try {
+    project = await Project.findById(req.params.id);
+  } catch(err) {
+    const error = new Error('Project not found');
+    error.statusCode = 404;
+    error.errors = { message: "No project found with that id" };
+    return next(error);
+  }
+  try {
+    return res.json(project);
+  }
+  catch(err) {
+    return res.json([]);
+  }
+})
 
 router.patch('/:id/edit', async (req, res, next) => {
   let project;
