@@ -89,7 +89,7 @@ router.post('/', async (req, res, next) => {
 router.post('/photos', upload.single('photo'), async (req, res, next) => {
   // photo data will be in req.file. Buffer is the actual photo
 
-  req.file.buffer
+  // req.file.buffer
 
   const params = {
     Bucket: awsBucketName,
