@@ -3,8 +3,26 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const { requireUser } = require('../../config/passport');
 const User = mongoose.model('User');
-const Comment = mongoose.model('Comment');
 const Project = mongoose.model('Project');
+const multer =  require('multer');
+const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
+const { awsBucketName, awsBucketRegion, awsAccess, awsSecret } = require('../../config/keys');
+
+const s3 = new S3Client({
+  credentials: {
+    accessKeyId: awsAccess,
+    secretAccessKey: awsSecret
+  },
+  region: awsBucketRegion
+});
+
+
+const storage = multer.memoryStorage()
+const upload = multer({ storage: storage }) // upload function
+
+upload.single('photo'); // 'photo' must match 'name' field in the html form image input
+
+
 
 router.get('/user/:userId', async (req, res, next) => {
     let user;
@@ -37,6 +55,8 @@ router.get("/", async (req, res) => {
    }
 })
 
+
+
 router.post('/', async (req, res, next) => {
   
   const newProject = new Project({
@@ -63,6 +83,28 @@ router.post('/', async (req, res, next) => {
     return next(error);
   }
 })
+
+
+
+router.post('/photos', upload.single('photo'), async (req, res, next) => {
+  // photo data will be in req.file. Buffer is the actual photo
+
+  req.file.buffer
+
+  const params = {
+    Bucket: awsBucketName,
+    Key: req.file.originalname,
+    Body: req.file.buffer,
+    ContentType: req.file.mimetype
+  }
+
+  const command = new PutObjectCommand(params);
+
+  await s3.send(command);
+});
+
+
+
 
 router.patch('/:id/edit', async (req, res, next) => {
   let project;
