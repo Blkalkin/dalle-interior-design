@@ -53,6 +53,9 @@ const router = createBrowserRouter([
       {
         path: "community",
         element: <CommunityPage />
+      },
+      {
+        path: "project/:id"
       }
     ]
   }
