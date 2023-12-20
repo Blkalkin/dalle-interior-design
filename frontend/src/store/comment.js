@@ -78,7 +78,7 @@ export const selectCommentsArray = createSelector(selectComments, comment =>
 )
 
 const commentReducer = (state = {}, action) => {
-    newState = Object.assign({}, state)
+    const newState = Object.assign({}, state)
 
     switch (action.type) {
         case RECEIVE_COMMENTS:

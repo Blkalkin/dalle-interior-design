@@ -4,7 +4,7 @@ import sessionReducer from './session';
 import RootErrorReducer from './errorReducer/RootErrorReducer';
 import userReducer from './user';
 import projectReducer from './project';
-import commentReducer from './commet';
+import commentReducer from './comment';
 
 const rootReducer = combineReducers({
     //reducers
