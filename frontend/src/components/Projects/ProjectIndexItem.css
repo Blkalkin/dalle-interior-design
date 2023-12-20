@@ -29,3 +29,13 @@
     /* height: 25vh; */
     /* background-color: gray; */
 }
+.bottom-details {
+    display: flex;
+    align-items: center;
+}
+
+.deleteIcon{
+    height: 2vh;
+    margin-left: 3vw;
+    /* margin-bottom: 3vh; */
+}

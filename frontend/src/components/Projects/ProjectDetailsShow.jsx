@@ -6,10 +6,9 @@ import { fetchProject, selectProject } from "../../store/project"
 const ProjectDetailsShow = () =>{
     const dispatch = useDispatch()
     const {projectId} = useParams()
-    // const project = useSelector(selectProject(projectId))
+    const project = useSelector(selectProject(projectId))
     // const projectPhotos = project.photoUrls
 
-    // console.log(project)
     // useEffect(()=> {
     //     dispatch(fetchProject(projectId))
     // },[dispatch])
@@ -18,11 +17,11 @@ const ProjectDetailsShow = () =>{
     return (
     
     <div className="project-details-page">
-        <div>
+        <div className="header-project-details">
             <div className="title">Title</div>
             <div className="text">Description</div>
         </div>
-        <ul className="projects-index-grid">
+        {/* <ul className="projects-index-grid">
             {projectPhotos.map(photo,idx  => {
                 return (
                 <div key={idx}>
@@ -32,7 +31,7 @@ const ProjectDetailsShow = () =>{
                 </div>
                 );
             })}
-        </ul>
+        </ul> */}
 
     </div>
 

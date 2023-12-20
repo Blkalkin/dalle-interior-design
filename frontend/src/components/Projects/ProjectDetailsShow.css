@@ -1,0 +1,11 @@
+.project-details-page{
+    position: absolute;
+    height: 500px;
+    background-color: red;
+
+}
+
+.header-project-details {
+   margin-top: 70vh;
+   background-color: blue;
+}
