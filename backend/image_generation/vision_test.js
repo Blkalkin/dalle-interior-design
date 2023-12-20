@@ -30,7 +30,7 @@ This end result will be directly fed into Dalle 3's as a prompt, so ensure there
         {
           role: "user",
           content: [
-            { type: "text", text: userPrompt + "use the input as a guide to shape the description, the output needs to be just detailed descriptions and locations in the photo"},
+            { type: "text", text: userPrompt + "use the input I gave as a guide to shape the description, the output needs to be just detailed descriptions and locations in the photo, remember you are addressing dalle-2 not a person"},
             {
               type: "image_url",
               image_url: {
@@ -47,14 +47,13 @@ This end result will be directly fed into Dalle 3's as a prompt, so ensure there
 
     const image_generated = await openai.images.generate({
       model: "dall-e-3",
-      prompt: formatted_text + "DO NOT REVISE THIS DESCRIPTION IT IS EXTEREMELY DETAILED, DO NOT REDUCE ITS LENGTH"
+      prompt: formatted_text + "DO NOT REVISE THIS DESCRIPTION IT IS EXTREMELY DETAILED, DO NOT REDUCE ITS LENGTH"
     });
     console.log(image_generated)
     }
 
 const imageUrl = process.argv[2];
 const userPrompt = process.argv[3];
-
 
 
 generate_image(imageUrl, userPrompt);
