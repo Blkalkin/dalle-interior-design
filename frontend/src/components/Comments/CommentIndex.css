@@ -1,0 +1,10 @@
+.comments-container {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    /* remove later */
+    margin-top: 100px;
+    width: 500px;
+    gap: 10px;
+}

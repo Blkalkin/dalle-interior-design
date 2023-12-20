@@ -22,7 +22,7 @@ const ProjectIndex = ({title, user}) => {
             <ul className="projects-index">
                 {projects.map(project => (
                     <ProjectIndexItem
-                        key={project.id}
+                        key={project._id}
                         project={project}
                     />
                 ))}

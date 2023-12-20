@@ -2,6 +2,7 @@ import { useDispatch, useSelector} from "react-redux"
 import { fetchComments, selectCommentsArray } from "../../store/comment"
 import { useEffect } from "react"
 import CommentIndexItem from "./CommentIndexItem"
+import "./CommentIndex.css"
 
 const CommentIndex = () => {
     const dispatch = useDispatch()
@@ -16,6 +17,7 @@ const CommentIndex = () => {
 
     return (
         <ul className="comments-container">
+            <h2>Comments</h2>
             {comments.map(comment => 
                 <CommentIndexItem
                     key={comment._id}
