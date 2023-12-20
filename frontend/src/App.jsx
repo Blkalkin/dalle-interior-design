@@ -16,6 +16,7 @@ import CommunityPage from './components/Community/CommunityPage';
 
 import { getCurrentUser } from './store/session';
 import CreateProject from './components/Projects/CreateProject';
+import EditProject from './components/EditProjectPage/EditProject';
 
 const Layout = () => {
   return (
@@ -55,7 +56,8 @@ const router = createBrowserRouter([
         element: <CommunityPage />
       },
       {
-        path: "project/:id"
+        path: "project/:id",
+        element: <EditProject />
       }
     ]
   }

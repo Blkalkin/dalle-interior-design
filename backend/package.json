@@ -15,6 +15,8 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-validator": "^7.0.1",
+    "jim": "^0.0.2",
+    "jimp": "^0.22.10",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.3",
     "morgan": "~1.9.1",

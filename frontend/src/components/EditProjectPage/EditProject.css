@@ -1,0 +1,18 @@
+.project-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    top: 0;
+    background-color: white;
+    padding-top: 50px;
+    position: absolute;
+    z-index: 100;
+}
+
+.first-photo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
