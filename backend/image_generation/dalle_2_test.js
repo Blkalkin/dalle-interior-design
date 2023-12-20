@@ -60,13 +60,13 @@ Describe visible appliances and electronics, stating brands, models, and conditi
 
 Comment on the room's overall condition (tidy, cluttered, pristine, worn) and notable features like fireplaces or beams. Include sensory details and emotional responses they evoke.
 
-Use the user's input to guide any modifications in the room's design, focusing on specific areas for inpainting. Keep the language clear and within safety guidelines, aiming for a description under 1000 characters.
+Use the user's input to guide any modifications in the room's design, focusing on specific areas for inpainting. Keep the language clear and within safety guidelines, aiming for a description under 1000 characters. Do not address the user at any point, the final output must be a description and nothing futher.
         `
       },
       {
         role: "user",
         content: [
-          { type: "text", text: userPrompt},
+          { type: "text", text: userPrompt + "this response must be kept under 900 characters"},
           {
             type: 'image_url',
                     image_url: {
@@ -87,7 +87,7 @@ Use the user's input to guide any modifications in the room's design, focusing o
   const image_generated = await openai.images.edit({
     image: baseImageStream,
     mask: maskImageStream,
-    prompt: formatted_text,
+    prompt: formatted_text
   });
   console.log(image_generated)
   }
@@ -99,6 +99,6 @@ const userPrompt = process.argv[3];
 
 generate_image_with_local(image,base64Image, userPrompt);
 
-
-//processImage('input.png', 'output.png');
-
+//To use this, make sure you are in the image generation directory and then just type the command: node dalle_2_test.js "local_url" "prompt"
+// Ex. node dalle_2_test.js "sample-images/office.png" "make it look the office of bill gates"
+// Wait for a little bit to get back the gpt4 prompt and a te"mporary link to the generated image. 
