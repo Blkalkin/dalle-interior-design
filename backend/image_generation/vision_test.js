@@ -30,7 +30,7 @@ This end result will be directly fed into Dalle 3's as a prompt, so ensure there
         {
           role: "user",
           content: [
-            { type: "text", text: userPrompt + "use the input as a guide to shape the description, the output needs to be just detailed descriptions and locations in the photo"},
+            { type: "text", text: userPrompt + "use the input I gave as a guide to shape the description, the output needs to be just detailed descriptions and locations in the photo, remember you are addressing dalle-2 not a person"},
             {
               type: "image_url",
               image_url: {
