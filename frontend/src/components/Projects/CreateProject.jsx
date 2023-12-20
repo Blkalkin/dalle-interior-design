@@ -67,10 +67,10 @@ const CreateProject = () => {
         if (errors.length === 0) setDisable(false)
         setErrors(errors)
 
-    }, [image, disable])
+    }, [disable])
 
     const onUpload = (files) => {
-        console.log(files);
+        console.log(image);
     }
 
     const handleImg1Click = (promptImg) => {
@@ -81,7 +81,7 @@ const CreateProject = () => {
     const handleImg2Click = (promptImg) => {
         setImage(promptImg)
     }
-
+    console.log(image)
     return (
         <div className='whole-create-project-container'>
             <div className='upload-photo-section'> 
@@ -91,14 +91,14 @@ const CreateProject = () => {
                     <img onClick={()=> handleImg2Click(promptImg2)} src={promptImg2} ref={photo2} className='demo-img img2' alt="promptImg2" />
                 </div>
                 <form className='new-project-form' onSubmit={handleSubmit}>
-                    <label> 
+                    {/* <label> 
                         Select a file to upload: 
                          <input 
                         className="choose-file-btn" 
                         type="file" 
                         accept="image/*" 
                         onChange={updateImage}/>
-                    </label>
+                    </label> */}
                    
                     <label className='title-label text'>
                         Name your project:
