@@ -83,7 +83,7 @@ class ImageProcessor {
           });
           let response_text = response.choices[0].message.content;
           let formatted_text = response_text.replace(/\n/g, ' ');
-          console.log(formatted_text)
+          //console.log(formatted_text)
         
           const baseImageStream = fs.createReadStream('image_generation/route-images/cropped_image.png');
           const maskImageStream = fs.createReadStream('image_generation/route-images/output.png');
@@ -93,15 +93,14 @@ class ImageProcessor {
             mask: maskImageStream,
             prompt: formatted_text
           });
-          console.log(image_generated)
-     
+          //console.log(image_generated)
+          return image_generated
     }
 
     async generateImagePrompt(imagePath,userPrompt){
     
     }
 
-    
   
     static imageToBase64(path) {
       const image = fs.readFileSync(path);
