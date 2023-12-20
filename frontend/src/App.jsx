@@ -20,6 +20,7 @@ import EditProject from './components/EditProjectPage/EditProject';
 import ProjectDetailsShow from './components/Projects/ProjectDetailsShow';
 
 
+
 const Layout = () => {
   return (
     <>
@@ -70,6 +71,7 @@ const router = createBrowserRouter([
       {
         path: "projectDetails/:projectId",
         element: <ProjectDetailsShow/>
+
       }
       
     ]
