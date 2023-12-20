@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import './CreateProject.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { createProject } from '../../store/project'
 import FilesDragAndDrop from './FilesDragAndDrop'
 
 
@@ -22,35 +21,46 @@ const CreateProject = () => {
     const photo2 = useRef()
     let imageFile;
 
-    // const updateImage = (e) => {
-    //     const file = e.target.files[0];
-    //     setImage(file);
-    // }
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        setImage(file);
+    }
 
     const updateTitle = (e) => {
         setTitle(e.target.value)
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (errors.length > 0) return
-        const payload = {
-            photoUrls: [image],
-            title: title,
-            athorId: currentUserId,
-            public: isPublic
-        }
-        setImageLoading(true);
 
-        const res = dispatch(createProject(payload))
-        if (res.ok) {
-            setImage(null);
-            setTitle('');
-            setErrors([]);
-            setDisable(true);
-            setImageLoading(false)
-            navigate(`/profile/${currentUserId}`)
-        } 
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // if (errors.length > 0) return
+        const formData = new FormData();
+        formData.append("image", image)
+        formData.append("title", title)
+        formData.append("authorId", currentUserId)
+        formData.append("public", isPublic.toString())
+
+        for (const [key, value] of formData) {
+            console.log(`${key}: ${value}\n`);
+        }
+
+        // const payload = {
+        //     photoUrls: [image],
+        //     title: title,
+        //     authorId: currentUserId,
+        //     public: isPublic
+        // }
+        setImageLoading(true);
+        // const res = dispatch(createProject(payload))
+        // if (res.ok) {
+        //     setImage(null);
+        //     setTitle('');
+        //     setErrors([]);
+        //     setDisable(true);
+        //     setImageLoading(false)
+        //     // navigate(`/profile/${currentUserId}`)
+        // } 
     }
 
     useEffect(() => {
@@ -89,20 +99,26 @@ const CreateProject = () => {
                     <img onClick={()=> handleImg2Click(promptImg2)} src={promptImg2} ref={photo2} className='demo-img img2' alt="promptImg2" />
                 </div>
                 <form className='new-project-form' onSubmit={handleSubmit}>
-                    {/* <label> Select a file to upload: </label>
-                    <input 
+                    <label> 
+                        Select a file to upload: 
+                         <input 
                         className="choose-file-btn" 
                         type="file" 
                         accept="image/*" 
-                        onChange={updateImage}/> */}
-                    <label className='title-label text'>Name your project:</label>
-                    <input 
+                        onChange={updateImage}/>
+                    </label>
+                   
+                    <label className='title-label text'>
+                        Name your project:
+                        <input 
                         className='title-input' 
                         placeholder="Required" 
                         type="text" 
                         onChange={updateTitle} 
                         value={title}
                         required />
+                    </label>
+                    
                     <div className='form-btns'>
                         <button className='privacy-btn text' onClick={()=> setIsPublic(!isPublic)}> {isPublic ? "Your project will be public" : "Your project will be private"}</button>
                         <button disabled={disable} className='submit-new-project-btn text' type='submit'>Create </button>
