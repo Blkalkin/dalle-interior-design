@@ -3,8 +3,13 @@ import './EditProject.css'
 function RecentPicture ({photoUrls}) {
     return (
         <>
-            <div className='first-photo'>
-                <h2>{photoUrls[0]}</h2>
+            <div class="image-container">
+                <div class="image-box" onclick="handleClick('firstBox')">
+                    Image Box 1
+                </div>
+                <div class="image-box" onclick="handleClick('secondBox')">
+                    Image Box 2
+                </div>
             </div>
         </>
     )
