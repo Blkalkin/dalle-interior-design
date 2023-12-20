@@ -1,62 +1,88 @@
 .whole-create-project-container {
     margin-top: 15vh;
-    /* background-color: green; */
     margin-left: 5vw;
     margin-right: 5vw;
     display: flex;
     justify-content: space-around;
+    /* background-color: green; */
+}
+
+.upload-photo-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: lavender; */
 }
 
 .example-images {
+    margin-top: 5vh;
     display: flex;
-    flex-direction: column;
     font-size: 20px;
     align-items: center;
-    
 }
 
 .demo-img {
     height: 40vh;
     width: 30vw;
     margin-top: 4px;
-    margin-bottom: 3vh;
-
+    margin-bottom: 3vh;  
 }
 
-.upload-photo-section {
-    /* background-color: lavender; */
-    width: 40vw;
-    /* height: 60vh; */
-}
-
-.drag-n-drop-area {
-    height: 40vh;
-    border: rgb(229, 176, 44) solid 2px;
-    /* background-color: palegoldenrod; */
+.img2 {
+    margin-left: 2vw;
 }
 
 .new-project-form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .form-label {
-    font-size: 20px;
-    padding-top: 2vh;
+    font-size: 30px;
+    /* padding-top: 2vh; */
     padding-bottom: 3px;
 }
 
 .title-input {
     height: 4vh;
+    width: 30vw;
     font-size: 20px;
+    border-radius: 10px;
+    border:  rgb(229, 176, 44) solid 1px;
     
 }
 
-.description-input {
-    height: 10vh;
-    text-wrap: wrap;
+.privacy-btn {
+    color:  white;
+    border: black 2px solid;
+    border-radius: 10px;
+    background-color: purple;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 1vw;
+    padding-left: 1vw;
     font-size: 15px;
-    box-sizing: border-box;
-    word-wrap: break-word;
-    overflow: hidden;
+}
+
+.form-btns {
+    display: flex;
+    justify-content: space-between;
+    width: 20vw;
+    /* background-color: aqua; */
+    margin-top: 2vh;
+    padding-bottom: 20vh;
+}
+.submit-new-project-btn {
+    color:  white;
+    border: white solid 1px;
+    border-radius: 10px;
+    background-color:  rgb(229, 176, 44);
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 1vw;
+    padding-left: 1vw;
+    font-size: 30px;
 }

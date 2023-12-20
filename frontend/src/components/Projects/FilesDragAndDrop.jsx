@@ -79,28 +79,35 @@ export default function FilesDragAndDrop({ setImage }) {
     setWelcome(false)
   };
 
-//   const removeImg = (e) => {
-//     e.preventDefault();
-//     e.stopPropagation();
-//     console.log(files)
-//     files.length = 0
-//     console.log(files)
-//     setWelcome(true)
-//     setMoreThanOnePhoto(false)
-//     setFileLoaded(false)
-//   }
+  const removeImg = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log(files)
+    files.length = 0
+    console.log(files)
+    setWelcome(true)
+    setMoreThanOnePhoto(false)
+    setFileLoaded(false)
+  }
+
 
   return (
     <>
     <div ref={drop} id ='drag-area' className='FilesDragAndDrop FilesDragAndDrop__area' >  
-        {welcome ? "Hey, drop me some photos!" : null}
+        {welcome ? 
+        <>
+            <div>  Hey, drop me a photo here!</div> <br />
+            <div>  Or select one of the photos below</div>
+        </>
+       : null}
         {moreThanOnePhoto ? "Please select only one photo at a time" :  null}
         {fileLoaded ? "Awesome, we got your photo! " : null}
         {dragging ? "Drop that file down low" : null }
         {!imgFileOk ? "Please upload a png, jpg, or jpeg " : null }
     </div>
-    {/* <button onClick={removeImg}>Clear Selected Photo</button> */}
+    <button onClick={removeImg}>Clear Selected Photo</button>
     </>
+
   );
 }
 

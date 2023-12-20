@@ -1,8 +1,8 @@
 
 
     .FilesDragAndDrop__area {
-      width: 300px;
-      height: 200px;
+      width: 30vw;
+      height: 20vh;
       padding: 50px;
       display: flex;
       align-items: center;
@@ -10,13 +10,9 @@
       flex-flow: column nowrap;
       font-size: 24px;
       color: #555555;
-      border: 2px #c3c3c3 dashed;
+      border: 2px  rgb(229, 176, 44) dashed;
       border-radius: 12px;
-  
-      .area__icon {
-        font-size: 64px;
-        margin-top: 20px;
-      }
+      margin-bottom: 8px;
     }
   
 
