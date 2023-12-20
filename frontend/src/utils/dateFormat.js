@@ -3,6 +3,11 @@ export const formatDate = dateString => {
     const now = new Date();
   
     const timeDifference = now - date;
+    
+    if (timeDifference < 60 * 60 * 1000) {
+      const minutes = Math.floor(timeDifference / (1000 * 60));
+      return `${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`;
+    }
   
     // If the time difference is less than 48 hours (2 days), display hours
     if (timeDifference < 48 * 60 * 60 * 1000) {
