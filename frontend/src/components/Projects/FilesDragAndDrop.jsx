@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './FilesDragAndDrop.css'
 
 export default function FilesDragAndDrop({ setImage }) {
-    const drop = useRef();
+    const drop = useRef(null);
     const [welcome, setWelcome] = useState(true);
     const[moreThanOnePhoto, setMoreThanOnePhoto] = useState(false);
     const [fileLoaded, setFileLoaded] = useState(false);
@@ -16,12 +16,12 @@ export default function FilesDragAndDrop({ setImage }) {
         drop.current.addEventListener('dragenter', handleDragEnter);
         drop.current.addEventListener('dragleave', handleDragLeave);
         
-    return () => {
-        drop.current.removeEventListener('dragover', handleDragOver);
-        drop.current.removeEventListener('drop', handleDrop);
-        drop.current.removeEventListener('dragenter', handleDragEnter);
-        drop.current.removeEventListener('dragleave', handleDragLeave);
-    };
+    // return () => {
+    //     drop.current.removeEventListener('dragover', handleDragOver);
+    //     drop.current.removeEventListener('drop', handleDrop);
+    //     drop.current.removeEventListener('dragenter', handleDragEnter);
+    //     drop.current.removeEventListener('dragleave', handleDragLeave);
+    // };
   }, []);
 
   const handleDragOver = (e) => {

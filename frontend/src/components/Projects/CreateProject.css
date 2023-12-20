@@ -40,10 +40,10 @@
     align-items: center;
 }
 
-.form-label {
+.title-label {
     font-size: 30px;
     /* padding-top: 2vh; */
-    padding-bottom: 3px;
+    padding-bottom: 2vh;
 }
 
 .title-input {

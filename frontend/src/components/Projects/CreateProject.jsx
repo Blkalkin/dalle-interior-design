@@ -48,7 +48,7 @@ const CreateProject = () => {
             setErrors([]);
             setDisable(true);
             setImageLoading(false)
-            navigate(`/projects/${currentUserId}`)
+            navigate(`/profile/${currentUserId}`)
         } 
     }
 
@@ -70,14 +70,14 @@ const CreateProject = () => {
         console.log(files);
     }
 
-    // const handleImg1Click = (promptImg) => {
-    //     setImage(promptImg)
-    //     photo1.style.border.red
-    // }
+    const handleImg1Click = (promptImg) => {
+        setImage(promptImg)
+        photo1.style.border.red
+    }
 
-    // const handleImg2Click = (promptImg) => {
-    //     setImage(promptImg)
-    // }
+    const handleImg2Click = (promptImg) => {
+        setImage(promptImg)
+    }
 
     return (
         <div className='whole-create-project-container'>
@@ -94,7 +94,7 @@ const CreateProject = () => {
                         type="file" 
                         accept="image/*" 
                         onChange={updateImage}/> */}
-                    <label className='form-label text'>Name your project:</label>
+                    <label className='title-label text'>Name your project:</label>
                     <input 
                         className='title-input' 
                         placeholder="Required" 
