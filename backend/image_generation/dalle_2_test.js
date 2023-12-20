@@ -101,4 +101,7 @@ generate_image_with_local(image,base64Image, userPrompt);
 
 //To use this, make sure you are in the image generation directory and then just type the command: node dalle_2_test.js "local_url" "prompt"
 // Ex. node dalle_2_test.js "sample-images/office.png" "make it look the office of bill gates"
-// Wait for a little bit to get back the gpt4 prompt and a te"mporary link to the generated image. 
+// Wait for a little bit to get back the gpt4 prompt and a temporary link to the generated image. 
+// If you'd like to use other images, download the file and either put it in the sample-images folder and refer it to it "sample-images/..." 
+// or get the exact path from wherever on your computer.
+// still prone to some errors with long prompts, note that THE IMAGES MUST BE PNG AND UNDER 4MB
