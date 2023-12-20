@@ -68,9 +68,12 @@ router.post('/', upload.single('photo'), async (req, res, next) => {
     title: req.body.title,
     description: req.body.description,
     photoUrls: req.body.photoUrls,
-    public: req.body.public
+    public: req.body.public,
+    author: req.body.authorId
   });
+  
   newProject.photoUrls=[`https://dalle-interior-design-dev.s3.us-west-1.amazonaws.com/${imageName}`]
+
 
   const params = {
     Bucket: awsBucketName,
