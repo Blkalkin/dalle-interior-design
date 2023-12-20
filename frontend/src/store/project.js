@@ -33,7 +33,7 @@ export const fetchProjects = () => async(dispatch) => {
 
 export const fetchProject = projectId => async(dispatch) => {
     try {
-        const res = await jwtFetch(`???/${projectId}`)
+        const res = await jwtFetch(`api/projects/${projectId}`)
         const project = await res.json()
         return dispatch(receiveProject(project))
     } catch(err) {
