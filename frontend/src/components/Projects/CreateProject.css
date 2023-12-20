@@ -1,10 +1,9 @@
 .whole-create-project-container {
-    margin-top: 15vh;
-    margin-left: 5vw;
-    margin-right: 5vw;
     display: flex;
-    justify-content: space-around;
-    /* background-color: green; */
+    justify-content: center;
+    min-width: 1000px;
+    width: inherit;
+
 }
 
 .upload-photo-section {
@@ -12,26 +11,27 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background-color: lavender; */
+    gap: 20px;
 }
 
 .example-images {
-    margin-top: 5vh;
     display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    height: 325px;
+    margin-top: 20px;
     font-size: 20px;
-    align-items: center;
+    
 }
 
-.demo-img {
-    height: 40vh;
-    width: 30vw;
-    margin-top: 4px;
-    margin-bottom: 3vh;  
+.example-images img {
+    width: 430px;
+    height: inherit;
+    object-fit: cover;
 }
 
-.img2 {
-    margin-left: 2vw;
-}
+
+
 
 .new-project-form {
     display: flex;
@@ -47,13 +47,11 @@
 }
 
 .title-input {
-    height: 4vh;
-    width: 30vw;
+    height: 35px;
     font-size: 20px;
     border-radius: 10px;
-
     border:  rgb(229, 176, 44) solid 1px;
-    
+    padding-left: 10px;
 }
 
 .privacy-btn {
@@ -63,18 +61,16 @@
     background-color: purple;
     padding-top: 8px;
     padding-bottom: 8px;
-    padding-right: 1vw;
-    padding-left: 1vw;
+    padding-right: 17px;
+    padding-left: 17px;
     font-size: 15px;
 }
 
 .form-btns {
     display: flex;
     justify-content: space-between;
-    width: 20vw;
-    /* background-color: aqua; */
-    margin-top: 2vh;
-    padding-bottom: 20vh;
+    gap: 30px;
+
 }
 .submit-new-project-btn {
     color:  white;
@@ -83,7 +79,5 @@
     background-color:  rgb(229, 176, 44);
     padding-top: 8px;
     padding-bottom: 8px;
-    padding-right: 1vw;
-    padding-left: 1vw;
     font-size: 30px;
 }

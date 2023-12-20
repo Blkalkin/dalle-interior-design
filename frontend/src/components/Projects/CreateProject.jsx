@@ -69,9 +69,9 @@ const CreateProject = () => {
 
     }, [disable])
 
-    const onUpload = (files) => {
-        console.log(image);
-    }
+    // const onUpload = (files) => {
+    //     console.log(image);
+    // }
 
     const handleImg1Click = (promptImg) => {
         setImage(promptImg)
@@ -85,7 +85,7 @@ const CreateProject = () => {
     return (
         <div className='whole-create-project-container'>
             <div className='upload-photo-section'> 
-                <FilesDragAndDrop setImage={setImage} onUpload={onUpload}/>
+                <FilesDragAndDrop setImage={setImage} />
                 <div className='example-images text'> 
                     <img onClick={()=> handleImg1Click(promptImg1)} src={promptImg1} ref={photo1} className='demo-img' alt="promptImg1" />
                     <img onClick={()=> handleImg2Click(promptImg2)} src={promptImg2} ref={photo2} className='demo-img img2' alt="promptImg2" />

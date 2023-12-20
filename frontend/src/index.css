@@ -1,4 +1,7 @@
 /* TODO: Add sitewide styles */
+body {
+    margin: 0;
+}
 .text {
     font-family: 'Noto Serif Display', serif;
     text-decoration: none;
