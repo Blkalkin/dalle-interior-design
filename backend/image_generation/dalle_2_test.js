@@ -1,9 +1,10 @@
 const Jimp = require('jimp');
+const sharp = requi
 const OpenAI = require("openai");
 const fs = require('fs');
+require('dotenv').config({ path: '../.env' });
 
-const apiKey =  "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"
-const openai = new OpenAI({apiKey: apiKey});
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 function imageToBase64(path) {
   const image = fs.readFileSync(path);
