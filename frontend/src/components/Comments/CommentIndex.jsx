@@ -8,15 +8,32 @@ import "./CommentIndex.css"
 const CommentIndex = () => {
     const dispatch = useDispatch()
     const projectId = "658218b08522932af6596a6b"
-    const comments = useSelector(selectCommentsArray)
+    let comments = useSelector(selectCommentsArray)
     const currentUser = useSelector(state => state.session.user)
     const [body, setBody] = useState("")
+    
+    function moveCurrentUserToTop(arr, authorId) {
+        const index = arr.findIndex(item => item.author._id === authorId);
+      
+        if (index !== -1) {
+          const itemToMove = arr.splice(index, 1)[0];
+          arr.unshift(itemToMove);
+        } else {
+            return arr
+        }
+
+        return arr;
+      }
+    
+    
+    comments = moveCurrentUserToTop(comments, currentUser?._id)
 
     useEffect(()=> {
         if (projectId){
             dispatch(fetchComments(projectId))
         }
     },[dispatch, projectId])
+
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -48,6 +65,7 @@ const CommentIndex = () => {
                 <CommentIndexItem
                     key={comment._id}
                     comment={comment}
+                    currentUserId={currentUser?._id}
                 />
             )}
         </ul>

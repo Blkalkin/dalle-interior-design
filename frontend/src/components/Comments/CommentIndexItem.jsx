@@ -6,7 +6,7 @@ import { faCircleUser } from '@fortawesome/free-regular-svg-icons'
 import "./CommentIndexItem.css"
 import { useEffect } from "react";
 
-const CommentIndexItem = ({comment}) => {
+const CommentIndexItem = ({currentUserId, comment}) => {
     const dispatch = useDispatch()
     const author = comment.author
     const formattedDate = formatDate(comment.createdAt)
@@ -23,6 +23,7 @@ const CommentIndexItem = ({comment}) => {
             <div className="comment-body">
                 <p>{formattedDate}</p>
                 <p>{comment.body}</p>
+                {currentUserId === author._id ? ( <button>Delete</button> ): null }
             </div>
             
         </li>
