@@ -11,7 +11,6 @@ const validateLoginInput = require('../../validations/login');
 
 
 
-
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.json({
