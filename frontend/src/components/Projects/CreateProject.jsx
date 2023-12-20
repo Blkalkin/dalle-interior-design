@@ -3,21 +3,21 @@ import './CreateProject.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { createProject } from '../../store/project'
+import FilesDragAndDrop from './FilesDragAndDrop'
 
 
 const CreateProject = () => {
     const dispatch = useDispatch();
-
-    const [errors, setErrors] = useState([])
-    const [disable, setDisable] = useState(true)
-    const [prompt, setPrompt] = useState("")
-    const [title, setTitle] = useState("")
-    const [image, setImage] = useState("")
-    const [description, setDescription] = useState("")
-    const [imageLoading, setImageLoading] = useState(false)
-    const promptImg1 = "https://t4.ftcdn.net/jpg/04/55/10/71/360_F_455107170_36Is8hwPMPdg9fN78WaFiSwY57dkXBu3.jpg"
-    const promptImg2 = "https://st.hzcdn.com/simgs/e732d6640e849a40_9-8559/_.jpg"
-    const currentUserId = useSelector(state => state.session.user._id)
+    const navigate = useNavigate();
+    const [errors, setErrors] = useState([]);
+    const [disable, setDisable] = useState(true);
+    const [title, setTitle] = useState("");
+    const [image, setImage] = useState("");
+    const [isPublic, setIsPublic] = useState("true");
+    const [imageLoading, setImageLoading] = useState(false);
+    const promptImg1 = "https://t4.ftcdn.net/jpg/04/55/10/71/360_F_455107170_36Is8hwPMPdg9fN78WaFiSwY57dkXBu3.jpg";
+    const promptImg2 = "https://st.hzcdn.com/simgs/e732d6640e849a40_9-8559/_.jpg";
+    const currentUserId = useSelector(state => state.session.user._id);
 
 
     const updateImage = (e) => {
@@ -27,10 +27,6 @@ const CreateProject = () => {
 
     const updateTitle = (e) => {
         setTitle(e.target.value)
-    }
-
-    const updatePrompt = (e) => {
-        setPrompt(e.target.value)
     }
 
     const handleSubmit = async (e) => {
@@ -48,7 +44,6 @@ const CreateProject = () => {
         const res = dispatch(createProject(payload))
         if (res.ok) {
             setImage(null);
-            setPrompt('');
             setTitle('');
             setErrors([]);
             setDisable(true);
@@ -71,16 +66,20 @@ const CreateProject = () => {
 
     }, [image, disable])
 
+    const onUpload = (files) => {
+        console.log(files);
+        setImage(files[0])
 
+    }
 
     return (
         <div className='whole-create-project-container'>
             <div className='example-images text'> Get started with one of these images, or upload
-                <img src={promptImg1} className='demo-img' alt="promptImg1" />
-                <img src={promptImg2} className='demo-img' alt="promptImg2" />
+                <img onClick={()=> setImage(promptImg1)} src={promptImg1} className='demo-img' alt="promptImg1" />
+                <img onClick={()=> setImage(promptImg2)}src={promptImg2} className='demo-img' alt="promptImg2" />
             </div>
             <div className='upload-photo-section'> 
-                <div className='drag-n-drop-area'>Drag and drop your photo here! </div>
+                <FilesDragAndDrop setImage={setImage} onUpload={onUpload}/>
                 <form className='new-project-form' onSubmit={handleSubmit}>
                     <input 
                         className="" 
@@ -95,15 +94,7 @@ const CreateProject = () => {
                         onChange={updateTitle} 
                         value={title}
                         required />
-                    <label className='form-label text'>Prompt</label>
-                    <button >Public</button>
-                    <input
-                        className=''
-                        placeholder="required"
-                        type="text"
-                        onChange={updatePrompt}
-                        value={prompt}
-                         />
+                    <button onClick={()=> setIsPublic(false)}> {isPublic ? "Set Project as Private" : "Set Project as Pubic"}</button>
                     <div className='submit-new-project'>
                         <button disabled={disable} className='sign-up-submit-button' type='submit'>Create </button>
                     {(imageLoading) && <p>Loading...</p>}
