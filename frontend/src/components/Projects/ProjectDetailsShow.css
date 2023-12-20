@@ -1,11 +1,46 @@
 .project-details-page{
-    position: absolute;
-    height: 500px;
-    background-color: red;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 
 }
 
 .header-project-details {
-   margin-top: 70vh;
-   background-color: blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aqua; */
+    width: 60vw;
+}
+
+.project-title-PDS{
+    font-size: 30px;
+}
+
+.project-description-PDS{
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.projects-index-grid-DS {
+    /* position: absolute; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates 4 columns with equal width */
+    gap: 15px; 
+    flex-wrap: wrap;
+    padding-left: 11%;
+    padding-right: 11%;
+    padding-top: 8%;
+    width: 60%;
+   background-color: aquamarine;
+  }
+
+  .photoimage {
+    width: 100%;
+    object-fit: cover;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
