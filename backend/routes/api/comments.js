@@ -20,7 +20,8 @@ router.get('/project/:projectId', async (req, res, next) => {
     }
     try {
       const comments = await Comment.find({ project: project._id })
-                                .populate("author", "_id username");
+                                .populate("author", "_id username")
+                                .sort({ createdAt: "desc"});
       return res.json(comments);
     }
     catch(err) {
@@ -28,7 +29,7 @@ router.get('/project/:projectId', async (req, res, next) => {
     }
 });
 
-router.post('/projects', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
 
       const newComment = new Comment({
           body: req.body.body
@@ -51,7 +52,7 @@ router.post('/projects', async (req, res, next) => {
       }
       try{
         let comment = await newComment.save();
-        comment = await comment.populate("author", "_id");
+        comment = await comment.populate("author", "_id username");
         comment = await comment.populate("project", '_id');
 
         return res.json(comment);
@@ -61,5 +62,25 @@ router.post('/projects', async (req, res, next) => {
           return next(error);
       }
 );
+
+router.delete('/:commentId', async (req, res, next) => {
+
+  try {
+    let comment = await Comment.deleteOne({ _id: req.params.commentId});
+
+    if (!comment) {
+      const error = new Error('Comment not found');
+      error.statusCode = 404;
+      error.errors = { message: 'No comment found with that id' };
+      throw error;
+    }
+
+  
+    return res.status(200).json({ message: 'Comment deleted successfully' });
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 module.exports = router;

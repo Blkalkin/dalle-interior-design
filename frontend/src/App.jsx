@@ -10,12 +10,12 @@ import LandingPage from './components/LandingPage/LandingPage';
 import NavBar from './components/NavBar/NavBar';
 import LoginForm from './components/SessionForms/LoginForm';
 import SignupForm from './components/SessionForms/SignupForm';
-import ProjectIndex from './components/Projects/ProjectIndex';
 import Profile from './components/Profile/Profile';
 import CommunityPage from './components/Community/CommunityPage';
 
 import { getCurrentUser } from './store/session';
 import CreateProject from './components/Projects/CreateProject';
+import CommentIndex from './components/Comments/CommentIndex';
 
 const Layout = () => {
   return (
@@ -53,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "community",
         element: <CommunityPage />
+      },
+      {
+        path: "comments",
+        element: <CommentIndex/>
       }
     ]
   }

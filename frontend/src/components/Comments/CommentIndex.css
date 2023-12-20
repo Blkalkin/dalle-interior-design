@@ -1,0 +1,42 @@
+.comments-container {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    /* remove later */
+    margin-top: 100px;
+    width: 500px;
+    gap: 10px;
+}
+
+.comment-add-container {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+  }
+  
+.comment-add-container textarea {
+width: 100%;
+box-sizing: border-box;
+padding: 10px;
+margin-bottom: 10px;
+resize: none;
+border: 1px solid #ccc;
+border-radius: 4px;
+font-size: 14px;
+}
+
+.comment-add-container button {
+    background-color: #3880ff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    align-self: flex-end;
+}
+
+.comment-add-container button:hover {
+background-color: #2979ff;
+}
