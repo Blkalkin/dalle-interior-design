@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './CreateProject.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -18,12 +18,13 @@ const CreateProject = () => {
     const promptImg1 = "https://t4.ftcdn.net/jpg/04/55/10/71/360_F_455107170_36Is8hwPMPdg9fN78WaFiSwY57dkXBu3.jpg";
     const promptImg2 = "https://st.hzcdn.com/simgs/e732d6640e849a40_9-8559/_.jpg";
     const currentUserId = useSelector(state => state.session.user._id);
+    const photo1 = useRef()
+    const photo2 = useRef()
 
-
-    const updateImage = (e) => {
-        const file = e.target.files[0];
-        setImage(file);
-    }
+    // const updateImage = (e) => {
+    //     const file = e.target.files[0];
+    //     setImage(file);
+    // }
 
     const updateTitle = (e) => {
         setTitle(e.target.value)
@@ -33,12 +34,11 @@ const CreateProject = () => {
         e.preventDefault();
         if (errors.length > 0) return
         const payload = {
-            photoUrls: ['https://cdn.sanity.io/images/32lej2m6/production/3b2719424a0b4b4a1bdd5c5fc6a0720a72cac601-1280x720.jpg?auto=format'],
+            photoUrls: [image],
             title: title,
             athorId: currentUserId,
-            public: true
+            public: isPublic
         }
-        // console.log(formData)
         setImageLoading(true);
 
         const res = dispatch(createProject(payload))
@@ -48,7 +48,7 @@ const CreateProject = () => {
             setErrors([]);
             setDisable(true);
             setImageLoading(false)
-            navigate(`/photos/${currentUserId}`)
+            navigate(`/projects/${currentUserId}`)
         } 
     }
 
@@ -68,25 +68,33 @@ const CreateProject = () => {
 
     const onUpload = (files) => {
         console.log(files);
-        setImage(files[0])
-
     }
+
+    // const handleImg1Click = (promptImg) => {
+    //     setImage(promptImg)
+    //     photo1.style.border.red
+    // }
+
+    // const handleImg2Click = (promptImg) => {
+    //     setImage(promptImg)
+    // }
 
     return (
         <div className='whole-create-project-container'>
-            <div className='example-images text'> Get started with one of these images, or upload
-                <img onClick={()=> setImage(promptImg1)} src={promptImg1} className='demo-img' alt="promptImg1" />
-                <img onClick={()=> setImage(promptImg2)}src={promptImg2} className='demo-img' alt="promptImg2" />
-            </div>
             <div className='upload-photo-section'> 
                 <FilesDragAndDrop setImage={setImage} onUpload={onUpload}/>
+                <div className='example-images text'> 
+                    <img onClick={()=> handleImg1Click(promptImg1)} src={promptImg1} ref={photo1} className='demo-img' alt="promptImg1" />
+                    <img onClick={()=> handleImg2Click(promptImg2)} src={promptImg2} ref={photo2} className='demo-img img2' alt="promptImg2" />
+                </div>
                 <form className='new-project-form' onSubmit={handleSubmit}>
+                    {/* <label> Select a file to upload: </label>
                     <input 
-                        className="" 
+                        className="choose-file-btn" 
                         type="file" 
                         accept="image/*" 
-                        onChange={updateImage}/>
-                    <label className='form-label text'>Project Title</label>
+                        onChange={updateImage}/> */}
+                    <label className='form-label text'>Name your project:</label>
                     <input 
                         className='title-input' 
                         placeholder="Required" 
@@ -94,14 +102,13 @@ const CreateProject = () => {
                         onChange={updateTitle} 
                         value={title}
                         required />
-                    <button onClick={()=> setIsPublic(false)}> {isPublic ? "Set Project as Private" : "Set Project as Pubic"}</button>
-                    <div className='submit-new-project'>
-                        <button disabled={disable} className='sign-up-submit-button' type='submit'>Create </button>
-                    {(imageLoading) && <p>Loading...</p>}
-                </div>
+                    <div className='form-btns'>
+                        <button className='privacy-btn text' onClick={()=> setIsPublic(!isPublic)}> {isPublic ? "Make your project private" : "Make you project pubic"}</button>
+                        <button disabled={disable} className='submit-new-project-btn text' type='submit'>Create </button>
+                        {(imageLoading) && <p>Loading...</p>}
+                     </div>
                 </form>
             </div>
-
         </div>
     )
 }
