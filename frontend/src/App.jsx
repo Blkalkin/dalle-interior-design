@@ -16,6 +16,8 @@ import CommunityPage from './components/Community/CommunityPage';
 import { getCurrentUser } from './store/session';
 import CreateProject from './components/Projects/CreateProject';
 import CommentIndex from './components/Comments/CommentIndex';
+import EditProject from './components/EditProjectPage/EditProject';
+
 
 const Layout = () => {
   return (
@@ -57,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "comments",
         element: <CommentIndex/>
+      },
+      {
+        path: "project/:id",
+        element: <EditProject />
       }
     ]
   }
