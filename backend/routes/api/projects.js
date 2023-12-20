@@ -64,4 +64,22 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+router.get('/:id', async (req, res, next) => {
+  let project;
+  try {
+    project = await Project.findById(req.params.id);
+  } catch(err) {
+    const error = new Error('Project not found');
+    error.statusCode = 404;
+    error.errors = { message: "No project found with that id" };
+    return next(error);
+  }
+  try {
+    return res.json(project);
+  }
+  catch(err) {
+    return res.json([]);
+  }
+})
+
 module.exports = router;
