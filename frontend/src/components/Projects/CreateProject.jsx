@@ -103,7 +103,7 @@ const CreateProject = () => {
                         value={title}
                         required />
                     <div className='form-btns'>
-                        <button className='privacy-btn text' onClick={()=> setIsPublic(!isPublic)}> {isPublic ? "Make your project private" : "Make you project pubic"}</button>
+                        <button className='privacy-btn text' onClick={()=> setIsPublic(!isPublic)}> {isPublic ? "Your project will be public" : "Your project will be private"}</button>
                         <button disabled={disable} className='submit-new-project-btn text' type='submit'>Create </button>
                         {(imageLoading) && <p>Loading...</p>}
                      </div>
