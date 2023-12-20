@@ -33,7 +33,7 @@ export const fetchProjects = () => async(dispatch) => {
 
 export const fetchProject = projectId => async(dispatch) => {
     try {
-        const res = await jwtFetch(`???/${projectId}`)
+        const res = await jwtFetch(`/api/projects/${projectId}`)
         const project = await res.json()
         return dispatch(receiveProject(project))
     } catch(err) {
@@ -56,9 +56,23 @@ export const createProject = project => async(dispatch) => {
     }
 }
 
+export const editProject = (projectId, project) => async(dispatch) => {
+    try{
+        const res =  await jwtFetch(`/api/projects/${projectId}/edit`, {
+            method: "POST",
+            body: JSON.stringify(project)
+        });
+        const data = await res.json();
+        return dispatch(receiveProject(data))
+    } catch(err) {
+        const res = await err.json();
+        console.log(res)
+    }
+}
+
 export const deleteProject = projectId => async(dispatch) => {
     try {
-        const res = await jwtFetch(`???/${projectId}`,{
+        const res = await jwtFetch(`/???/${projectId}`,{
             method: "DELETE"
         })
 

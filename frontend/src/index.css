@@ -1,7 +1,12 @@
 /* TODO: Add sitewide styles */
 .text {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Noto Serif Display', serif;
     text-decoration: none;
+}
+
+.title {
+    font-family: 'Noto Serif Display', serif;
+    color: rgb(62, 91, 62);
 }
 
 .get-started {
@@ -14,4 +19,10 @@
     color: white;
     border: rgb(229, 176, 44) solid 2px;
     background-color: rgb(229, 176, 44);
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
 }

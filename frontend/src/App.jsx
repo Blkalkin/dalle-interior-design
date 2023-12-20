@@ -17,13 +17,17 @@ import { getCurrentUser } from './store/session';
 import CreateProject from './components/Projects/CreateProject';
 import CommentIndex from './components/Comments/CommentIndex';
 import EditProject from './components/EditProjectPage/EditProject';
+import ProjectDetailsShow from './components/Projects/ProjectDetailsShow';
+
 
 
 const Layout = () => {
   return (
     <>
       <NavBar />
-      <Outlet />
+      <div className='body'>
+        <Outlet />
+      </div>
     </>
   );
 };
@@ -63,7 +67,13 @@ const router = createBrowserRouter([
       {
         path: "project/:id",
         element: <EditProject />
+      },
+      {
+        path: "projectDetails/:projectId",
+        element: <ProjectDetailsShow/>
+
       }
+      
     ]
   }
 ]);

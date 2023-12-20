@@ -4,11 +4,22 @@
     align-items: center;
 
 }
-.projects-index {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    width: 900px;
-    padding: 0;
+
+.project-header {
+    margin-top: 4%;
+    font-size: 30px;
+    /* background-color: yellow; */
 }
+
+.projects-index-grid {
+    /* position: absolute; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates 4 columns with equal width */
+    gap: 35px; 
+    flex-wrap: wrap;
+    padding-left: 11%;
+    padding-right: 11%; 
+    padding-top: 3%;
+    /* background-color: aquamarine; */
+    
+  }

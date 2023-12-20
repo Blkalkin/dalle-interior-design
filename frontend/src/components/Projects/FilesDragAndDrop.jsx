@@ -55,6 +55,7 @@ export default function FilesDragAndDrop({ setImage }) {
     e.stopPropagation();
    
     let files = [...e.dataTransfer.files];
+    console.log(files)
 
     if (files.length > 1) {
        setMoreThanOnePhoto(true)
@@ -72,11 +73,12 @@ export default function FilesDragAndDrop({ setImage }) {
         setImageFileOk(false);
         return;
     }
-    // setImage(files)
+
     setDragging(false);
     setMoreThanOnePhoto(false)
     setFileLoaded(true)
     setWelcome(false)
+
   };
 
   const removeImg = (e) => {
@@ -88,6 +90,9 @@ export default function FilesDragAndDrop({ setImage }) {
     setWelcome(true)
     setMoreThanOnePhoto(false)
     setFileLoaded(false)
+
+
+    
   }
 
 
