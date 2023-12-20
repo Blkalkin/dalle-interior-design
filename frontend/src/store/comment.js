@@ -17,7 +17,7 @@ export const receiveComment = comment => ({
 })
 
 export const removeComment = commentId => ({
-    type: REMOVE_PROJECT,
+    type: REMOVE_COMMENT,
     commentId
 })
 
@@ -26,7 +26,7 @@ export const fetchComments = projectId => async(dispatch) => {
         const res = await jwtFetch(`/api/comments/project/${projectId}`)
 
         const comments = await res.json()
-        dispatch(receiveComments(comments))
+        return dispatch(receiveComments(comments))
     } catch(err) {
         const res = await err.json()
         console.log(res)
@@ -38,7 +38,7 @@ export const fetchComment = commentId => async(dispatch) => {
     try {
         const res = await jwtFetch(`/api/comments/${commentId}`)
         const comment = res.json()
-        dispatch(receiveComment(comment))
+        return dispatch(receiveComment(comment))
     } catch(err) {
         const res = await err.json()
         console.log(res)
@@ -46,14 +46,16 @@ export const fetchComment = commentId => async(dispatch) => {
 }
 
 export const deleteComment = commentId => async(dispatch) => {
-    try {
-        const res = await jwtFetch(`/api/comments/${commentId}`, {
-            method: "DELETE"
-        })
-    } catch(err){
-        const res = err.json()
-        console.log(res)
+    
+    const res = await jwtFetch(`/api/comments/${commentId}`, {
+        method: "DELETE"
+    })
+    
+    if (res.ok) {
+        dispatch(removeComment(commentId))
     }
+
+
 }
 
 export const addComment = comment => async dispatch => {
@@ -64,7 +66,7 @@ export const addComment = comment => async dispatch => {
         })
 
         const data = await res.json()
-        dispatch(receiveComment(data))
+        return dispatch(receiveComment(data))
     } catch(err) {
         const res = await err.json()
         console.log(res)
@@ -88,6 +90,7 @@ const commentReducer = (state = {}, action) => {
             newState[action.comment._id] = action.comment
             return newState
         case REMOVE_COMMENT:
+            console.log(newState)
             delete newState[action.commentId]
             return newState
         default:
