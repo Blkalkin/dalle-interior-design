@@ -24,7 +24,9 @@ const Layout = () => {
   return (
     <>
       <NavBar />
-      <Outlet />
+      <div className='body'>
+        <Outlet />
+      </div>
     </>
   );
 };

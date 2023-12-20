@@ -6,12 +6,14 @@ import { fetchProject, selectProject } from "../../store/project"
 const ProjectDetailsShow = () =>{
     const dispatch = useDispatch()
     const {projectId} = useParams()
+    console.log(projectId)
     const project = useSelector(selectProject(projectId))
     // const projectPhotos = project.photoUrls
 
-    // useEffect(()=> {
-    //     dispatch(fetchProject(projectId))
-    // },[dispatch])
+    useEffect( ()=> {
+     dispatch(fetchProject(projectId))
+    },[dispatch, projectId])
+
 
 
     return (
