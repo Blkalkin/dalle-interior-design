@@ -7,6 +7,10 @@ const Project = mongoose.model('Project');
 const multer =  require('multer');
 const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
 const { awsBucketName, awsBucketRegion, awsAccess, awsSecret } = require('../../config/keys');
+const crypto = require('crypto');
+
+
+randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
 
 const s3 = new S3Client({
   credentials: {
@@ -57,14 +61,24 @@ router.get("/", async (req, res) => {
 
 
 
-router.post('/', async (req, res, next) => {
+router.post('/', upload.single('photo'), async (req, res, next) => {
   
+  const imageName = randomImageName();
+
   const newProject = new Project({
     title: req.body.title,
     description: req.body.description,
     photoUrls: req.body.photoUrls,
     public: req.body.public
   });
+  newProject.photoUrls=[`https://dalle-interior-design-dev.s3.us-west-1.amazonaws.com/${imageName}`]
+
+  const params = {
+    Bucket: awsBucketName,
+    Key: imageName,
+    Body: req.file.buffer,
+    ContentType: req.file.mimetype
+  }
 
   try{
     newProject.author = await User.findById(req.body.authorId);
@@ -74,6 +88,8 @@ router.post('/', async (req, res, next) => {
     error.errors = { message: "No user found with that id" };
     return next(error);
   }try {
+    const command = new PutObjectCommand(params);
+    const uploadedPhoto = await s3.send(command);
     let project = await newProject.save();
     project = await project.populate('author', '_id');
     return res.json(project);
@@ -84,23 +100,12 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-
-
 router.post('/photos', upload.single('photo'), async (req, res, next) => {
   // photo data will be in req.file. Buffer is the actual photo
 
   // req.file.buffer
 
-  const params = {
-    Bucket: awsBucketName,
-    Key: req.file.originalname,
-    Body: req.file.buffer,
-    ContentType: req.file.mimetype
-  }
-
-  const command = new PutObjectCommand(params);
-
-  await s3.send(command);
+  
 });
 
 
