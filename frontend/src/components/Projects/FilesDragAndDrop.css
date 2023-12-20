@@ -50,7 +50,15 @@
   gap: 10px;
 }
 
-
+.remove-image-button {
+  color:  white;
+  border: white solid 1px;
+  border-radius: 10px;
+  background:  rgb(229, 176, 44);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 20px;
+}
 
 .preview-image {
   width: 300px;

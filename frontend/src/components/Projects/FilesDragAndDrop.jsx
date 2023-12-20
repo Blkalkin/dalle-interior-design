@@ -127,7 +127,7 @@ const FilesDragAndDrop = ({ setImage, image }) => {
         {dragging ? 'Drop that file down low' : null}
         {!imgFileOk ? 'Please upload a png, jpg, or jpeg ' : null}
       </div>
-        <button onClick={removeImg}>Clear Selected Photo</button>
+        <button className='remove-image-button text' onClick={removeImg}>Clear Selected Photo</button>
       
     </>
   );

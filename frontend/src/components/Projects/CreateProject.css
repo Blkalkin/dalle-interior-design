@@ -3,6 +3,7 @@
     justify-content: center;
     min-width: 1000px;
     width: inherit;
+    margin-bottom: 50px;
 
 }
 
@@ -38,12 +39,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 20px;
 }
 
 .title-label {
     font-size: 30px;
-    /* padding-top: 2vh; */
-    padding-bottom: 2vh;
 }
 
 .title-input {
