@@ -4,6 +4,7 @@ import sessionReducer from './session';
 import RootErrorReducer from './errorReducer/RootErrorReducer';
 import userReducer from './user';
 import projectReducer from './project';
+import commentReducer from './commet';
 
 const rootReducer = combineReducers({
     //reducers
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     user: userReducer,
     errors: RootErrorReducer,
     projects: projectReducer,
+    comments: commentReducer
 });
 
 let enhancer;
