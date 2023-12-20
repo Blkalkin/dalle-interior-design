@@ -71,7 +71,9 @@ router.post('/', upload.single('photo'), async (req, res, next) => {
     author: req.body.authorId
   });
   
+  
   newProject.photoUrls=[`https://dalle-interior-design-dev.s3.us-west-1.amazonaws.com/${imageName}`]
+
 
 
   const params = {
@@ -146,6 +148,7 @@ router.patch('/:id/edit', async (req, res, next) => {
 })
 
 router.delete('/:projectId', async (req, res, next) => {
+
   try {
     let project = await Project.deleteOne({ _id: req.params.projectId});
 
@@ -160,6 +163,6 @@ router.delete('/:projectId', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-})
+});
 
 module.exports = router;
