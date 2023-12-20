@@ -1,7 +1,12 @@
 /* TODO: Add sitewide styles */
 .text {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Noto Serif Display', serif;
     text-decoration: none;
+}
+
+.title {
+    font-family: 'Noto Serif Display', serif;
+    color: rgb(62, 91, 62);
 }
 
 .get-started {

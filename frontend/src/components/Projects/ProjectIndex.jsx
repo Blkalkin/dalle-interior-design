@@ -18,8 +18,8 @@ const ProjectIndex = ({title, user}) => {
 
     return (
         <div className="project-index-container">
-            <h2>{title}</h2>
-            <ul className="projects-index">
+            <h2 className="title project-header">{user.username}'s Projects</h2>
+            <ul className="projects-index-grid">
                 {projects.map(project => (
                     <ProjectIndexItem
                         key={project._id}

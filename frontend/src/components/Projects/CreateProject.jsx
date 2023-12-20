@@ -20,6 +20,7 @@ const CreateProject = () => {
     const currentUserId = useSelector(state => state.session.user._id);
     const photo1 = useRef()
     const photo2 = useRef()
+    let imageFile;
 
     // const updateImage = (e) => {
     //     const file = e.target.files[0];
