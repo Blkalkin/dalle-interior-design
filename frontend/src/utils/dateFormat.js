@@ -4,17 +4,29 @@ export const formatDate = dateString => {
   
     const timeDifference = now - date;
   
-    // If the time difference is less than one day (in milliseconds)
-    if (timeDifference < 24 * 60 * 60 * 1000) {
-      const hours = String(date.getHours()).padStart(2, '0');
-      const minutes = String(date.getMinutes()).padStart(2, '0');
-      return `${hours} hours ago`;
+    // If the time difference is less than 48 hours (2 days), display hours
+    if (timeDifference < 48 * 60 * 60 * 1000) {
+      const hours = Math.floor(timeDifference / (1000 * 60 * 60));
+      return `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
     }
   
-    // If the time difference is one day or more
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-    const year = String(date.getFullYear());
+    // If the time difference is two days or more but less than 7 days, display days
+    if (timeDifference < 7 * 24 * 60 * 60 * 1000) {
+      const daysDifference = Math.floor(timeDifference / (24 * 60 * 60 * 1000));
+      return `${daysDifference} ${daysDifference === 1 ? 'day' : 'days'} ago`;
+    }
   
-    return `${month}-${day}-${year}`;
-}
+    // If the time difference is one week or more but less than 4 weeks, display weeks
+    if (timeDifference < 4 * 7 * 24 * 60 * 60 * 1000) {
+      const weeksDifference = Math.floor(timeDifference / (7 * 24 * 60 * 60 * 1000));
+      return `${weeksDifference} ${weeksDifference === 1 ? 'week' : 'weeks'} ago`;
+    }
+  
+    // Calculate the difference in years and months
+    const yearsDifference = now.getFullYear() - date.getFullYear();
+    const monthsDifference = now.getMonth() - date.getMonth() + yearsDifference * 12;
+  
+    // If the time difference is one month or more, display months
+    return `${monthsDifference} ${monthsDifference === 1 ? 'month' : 'months'} ago`;
+  };
+  

@@ -58,12 +58,13 @@ export const deleteComment = commentId => async(dispatch) => {
 
 export const addComment = comment => async dispatch => {
     try {
-        const res = await jwtFetch("/api/projects", {
+        const res = await jwtFetch("/api/comments/projects", {
             method: "POST",
             body: JSON.stringify(comment)
         })
 
         const data = await res.json()
+        dispatch(receiveComment(data))
     } catch(err) {
         const res = await err.json()
         console.log(res)
