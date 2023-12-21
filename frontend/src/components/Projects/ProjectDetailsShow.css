@@ -1,21 +1,13 @@
 .project-details-page{
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-
-}
-
-.header-project-details {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background-color: aqua; */
-    width: 60vw;
+    /* background-color: pink; */
 }
 
 .project-title-PDS{
+    margin-top: 7vh;
     font-size: 30px;
 }
 
@@ -24,17 +16,21 @@ align-items: center;
     margin-top: 5px;
 }
 
-.projects-index-grid-DS {
-    /* position: absolute; */
+.photos-and-comments-comtainer{
+    display: flex;
+    /* background-color: blue; */
+}
+
+
+.projects-index-grid-PDS {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Creates 4 columns with equal width */
-    gap: 15px; 
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 1.5vw; 
     flex-wrap: wrap;
-    padding-left: 11%;
-    padding-right: 11%;
-    padding-top: 8%;
-    width: 60%;
-   background-color: aquamarine;
+    padding-top: 4%;
+    margin-right: 4vw;
+    /* background-color: aquamarine; */
   }
 
   .photoimage {
@@ -43,4 +39,20 @@ align-items: center;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+}
+
+.photo-PDS {
+    height: 25vh;
+    width: 15vw;
+    /* margin-right: 2vw; */
+}
+
+.comments-area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: rgb(229, 176, 44) dashed 2px;
+    padding-right: 2vw;
+    padding-top: 2vh;
+    margin-top: 6vh;
 }

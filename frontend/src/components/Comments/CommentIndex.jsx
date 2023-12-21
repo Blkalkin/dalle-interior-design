@@ -50,15 +50,16 @@ const CommentIndex = () => {
 
     return (
         <ul className="comments-container">
-            <h2>Comments</h2>
+            <h2 className="title">Comments</h2>
             <div className="comment-add-container">
                 <textarea 
+                     className="text"
                     id="commentInput" 
                     placeholder="Add a comment..."
                     value={body}
                     onChange={e => setBody(e.target.value)}
                 ></textarea>
-                <button onClick={handleSubmit}>Comment</button>
+                <button onClick={handleSubmit} className="title">Comment</button>
             </div>
             
             {comments.map(comment => 
