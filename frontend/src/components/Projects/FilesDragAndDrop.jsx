@@ -19,12 +19,12 @@ const FilesDragAndDrop = ({ setImage, image }) => {
     drop.current.addEventListener('dragleave', handleDragLeave);
 
     // Clean up event listeners
-    return () => {
-      drop.current.removeEventListener('dragover', handleDragOver);
-      drop.current.removeEventListener('drop', handleDrop);
-      drop.current.removeEventListener('dragenter', handleDragEnter);
-      drop.current.removeEventListener('dragleave', handleDragLeave);
-    };
+    // return () => {
+    //   drop.current.removeEventListener('dragover', handleDragOver);
+    //   drop.current.removeEventListener('drop', handleDrop);
+    //   drop.current.removeEventListener('dragenter', handleDragEnter);
+    //   drop.current.removeEventListener('dragleave', handleDragLeave);
+    // };
   }, []);
 
   const handleDragOver = (e) => {
@@ -97,7 +97,7 @@ const FilesDragAndDrop = ({ setImage, image }) => {
     setImageFileOk(true);
 
 
-    setImage(files);
+    setImage(files[0]);
   };
 
   const removeImg = (e) => {
@@ -115,20 +115,18 @@ const FilesDragAndDrop = ({ setImage, image }) => {
     <>
       <div ref={drop} id='drag-area' className='FilesDragAndDrop FilesDragAndDrop__area'>
         {welcome ? (
-          <>
+          <> 
             <div className='drop-text'>
                 <span>Hey, drop me a photo here!</span>
                 <span>Or select one of the photos below</span>
             </div>
           </>
         ) : null}
-        {moreThanOnePhoto ? 'Please select only one photo at a time' : null}
         {fileLoaded ? imagePreview && <img src={imagePreview} alt='Dropped Image' className='preview-image' /> : null}
         {dragging ? 'Drop that file down low' : null}
         {!imgFileOk ? 'Please upload a png, jpg, or jpeg ' : null}
       </div>
         <button className='remove-image-button text' onClick={removeImg}>Clear Selected Photo</button>
-      
     </>
   );
 };

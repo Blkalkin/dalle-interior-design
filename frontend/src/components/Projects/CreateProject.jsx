@@ -33,7 +33,7 @@ const CreateProject = () => {
 
 
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("photo", image)
@@ -44,29 +44,25 @@ const CreateProject = () => {
         console.log('are we here?')
 
         setImageLoading(true);
-        const res = await dispatch(createProject(formData))
-            // return <Navigate to={`/edit-project/${res._id}`}/>
-            navigate(`/edit-project/${res._id}`)
+        const res = dispatch(createProject(formData))
+        navigate(`/edit-project/${res._id}`)
  
     }
 
-    useEffect(() => {
-        const errors = []
-        if (image) {
-            if (image?.type !== 'image/jpg' && image?.type !== 'image/jpeg' && image?.type !== 'image/png') errors.push('File Type Not Supported. Please upload a png, jpg, or jpeg')
-            setTitle(image.name.split('.')[0])
+    // useEffect(() => {
+    //     const errors = []
+    //     if (image) {
+    //         if (image?.type !== 'image/jpg' && image?.type !== 'image/jpeg' && image?.type !== 'image/png') errors.push('File Type Not Supported. Please upload a png, jpg, or jpeg')
+    //         setTitle(image.name.split('.')[0])
 
-        } else setTitle('')
-        if (!image) errors.push('Please upload image to continue')
-        if (errors.length > 0) setDisable(true)
-        if (errors.length === 0) setDisable(false)
-        setErrors(errors)
+    //     } else setTitle('')
+    //     if (!image) errors.push('Please upload image to continue')
+    //     if (errors.length > 0) setDisable(true)
+    //     if (errors.length === 0) setDisable(false)
+    //     setErrors(errors)
 
-    }, [disable])
+    // }, [disable])
 
-    // const onUpload = (files) => {
-    //     console.log(image);
-    // }
 
     const handleImg1Click = (promptImg) => {
         setImage(promptImg)
@@ -76,11 +72,11 @@ const CreateProject = () => {
     const handleImg2Click = (promptImg) => {
         setImage(promptImg)
     }
-
+    console.log(image)
     return (
         <div className='whole-create-project-container'>
             <div className='upload-photo-section'> 
-                {/* <FilesDragAndDrop setImage={setImage} /> */}
+                <FilesDragAndDrop setImage={setImage} />
                 <div className='example-images text'> 
                     <img onClick={()=> handleImg1Click(promptImg1)} src={promptImg1} ref={photo1} className='demo-img' alt="promptImg1" />
                     <img onClick={()=> handleImg2Click(promptImg2)} src={promptImg2} ref={photo2} className='demo-img img2' alt="promptImg2" />

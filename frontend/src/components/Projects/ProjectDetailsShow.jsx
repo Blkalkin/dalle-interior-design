@@ -16,14 +16,13 @@ const ProjectDetailsShow = () => {
     const [isCurrUser, setIsCurrUser] = useState(false)
     const [openEdit, setOpenEdit] = useState(false)
 
-    if (currUser) {
-        if(project?.author === currUser._id) setIsCurrUser(true)
-    }
+    
     
     
     useEffect(()=> {
         dispatch(fetchProject(projectId))
-    },[dispatch, projectId])
+        if (project?.author === currUser._id) setIsCurrUser(true)
+    },[dispatch, projectId, project, currUser])
 
     const openEditModal =(e) => {
         e.preventDefault();
@@ -49,8 +48,8 @@ const ProjectDetailsShow = () => {
                     <ul className="projects-index-grid-PDS">
                         {photos.map((photo, idx)=> {
                             return (
-                                <Link >
-                                    <img key={idx} src={photo} alt="photos" className="photo-PDS" />
+                                <Link key={idx}>
+                                    <img  src={photo} alt="photos" className="photo-PDS" />
                                 </Link>
                             );
                         })}
