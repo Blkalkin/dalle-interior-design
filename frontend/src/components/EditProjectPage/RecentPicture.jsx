@@ -45,8 +45,7 @@ function RecentPicture ({photoUrls, newImages = "", projectId}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const payload = {
-            // imagePath: photoUrls[photoUrls.length-1],
-            imagePath: '/Users/Dylan/aa-projects/dalle-interior-design/backend/image_generation/sample-images/office.png',
+            imagePath: photoUrls[photoUrls.length-1],
             userPrompt: newPrompt
         }
         dispatch(editImage(payload))

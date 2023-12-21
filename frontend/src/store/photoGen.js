@@ -25,7 +25,7 @@ export const editImage = (image) =>  async(dispatch) => {
 const newImageReducer = (state = {}, action) => {
     switch (action.type) {
         case RECEIVE_NEW_IMAGE:
-            return action.image.data
+            return action.image
         default:
             return state
     }
