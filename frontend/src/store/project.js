@@ -98,7 +98,7 @@ export const deleteProject = projectId => async(dispatch) => {
         })
 
         return dispatch(removeProject(projectId))
-        
+
     } catch(err) {
         const res = await err.json()
         console.log(res)
@@ -108,8 +108,8 @@ export const deleteProject = projectId => async(dispatch) => {
 export const selectProject = projectId => state => state.projects[projectId]
 export const selectProjects = state => state.projects
 
-export const selectProjectsArray = createSelector(selectProjects, project => 
-    Object.values(project)    
+export const selectProjectsArray = createSelector(selectProjects, project =>
+    Object.values(project)
 )
 
 const projectReducer = (state = {}, action) => {
