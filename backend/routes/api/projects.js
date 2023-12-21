@@ -5,7 +5,7 @@ const { requireUser } = require('../../config/passport');
 const User = mongoose.model('User');
 const Project = mongoose.model('Project');
 const multer =  require('multer');
-const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
+const { S3Client, PutObjectCommand, DeleteObjectCommand } = require('@aws-sdk/client-s3');
 const { awsBucketName, awsBucketRegion, awsAccess, awsSecret } = require('../../config/keys');
 const crypto = require('crypto');
 
@@ -176,9 +176,21 @@ router.patch('/:id/edit', async (req, res, next) => {
 })
 
 router.delete('/:projectId', async (req, res, next) => {
+  let project = await Project.findById(req.params.projectId);
+
+  project.photoUrls.forEach( url => {
+
+    const params = { 
+      Bucket: awsBucketName,
+      Key: url.split('.com/')[1]
+    }
+    
+    const command = new DeleteObjectCommand(params);
+    s3.send(command);
+  })
 
   try {
-    let project = await Project.deleteOne({ _id: req.params.projectId});
+      let project = await Project.deleteOne({ _id: req.params.projectId});
 
     if (!project) {
       const error = new Error('Project not found');
