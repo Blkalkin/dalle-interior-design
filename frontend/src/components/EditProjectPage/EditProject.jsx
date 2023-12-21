@@ -11,7 +11,7 @@ function EditProject () {
     const project = useSelector(selectProject(projectId))
     const [description, setDescription] = useState("test");
     const newImage = useSelector(state => state.newImage)
-    
+
     useEffect (() => {
         if (projectId){
             dispatch(fetchProject(projectId))
@@ -21,22 +21,21 @@ function EditProject () {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // needs to be changed to updateProject()
-        // const res = dispatch(createProject(payload))
-        // if (res.ok) {
-        //     setImage(null);
-        //     setTitle('');
-        //     setErrors([]);
-        //     setDisable(true);
-        //     setImageLoading(false)
-        //     navigate(`/profile/${currentUserId}`)
-        // }
+        const res = dispatch(updateProject(payload))
+        if (res.ok) {
+            setImage(null);
+            setTitle('');
+            setErrors([]);
+            setDisable(true);
+            setImageLoading(false)
+            navigate(`/profile/${currentUserId}`)
+        }
     }
 
     const handleChange = (event) => {
         setDescription(event.target.value);
       };
-    
+
     if (project) {
         return (
             <>
@@ -55,6 +54,8 @@ function EditProject () {
                 </div>
             </>
         )
+    } else {
+        navigate(`/createProject`)
     }
 }
 
