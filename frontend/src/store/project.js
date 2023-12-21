@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 
 const RECEIVE_PROJECTS = "RECEIVE_PROJECTS"
 const RECEIVE_PROJECT = "RECEIVE_PROJECT"
+const RECEIVE_UPDATED_PROJECT = "RECEIVE_UPDATED_PROJECT"
 const REMOVE_PROJECT = "REMOVE_PROJECT"
 
 export const receiveProjects = projects => ({
@@ -12,6 +13,11 @@ export const receiveProjects = projects => ({
 
 export const receiveProject = project => ({
     type: RECEIVE_PROJECT,
+    project
+})
+
+export const receiveUpdatedProject = project => ({
+    type: RECEIVE_UPDATED_PROJECT,
     project
 })
 
@@ -35,12 +41,13 @@ export const fetchUserProjects = (userId) => async(dispatch) => {
     try {
         const res = jwtFetch(`/api/projects/user/${userId}`)
         const projects = await res.json()
+        console.log(projects, "is this hitting? ")
         return dispatch(receiveProjects(projects))
     } catch(err) {
+        // console.log(err, "err inside the fetch")
         const data = await err.json()
         console.log(data)
     }
-
     
 }
 
@@ -84,7 +91,7 @@ export const editProject = (projectId, project) => async(dispatch) => {
             body: JSON.stringify(project)
         });
         const data = await res.json();
-        return dispatch(receiveProject(data))
+        return dispatch(receiveUpdatedProject(data))
     } catch(err) {
         const res = await err.json();
         console.log(res)
@@ -120,6 +127,9 @@ const projectReducer = (state = {}, action) => {
             return action.projects
         case RECEIVE_PROJECT:
             newState[action.project._id] = action.project
+            return newState
+        case RECEIVE_UPDATED_PROJECT:
+            newState[action.project._id] = {...newState[action.project._id], ...action.project}
             return newState
         case REMOVE_PROJECT:
             delete newState[action.projectId]
