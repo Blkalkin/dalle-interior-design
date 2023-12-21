@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
+import { editComment } from "../../store/comment"
+import "./EditComment.css"
 
 const EditComment = ({body, setOpenEdit, commentId}) => { 
     const dispatch = useDispatch()
@@ -9,28 +11,28 @@ const EditComment = ({body, setOpenEdit, commentId}) => {
         setNewBody(e.target.value)
     }
 
-    const handleSubmit = async (e) =>{
+    const handleSubmit = (e) =>{
         e.preventDefault();
         e.stopPropagation()
 
         const editDetails = {
             body: newBody
         }
-        await dispatch(editProject(commentId, editDetails))
+        dispatch(editComment(commentId, editDetails))
         setOpenEdit(false)
     }
 
     return (
-        <div className='form-container-EPD'>
-            <form className='form-EPD'>
+        <div className='form-container-EC'>
+            <form className='form-EC'>
                 <input 
                     type="text"
                     value={newBody}
                     onChange={updateBody} 
-                    className='text text-EPD'/>
+                    className='text text-EC'/>
             </form>
-            <button className='cancel-EPD text' onClick={()=> setOpenEdit(false)}>Cancel</button>
-            <button className='update-EPD text' onClick={handleSubmit}>Update</button>
+            <button className='cancel-EC text' onClick={()=> setOpenEdit(false)}>Cancel</button>
+            <button className='update-EC text' onClick={handleSubmit}>Update</button>
         </div>
     )
 }

@@ -51,13 +51,12 @@ export const fetchComment = commentId => async(dispatch) => {
     }
 }
 
-export const editComment = (commentId, commentEdits) => async dispatch => {
+export const editComment = (commentId, comment) => async dispatch => {
     try {
-        const res = await jwtFetch(`/api/comments/${commentId}`, {
+        const res = await jwtFetch(`/api/comments/${commentId}/edit`, {
             method: "PATCH",
-            body: JSON.stringify(commentEdits)
+            body: JSON.stringify(comment)
         })
-        
         const data = await res.json()
         return dispatch(receiveUpdatedComment(data))
     } catch(err) {
