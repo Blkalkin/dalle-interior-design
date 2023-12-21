@@ -7,11 +7,11 @@ import { fetchProjects, fetchUserProjects, selectProjectsArray } from "../../sto
 const ProjectIndex = ({title, user}) => {
     const dispatch = useDispatch()
     const projects = useSelector(selectProjectsArray)
-
+    console.log(user._id)
     useEffect(()=> {
-        dispatch(fetchProjects())
-        // dispatch(fetchUserProjects(user._id))
-    },[dispatch])
+        // dispatch(fetchProjects())
+        dispatch(fetchUserProjects(user._id))
+    },[dispatch, user._id])
 
     if (!title) title = `${user.username}'s Projects`
  
