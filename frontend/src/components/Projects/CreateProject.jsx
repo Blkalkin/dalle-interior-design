@@ -15,8 +15,8 @@ const CreateProject = () => {
     const [image, setImage] = useState("");
     const [isPublic, setIsPublic] = useState("true");
     const [imageLoading, setImageLoading] = useState(false);
-    const promptImg1 = "https://t4.ftcdn.net/jpg/04/55/10/71/360_F_455107170_36Is8hwPMPdg9fN78WaFiSwY57dkXBu3.jpg";
-    const promptImg2 = "https://st.hzcdn.com/simgs/e732d6640e849a40_9-8559/_.jpg";
+    const promptImg1 = "https://images.havenly.com/unsafe/1200x804/filters:quality(50)/https://s3.amazonaws.com/static.havenly.com/prod/assets/boards/2689428/board_2689428_ee033abc";
+    const promptImg2 = "https://images.havenly.com/unsafe/800x800/filters:quality(50)/https://s3.amazonaws.com/static.havenly.com/assets/c52f4982-96d3-4026-8689-2712e501fca2";
     const currentUserId = useSelector(state => state.session.user._id);
     const photo1 = useRef()
     const photo2 = useRef()
