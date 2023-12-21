@@ -10,7 +10,7 @@ export const formatDate = dateString => {
     }
   
     // If the time difference is less than 48 hours (2 days), display hours
-    if (timeDifference < 48 * 60 * 60 * 1000) {
+    if (timeDifference < 24 * 60 * 60 * 1000) {
       const hours = Math.floor(timeDifference / (1000 * 60 * 60));
       return `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
     }
