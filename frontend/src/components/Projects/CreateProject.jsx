@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import './CreateProject.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import FilesDragAndDrop from './FilesDragAndDrop'
 import { createProject } from '../../store/project'
 
@@ -45,8 +45,9 @@ const CreateProject = () => {
 
         setImageLoading(true);
         const res = await dispatch(createProject(formData))
-        console.log(res)
-
+            // return <Navigate to={`/edit-project/${res._id}`}/>
+            navigate(`/edit-project/${res._id}`)
+ 
     }
 
     useEffect(() => {
@@ -75,11 +76,11 @@ const CreateProject = () => {
     const handleImg2Click = (promptImg) => {
         setImage(promptImg)
     }
-    console.log(image)
+
     return (
         <div className='whole-create-project-container'>
             <div className='upload-photo-section'> 
-                <FilesDragAndDrop setImage={setImage} />
+                {/* <FilesDragAndDrop setImage={setImage} /> */}
                 <div className='example-images text'> 
                     <img onClick={()=> handleImg1Click(promptImg1)} src={promptImg1} ref={photo1} className='demo-img' alt="promptImg1" />
                     <img onClick={()=> handleImg2Click(promptImg2)} src={promptImg2} ref={photo2} className='demo-img img2' alt="promptImg2" />
