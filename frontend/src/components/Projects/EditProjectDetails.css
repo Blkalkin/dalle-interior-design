@@ -1,0 +1,46 @@
+.form-EPD{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    margin-top: 7vh;
+    /* background-color: aqua; */
+}
+
+.title-EPD {
+    font-size: 40px;
+    width: 80vw;
+    border: none;
+}
+
+.text-EPD {
+    font-size: 20px;
+    width: 80vw;
+    border: none;
+}
+
+.cancel-EPD {
+height: 3.5vh;
+border-radius: 10px;
+background-color: white;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-left: 10px;
+padding-right: 10px;
+border: green dotted;
+margin-left: 78vw;
+/* padding-right: 5vw; */
+}
+
+.update-EPD {
+    height: 3.5vh;
+    color: white;
+    border-radius: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(229, 176, 44);
+    border: none;
+    margin-left: .5vw;
+}

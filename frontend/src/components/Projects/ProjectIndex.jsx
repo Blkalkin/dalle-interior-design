@@ -1,9 +1,8 @@
-import ProjectIndexItem from "./ProjectIndexItem"
 import "./ProjectIndex.css"
+import ProjectIndexItem from "./ProjectIndexItem"
 import { useEffect } from "react"
 import { useDispatch, useSelector} from "react-redux"
-import { getUser } from "../../store/user"
-import { fetchProjects, selectProjectsArray } from "../../store/project"
+import { fetchProjects, fetchUserProjects, selectProjectsArray } from "../../store/project"
 
 const ProjectIndex = ({title, user}) => {
     const dispatch = useDispatch()
@@ -11,11 +10,11 @@ const ProjectIndex = ({title, user}) => {
 
     useEffect(()=> {
         dispatch(fetchProjects())
+        // dispatch(fetchUserProjects(user._id))
     },[dispatch])
 
     if (!title) title = `${user.username}'s Projects`
  
-
     return (
         <div className="project-index-container">
             <h2 className="title project-header">{user.username}'s Projects</h2>

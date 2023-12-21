@@ -80,7 +80,7 @@ export const createProject = project => async(dispatch) => {
 export const editProject = (projectId, project) => async(dispatch) => {
     try{
         const res =  await jwtFetch(`/api/projects/${projectId}/edit`, {
-            method: "POST",
+            method: "PATCH",
             body: JSON.stringify(project)
         });
         const data = await res.json();

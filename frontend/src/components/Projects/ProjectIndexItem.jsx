@@ -4,11 +4,14 @@ import { formatDate } from '../../utils/dateFormat';
 import deleteIcon from '../../../assets/icons/trash.png'
 import { useDispatch } from 'react-redux';
 import { deleteProject } from '../../store/project';
+import { useEffect } from 'react';
 
 
 const ProjectIndexItem = ({project}) => {
     const dispatch = useDispatch()
-    console.log(project)
+    useEffect(()=>{
+
+    },[dispatch])
 
     return (
         <li className='project-details-container'>
