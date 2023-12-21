@@ -26,7 +26,7 @@ const FilesDragAndDrop = ({ setImage, image }) => {
     //   drop.current.removeEventListener('dragenter', handleDragEnter);
     //   drop.current.removeEventListener('dragleave', handleDragLeave);
     // };
-  }, []);
+  },);
 
   const handleFileInput = (e) => {
     const file = e.target.files[0];

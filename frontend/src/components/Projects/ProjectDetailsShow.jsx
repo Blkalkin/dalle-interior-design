@@ -16,13 +16,14 @@ const ProjectDetailsShow = () => {
     const [isCurrUser, setIsCurrUser] = useState(false)
     const [openEdit, setOpenEdit] = useState(false)
 
-    
+    if (currUser){
+        if (project?.author === currUser._id) setIsCurrUser(true)
+    }
     
     
     useEffect(()=> {
         dispatch(fetchProject(projectId))
-        if (project?.author === currUser._id) setIsCurrUser(true)
-    },[dispatch, projectId, project, currUser])
+    },[dispatch, projectId])
 
     const openEditModal =(e) => {
         e.preventDefault();
