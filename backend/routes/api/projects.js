@@ -20,7 +20,6 @@ const s3 = new S3Client({
   region: awsBucketRegion
 });
 
-
 const storage = multer.memoryStorage()
 const upload = multer({ storage: storage }) // upload function
 
@@ -140,6 +139,23 @@ router.patch('/:id/edit', async (req, res, next) => {
     const error = new Error('Project failed to save');
     error.statusCode = 422;
     return next(error);
+  }
+})
+
+router.delete('/:projectId', async (req, res, next) => {
+  try {
+    let project = await Project.deleteOne({ _id: req.params.projectId});
+
+    if (!project) {
+      const error = new Error('Project not found');
+      error.statusCode = 404;
+      error.errors = { message: 'No project found with that id' };
+      throw error;
+    }
+
+    return res.status(200).json({ message: 'Project deleted successfully' });
+  } catch (error) {
+    next(error);
   }
 })
 
