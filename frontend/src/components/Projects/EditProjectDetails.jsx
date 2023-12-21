@@ -16,7 +16,7 @@ const EditProjectDetails = ({title, description, projectId, setOpenEdit}) => {
         setNewDescription(e.target.value)
     }
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault();
         e.stopPropagation()
 
@@ -24,7 +24,7 @@ const EditProjectDetails = ({title, description, projectId, setOpenEdit}) => {
             title: newTitle,
             description: newDescription,
         }
-        dispatch(editProject(projectId, editDetails))
+        await dispatch(editProject(projectId, editDetails))
         setOpenEdit(false)
     }
 

@@ -2,11 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: pink;
 
 }
 
 .project-header {
-    margin-top: 4%;
+    margin-top: 1%;
     font-size: 30px;
     /* background-color: yellow; */
 }
