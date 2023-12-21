@@ -139,7 +139,7 @@ export const selectProjectsArray = createSelector(selectProjects, project =>
 
 const projectReducer = (state = {}, action) => {
     const newState = Object.assign({}, state)
-
+    
     switch (action.type) {
         case RECEIVE_PROJECTS:
             return action.projects

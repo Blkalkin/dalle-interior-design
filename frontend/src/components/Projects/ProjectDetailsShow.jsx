@@ -16,9 +16,9 @@ const ProjectDetailsShow = () => {
     const [isCurrUser, setIsCurrUser] = useState(false)
     const [openEdit, setOpenEdit] = useState(false)
 
-    if (currUser){
-        if (project?.author === currUser._id) setIsCurrUser(true)
-    }
+    // if (currUser){
+    //     if (project?.author === currUser._id) setIsCurrUser(true)
+    // }
     
     
     useEffect(()=> {
@@ -40,7 +40,7 @@ const ProjectDetailsShow = () => {
                 <>
                     <div className="project-title-PDS title">{project.title}</div>
                     <div className="project-description-PDS text">{project.description}</div>
-                    {currUser?._id !== project.author ? 
+                    {isCurrUser ? 
                         <img onClick={openEditModal} className='edit-PDS' src={editIcon} alt="" />
                         : null}
                 </>
@@ -56,7 +56,7 @@ const ProjectDetailsShow = () => {
                         })}
                     </ul> 
                     <div className='comments-area'>
-                        <CommentIndex projectId={projectId} />
+                        <CommentIndex project={project} />
                     </div>
                 </div>
             // </div>

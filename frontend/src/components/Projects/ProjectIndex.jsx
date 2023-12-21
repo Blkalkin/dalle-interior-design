@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector} from "react-redux"
 import { fetchProjects, fetchUserProjects, selectProjectsArray } from "../../store/project"
 
-const ProjectIndex = ({title, user}) => {
+const ProjectIndex = ({title, user, all}) => {
     const dispatch = useDispatch()
     const projects = useSelector(selectProjectsArray)
 
@@ -12,7 +12,7 @@ const ProjectIndex = ({title, user}) => {
     useEffect(()=> {
       if(user) {
           dispatch(fetchUserProjects(user._id))
-      } else {
+      } else if (all) {
           dispatch(fetchProjects())
       }
     },[dispatch, user])

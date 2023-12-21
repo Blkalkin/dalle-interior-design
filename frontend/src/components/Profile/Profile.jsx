@@ -11,6 +11,7 @@ function Profile () {
     const { id } = useParams();
     const dispatch = useDispatch()
     const currUser = useSelector(state => state.session.user)
+    const user = useSelector(state => state.user[id])
     const capitalizeFirstLetter = str => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
@@ -19,7 +20,6 @@ function Profile () {
         dispatch(getUser(id))
     }, [dispatch, id])
 
-    const user = useSelector(state => state.user[id])
 
     if (!currUser) return <Navigate to='/login' replace={true}/>
 
@@ -33,7 +33,7 @@ function Profile () {
     } else if (user) {
         return (
             <>
-                <ProjectIndex user={capitalizeFirstLetter(user)} title={`${user.username}'s Projects`}/>
+                <ProjectIndex user={user} title={`${capitalizeFirstLetter(user.username)}'s Projects`}/>
             </>
         )
     } else {

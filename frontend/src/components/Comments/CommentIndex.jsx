@@ -5,12 +5,12 @@ import CommentIndexItem from "./CommentIndexItem"
 import "./CommentIndex.css"
 
 
-const CommentIndex = ({projectId}) => {
+const CommentIndex = ({project}) => {
     const dispatch = useDispatch()
     let comments = useSelector(selectCommentsArray)
     const currentUser = useSelector(state => state.session.user)
     const [body, setBody] = useState("")
-    const author = useSelector(state => state.projects[0].author.username)
+    const author = project.author
     
     function moveCurrentUserToTop(arr, authorId) {
         const index = arr.findIndex(item => item.author._id === authorId);
@@ -28,10 +28,10 @@ const CommentIndex = ({projectId}) => {
     comments = moveCurrentUserToTop(comments, currentUser?._id)
 
     useEffect(()=> {
-        if (projectId){
-            dispatch(fetchComments(projectId))
+        if (project._id){
+            dispatch(fetchComments(project._id))
         }
-    },[dispatch, projectId])
+    },[dispatch, project])
 
 
     const handleSubmit = e => {

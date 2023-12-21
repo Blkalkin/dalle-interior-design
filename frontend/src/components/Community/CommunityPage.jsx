@@ -4,7 +4,7 @@ import './Community.css';
 function CommunityPage () {
     return (
         <>
-            <ProjectIndex title="Community Projects"/>
+            <ProjectIndex title="Community Projects" all={"all"}/>
         </>
     )
 }
