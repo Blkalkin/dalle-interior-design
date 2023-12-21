@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import './CreateProject.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import FilesDragAndDrop from './FilesDragAndDrop'
 import { createProject } from '../../store/project'
 
@@ -33,7 +33,7 @@ const CreateProject = () => {
 
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("photo", image)
@@ -41,18 +41,13 @@ const CreateProject = () => {
         formData.append("authorId", currentUserId)
         formData.append("public", isPublic)
 
-      
+        console.log('are we here?')
 
         setImageLoading(true);
-        dispatch(createProject(formData))
-        // if (res.ok) {
-        //     setImage(null);
-        //     setTitle('');
-        //     setErrors([]);
-        //     setDisable(true);
-        //     setImageLoading(false)
-        //     // navigate(`/profile/${currentUserId}`)
-        // } 
+        const res = await dispatch(createProject(formData))
+            // return <Navigate to={`/edit-project/${res._id}`}/>
+            navigate(`/edit-project/${res._id}`)
+ 
     }
 
     useEffect(() => {
@@ -81,24 +76,24 @@ const CreateProject = () => {
     const handleImg2Click = (promptImg) => {
         setImage(promptImg)
     }
-    console.log(image)
+
     return (
         <div className='whole-create-project-container'>
             <div className='upload-photo-section'> 
-                <FilesDragAndDrop setImage={setImage} />
+                {/* <FilesDragAndDrop setImage={setImage} /> */}
                 <div className='example-images text'> 
                     <img onClick={()=> handleImg1Click(promptImg1)} src={promptImg1} ref={photo1} className='demo-img' alt="promptImg1" />
                     <img onClick={()=> handleImg2Click(promptImg2)} src={promptImg2} ref={photo2} className='demo-img img2' alt="promptImg2" />
                 </div>
                 <form className='new-project-form' onSubmit={handleSubmit}>
-                    {/* <label> 
+                    <label> 
                         Select a file to upload: 
                          <input 
                         className="choose-file-btn" 
                         type="file" 
                         accept="image/*" 
                         onChange={updateImage}/>
-                    </label> */}
+                    </label>
                    
                     <label className='title-label text'>
                         Name your project:
@@ -113,7 +108,7 @@ const CreateProject = () => {
                     
                     <div className='form-btns'>
                         <button className='privacy-btn text' onClick={()=> setIsPublic(!isPublic)}> {isPublic ? "Your project will be public" : "Your project will be private"}</button>
-                        <button disabled={disable} className='submit-new-project-btn text' type='submit'>Create </button>
+                        <button className='submit-new-project-btn text' type='submit'>Create </button>
                         {(imageLoading) && <p>Loading...</p>}
                      </div>
                 </form>
