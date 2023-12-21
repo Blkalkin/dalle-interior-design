@@ -8,7 +8,7 @@
 
 .project-title-PDS{
     margin-top: 7vh;
-    font-size: 30px;
+    font-size: 40px;
 }
 
 .project-description-PDS{
@@ -16,8 +16,13 @@
     margin-top: 5px;
 }
 
+.edit-PDS{
+    height: 2vh;
+}
+
 .photos-and-comments-comtainer{
     display: flex;
+    margin-top: 5vh ;
     /* background-color: blue; */
 }
 
