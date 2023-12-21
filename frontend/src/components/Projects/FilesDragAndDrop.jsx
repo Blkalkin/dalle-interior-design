@@ -5,6 +5,7 @@ import './FilesDragAndDrop.css';
 
 const FilesDragAndDrop = ({ setImage, image }) => {
   const drop = useRef(null);
+  const fileInput = useRef(null);
   const [welcome, setWelcome] = useState(true);
   const [moreThanOnePhoto, setMoreThanOnePhoto] = useState(false);
   const [fileLoaded, setFileLoaded] = useState(false);
@@ -26,6 +27,18 @@ const FilesDragAndDrop = ({ setImage, image }) => {
     //   drop.current.removeEventListener('dragleave', handleDragLeave);
     // };
   }, []);
+
+  const handleFileInput = (e) => {
+    const file = e.target.files[0];
+ 
+    const previewURL = URL.createObjectURL(file);
+    setImagePreview(previewURL);
+    setMoreThanOnePhoto(false);
+    setFileLoaded(true);
+    setWelcome(false);
+    setImageFileOk(true);
+    setImage(file)
+  };
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -113,20 +126,33 @@ const FilesDragAndDrop = ({ setImage, image }) => {
 
   return (
     <>
-      <div ref={drop} id='drag-area' className='FilesDragAndDrop FilesDragAndDrop__area'>
+      <div ref={drop} id='drag-area'  
+        className='FilesDragAndDrop FilesDragAndDrop__area'
+        style={ fileLoaded? { border: "none", height: "300px" } : null }
+        onClick={() => fileInput.current.click()}
+      >
         {welcome ? (
-          <> 
             <div className='drop-text'>
                 <span>Hey, drop me a photo here!</span>
                 <span>Or select one of the photos below</span>
             </div>
-          </>
         ) : null}
         {fileLoaded ? imagePreview && <img src={imagePreview} alt='Dropped Image' className='preview-image' /> : null}
         {dragging ? 'Drop that file down low' : null}
         {!imgFileOk ? 'Please upload a png, jpg, or jpeg ' : null}
       </div>
-        <button className='remove-image-button text' onClick={removeImg}>Clear Selected Photo</button>
+        <button 
+          className='remove-image-button text'
+          onClick={removeImg}>
+          Clear Selected Photo
+        </button>
+        <input
+        ref={fileInput}
+        type='file'
+        accept='image/*'
+        onChange={handleFileInput}
+        style={{ display: 'none' }}
+      />
     </>
   );
 };

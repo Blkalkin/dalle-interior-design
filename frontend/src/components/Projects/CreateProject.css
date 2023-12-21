@@ -32,8 +32,6 @@
 }
 
 
-
-
 .new-project-form {
     display: flex;
     flex-direction: column;
@@ -64,13 +62,13 @@
     padding-right: 17px;
     padding-left: 17px;
     font-size: 15px;
+    cursor: pointer;
 }
 
 .form-btns {
     display: flex;
     justify-content: space-between;
     gap: 30px;
-
 }
 .submit-new-project-btn {
     color:  white;
@@ -80,4 +78,5 @@
     padding-top: 8px;
     padding-bottom: 8px;
     font-size: 30px;
+    cursor: pointer;
 }

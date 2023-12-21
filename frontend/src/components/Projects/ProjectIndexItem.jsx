@@ -11,11 +11,6 @@ const ProjectIndexItem = ({project, idx}) => {
     const dispatch = useDispatch()
     const lastImage = project.photoUrls[project.photoUrls.length - 1]
 
-
-    useEffect(()=>{
-
-    },[dispatch])
-
     return (
         <li className='project-details-container'>
             <h3 className="title">{project.title}</h3>

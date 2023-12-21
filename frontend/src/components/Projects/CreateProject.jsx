@@ -51,7 +51,7 @@ const CreateProject = () => {
     const handleImg2Click = (promptImg) => {
         setImage(promptImg)
     }
-  
+    console.log(image)
     return (
         <div className='whole-create-project-container'>
             <div className='upload-photo-section'> 
