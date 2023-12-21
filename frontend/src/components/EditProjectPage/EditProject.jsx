@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react"
 import RecentPicture from './RecentPicture';
+import FinishedModal from './FinishedModal';
 
 
 
@@ -15,7 +16,8 @@ function EditProject () {
     const project = useSelector(selectProject(projectId))
     const [description, setDescription] = useState("test");
     const newImages = useSelector(state => state.newImages)
- 
+    const [finish, setFinish] = useState(false)
+
 
     useEffect (() => {
         if (projectId){
@@ -23,7 +25,7 @@ function EditProject () {
         }
     }, [dispatch, projectId])
 
-    const handleSubmit = async (e) => {
+    const doneButton = async (e) => {
         e.preventDefault();
         // const res = dispatch(editProject(payload))
         // if (res.ok) {
@@ -36,26 +38,27 @@ function EditProject () {
         // }
     }
 
-    const handleChange = (event) => {
-        setDescription(event.target.value);
-      };
+    // const handleChange = (event) => {
+    //     setDescription(event.target.value);
+    //   };
 
     if (project) {
         return (
             <>
                 <div className='project-page' >
                     <h1>{project.title}</h1>
-                    <RecentPicture photoUrls={project.photoUrls} newImage={newImage}/>
-                    <form onSubmit={handleSubmit}>
+                    <RecentPicture photoUrls={project.photoUrls} newImages={newImages} projectId={projectId}/>
+                    {/* <form onSubmit={handleSubmit}>
                         <input
                             type="text"
                             value={description}
                             onChange={handleChange}
                             placeholder="Enter text"
-                        />
-                        <button type="submit">Submit</button>
-                    </form>
+                        /> */}
+                    <button onClick={() => setFinish(true)}>Done</button>
+                    {/* </form> */}
                 </div>
+                {finish && <FinishedModal />}
             </>
         )
     } else {

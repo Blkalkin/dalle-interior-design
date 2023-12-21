@@ -41,7 +41,7 @@ const CreateProject = () => {
         formData.append("authorId", currentUserId)
         formData.append("public", isPublic)
 
-      
+
 
         setImageLoading(true);
         dispatch(createProject(formData))
@@ -52,7 +52,7 @@ const CreateProject = () => {
         //     setDisable(true);
         //     setImageLoading(false)
         //     // navigate(`/profile/${currentUserId}`)
-        // } 
+        // }
     }
 
     useEffect(() => {
@@ -84,33 +84,33 @@ const CreateProject = () => {
     console.log(image)
     return (
         <div className='whole-create-project-container'>
-            <div className='upload-photo-section'> 
+            <div className='upload-photo-section'>
                 <FilesDragAndDrop setImage={setImage} />
-                <div className='example-images text'> 
+                <div className='example-images text'>
                     <img onClick={()=> handleImg1Click(promptImg1)} src={promptImg1} ref={photo1} className='demo-img' alt="promptImg1" />
                     <img onClick={()=> handleImg2Click(promptImg2)} src={promptImg2} ref={photo2} className='demo-img img2' alt="promptImg2" />
                 </div>
                 <form className='new-project-form' onSubmit={handleSubmit}>
-                    {/* <label> 
-                        Select a file to upload: 
-                         <input 
-                        className="choose-file-btn" 
-                        type="file" 
-                        accept="image/*" 
+                    {/* <label>
+                        Select a file to upload:
+                         <input
+                        className="choose-file-btn"
+                        type="file"
+                        accept="image/*"
                         onChange={updateImage}/>
                     </label> */}
-                   
+
                     <label className='title-label text'>
                         Name your project:
-                        <input 
-                        className='title-input' 
-                        placeholder="Required" 
-                        type="text" 
-                        onChange={updateTitle} 
+                        <input
+                        className='title-input'
+                        placeholder="Required"
+                        type="text"
+                        onChange={updateTitle}
                         value={title}
                         required />
                     </label>
-                    
+
                     <div className='form-btns'>
                         <button className='privacy-btn text' onClick={()=> setIsPublic(!isPublic)}> {isPublic ? "Your project will be public" : "Your project will be private"}</button>
                         <button disabled={disable} className='submit-new-project-btn text' type='submit'>Create </button>
