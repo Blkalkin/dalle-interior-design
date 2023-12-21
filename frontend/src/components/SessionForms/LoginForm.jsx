@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './SessionForms.css';
 import { login } from '../../store/session';
 import { clearSessionErrors } from '../../store/errorReducer/SessionError';
 
 function LoginForm () {
-  const loggedIn = useSelector(state => !!state.session.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const loggedIn = useSelector(state => !!state.session.user);
   const errors = useSelector(state => state.errors.session);
-  const dispatch = useDispatch();
   const currUser = useSelector(state => state.session.user)
 
   useEffect(() => {
@@ -31,14 +32,15 @@ function LoginForm () {
 
   const handleDemoSubmit = (e) => {
     e.preventDefault();
-    dispatch(login({ email: "demo@graphic.com", password: "demoword" }));
+    dispatch(login({ email: "demo@graphic.com", password: "demoword" }))
+  
   }
 
   if(loggedIn) return <Navigate to={`/profile/${currUser._id}`} replace={true}/>
 
   return (
     <form className="session-form" onSubmit={handleSubmit}>
-      <h2>Log In Form</h2>
+      <h2>Log In</h2>
       <div className="errors text">{errors?.email}</div>
       <label>
         <span>Email</span>

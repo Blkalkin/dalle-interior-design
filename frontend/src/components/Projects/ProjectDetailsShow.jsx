@@ -7,7 +7,7 @@ import CommentIndex from "../Comments/CommentIndex"
 import editIcon from '../../../assets/icons/editIcon.png'
 import EditProjectDetails from "./EditProjectDetails"
 
-const ProjectDetailsShow = () =>{
+const ProjectDetailsShow = () => {
     const dispatch = useDispatch()
     const {projectId} = useParams()
     const project = useSelector(selectProject(projectId))
@@ -16,9 +16,10 @@ const ProjectDetailsShow = () =>{
     const [isCurrUser, setIsCurrUser] = useState(false)
     const [openEdit, setOpenEdit] = useState(false)
 
-    // if(project?.author === currUser._id) {
-    //     setIsCurrUser(true)
-    // }
+    if (currUser) {
+        if(project?.author === currUser._id) setIsCurrUser(true)
+    }
+    
     
     useEffect(()=> {
         dispatch(fetchProject(projectId))
@@ -39,7 +40,7 @@ const ProjectDetailsShow = () =>{
                 <>
                     <div className="project-title-PDS title">{project.title}</div>
                     <div className="project-description-PDS text">{project.description}</div>
-                    {currUser._id === project.author ? 
+                    {currUser?._id !== project.author ? 
                         <img onClick={openEditModal} className='edit-PDS' src={editIcon} alt="" />
                         : null}
                 </>

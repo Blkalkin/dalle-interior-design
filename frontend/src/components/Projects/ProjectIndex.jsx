@@ -15,7 +15,7 @@ const ProjectIndex = ({title, user}) => {
       } else {
           dispatch(fetchProjects())
       }
-    },[dispatch, user?._id])
+    },[dispatch, user])
  
     return (
         <div className="project-index-container">
