@@ -21,10 +21,10 @@ const CommentIndexItem = ({currentUserId, comment}) => {
             <Link to={`/profile/${author._id}`}>
                 <h4>
                     <FontAwesomeIcon className="author-icon" icon={faCircleUser} size={"lg"}/>
-                    <span className="author-name">{author?.username}</span>
+                    <span className="author-name title">{author?.username}</span>
                 </h4>
             </Link>
-            <div className="comment-body">
+            <div className="comment-body text">
                 <p>{formattedDate}</p>
                 <p>{comment.body}</p>
                 {currentUserId === author._id ? ( <button onClick={handleDelete}>Delete</button> ): null }

@@ -1,11 +1,63 @@
 .project-details-page{
-    position: absolute;
-    height: 500px;
-    background-color: red;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: pink; */
 }
 
-.header-project-details {
-   margin-top: 70vh;
-   background-color: blue;
+.project-title-PDS{
+    margin-top: 7vh;
+    font-size: 40px;
+}
+
+.project-description-PDS{
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.edit-PDS{
+    height: 2vh;
+}
+
+.photos-and-comments-comtainer{
+    display: flex;
+    margin-top: 5vh ;
+    /* background-color: blue; */
+}
+
+
+.projects-index-grid-PDS {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 1.5vw; 
+    flex-wrap: wrap;
+    padding-top: 4%;
+    margin-right: 4vw;
+    /* background-color: aquamarine; */
+  }
+
+  .photoimage {
+    width: 100%;
+    object-fit: cover;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.photo-PDS {
+    height: 25vh;
+    width: 15vw;
+    /* margin-right: 2vw; */
+}
+
+.comments-area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: rgb(229, 176, 44) dashed 2px;
+    padding-right: 2vw;
+    padding-top: 2vh;
+    margin-top: 6vh;
 }
