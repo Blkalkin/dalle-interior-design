@@ -13,7 +13,7 @@ function EditProject () {
     const project = useSelector(selectProject(projectId))
     const [description, setDescription] = useState("test");
     const newImages = useSelector(state => state.newImages)
-    // console.log(newImages[0].url)
+ 
 
     useEffect (() => {
         if (projectId){
@@ -32,7 +32,7 @@ function EditProject () {
         //     setImageLoading(false)
         //     // navigate(`/profile/${currentUserId}`)
         // }
-        const newUrls = [...project.photoUrls, newImages[0].url];
+        const newUrls = [...project.photoUrls, newImages.imageGenerated];
         const payload = {
             photoUrls: newUrls
         }
@@ -48,7 +48,7 @@ function EditProject () {
             <>
                 <div className='project-page' >
                     <h1>{project.title}</h1>
-                    <RecentPicture photoUrls={project.photoUrls} newImages={newImages[0]?.url} projectId={projectId} />
+                    <RecentPicture photoUrls={project.photoUrls} newImages={newImages.imageGenerated} projectId={projectId} />
                     <form onSubmit={handleSubmit}>
                         <input
                             type="text"
