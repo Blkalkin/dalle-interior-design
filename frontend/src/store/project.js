@@ -1,4 +1,4 @@
-import jwtFetch from "./jwt";
+import jwtFetch, { getCookie } from "./jwt";
 import { createSelector } from 'reselect';
 
 const RECEIVE_PROJECTS = "RECEIVE_PROJECTS"
@@ -26,9 +26,22 @@ export const fetchProjects = () => async(dispatch) => {
         const projects = await res.json()
         return dispatch(receiveProjects(projects))
     } catch(err) {
-        const res = await err.json()
-        console.log(res)
+        const data = await err.json()
+        console.log(data)
     }
+}
+
+export const fetchUserProjects = (userId) => async(dispatch) => {
+    try {
+        const res = jwtFetch(`/api/projects/user/${userId}`)
+        const projects = await res.json()
+        return dispatch(receiveProjects(projects))
+    } catch(err) {
+        const data = await err.json()
+        console.log(data)
+    }
+
+    
 }
 
 export const fetchProject = projectId => async(dispatch) => {
@@ -43,10 +56,18 @@ export const fetchProject = projectId => async(dispatch) => {
 }
 
 export const createProject = project => async(dispatch) => {
+    const jwtToken = localStorage.getItem("jwtToken");
+    let authToken;
+    if (jwtToken) authToken = 'Bearer ' +  jwtToken;
+
     try{
-        const res =  await jwtFetch("/api/projects", {
+        const res =  await fetch("/api/projects", {
             method: "POST",
-            body: JSON.stringify(project)
+            headers:{
+                "Authorization": authToken,
+                "CSRF-Token": getCookie("CSRF-TOKEN")
+            },
+            body: project
         });
         const data = await res.json();
         return dispatch(receiveProject(data))
@@ -72,7 +93,7 @@ export const editProject = (projectId, project) => async(dispatch) => {
 
 export const deleteProject = projectId => async(dispatch) => {
     try {
-        const res = await jwtFetch(`/???/${projectId}`,{
+        const res = await jwtFetch(`/api/projects/${projectId}`,{
             method: "DELETE"
         })
 

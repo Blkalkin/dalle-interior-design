@@ -67,9 +67,14 @@ router.post('/', upload.single('photo'), async (req, res, next) => {
     title: req.body.title,
     description: req.body.description,
     photoUrls: req.body.photoUrls,
-    public: req.body.public
+    public: req.body.public,
+    author: req.body.authorId
   });
+  
+  
   newProject.photoUrls=[`https://dalle-interior-design-dev.s3.us-west-1.amazonaws.com/${imageName}`]
+
+
 
   const params = {
     Bucket: awsBucketName,
@@ -143,6 +148,7 @@ router.patch('/:id/edit', async (req, res, next) => {
 })
 
 router.delete('/:projectId', async (req, res, next) => {
+
   try {
     let project = await Project.deleteOne({ _id: req.params.projectId});
 
@@ -157,6 +163,6 @@ router.delete('/:projectId', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-})
+});
 
 module.exports = router;

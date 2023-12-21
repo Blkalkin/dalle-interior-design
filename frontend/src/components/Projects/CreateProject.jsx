@@ -3,6 +3,7 @@ import './CreateProject.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import FilesDragAndDrop from './FilesDragAndDrop'
+import { createProject } from '../../store/project'
 
 
 const CreateProject = () => {
@@ -19,7 +20,7 @@ const CreateProject = () => {
     const currentUserId = useSelector(state => state.session.user._id);
     const photo1 = useRef()
     const photo2 = useRef()
-    let imageFile;
+
 
     const updateImage = (e) => {
         const file = e.target.files[0];
@@ -34,25 +35,16 @@ const CreateProject = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // if (errors.length > 0) return
         const formData = new FormData();
-        formData.append("image", image)
+        formData.append("photo", image)
         formData.append("title", title)
         formData.append("authorId", currentUserId)
-        formData.append("public", isPublic.toString())
+        formData.append("public", isPublic)
 
-        for (const [key, value] of formData) {
-            console.log(`${key}: ${value}\n`);
-        }
+      
 
-        // const payload = {
-        //     photoUrls: [image],
-        //     title: title,
-        //     authorId: currentUserId,
-        //     public: isPublic
-        // }
         setImageLoading(true);
-        // const res = dispatch(createProject(payload))
+        dispatch(createProject(formData))
         // if (res.ok) {
         //     setImage(null);
         //     setTitle('');
