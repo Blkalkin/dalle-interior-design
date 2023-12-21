@@ -5,6 +5,7 @@ import { fetchProject, selectProject } from "../../store/project"
 import './ProjectDetailsShow.css'
 import CommentIndex from "../Comments/CommentIndex"
 import editIcon from '../../../assets/icons/editIcon.png'
+import EditProjectDetails from "./EditProjectDetails"
 
 const ProjectDetailsShow = () =>{
     const dispatch = useDispatch()
@@ -13,29 +14,36 @@ const ProjectDetailsShow = () =>{
     const photos = project?.photoUrls
     const currUser = useSelector(state => state.session.user)
     const [isCurrUser, setIsCurrUser] = useState(false)
+    const [openEdit, setOpenEdit] = useState(false)
 
     if(project?.author === currUser._id) {
         setIsCurrUser(true)
     }
     
-    useEffect( ()=> {
+    useEffect(()=> {
         dispatch(fetchProject(projectId))
     },[dispatch, projectId])
 
-
-    console.log(projectId)
-    console.log(project, "PROJECT")
-    console.log(isCurrUser)
+    const openEditModal =(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if(openEdit) return
+        setOpenEdit(true)
+    }
 
 
     if(project) {
         return (
             <div className="project-details-page">
-               <div className="project-title-PDS title">{project.title}</div>
-               <div className="project-description-PDS text">{project.description}</div>
-               {currUser._id !== project.author ? 
-                 <img className='edit-PDS' src={editIcon} alt="" />
-               : null}
+                {openEdit ? <EditProjectDetails public={project.public} title={project.title} description={project.description} projectId={projectId} setOpenEdit={setOpenEdit}/> :
+                <>
+                    <div className="project-title-PDS title">{project.title}</div>
+                    <div className="project-description-PDS text">{project.description}</div>
+                    {currUser._id !== project.author ? 
+                        <img onClick={openEditModal} className='edit-PDS' src={editIcon} alt="" />
+                        : null}
+                </>
+                }
                <div className="photos-and-comments-comtainer">
                     <ul className="projects-index-grid-PDS">
                         {photos.map((photo, idx)=> {
