@@ -71,10 +71,7 @@ router.post('/', upload.single('photo'), async (req, res, next) => {
     author: req.body.authorId
   });
   
-  
   newProject.photoUrls=[`https://dalle-interior-design-dev.s3.us-west-1.amazonaws.com/${imageName}`]
-
-
 
   const params = {
     Bucket: awsBucketName,
@@ -132,17 +129,48 @@ router.patch('/:id/edit', async (req, res, next) => {
     error.errors = { message: "No project found with that id" };
     return next(error);
   }try {
-    project.title = req.body.title;
-    project.description = req.body.description;
-    project.photoUrls = req.body.photoUrls;
-    project.public = req.body.public;
+    project.title = req.body.title || project.title;
+    project.description = req.body.description || project.description ;
+    project.public = req.body.public || project.public;
+    // project.author = req.body.author || project.author;
+    project.photoUrls = req.body.photoUrls || project.photoUrls;
+
+    // if (req.file.buffer){
+
+    //   const imageName = randomImageName();
+    //   const params = {
+    //     Bucket: awsBucketName,
+    //     Key: imageName,
+    //     Body: req.file.buffer,
+    //     ContentType: req.file.mimetype
+    //   }
+
+    //   const command = new PutObjectCommand(params);
+    //   const uploadedPhoto = await s3.send(command);
+
+    //   project.photoUrls.push(`https://dalle-interior-design-dev.s3.us-west-1.amazonaws.com/${imageName}`)
+    // }
 
     let editedProject = await project.save();
-    editedProject = await project.populate('author', '_id');
+    // editedProject = await project.populate('author', '_id');
     return res.json(editedProject);
   }catch(err) {
+    if (err.name === 'ValidationError') {
+      // Mongoose validation error
+      const validationErrors = {};
+      for (const field in err.errors) {
+        validationErrors[field] = err.errors[field].message;
+      }
+
+      const error = new Error('Validation failed');
+      error.statusCode = 422;
+      error.errors = validationErrors;
+      return next(error);
+    }
+
+    // Handle other Mongoose errors
     const error = new Error('Project failed to save');
-    error.statusCode = 422;
+    error.statusCode = 500; // Internal Server Error
     return next(error);
   }
 })
