@@ -28,8 +28,6 @@ const CommentIndexItem = ({currentUserId, comment}) => {
         setOpenEdit(true)
     }
 
-  
-    
     return (
         <li className="comment-details">
             <Link to={`/profile/${author._id}`}>

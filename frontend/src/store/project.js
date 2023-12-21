@@ -77,7 +77,8 @@ export const createProject = project => async(dispatch) => {
             body: project
         });
         const data = await res.json();
-        return dispatch(receiveProject(data))
+        dispatch(receiveProject(data))
+        return data
     } catch(err) {
         const res = await err.json();
         console.log(res)

@@ -33,7 +33,7 @@ const CreateProject = () => {
 
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("photo", image)
@@ -41,18 +41,12 @@ const CreateProject = () => {
         formData.append("authorId", currentUserId)
         formData.append("public", isPublic)
 
-      
+        console.log('are we here?')
 
         setImageLoading(true);
-        dispatch(createProject(formData))
-        // if (res.ok) {
-        //     setImage(null);
-        //     setTitle('');
-        //     setErrors([]);
-        //     setDisable(true);
-        //     setImageLoading(false)
-        //     // navigate(`/profile/${currentUserId}`)
-        // } 
+        const res = await dispatch(createProject(formData))
+        console.log(res)
+
     }
 
     useEffect(() => {
@@ -91,14 +85,14 @@ const CreateProject = () => {
                     <img onClick={()=> handleImg2Click(promptImg2)} src={promptImg2} ref={photo2} className='demo-img img2' alt="promptImg2" />
                 </div>
                 <form className='new-project-form' onSubmit={handleSubmit}>
-                    {/* <label> 
+                    <label> 
                         Select a file to upload: 
                          <input 
                         className="choose-file-btn" 
                         type="file" 
                         accept="image/*" 
                         onChange={updateImage}/>
-                    </label> */}
+                    </label>
                    
                     <label className='title-label text'>
                         Name your project:
@@ -113,7 +107,7 @@ const CreateProject = () => {
                     
                     <div className='form-btns'>
                         <button className='privacy-btn text' onClick={()=> setIsPublic(!isPublic)}> {isPublic ? "Your project will be public" : "Your project will be private"}</button>
-                        <button disabled={disable} className='submit-new-project-btn text' type='submit'>Create </button>
+                        <button className='submit-new-project-btn text' type='submit'>Create </button>
                         {(imageLoading) && <p>Loading...</p>}
                      </div>
                 </form>
