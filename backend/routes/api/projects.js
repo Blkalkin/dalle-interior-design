@@ -118,11 +118,12 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.patch('/:id/edit', async (req, res, next) => {
+router.patch('/:id/edit', upload.single('photo'), async (req, res, next) => {
   let project;
 
   try{
     project = await Project.findById(req.params.id);
+    console.log(project);
   }catch(err) {
     const error = new Error('Project not found');
     error.statusCode = 404;
@@ -132,25 +133,24 @@ router.patch('/:id/edit', async (req, res, next) => {
     project.title = req.body.title || project.title;
     project.description = req.body.description || project.description ;
     project.public = req.body.public || project.public;
-    // project.author = req.body.author || project.author;
     project.photoUrls = req.body.photoUrls || project.photoUrls;
 
-    // if (req.file.buffer){
+    if (req.file.buffer){
 
-    //   const imageName = randomImageName();
-    //   const params = {
-    //     Bucket: awsBucketName,
-    //     Key: imageName,
-    //     Body: req.file.buffer,
-    //     ContentType: req.file.mimetype
-    //   }
+      const imageName = randomImageName();
+      const params = {
+        Bucket: awsBucketName,
+        Key: imageName,
+        Body: req.file.buffer,
+        ContentType: req.file.mimetype
+      }
 
-    //   const command = new PutObjectCommand(params);
-    //   const uploadedPhoto = await s3.send(command);
+      const command = new PutObjectCommand(params);
+      const uploadedPhoto = await s3.send(command);
 
-    //   project.photoUrls.push(`https://dalle-interior-design-dev.s3.us-west-1.amazonaws.com/${imageName}`)
-    // }
-
+      project.photoUrls.push(`https://dalle-interior-design-dev.s3.us-west-1.amazonaws.com/${imageName}`)
+    }
+    console.log("edited project: ", project);
     let editedProject = await project.save();
     // editedProject = await project.populate('author', '_id');
     return res.json(editedProject);
