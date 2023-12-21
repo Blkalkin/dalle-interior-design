@@ -27,7 +27,7 @@ function Profile () {
         return (
             <>
                 <ProjectIndex title={`${capitalizeFirstLetter(currUser?.username)}'s Projects`} user={currUser}/>
-                <Link to={'/createProject'} className='text get-started'>Add project</Link>
+                <Link to={'/createProject'} className='text '>Add project</Link>
             </>
         );
     } else if (user) {

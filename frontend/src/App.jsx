@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet, Navigate } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import LandingPage from './components/LandingPage/LandingPage';
 import NavBar from './components/NavBar/NavBar';
@@ -63,6 +63,10 @@ const router = createBrowserRouter([
         element: <ProjectDetailsShow/>
       }
     ]
+  },
+  {
+    path: "*",
+    element: <Navigate to={'/'}/>
   }
 ]);
 

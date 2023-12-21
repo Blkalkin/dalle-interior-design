@@ -12,18 +12,6 @@ body {
     color: rgb(62, 91, 62);
 }
 
-.get-started {
-    font-size: 20px;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    padding-left: 11px;
-    padding-right: 11px;
-    border-radius: 20px;
-    color: white;
-    min-width: 110px;
-    border: rgb(229, 176, 44) solid 2px;
-    background-color: rgb(229, 176, 44);
-}
 
 .body {
     display: flex;
