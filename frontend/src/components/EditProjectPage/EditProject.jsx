@@ -1,16 +1,19 @@
 import './EditProject.css'
-import { fetchProject, selectProject } from '../../store/project'
+import { editProject, fetchProject, selectProject } from '../../store/project'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react"
 import RecentPicture from './RecentPicture';
+
+
 
 function EditProject () {
     const dispatch = useDispatch()
     const { projectId } = useParams();
     const project = useSelector(selectProject(projectId))
     const [description, setDescription] = useState("test");
-    const newImage = useSelector(state => state.newImage)
+    const newImages = useSelector(state => state.newImages)
+    // console.log(newImages[0].url)
 
     useEffect (() => {
         if (projectId){
@@ -20,16 +23,20 @@ function EditProject () {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const res = dispatch(updateProject(payload))
-        if (res.ok) {
-            setImage(null);
-            setTitle('');
-            setErrors([]);
-            setDisable(true);
-            setImageLoading(false)
-            navigate(`/profile/${currentUserId}`)
+        // const res = dispatch(editProject(payload))
+        // if (res.ok) {
+        //     setImage(null);
+        //     setTitle('');
+        //     setErrors([]);
+        //     setDisable(true);
+        //     setImageLoading(false)
+        //     // navigate(`/profile/${currentUserId}`)
+        // }
+        const newUrls = [...project.photoUrls, newImages[0].url];
+        const payload = {
+            photoUrls: newUrls
         }
+        dispatch(editProject(projectId, payload))
     }
 
     const handleChange = (event) => {
@@ -41,7 +48,7 @@ function EditProject () {
             <>
                 <div className='project-page' >
                     <h1>{project.title}</h1>
-                    <RecentPicture photoUrls={project.photoUrls} newImage={newImage}/>
+                    <RecentPicture photoUrls={project.photoUrls} newImages={newImages[0]?.url} projectId={projectId} />
                     <form onSubmit={handleSubmit}>
                         <input
                             type="text"
@@ -55,7 +62,7 @@ function EditProject () {
             </>
         )
     } else {
-        navigate(`/createProject`)
+        // navigate(`/createProject`)
     }
 }
 
