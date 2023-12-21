@@ -9,6 +9,9 @@ import { useEffect } from 'react';
 
 const ProjectIndexItem = ({project, idx}) => {
     const dispatch = useDispatch()
+    const lastImage = project.photoUrls[project.photoUrls.length - 1]
+
+
     useEffect(()=>{
 
     },[dispatch])
@@ -16,13 +19,11 @@ const ProjectIndexItem = ({project, idx}) => {
     return (
         <li className='project-details-container'>
             <h3 className="title">{project.title}</h3>
-            {/* <Link className='single-project' to={`/profile/${project.author}/${project._id}`}> */}
             <Link className='single-project text' to={`/projectDetails/${project._id}`}>
-            {/* <img className='single-project-img' src={project.photoUrls[0]} alt="test" /> */}
-              <img className='single-project-img' src="https://havenly.com/blog/wp-content/uploads/2023/10/kyliefitts_havenly_odetteannable_10-7-1500x970.jpg" alt="test" />
+              <img className='single-project-img' src={lastImage} alt="test" />
             </Link>
             <div className='bottom-details'>
-                <h4 className='text'>Created: {formatDateString(project.createdAt)}</h4>
+                <h4 className='text'>{formatDateString(project.createdAt)}</h4>
                 <img onClick={()=> dispatch(deleteProject(project._id, idx))} src={deleteIcon} className='deleteIcon' alt="delete" />
             </div>
         </li>

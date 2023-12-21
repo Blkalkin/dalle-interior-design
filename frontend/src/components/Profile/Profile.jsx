@@ -11,7 +11,10 @@ function Profile () {
     const { id } = useParams();
     const dispatch = useDispatch()
     const currUser = useSelector(state => state.session.user)
-
+    const capitalizeFirstLetter = str => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+      
     useEffect (() => {
         dispatch(getUser(id))
     }, [dispatch, id])
@@ -23,14 +26,14 @@ function Profile () {
     if (id === currUser._id) {
         return (
             <>
-                <ProjectIndex title={`${currUser?.username}'s Projects`} user={currUser}/>
+                <ProjectIndex title={`${capitalizeFirstLetter(currUser?.username)}'s Projects`} user={currUser}/>
                 <Link to={'/createProject'} className='text get-started'>Add project</Link>
             </>
         );
     } else if (user) {
         return (
             <>
-                <ProjectIndex user={user} title={`${user.username}'s Projects`}/>
+                <ProjectIndex user={capitalizeFirstLetter(user)} title={`${user.username}'s Projects`}/>
             </>
         )
     } else {
