@@ -14,17 +14,17 @@ class ImageProcessor {
   
     async processImage(imagePath, outputPath) {
         try {
-            // Read and crop the image
-            if (!fs.existsSync(imagePath)) {
-                throw new Error(`File not found at ${imagePath}`);
-            }
+            // Read and save the image as input
             let image = await Jimp.read(imagePath);
+            await image.writeAsync("image_generation/route-images/input.png");
+            // Crop image and save
+            console.log("Image processed and saved to: image_generation/route-images/input.png");
             const minDimension = Math.min(image.bitmap.width, image.bitmap.height);
             const cropX = (image.bitmap.width - minDimension) / 2;
             const cropY = (image.bitmap.height - minDimension) / 2;
             image = await image.crop(cropX, cropY, minDimension, minDimension);
             await image.writeAsync("image_generation/route-images/cropped_image.png");
-            console.log("Image processed and saved to: cropped_image.png");
+            console.log("Image processed and saved to: image_generation/route-images/cropped_image.png");
       
             // Calculate the size of the transparent square (80% of the cropped image)
             const squareSize = Math.floor(minDimension * 0.8);
@@ -64,13 +64,13 @@ class ImageProcessor {
         
         Comment on the room's overall condition (tidy, cluttered, pristine, worn) and notable features like fireplaces or beams. Include sensory details and emotional responses they evoke.
         
-        Use the user's input to guide any modifications in the room's design, focusing on specific areas for inpainting. Keep the language clear and within safety guidelines, aiming for a description under 1000 characters. Do not address the user at any point, the final output must be a description and nothing futher.
+        Use the user's input to guide any modifications in the room's design, focusing on specific areas for inpainting. Keep the language clear and within safety guidelines, aiming for a description under 1000 characters. Do not address the user at any point, the final output must be a description and nothing further.
                 `
               },
               {
                 role: "user",
                 content: [
-                  { type: "text", text: userPrompt + "this response must be kept under 900 characters"},
+                  { type: "text", text: userPrompt + "...Keep under 1000 characters"},
                   {
                     type: 'image_url',
                             image_url: {
@@ -83,7 +83,8 @@ class ImageProcessor {
           });
           let response_text = response.choices[0].message.content;
           let formatted_text = response_text.replace(/\n/g, ' ');
-          //console.log(formatted_text)
+          formatted_text = formatted_text.slice(0, 1000);
+          console.log(formatted_text)
         
           const baseImageStream = fs.createReadStream('image_generation/route-images/cropped_image.png');
           const maskImageStream = fs.createReadStream('image_generation/route-images/output.png');
@@ -94,14 +95,17 @@ class ImageProcessor {
             prompt: formatted_text
           });
           //console.log(image_generated)
-          return image_generated
+          return {
+            formattedText: formatted_text,
+            imageGenerated: image_generated.data[0].url
+        };
     }
 
     async generateImagePrompt(imagePath,userPrompt){
     
     }
 
-  
+
     static imageToBase64(path) {
       const image = fs.readFileSync(path);
       return image.toString('base64');
@@ -118,7 +122,7 @@ router.post('/generate-image', async (req, res) => {
       const outputPath = 'image_generation/route-images/output.png';
   
       await imageProcessor.processImage(imagePath, outputPath);
-      const base64Image = ImageProcessor.imageToBase64(imagePath);
+      const base64Image = ImageProcessor.imageToBase64('image_generation/route-images/input.png');
   
       const response = await imageProcessor.generateImageEdit(imagePath, base64Image, userPrompt);
       res.json(response);
