@@ -7,6 +7,8 @@ import RecentPicture from './RecentPicture';
 
 
 
+
+
 function EditProject () {
     const dispatch = useDispatch()
     const { projectId } = useParams();
@@ -32,11 +34,6 @@ function EditProject () {
         //     setImageLoading(false)
         //     // navigate(`/profile/${currentUserId}`)
         // }
-        const newUrls = [...project.photoUrls, newImages.imageGenerated];
-        const payload = {
-            photoUrls: newUrls
-        }
-        dispatch(editProject(projectId, payload))
     }
 
     const handleChange = (event) => {
@@ -48,7 +45,7 @@ function EditProject () {
             <>
                 <div className='project-page' >
                     <h1>{project.title}</h1>
-                    <RecentPicture photoUrls={project.photoUrls} newImages={newImages.imageGenerated} projectId={projectId} />
+                    <RecentPicture photoUrls={project.photoUrls} newImage={newImage}/>
                     <form onSubmit={handleSubmit}>
                         <input
                             type="text"

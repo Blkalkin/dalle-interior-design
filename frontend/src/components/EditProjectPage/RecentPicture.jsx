@@ -1,61 +1,7 @@
 import { useState } from 'react';
 import './EditProject.css'
-import ProjectFlowModal from './ProjectFlowModal';
-import { editImage } from '../../store/photoGen';
-import { editProject } from '../../store/project';
-import { useDispatch } from 'react-redux';
 
-
-
-
-function RecentPicture ({photoUrls, newImages = "", projectId}) {
-    const dispatch = useDispatch()
-
-    const [starFilled, setStarFilled] = useState(false);
-    const [showModal, setShowModal] = useState(false);
-    const [newPrompt, setNewPrompt] = useState("")
-
-    const handleClick = (boxName) => {
-        if (boxName === 'firstBox') {
-            //open modal to view all images in photoUrls
-            setShowModal(true);
-        } else if (boxName === 'secondBox') {
-            // open modal to view image better
-        }
-    };
-
-    const closeModal = () => {
-        setShowModal(false);
-    };
-
-    const handleStarHover = (isHovered) => {
-        setStarFilled(isHovered);
-    };
-
-    const handleSavingImage = () => {
-        // const photoUrls = [...photoUrls, newImage];
-        // this should generate the new image
-        const newUrls = [...photoUrls, newImages];
-        const payload = {
-            photoUrls: newUrls
-        }
-        dispatch(editProject(projectId, payload))
-        setStarFilled(!starFilled);
-    }
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const payload = {
-            imagePath: photoUrls[photoUrls.length-1],
-            userPrompt: newPrompt
-        }
-        dispatch(editImage(payload))
-        // console.log(newImages)
-    }
-
-    const handleChange = (event) => {
-        setNewPrompt(event.target.value);
-      };
-
+function RecentPicture ({photoUrls, newImage}) {
     return (
         <>
         <div className="image-container">
