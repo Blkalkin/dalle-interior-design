@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './EditProject.css'
 import ProjectFlowModal from './ProjectFlowModal';
-import { editImage } from '../../store/photoGen';
+import { editImage, removeImage } from '../../store/photoGen';
 import { editProject } from '../../store/project';
 import { useDispatch } from 'react-redux';
 
@@ -38,7 +38,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
             photoUrls: newUrls
         }
         dispatch(editProject(projectId, payload))
-        // dispatch(removeImage())
+        dispatch(removeImage())
         // setStarFilled(!starFilled);
     }
 
