@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { editProject } from "../../store/project";
+
 
 const FinishedModal = ({photoUrls, closeFinishModal, projectId}) => {
     const [description, setDescription] = useState("description");
-
+    const dispatch = useDispatch()
     const handleChange = (event) => {
       setDescription(event.target.value);
     };
