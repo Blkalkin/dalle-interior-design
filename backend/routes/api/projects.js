@@ -223,7 +223,7 @@ router.post('/:id/save-photo', async (req, res, next) => {
         Bucket: awsBucketName,
         Key: imageName,
         Body: imageStream,
-        ContentType: 'image/jpeg' 
+        ContentType: 'image/png' 
       }
     });
 
