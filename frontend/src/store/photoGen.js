@@ -9,7 +9,8 @@ export const receiveNewImage = image => ({
 })
 
 export const removeImage = () => ({
-    type: REMOVE_NEW_IMAGE
+    type: REMOVE_NEW_IMAGE,
+    emptyState: {}
 })
 
 export const editImage = (image) =>  async(dispatch) => {
@@ -32,7 +33,7 @@ const newImageReducer = (state = {}, action) => {
         case RECEIVE_NEW_IMAGE:
             return action.image
         case REMOVE_NEW_IMAGE:
-            return state
+            return action.emptyState
         default:
             return state
     }

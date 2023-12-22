@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editProject } from "../../store/project";
+import { useNavigate } from "react-router-dom";
+
 
 
 const FinishedModal = ({photoUrls, closeFinishModal, projectId}) => {
     const [description, setDescription] = useState("description");
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const handleChange = (event) => {
       setDescription(event.target.value);
     };
@@ -16,6 +19,7 @@ const FinishedModal = ({photoUrls, closeFinishModal, projectId}) => {
         description: description
       }
       dispatch(editProject(projectId, payload))
+      navigate(`/projectDetails/${projectId}`)
     };
 
     return (
@@ -37,7 +41,7 @@ const FinishedModal = ({photoUrls, closeFinishModal, projectId}) => {
                       onChange={handleChange}
                       placeholder="Enter text"
                     />
-                    <button type="submit">Done</button>
+                    <button type="submit">Done?</button>
                   </form>
               </div>
             </div>
