@@ -8,7 +8,9 @@ const multer =  require('multer');
 const { S3Client, PutObjectCommand, DeleteObjectCommand } = require('@aws-sdk/client-s3');
 const { awsBucketName, awsBucketRegion, awsAccess, awsSecret } = require('../../config/keys');
 const crypto = require('crypto');
-
+const axios = require('axios');
+const stream = require('stream');
+const { Upload } = require('@aws-sdk/lib-storage');
 
 randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
 
@@ -200,6 +202,46 @@ router.delete('/:projectId', async (req, res, next) => {
     return res.status(200).json({ message: 'Project deleted successfully' });
   } catch (error) {
     next(error);
+  }
+});
+
+router.post('/:id/save-photo', async (req, res, next) => {
+  const projectId = req.params.id;
+  const imageUrl = req.body.url;
+  const imageName = randomImageName();
+
+  try {
+    const imageStream = await axios({
+      url: imageUrl,
+      method: 'GET',
+      responseType: 'stream'
+    }).then(response => response.data);
+
+    const upload = new Upload({
+      client: s3,
+      params: {
+        Bucket: awsBucketName,
+        Key: imageName,
+        Body: imageStream,
+        ContentType: 'image/png' 
+      }
+    });
+
+    await upload.done();
+
+    const s3Url = `https://${awsBucketName}.s3.amazonaws.com/${imageName}`;
+
+    const project = await Project.findById(projectId);
+    if (!project) {
+      throw new Error('Project not found');
+    }
+    project.photoUrls.push(s3Url);
+    await project.save();
+
+    res.json({ message: 'Image saved successfully', imageUrl: s3Url });
+  } catch (err) {
+    console.error('Error:', err);
+    res.status(500).send('Error saving image');
   }
 });
 

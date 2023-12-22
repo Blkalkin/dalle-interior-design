@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.477.0",
+    "@aws-sdk/lib-storage": "^3.478.0",
     "@faker-js/faker": "^8.3.1",
+    "axios": "^1.6.2",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
@@ -25,7 +27,8 @@
     "openai": "^4.23.0",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "stream": "^0.0.2"
   },
   "devDependencies": {
     "dotenv-cli": "^7.3.0",
