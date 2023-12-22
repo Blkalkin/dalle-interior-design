@@ -22,9 +22,7 @@ function NavBar () {
 
        {!loggedIn ?
        <>
-          <div className='right-navlinks-logged-in'>
-            <Link to={'/community'} className='text community'>Community Feed</Link>
-          </div>
+          <Link to={'/community'} className='text community-LO'>Community Feed</Link>
           <div className='right-navlinks-logged-out'>
             <Link to={'/login'} className='text log-in'>Log In</Link>
             <Link to={'/signup'} className='text get-started'>Get Started</Link>
@@ -32,13 +30,13 @@ function NavBar () {
        </>
        :
        <>
-        <div className='right-navlinks-logged-in'>
-            <Link to={`/profile/${currUser._id}`} className='text'>Your Projects</Link>
-            <Link to={'/community'} className='text'>Community</Link>
-        </div>
         <div className='left-navlinks-logged-in'>
-            <Link to={'/createProject'} className='text get-started'>create project</Link>
-            <Link to={'/'} onClick={logoutUser} className='text'>Log Out</Link>
+            <Link to={`/profile/${currUser._id}`} className='text projects'>Your Projects</Link>
+            <Link to={'/community'} className='text community'>Community</Link>
+        </div>
+        <div className='right-navlinks-logged-in'>
+            <Link to={'/createProject'} className='text create-project'>create project</Link>
+            <Link to={'/'} onClick={logoutUser} className='text log-out'>Log Out</Link>
         </div>
       </>
       }
