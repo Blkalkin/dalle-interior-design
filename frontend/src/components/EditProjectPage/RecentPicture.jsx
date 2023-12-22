@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './EditProject.css'
 import ProjectFlowModal from './ProjectFlowModal';
 import { editImage, removeImage } from '../../store/photoGen';
-import { editProject } from '../../store/project';
+import { addImage, editProject } from '../../store/project';
 import { useDispatch } from 'react-redux';
 
 function RecentPicture ({photoUrls, newImages, projectId}) {
@@ -33,11 +33,14 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
         // const photoUrls = [...photoUrls, newImage];
         // this should generate the new image
         if (!newImages) return
-        const newUrls = [...photoUrls, newImages.imageGenerated];
-        const payload = {
-            photoUrls: newUrls
-        }
-        dispatch(editProject(projectId, payload))
+        // console.log(newImages.imageGenerated)
+
+        dispatch(addImage(projectId, {url: newImages.imageGenerated}))
+        // const newUrls = [...photoUrls, newImages.imageGenerated];
+        // const payload = {
+        //     photoUrls: newUrls
+        // }
+        // dispatch(editProject(projectId, payload))
         dispatch(removeImage())
         // setStarFilled(!starFilled);
     }
@@ -71,17 +74,20 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
             )}
           </div>
         </div>
-                <svg
-                  className="star-icon"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill={starFilled ? 'gold' : 'none'}
-                  onMouseEnter={() => handleStarHover(!starFilled)}
-                  onClick={() => handleSavingImage()}
-                >
-                  <path d="M12 2l2.591 7.82H22l-6.711 4.872 2.591 7.82L12 17.64l-6.879 4.872 2.591-7.82L2 9.82h7.409L12 2z"/>
-                </svg>
+          <label> Save This Image?
+            <svg
+              className="star-icon"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill={starFilled ? 'gold' : 'none'}
+              onMouseEnter={() => handleStarHover(!starFilled)}
+              onClick={() => handleSavingImage()}
+            >
+              <path d="M12 2l2.591 7.82H22l-6.711 4.872 2.591 7.82L12 17.64l-6.879 4.872 2.591-7.82L2 9.82h7.409L12 2z"/>
+            </svg>
+          </label>
+
         {showModal && <ProjectFlowModal photoUrls={photoUrls} closeModal={closeModal} />}
         <form onSubmit={handleSubmit}>
                         <input

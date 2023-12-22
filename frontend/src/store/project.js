@@ -26,6 +26,11 @@ export const removeProject = projectId => ({
     projectId
 })
 
+export const receiveImage = project => ({
+    type: ADD_IMAGE,
+    project
+})
+
 export const fetchProjects = () => async(dispatch) => {
     try {
         const res = await jwtFetch("/api/projects")
@@ -46,7 +51,7 @@ export const fetchUserProjects = (userId) => async(dispatch) => {
         const data = await err.json()
         console.log(data)
     }
-    
+
 }
 
 export const fetchProject = projectId => async(dispatch) => {
@@ -97,6 +102,20 @@ export const editProject = (projectId, project) => async(dispatch) => {
     }
 }
 
+export const addImage = (projectId, url) => async(dispatch) => {
+    try{
+        const res =  await jwtFetch(`/api/projects/${projectId}/save-photo`, {
+            method: "PATCH",
+            body: JSON.stringify(url)
+        });
+        const data = await res.json();
+        return dispatch(receiveProject(data))
+    } catch(err) {
+        const res = await err.json();
+        console.log(res)
+    }
+}
+
 export const deleteProject = (projectId, idx) => async(dispatch) => {
     try {
         const res = await jwtFetch(`/api/projects/${projectId}`,{
@@ -104,7 +123,7 @@ export const deleteProject = (projectId, idx) => async(dispatch) => {
         })
 
         return dispatch(removeProject(idx))
-        
+
     } catch(err) {
         const res = await err.json()
         console.log(res)
@@ -114,8 +133,8 @@ export const deleteProject = (projectId, idx) => async(dispatch) => {
 export const selectProject = projectId => state => state.projects[projectId]
 export const selectProjects = state => state.projects
 
-export const selectProjectsArray = createSelector(selectProjects, project => 
-    Object.values(project)    
+export const selectProjectsArray = createSelector(selectProjects, project =>
+    Object.values(project)
 )
 
 const projectReducer = (state = {}, action) => {

@@ -32,8 +32,8 @@ function LoginForm () {
 
   const handleDemoSubmit = (e) => {
     e.preventDefault();
-    dispatch(login({ email: "demo@graphic.com", password: "demoword" }))
-  
+    dispatch(login({ email: "demo-user@appacademy.io", password: "password" }))
+
   }
 
   if(loggedIn) return <Navigate to={`/profile/${currUser._id}`} replace={true}/>

@@ -1,6 +1,14 @@
-const FinishedModal = ({photoUrls, closeFinishModal, projectId}) => {
-    const [description, setDescription] = useState("description");
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { editProject } from "../../store/project";
+import { useNavigate } from "react-router-dom";
+import './EditProject.css'
 
+
+const FinishedModal = ({photoUrls, closeFinishModal, projectId}) => {
+    const [description, setDescription] = useState("");
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const handleChange = (event) => {
       setDescription(event.target.value);
     };
@@ -11,6 +19,7 @@ const FinishedModal = ({photoUrls, closeFinishModal, projectId}) => {
         description: description
       }
       dispatch(editProject(projectId, payload))
+      navigate(`/projectDetails/${projectId}`)
     };
 
     return (
@@ -19,21 +28,22 @@ const FinishedModal = ({photoUrls, closeFinishModal, projectId}) => {
             <div className="modal">
               <div className="modal-content">
                 <span className="close" onClick={closeFinishModal}>&times;</span>
-                <h2>All Images</h2>
+                <h2>Finished?</h2>
                 <div className="image-gallery">
                   {photoUrls.map((url, index) => (
                     <img key={index} src={url} alt={`Image ${index + 1}`} />
                   ))}
-                </div>
                   <form onSubmit={handleSubmit}>
-                    <input
-                      type="text"
+
+                    <textarea
+                      className="text"
                       value={description}
                       onChange={handleChange}
-                      placeholder="Enter text"
+                      placeholder="New Project Description"
                     />
-                    <button type="submit">Done</button>
+                    <button type="submit">FINISH</button>
                   </form>
+                </div>
               </div>
             </div>
           </div>
