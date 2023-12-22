@@ -11,7 +11,7 @@ function Profile () {
     const { id } = useParams();
     const dispatch = useDispatch()
     const currUser = useSelector(state => state.session.user)
-    const user = useSelector(state => state.user[id])
+    const user = useSelector(state => state.users[id])
     const capitalizeFirstLetter = str => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }

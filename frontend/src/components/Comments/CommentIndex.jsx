@@ -11,6 +11,7 @@ const CommentIndex = ({project}) => {
     const currentUser = useSelector(state => state.session.user)
     const [body, setBody] = useState("")
     const author = project.author
+ 
     
     function moveCurrentUserToTop(arr, authorId) {
         const index = arr.findIndex(item => item.author._id === authorId);
@@ -28,7 +29,7 @@ const CommentIndex = ({project}) => {
     comments = moveCurrentUserToTop(comments, currentUser?._id)
 
     useEffect(()=> {
-        if (project._id){
+        if (project){
             dispatch(fetchComments(project._id))
         }
     },[dispatch, project])
@@ -38,7 +39,7 @@ const CommentIndex = ({project}) => {
         e.preventDefault()
         const payload = {
             authorId: currentUser._id,
-            projectId,
+            projectId: project._id,
             body
         }
 
@@ -46,10 +47,10 @@ const CommentIndex = ({project}) => {
 
         setBody("")
     }
-
+    console.log(author)
     return (
         <ul className="comments-container">
-            <h2 className="title">Share some thoughts on {author}'s project:</h2>
+            <h2 className="title">Share some thoughts on {author.name}'s project:</h2>
             <div className="comment-add-container">
                 <textarea 
                      className="text"

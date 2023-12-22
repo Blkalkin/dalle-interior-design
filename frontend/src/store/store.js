@@ -10,7 +10,7 @@ import newImageReducer from './photoGen';
 const rootReducer = combineReducers({
     //reducers
     session: sessionReducer,
-    user: userReducer,
+    users: userReducer,
     errors: RootErrorReducer,
     projects: projectReducer,
     comments: commentReducer,

@@ -7,7 +7,7 @@ import { deleteProject } from '../../store/project';
 import { useEffect } from 'react';
 
 
-const ProjectIndexItem = ({project, idx}) => {
+const ProjectIndexItem = ({project}) => {
     const dispatch = useDispatch()
     const lastImage = project.photoUrls[project.photoUrls.length - 1]
 
@@ -19,7 +19,7 @@ const ProjectIndexItem = ({project, idx}) => {
             </Link>
             <div className='bottom-details'>
                 <h4 className='text'>{formatDateString(project.createdAt)}</h4>
-                <img onClick={()=> dispatch(deleteProject(project._id, idx))} src={deleteIcon} className='deleteIcon' alt="delete" />
+                <img onClick={()=> dispatch(deleteProject(project._id))} src={deleteIcon} className='deleteIcon' alt="delete" />
             </div>
         </li>
     )
