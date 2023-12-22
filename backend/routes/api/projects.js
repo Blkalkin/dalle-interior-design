@@ -107,7 +107,9 @@ router.post('/', upload.single('photo'), async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   let project;
   try {
-    project = await Project.findById(req.params.id);
+    project = await Project.findById(req.params.id)
+                          .populate("author", "_id username") ;
+                            
   } catch(err) {
     const error = new Error('Project not found');
     error.statusCode = 404;

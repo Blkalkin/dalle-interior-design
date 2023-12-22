@@ -47,10 +47,11 @@ const CommentIndex = ({project}) => {
 
         setBody("")
     }
-    console.log(author)
+   
+    
     return (
         <ul className="comments-container">
-            <h2 className="title">Share some thoughts on {author.name}'s project:</h2>
+            <h2 className="title">Share some thoughts on {author.username}'s project:</h2>
             <div className="comment-add-container">
                 <textarea 
                      className="text"
