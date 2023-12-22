@@ -21,8 +21,9 @@
     padding-left: 10px;
     padding-right: 10px;
     border: green dotted;
-    margin-left: 27vw;
-    /* padding-right: 5vw; */
+    margin-left: 350px;
+    margin-top: 5px;
+  
     }
     
 .update-EC {
@@ -36,4 +37,5 @@
     background-color: rgb(229, 176, 44);
     border: none;
     margin-left: .5vw;
+    margin-top: 5px;
 }

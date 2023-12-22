@@ -16,9 +16,9 @@ const ProjectDetailsShow = () =>{
     const [isCurrUser, setIsCurrUser] = useState(false)
     const [openEdit, setOpenEdit] = useState(false)
 
-    if(project?.author === currUser._id) {
-        setIsCurrUser(true)
-    }
+    // if(project?.author === currUser._id) {
+    //     setIsCurrUser(true)
+    // }
     
     useEffect(()=> {
         dispatch(fetchProject(projectId))
@@ -39,12 +39,12 @@ const ProjectDetailsShow = () =>{
                 <>
                     <div className="project-title-PDS title">{project.title}</div>
                     <div className="project-description-PDS text">{project.description}</div>
-                    {currUser._id !== project.author ? 
+                    {currUser._id === project.author ? 
                         <img onClick={openEditModal} className='edit-PDS' src={editIcon} alt="" />
                         : null}
                 </>
                 }
-               <div className="photos-and-comments-comtainer">
+               {/* <div className="photos-and-comments-comtainer"> */}
                     <ul className="projects-index-grid-PDS">
                         {photos.map((photo, idx)=> {
                             return (
@@ -58,7 +58,7 @@ const ProjectDetailsShow = () =>{
                         <CommentIndex projectId={projectId} />
                     </div>
                 </div>
-            </div>
+            // </div>
         )
     }
 }
