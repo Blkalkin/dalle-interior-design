@@ -32,8 +32,6 @@
 }
 
 
-
-
 .new-project-form {
     display: flex;
     flex-direction: column;
@@ -59,25 +57,32 @@
     border: black 2px solid;
     border-radius: 10px;
     background-color: purple;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-right: 17px;
-    padding-left: 17px;
+    height: 50px;
     font-size: 15px;
+    cursor: pointer;
+}
+
+.privacy-btn:hover {
+    background-color: rgb(118, 1, 118);
 }
 
 .form-btns {
     display: flex;
     justify-content: space-between;
     gap: 30px;
-
 }
+
 .submit-new-project-btn {
     color:  white;
     border: white solid 1px;
     border-radius: 10px;
     background-color:  rgb(229, 176, 44);
-    padding-top: 8px;
-    padding-bottom: 8px;
-    font-size: 30px;
+    /* padding-top: 8px;
+    padding-bottom: 8px; */
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.submit-new-project-btn:hover {
+    background-color: rgb(203, 157, 40);
 }

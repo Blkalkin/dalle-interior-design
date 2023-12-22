@@ -2,17 +2,19 @@
     display: flex;
     align-items: center;
     box-sizing: border-box;
+    justify-content: space-between;
     width: 100%;
     top: 0;
     background-color: white;
     position: fixed;
-    min-width: 1100px;
+    min-width: 1000px;
     border-bottom: rgb(210, 154, 15) solid 2px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .nav-logo {
-    height: 6vh;
-    margin-left: 2vw;
+    height: 50px;
 }
 
 .project-name-NB {
@@ -20,14 +22,13 @@
     align-items: center;
     text-decoration: none;
     font-size: 35px;
-    margin-left: 2vw;
     color:  rgb(210, 154, 15);
 }
 
 .community-LO {
     color: rgb(111, 157, 185);
-    margin-left: 2vw;
-    min-width: 140px;
+    /* margin-left: 2vw; */
+    /* min-width: 140px; */
     /* font-size: 18px; */
     /* background-color: aquamarine; */
 }
@@ -36,11 +37,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 6vh;
-    margin-left: 56vw;
-    margin-right: 2vw;
-    width: 13vw;
-    /* background-color: aqua; */
+    gap: 15px;
+    
 }
 
 .log-in {
@@ -54,16 +52,14 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    height: 4vh;
+    /* height: 4vh; */
     min-width: 230px;
-    margin-left: 2vw;
     color: rgb(111, 157, 185);
     /* background-color: hotpink; */
 }
 
 .community {
     color: rgb(111, 157, 185);
-
 }
 
 .projects{
@@ -71,25 +67,50 @@
 }
 
 .right-navlinks-logged-in {
-    margin-left: 48vw;
-    min-width: 14vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 15px;
     /* background-color: pink; */
 }
 
 .create-project {
+    font-size: 17px;
+    /* padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 11px;
+    padding-right: 11px; */
+    height: 42px;
+    text-align: center;
+    border-radius: 20px;
+    color: white;
+    width: 140px;
+    border: none;
+    background-color: rgb(229, 176, 44);
+    cursor: pointer;
+}
+
+.create-project:hover {
+    background-color: rgb(203, 157, 40);
+}
+
+.get-started {
     font-size: 20px;
-    padding-top: 6px;
+    /* padding-top: 6px;
     padding-bottom: 6px;
     padding-left: 11px;
     padding-right: 11px;
-    border-radius: 20px;
+    border-radius: 20px; */
     color: white;
-    min-width: 135px;
-    border: rgb(229, 176, 44) solid 2px;
+    height: 42px;
+    width: 140px;
+    border-radius: 20px;
     background-color: rgb(229, 176, 44);
+    border: none;
+}
+
+.get-started:hover {
+    background-color: rgb(203, 157, 40);
 }
 
 .log-out{

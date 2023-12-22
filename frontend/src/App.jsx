@@ -1,21 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-
-
+import { createBrowserRouter, RouterProvider, Outlet, Navigate } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
-
-
 import LandingPage from './components/LandingPage/LandingPage';
 import NavBar from './components/NavBar/NavBar';
 import LoginForm from './components/SessionForms/LoginForm';
 import SignupForm from './components/SessionForms/SignupForm';
 import Profile from './components/Profile/Profile';
 import CommunityPage from './components/Community/CommunityPage';
-
 import { getCurrentUser } from './store/session';
 import CreateProject from './components/Projects/CreateProject';
-import CommentIndex from './components/Comments/CommentIndex';
 import EditProject from './components/EditProjectPage/EditProject';
 import ProjectDetailsShow from './components/Projects/ProjectDetailsShow';
 
@@ -42,39 +36,40 @@ const router = createBrowserRouter([
       },
       {
         path: "login",
-        element: <LoginForm />
+        element: <AuthRoute component={LoginForm} />
       },
       {
         path: "signup",
-        element: <SignupForm />
+        element: <AuthRoute component={SignupForm} />
       },
       {
         path: "profile/:id",
-        element: <Profile />
+        element: <Profile/>
       },
       {
         path: "createProject",
-        element: <CreateProject/>
+        element: <ProtectedRoute component={CreateProject}/>
       },
       {
         path: "community",
-        element: <CommunityPage />
-      },
-      {
-        path: "comments",
-        element: <CommentIndex/>
+        element: <CommunityPage/>
       },
       {
         path: "edit-project/:projectId",
-        element: <EditProject />
+        element: <ProtectedRoute component={EditProject}/>
       },
       {
         path: "projectDetails/:projectId",
         element: <ProjectDetailsShow/>
       }
     ]
+  },
+  {
+    path: "*",
+    element: <Navigate to={'/'}/>
   }
 ]);
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);

@@ -1,16 +1,14 @@
-import { useEffect, useRef, useState } from 'react'
-import './CreateProject.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { Navigate, useNavigate } from 'react-router-dom'
-import FilesDragAndDrop from './FilesDragAndDrop'
 import { createProject } from '../../store/project'
+import { useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import FilesDragAndDrop from './FilesDragAndDrop'
+import './CreateProject.css'
 
 
 const CreateProject = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [errors, setErrors] = useState([]);
-    const [disable, setDisable] = useState(true);
     const [title, setTitle] = useState("");
     const [image, setImage] = useState("");
     const [isPublic, setIsPublic] = useState("true");
@@ -22,16 +20,14 @@ const CreateProject = () => {
     const photo2 = useRef()
 
 
-    const updateImage = (e) => {
-        const file = e.target.files[0];
-        setImage(file);
-    }
+    // const updateImage = (e) => {
+    //     const file = e.target.files[0];
+    //     setImage(file);
+    // }
 
     const updateTitle = (e) => {
         setTitle(e.target.value)
     }
-
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -41,32 +37,11 @@ const CreateProject = () => {
         formData.append("authorId", currentUserId)
         formData.append("public", isPublic)
 
-        console.log('are we here?')
-
         setImageLoading(true);
         const res = await dispatch(createProject(formData))
-            // return <Navigate to={`/edit-project/${res._id}`}/>
-            navigate(`/edit-project/${res._id}`)
- 
+        navigate(`/edit-project/${res._id}`)
     }
 
-    useEffect(() => {
-        const errors = []
-        if (image) {
-            if (image?.type !== 'image/jpg' && image?.type !== 'image/jpeg' && image?.type !== 'image/png') errors.push('File Type Not Supported. Please upload a png, jpg, or jpeg')
-            setTitle(image.name.split('.')[0])
-
-        } else setTitle('')
-        if (!image) errors.push('Please upload image to continue')
-        if (errors.length > 0) setDisable(true)
-        if (errors.length === 0) setDisable(false)
-        setErrors(errors)
-
-    }, [disable])
-
-    // const onUpload = (files) => {
-    //     console.log(image);
-    // }
 
     const handleImg1Click = (promptImg) => {
         setImage(promptImg)
@@ -76,25 +51,16 @@ const CreateProject = () => {
     const handleImg2Click = (promptImg) => {
         setImage(promptImg)
     }
-
+    console.log(image)
     return (
         <div className='whole-create-project-container'>
             <div className='upload-photo-section'> 
-                {/* <FilesDragAndDrop setImage={setImage} /> */}
+                <FilesDragAndDrop setImage={setImage} />
                 <div className='example-images text'> 
                     <img onClick={()=> handleImg1Click(promptImg1)} src={promptImg1} ref={photo1} className='demo-img' alt="promptImg1" />
                     <img onClick={()=> handleImg2Click(promptImg2)} src={promptImg2} ref={photo2} className='demo-img img2' alt="promptImg2" />
                 </div>
                 <form className='new-project-form' onSubmit={handleSubmit}>
-                    <label> 
-                        Select a file to upload: 
-                         <input 
-                        className="choose-file-btn" 
-                        type="file" 
-                        accept="image/*" 
-                        onChange={updateImage}/>
-                    </label>
-                   
                     <label className='title-label text'>
                         Name your project:
                         <input 

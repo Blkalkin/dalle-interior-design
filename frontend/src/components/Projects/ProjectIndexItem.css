@@ -3,14 +3,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 285px;
+    height: 330px;
     border: 2px solid  rgb(229, 176, 44);
-    /* background-color: pink; */
 }
 
-.project-details-container a{
-    /* border: 2px dashed  rgb(229, 176, 44); */
-    width: 15vw;
-    height: 25vh;
+.project-details-container a img{
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
 }
 
 .single-project {
@@ -32,10 +33,9 @@
 .bottom-details {
     display: flex;
     align-items: center;
+    gap: 20px;
 }
 
 .deleteIcon{
-    height: 2vh;
-    margin-left: 3vw;
-    /* margin-bottom: 3vh; */
+    height: 17px;
 }

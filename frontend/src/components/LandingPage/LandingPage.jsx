@@ -13,7 +13,6 @@ import { useSelector } from 'react-redux';
 
 
 function LandingPage() {
-  const loggedIn = useSelector(state => !!state.session.user);
   const [beforeImg, setBeforeImg] = useState(0)
   const [afterImg, setAfterImg] = useState(1)
   const imagesArr = [photo0, photo1,photo2, photo3, photo4, photo5, photo6, photo7]
@@ -31,7 +30,6 @@ function LandingPage() {
   return () => clearInterval(intervalID);
   }, [rotateImg])
 
-  if (loggedIn) return <Navigate to='/community' />
 
   return (
     <div className='whole-landing-page'>
