@@ -30,5 +30,9 @@
   "devDependencies": {
     "dotenv-cli": "^7.3.0",
     "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node" : "20.10.0"
   }
+
 }

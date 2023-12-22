@@ -2,7 +2,6 @@ const express = require("express");
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const debug = require('debug');
-require('dotenv').config();
 
 
 const csurf = require('csurf');
@@ -51,6 +50,30 @@ app.use('/api/comments', commentsRouter);
 app.use('/api/csrf', csrfRouter);
 app.use('/api/projects', projectsRouter);
 app.use('/api/images', imagesRouter);
+
+
+// Serve static React build files statically in production
+if (isProduction) {
+  const path = require('path');
+  // Serve the frontend's index.html file at the root route
+  app.get('/', (req, res) => {
+    res.cookie('CSRF-TOKEN', req.csrfToken());
+    res.sendFile(
+      path.resolve(__dirname, '../frontend', 'dist', 'index.html')
+    );
+  });
+
+  // Serve the static assets in the frontend's dist folder
+  app.use(express.static(path.resolve("../frontend/dist")));
+
+  // Serve the frontend's index.html file at all other routes NOT starting with /api
+  app.get(/^(?!\/?api).*/, (req, res) => {
+    res.cookie('CSRF-TOKEN', req.csrfToken());
+    res.sendFile(
+      path.resolve(__dirname, '../frontend', 'dist', 'index.html')
+    );
+  });
+}
 
 
 
