@@ -15,7 +15,7 @@
 .projects-index-grid {
     /* position: absolute; */
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Creates 4 columns with equal width */
+    grid-template-columns: repeat(4, 1fr); /* Creates 4 columns with equal width */
     gap: 35px; 
     flex-wrap: wrap;
     padding-left: 11%;

@@ -9,8 +9,8 @@
 
 .project-details-container a{
     /* border: 2px dashed  rgb(229, 176, 44); */
-    width: 15vw;
-    height: 25vh;
+    min-width: 330px;
+    min-height: 180px;
 }
 
 .single-project {

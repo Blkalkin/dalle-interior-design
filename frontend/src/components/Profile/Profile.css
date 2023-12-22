@@ -1,0 +1,16 @@
+.add-project {
+    font-size: 20px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 11px;
+    padding-right: 11px;
+    border-radius: 20px;
+    color: white;
+    width: 20vw;
+    min-width: 110px;
+    border: rgb(229, 176, 44) solid 2px;
+    background-color: rgb(229, 176, 44);
+    margin-left: 40vw;
+    display: flex;
+    justify-content: center;
+}

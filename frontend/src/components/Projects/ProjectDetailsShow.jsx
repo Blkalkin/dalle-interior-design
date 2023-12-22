@@ -44,21 +44,19 @@ const ProjectDetailsShow = () =>{
                         : null}
                 </>
                 }
-               {/* <div className="photos-and-comments-comtainer"> */}
-                    <ul className="projects-index-grid-PDS">
-                        {photos.map((photo, idx)=> {
-                            return (
-                                <Link >
-                                    <img key={idx} src={photo} alt="photos" className="photo-PDS" />
-                                </Link>
-                            );
-                        })}
-                    </ul> 
-                    <div className='comments-area'>
-                        <CommentIndex projectId={projectId} />
-                    </div>
+                <ul className="projects-index-grid-PDS">
+                    {photos.map((photo, idx)=> {
+                        return (
+                            <Link >
+                                <img key={idx} src={photo} alt="photos" className="photo-PDS" />
+                            </Link>
+                        );
+                    })}
+                </ul> 
+                <div className='comments-area'>
+                    <CommentIndex projectId={projectId} />
                 </div>
-            // </div>
+            </div>
         )
     }
 }

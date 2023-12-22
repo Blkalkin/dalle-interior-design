@@ -24,7 +24,7 @@ function Profile () {
         return (
             <>
                 <ProjectIndex title={`${currUser?.username}'s Projects`} user={currUser}/>
-                <Link to={'/createProject'} className='text get-started'>Add project</Link>
+                <Link to={'/createProject'} className='text add-project'>Start a New Project</Link>
             </>
         );
     } else if (user) {
