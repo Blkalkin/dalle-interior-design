@@ -71,7 +71,7 @@ function LoginForm () {
         onClick={handleDemoSubmit}
       />
         <div className="links-auth text">
-          <Link to={'/signup'}>Don't have an account? Signup</Link>
+          <Link to={'/signup'}>Dont have an account? Signup</Link>
         </div>
     </form>
   );

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
 
-import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
+//import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 
 
 import LandingPage from './components/LandingPage/LandingPage';

@@ -110,6 +110,7 @@ const commentReducer = (state = {}, action) => {
             return newState
         case RECEIVE_UPDATED_COMMENT:
             newState[action.comment._id] = {...newState[action.comment._id], ...action.comment}
+            break
         case REMOVE_COMMENT:
             console.log(newState)
             delete newState[action.commentId]

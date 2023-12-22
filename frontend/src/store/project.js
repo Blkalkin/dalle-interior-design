@@ -99,7 +99,7 @@ export const editProject = (projectId, project) => async(dispatch) => {
 
 export const deleteProject = (projectId, idx) => async(dispatch) => {
     try {
-        const res = await jwtFetch(`/api/projects/${projectId}`,{
+        await jwtFetch(`/api/projects/${projectId}`,{
             method: "DELETE"
         })
 

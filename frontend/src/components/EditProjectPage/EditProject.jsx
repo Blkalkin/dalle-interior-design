@@ -1,5 +1,5 @@
 import './EditProject.css'
-import { editProject, fetchProject, selectProject } from '../../store/project'
+import { fetchProject, selectProject } from '../../store/project'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react"
@@ -14,7 +14,7 @@ function EditProject () {
     const dispatch = useDispatch()
     const { projectId } = useParams();
     const project = useSelector(selectProject(projectId))
-    const [description, setDescription] = useState("test");
+    //const [description, setDescription] = useState("test");
     const newImages = useSelector(state => state.newImages)
 
     const [finish, setFinish] = useState(false)
@@ -26,23 +26,23 @@ function EditProject () {
         }
     }, [dispatch, projectId])
 
-    const doneButton = async (e) => {
-        e.preventDefault();
-        // const res = dispatch(editProject(payload))
-        // if (res.ok) {
-        //     setImage(null);
-        //     setTitle('');
-        //     setErrors([]);
-        //     setDisable(true);
-        //     setImageLoading(false)
-        //     // navigate(`/profile/${currentUserId}`)
-        // }
-        const newUrls = [...project.photoUrls, newImages.imageGenerated];
-        const payload = {
-            photoUrls: newUrls
-        }
-        dispatch(editProject(projectId, payload))
-    }
+    // const doneButton = async (e) => {
+    //     e.preventDefault();
+    //     // const res = dispatch(editProject(payload))
+    //     // if (res.ok) {
+    //     //     setImage(null);
+    //     //     setTitle('');
+    //     //     setErrors([]);
+    //     //     setDisable(true);
+    //     //     setImageLoading(false)
+    //     //     // navigate(`/profile/${currentUserId}`)
+    //     // }
+    //     const newUrls = [...project.photoUrls, newImages.imageGenerated];
+    //     const payload = {
+    //         photoUrls: newUrls
+    //     }
+    //     dispatch(editProject(projectId, payload))
+    // }
 
     // const handleChange = (event) => {
     //     setDescription(event.target.value);

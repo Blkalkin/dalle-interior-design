@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
 import './CreateProject.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigate, useNavigate } from 'react-router-dom'
-import FilesDragAndDrop from './FilesDragAndDrop'
+import { useNavigate } from 'react-router-dom'
+//import FilesDragAndDrop from './FilesDragAndDrop'
 import { createProject } from '../../store/project'
 
 
 const CreateProject = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [errors, setErrors] = useState([]);
+    //const [errors, setErrors] = useState([]);
     const [disable, setDisable] = useState(true);
     const [title, setTitle] = useState("");
     const [image, setImage] = useState("");
@@ -60,9 +60,9 @@ const CreateProject = () => {
         if (!image) errors.push('Please upload image to continue')
         if (errors.length > 0) setDisable(true)
         if (errors.length === 0) setDisable(false)
-        setErrors(errors)
+        //setErrors(errors)
 
-    }, [disable])
+    }, [image, disable])
 
     // const onUpload = (files) => {
     //     console.log(image);

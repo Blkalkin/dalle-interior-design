@@ -9,7 +9,7 @@ function NavBar () {
   const currUser = useSelector(state => state.session.user)
 
 
-  const logoutUser = e => {
+  const logoutUser = () => {
       dispatch(logout());
   };
 

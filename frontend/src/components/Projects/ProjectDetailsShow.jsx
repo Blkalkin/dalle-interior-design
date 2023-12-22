@@ -13,11 +13,11 @@ const ProjectDetailsShow = () =>{
     const project = useSelector(selectProject(projectId))
     const photos = project?.photoUrls
     const currUser = useSelector(state => state.session.user)
-    const [isCurrUser, setIsCurrUser] = useState(false)
+    //const [isCurrUser, setIsCurrUser] = useState(false)
     const [openEdit, setOpenEdit] = useState(false)
 
     if(project?.author === currUser._id) {
-        setIsCurrUser(true)
+        //setIsCurrUser(true)
     }
     
     useEffect(()=> {
@@ -48,8 +48,8 @@ const ProjectDetailsShow = () =>{
                     <ul className="projects-index-grid-PDS">
                         {photos.map((photo, idx)=> {
                             return (
-                                <Link >
-                                    <img key={idx} src={photo} alt="photos" className="photo-PDS" />
+                                <Link key={idx}>
+                                    <img  src={photo} alt="photos" className="photo-PDS" />
                                 </Link>
                             );
                         })}
