@@ -205,7 +205,7 @@ router.delete('/:projectId', async (req, res, next) => {
   }
 });
 
-router.post('/:id/save-photo', async (req, res, next) => {
+router.patch('/:id/save-photo', async (req, res, next) => {
   const projectId = req.params.id;
   const imageUrl = req.body.url;
   const imageName = randomImageName();
@@ -236,9 +236,8 @@ router.post('/:id/save-photo', async (req, res, next) => {
       throw new Error('Project not found');
     }
     project.photoUrls.push(s3Url);
-    await project.save();
-
-    res.json({ message: 'Image saved successfully', imageUrl: s3Url });
+    let editedProject = await project.save();
+    return res.json(editedProject);
   } catch (err) {
     console.error('Error:', err);
     res.status(500).send('Error saving image');
