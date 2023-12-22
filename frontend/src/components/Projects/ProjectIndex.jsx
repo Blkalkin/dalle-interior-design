@@ -8,21 +8,24 @@ const ProjectIndex = ({title, user}) => {
     const dispatch = useDispatch()
     const projects = useSelector(selectProjectsArray)
 
-    useEffect(()=> {
-        dispatch(fetchProjects())
-        // dispatch(fetchUserProjects(user._id))
-    },[dispatch])
 
-    if (!title) title = `${user.username}'s Projects`
+    useEffect(()=> {
+      if(user) {
+          dispatch(fetchUserProjects(user._id))
+      } else {
+          dispatch(fetchProjects())
+      }
+    },[dispatch, user?._id])
  
     return (
         <div className="project-index-container">
-            <h2 className="title project-header">{user.username}'s Projects</h2>
+            <h2 className="title project-header">{title}</h2>
             <ul className="projects-index-grid">
-                {projects.map(project => (
+                {projects.map((project, idx) => (
                     <ProjectIndexItem
                         key={project._id}
                         project={project}
+                        idx={idx}
                     />
                 ))}
             </ul>

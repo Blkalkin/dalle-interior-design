@@ -7,7 +7,7 @@ import { deleteProject } from '../../store/project';
 import { useEffect } from 'react';
 
 
-const ProjectIndexItem = ({project}) => {
+const ProjectIndexItem = ({project, idx}) => {
     const dispatch = useDispatch()
     useEffect(()=>{
 
@@ -23,7 +23,7 @@ const ProjectIndexItem = ({project}) => {
             </Link>
             <div className='bottom-details'>
                 <h4 className='text'>Created: {formatDate(project.createdAt)}</h4>
-                <img onClick={()=> dispatch(deleteProject(project._id))} src={deleteIcon} className='deleteIcon' alt="delete" />
+                <img onClick={()=> dispatch(deleteProject(project._id, idx))} src={deleteIcon} className='deleteIcon' alt="delete" />
             </div>
         </li>
     )

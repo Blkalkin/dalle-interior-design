@@ -58,7 +58,7 @@ export const editComment = (commentId, comment) => async dispatch => {
             body: JSON.stringify(comment)
         })
         const data = await res.json()
-        return dispatch(receiveUpdatedComment(data))
+        return dispatch(receiveComment(data))
     } catch(err) {
         const res = await err.json()
         console.log(res)

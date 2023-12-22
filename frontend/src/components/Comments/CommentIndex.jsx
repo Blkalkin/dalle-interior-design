@@ -5,9 +5,8 @@ import CommentIndexItem from "./CommentIndexItem"
 import "./CommentIndex.css"
 
 
-const CommentIndex = () => {
+const CommentIndex = ({projectId}) => {
     const dispatch = useDispatch()
-    const projectId = "658218b08522932af6596a6b"
     let comments = useSelector(selectCommentsArray)
     const currentUser = useSelector(state => state.session.user)
     const [body, setBody] = useState("")

@@ -39,12 +39,10 @@ export const fetchProjects = () => async(dispatch) => {
 
 export const fetchUserProjects = (userId) => async(dispatch) => {
     try {
-        const res = jwtFetch(`/api/projects/user/${userId}`)
+        const res = await jwtFetch(`/api/projects/user/${userId}`)
         const projects = await res.json()
-        console.log(projects, "is this hitting? ")
         return dispatch(receiveProjects(projects))
     } catch(err) {
-        // console.log(err, "err inside the fetch")
         const data = await err.json()
         console.log(data)
     }
@@ -99,13 +97,13 @@ export const editProject = (projectId, project) => async(dispatch) => {
     }
 }
 
-export const deleteProject = projectId => async(dispatch) => {
+export const deleteProject = (projectId, idx) => async(dispatch) => {
     try {
         const res = await jwtFetch(`/api/projects/${projectId}`,{
             method: "DELETE"
         })
 
-        return dispatch(removeProject(projectId))
+        return dispatch(removeProject(idx))
         
     } catch(err) {
         const res = await err.json()

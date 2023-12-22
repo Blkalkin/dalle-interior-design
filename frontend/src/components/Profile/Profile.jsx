@@ -14,7 +14,7 @@ function Profile () {
 
     useEffect (() => {
         dispatch(getUser(id))
-    }, [])
+    }, [dispatch, id])
 
     const user = useSelector(state => state.user[id])
 
@@ -23,14 +23,14 @@ function Profile () {
     if (id === currUser._id) {
         return (
             <>
-                <ProjectIndex title="My Projects" user={currUser}/>
+                <ProjectIndex title={`${currUser?.username}'s Projects`} user={currUser}/>
                 <Link to={'/createProject'} className='text get-started'>Add project</Link>
             </>
         );
     } else if (user) {
         return (
             <>
-                <ProjectIndex user={user} />
+                <ProjectIndex user={user} title={`${user.username}'s Projects`}/>
             </>
         )
     } else {
