@@ -19,9 +19,17 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 35px;
     margin-left: 2vw;
     color:  rgb(210, 154, 15);
+}
+
+.community-LO {
+    color: rgb(111, 157, 185);
+    margin-left: 2vw;
+    min-width: 140px;
+    /* font-size: 18px; */
+    /* background-color: aquamarine; */
 }
 
 .right-navlinks-logged-out{
@@ -29,17 +37,10 @@
     justify-content: space-between;
     align-items: center;
     height: 6vh;
-    margin-left: 40vw;
+    margin-left: 56vw;
     margin-right: 2vw;
     width: 13vw;
     /* background-color: aqua; */
-}
-
-.community {
-    color: rgb(111, 157, 185);
-    font-size: 18px;
-    min-width: 150px;
-    /* background-color: aquamarine; */
 }
 
 .log-in {
@@ -49,22 +50,49 @@
     /* background-color: palevioletred; */
 }
 
-.right-navlinks-logged-in {
+.left-navlinks-logged-in {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     height: 4vh;
-    width: 25vw;
-    margin-left: 3vw;
-    color: rgb(36, 132, 227);
+    min-width: 230px;
+    margin-left: 2vw;
+    color: rgb(111, 157, 185);
     /* background-color: hotpink; */
 }
 
-.left-navlinks-logged-in {
-    margin-left: 38vw;
-    width: 14vw;
+.community {
+    color: rgb(111, 157, 185);
+
+}
+
+.projects{
+    color: rgb(111, 157, 185);
+}
+
+.right-navlinks-logged-in {
+    margin-left: 48vw;
+    min-width: 14vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
     /* background-color: pink; */
+}
+
+.create-project {
+    font-size: 20px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 11px;
+    padding-right: 11px;
+    border-radius: 20px;
+    color: white;
+    min-width: 135px;
+    border: rgb(229, 176, 44) solid 2px;
+    background-color: rgb(229, 176, 44);
+}
+
+.log-out{
+    color: rgb(111, 157, 185);
+    min-width: 60px;
 }
