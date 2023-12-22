@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './EditProject.css'
 import ProjectFlowModal from './ProjectFlowModal';
 import { editImage, removeImage } from '../../store/photoGen';
-import { editProject } from '../../store/project';
+import { addImage, editProject } from '../../store/project';
 import { useDispatch } from 'react-redux';
 
 function RecentPicture ({photoUrls, newImages, projectId}) {
@@ -33,11 +33,14 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
         // const photoUrls = [...photoUrls, newImage];
         // this should generate the new image
         if (!newImages) return
-        const newUrls = [...photoUrls, newImages.imageGenerated];
-        const payload = {
-            photoUrls: newUrls
-        }
-        dispatch(editProject(projectId, payload))
+        // console.log(newImages.imageGenerated)
+
+        dispatch(addImage(projectId, {url: newImages.imageGenerated}))
+        // const newUrls = [...photoUrls, newImages.imageGenerated];
+        // const payload = {
+        //     photoUrls: newUrls
+        // }
+        // dispatch(editProject(projectId, payload))
         dispatch(removeImage())
         // setStarFilled(!starFilled);
     }
