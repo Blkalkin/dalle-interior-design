@@ -4,45 +4,45 @@ import { useParams } from 'react-router-dom';
 import { Navigate, Link } from 'react-router-dom';
 import ProjectIndex from '../Projects/ProjectIndex';
 import { getUser } from '../../store/user';
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 
 function Profile () {
-    const { id } = useParams();
-    const dispatch = useDispatch()
+    const { userId } = useParams();
+    const dispatch = useDispatch();
+    const [profileOwner, setProfileOwner] = useState(false)
     const currUser = useSelector(state => state.session.user)
-    const user = useSelector(state => state.users[id])
+    const user = useSelector(state => state.users[userId])
+
     const capitalizeFirstLetter = str => {
-        return str.charAt(0).toUpperCase() + str.slice(1);
+        if (str) return str.charAt(0).toUpperCase() + str.slice(1); 
     }
-      
+
+    
     useEffect (() => {
-        dispatch(getUser(id))
-    }, [dispatch, id])
+        if (currUser._id === userId) {
+            setProfileOwner(true)
+        } else {
+            dispatch(getUser(userId))
+        }
+
+    }, [dispatch, userId, profileOwner, currUser])
 
 
-    if (!currUser) return <Navigate to='/login' replace={true}/>
 
-    if (id === currUser._id) {
-        return (
-            <>
-                <ProjectIndex title={`${capitalizeFirstLetter(currUser?.username)}'s Projects`} currentUser={currUser}/>
-                <Link to={'/createProject'} className='text '>Add project</Link>
-            </>
-        );
-    } else if (user) {
-        return (
-            <>
-                <ProjectIndex user={user} title={`${capitalizeFirstLetter(user.username)}'s Projects`}/>
-            </>
-        )
-    } else {
-        return (
-            <>
-                <h1>No User Found</h1>
-            </>
-        )
-    }
+    return (
+        <div className='profile-container text'>
+            <h2>
+                {profileOwner? `${capitalizeFirstLetter(currUser.username)}` : `${capitalizeFirstLetter(user?.username)}`}
+            </h2>
+                {profileOwner? (
+                    <ProjectIndex currentUser={currUser} projectOwner={profileOwner}/>
+                ):(
+                    <ProjectIndex user={user}/>
+                )}
+        </div>
+    )
+
 }
 
 export default Profile;

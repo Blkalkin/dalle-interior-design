@@ -43,7 +43,7 @@ const router = createBrowserRouter([
         element: <AuthRoute component={SignupForm} />
       },
       {
-        path: "profile/:id",
+        path: "profile/:userId",
         element: <Profile/>
       },
       {

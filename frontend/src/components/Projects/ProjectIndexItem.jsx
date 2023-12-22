@@ -7,19 +7,14 @@ import { deleteProject } from '../../store/project';
 import { useEffect, useState } from 'react';
 
 
-const ProjectIndexItem = ({project, currentUser}) => {
+const ProjectIndexItem = ({project}) => {
     const dispatch = useDispatch()
     const lastImage = project.photoUrls[project.photoUrls.length - 1]
-    const [projectOwner, setProjectOwner] = useState(false)
+    const currentUserId = useSelector(state => state.session.user._id)
+    const projectOwner = currentUserId === project.author._id
 
 
-    if (currentUser) {
-        if (currentUser._id === project.author._id) {
-            setProjectOwner(true)
-        }
-    }
-
-
+    
     return (
         <li className='project-details-container'>
             <h3 className="title">{project.title}</h3>
