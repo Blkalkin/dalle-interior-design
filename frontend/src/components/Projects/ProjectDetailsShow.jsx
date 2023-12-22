@@ -55,7 +55,7 @@ const ProjectDetailsShow = () =>{
                         })}
                     </ul> 
                     <div className='comments-area'>
-                        <CommentIndex />
+                        <CommentIndex projectId={projectId} />
                     </div>
                 </div>
             </div>
