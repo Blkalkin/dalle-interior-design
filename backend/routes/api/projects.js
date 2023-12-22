@@ -87,7 +87,7 @@ router.post('/', upload.single('photo'), async (req, res, next) => {
   try{
     newProject.author = await User.findById(req.body.authorId);
   }catch(err) {
-    const error = new Error('User not found');
+    const error = new Error(err);
     error.statusCode = 404;
     error.errors = { message: "No user found with that id" };
     return next(error);
@@ -98,7 +98,7 @@ router.post('/', upload.single('photo'), async (req, res, next) => {
     project = await project.populate('author', '_id');
     return res.json(project);
   }catch(err) {
-    const error = new Error('Project failed to save');
+    const error = new Error(err);
     error.statusCode = 422;
     return next(error);
   }
@@ -169,7 +169,7 @@ router.patch('/:id/edit', upload.single('photo'), async (req, res, next) => {
     }
 
     // Handle other Mongoose errors
-    const error = new Error('Project failed to save');
+    const error = new Error(err);
     error.statusCode = 500; // Internal Server Error
     return next(error);
   }
