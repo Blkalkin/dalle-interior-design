@@ -6,6 +6,7 @@
     top: 0;
     background-color: white;
     position: fixed;
+    min-width: 1100px;
     border-bottom: rgb(210, 154, 15) solid 2px;
 }
 
@@ -20,6 +21,7 @@
     text-decoration: none;
     font-size: 30px;
     margin-left: 2vw;
+    color:  rgb(210, 154, 15);
 }
 
 .right-navlinks-logged-out{
@@ -27,15 +29,24 @@
     justify-content: space-between;
     align-items: center;
     height: 6vh;
-    margin-left: 69vw;
+    margin-left: 40vw;
     margin-right: 2vw;
-    width: 12vw;
+    width: 13vw;
     /* background-color: aqua; */
 }
 
-.log-in {
-    font-size: 20px;
+.community {
     color: rgb(111, 157, 185);
+    font-size: 18px;
+    min-width: 150px;
+    /* background-color: aquamarine; */
+}
+
+.log-in {
+    font-size: 18px;
+    min-width: 60px;
+    color: rgb(111, 157, 185);
+    /* background-color: palevioletred; */
 }
 
 .right-navlinks-logged-in {

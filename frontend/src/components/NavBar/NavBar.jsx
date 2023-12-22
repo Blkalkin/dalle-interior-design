@@ -1,11 +1,11 @@
-import { Link, Navigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 import './NavBar.css';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../store/session';
 
 function NavBar () {
-  const loggedIn = useSelector(state => !!state.session.user);
   const dispatch = useDispatch();
+  const loggedIn = useSelector(state => !!state.session.user);
   const currUser = useSelector(state => state.session.user)
 
 
@@ -23,7 +23,7 @@ function NavBar () {
        {!loggedIn ?
        <>
           <div className='right-navlinks-logged-in'>
-            <Link to={'/community'} className='text'>Community Feed</Link>
+            <Link to={'/community'} className='text community'>Community Feed</Link>
           </div>
           <div className='right-navlinks-logged-out'>
             <Link to={'/login'} className='text log-in'>Log In</Link>
@@ -33,7 +33,6 @@ function NavBar () {
        :
        <>
         <div className='right-navlinks-logged-in'>
-            <Link to={'/howitworks'} className='text'>How It Works</Link>
             <Link to={`/profile/${currUser._id}`} className='text'>Your Projects</Link>
             <Link to={'/community'} className='text'>Community</Link>
         </div>
