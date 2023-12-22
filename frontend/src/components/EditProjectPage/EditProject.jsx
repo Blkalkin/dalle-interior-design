@@ -41,7 +41,7 @@ function EditProject () {
                 <div className='project-page' >
                     <h1>{project.title}</h1>
                     <RecentPicture photoUrls={project.photoUrls} newImages={newImages} projectId={projectId}/>
-                    <button onClick={() => setFinishedModal(true)}>Done</button>
+                    <button onClick={() => setFinishedModal(true)}>Done?</button>
                 </div>
                 {finishedModal && <FinishedModal photoUrls={project.photoUrls} closeFinishModal={closeFinishModal} projectId={projectId}/>}
             </>

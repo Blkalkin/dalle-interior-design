@@ -1,3 +1,5 @@
+import './EditProject.css'
+
 const ProjectFlowModal = ({ photoUrls, closeModal }) => {
     return (
         <div className="modal-background">
@@ -10,7 +12,6 @@ const ProjectFlowModal = ({ photoUrls, closeModal }) => {
                 <img key={index} src={url} alt={`Image ${index + 1}`} />
               ))}
             </div>
-
           </div>
         </div>
       </div>
