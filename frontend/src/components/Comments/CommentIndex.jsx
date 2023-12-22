@@ -10,6 +10,7 @@ const CommentIndex = ({projectId}) => {
     let comments = useSelector(selectCommentsArray)
     const currentUser = useSelector(state => state.session.user)
     const [body, setBody] = useState("")
+    const author = useSelector(state => state.projects[0].author.username)
     
     function moveCurrentUserToTop(arr, authorId) {
         const index = arr.findIndex(item => item.author._id === authorId);
@@ -20,7 +21,6 @@ const CommentIndex = ({projectId}) => {
         } else {
             return arr
         }
-
         return arr;
       }
     
@@ -49,7 +49,7 @@ const CommentIndex = ({projectId}) => {
 
     return (
         <ul className="comments-container">
-            <h2 className="title">Comments</h2>
+            <h2 className="title">Share some thoughts on {author}'s project:</h2>
             <div className="comment-add-container">
                 <textarea 
                      className="text"

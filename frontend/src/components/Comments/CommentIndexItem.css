@@ -21,6 +21,8 @@
 .edit-links {
     display: flex;
     justify-content: space-between;
-    margin-left: 33vw;
+    margin-left: 430px;
+    min-width: 45px;
+    width: 45px;
     /* background-color: hotpink; */
 }

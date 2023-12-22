@@ -34,7 +34,8 @@
     gap: 1.5vw; 
     flex-wrap: wrap;
     padding-top: 4%;
-    margin-right: 4vw;
+    margin-right: 40vw;
+    min-width: 850px;
     /* background-color: aquamarine; */
   }
 
@@ -47,17 +48,21 @@
 }
 
 .photo-PDS {
-    height: 25vh;
-    width: 15vw;
-    /* margin-right: 2vw; */
+    min-height: 250px;
+    min-width: 250px;
+    height: 250px;
+    width: 250px;
 }
 
 .comments-area{
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     border: rgb(229, 176, 44) dashed 2px;
     padding-right: 2vw;
     padding-top: 2vh;
-    margin-top: 6vh;
+    margin-top: 13vh;
+    margin-left: 50vw;
+    min-width: 550px;
 }
