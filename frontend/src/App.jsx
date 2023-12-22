@@ -47,7 +47,7 @@ const router = createBrowserRouter([
         element: <Profile/>
       },
       {
-        path: "createProject",
+        path: "create-project",
         element: <ProtectedRoute component={CreateProject}/>
       },
       {
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
         element: <ProtectedRoute component={EditProject}/>
       },
       {
-        path: "projectDetails/:projectId",
+        path: "project-details/:projectId",
         element: <ProjectDetailsShow/>
       }
     ]

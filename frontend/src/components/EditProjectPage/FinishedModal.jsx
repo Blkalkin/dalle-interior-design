@@ -19,7 +19,7 @@ const FinishedModal = ({photoUrls, closeFinishModal, projectId}) => {
         description: description
       }
       dispatch(editProject(projectId, payload))
-      navigate(`/projectDetails/${projectId}`)
+      navigate(`/project-details/${projectId}`)
     };
 
     return (

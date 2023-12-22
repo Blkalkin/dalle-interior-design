@@ -10,15 +10,15 @@ import { useEffect, useState } from 'react';
 const ProjectIndexItem = ({project}) => {
     const dispatch = useDispatch()
     const lastImage = project.photoUrls[project.photoUrls.length - 1]
-    const currentUserId = useSelector(state => state.session.user._id)
-    const projectOwner = currentUserId === project.author._id
+    const currentUser = useSelector(state => state.session.user)
+    const projectOwner = currentUser && currentUser._id === project.author._id
 
 
     
     return (
         <li className='project-details-container'>
             <h3 className="title">{project.title}</h3>
-            <Link className='single-project text' to={`/projectDetails/${project._id}`}>
+            <Link className='single-project text' to={`/project-details/${project._id}`}>
               <img className='single-project-img' src={lastImage} alt="test" />
             </Link>
             <div className='bottom-details'>
