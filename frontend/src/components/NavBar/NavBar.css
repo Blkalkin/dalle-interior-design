@@ -23,14 +23,96 @@
     text-decoration: none;
     font-size: 35px;
     color:  rgb(210, 154, 15);
+    padding-right: 2vw;
 }
 
 .community-LO {
     color: rgb(111, 157, 185);
-    /* margin-left: 2vw; */
-    /* min-width: 140px; */
+    margin-right: 62vw;
+    min-width: 140px;
     /* font-size: 18px; */
     /* background-color: aquamarine; */
+}
+
+.right-navlinks-logged-out{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    
+}
+
+.log-in {
+    font-size: 18px;
+    min-width: 60px;
+    color: rgb(111, 157, 185);
+    /* background-color: palevioletred; */
+}
+
+.left-navlinks-logged-in {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-right: 55vw;
+    min-width: 230px;
+    color: rgb(111, 157, 185);
+    /* background-color: hotpink; */
+}
+
+.community {
+    color: rgb(111, 157, 185);
+}
+
+.projects{
+    color: rgb(111, 157, 185);
+}
+
+.right-navlinks-logged-in {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-right: 2vw;
+    /* background-color: pink; */
+}
+
+.create-project {
+    font-size: 17px;
+    /* padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 11px;
+    padding-right: 11px; */
+    height: 42px;
+    text-align: center;
+    border-radius: 20px;
+    color: white;
+    width: 140px;
+    border: none;
+    background-color: rgb(229, 176, 44);
+    cursor: pointer;
+}
+
+.create-project:hover {
+    background-color: rgb(203, 157, 40);
+}
+
+.get-started {
+    font-size: 20px;
+    color: white;
+    height: 42px;
+    width: 140px;
+    border-radius: 20px;
+    background-color: rgb(229, 176, 44);
+    border: none;
+}
+
+.get-started:hover {
+    background-color: rgb(203, 157, 40);
+}
+
+.log-out{
+    color: rgb(111, 157, 185);
+    min-width: 60px;
 }
 
 .right-navlinks-logged-out{
