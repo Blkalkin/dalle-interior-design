@@ -26,7 +26,7 @@ const ProjectDetailsShow = () => {
         if (!project){
             dispatch(fetchProject(projectId))
         }
-    },[dispatch, projectId])
+    },[dispatch, project])
 
     const openEditModal =(e) => {
         e.preventDefault();
