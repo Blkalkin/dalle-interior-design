@@ -14,12 +14,13 @@ const ProjectIndex = ({user, currentUser, all}) => {
         dispatch(fetchUserProjects(user._id))
       } else if (currentUser) {
         dispatch(fetchUserProjects(currentUser._id))
-      } else if (all) {
+      } else {
         dispatch(fetchProjects())
       }
 
     },[dispatch, user, currentUser, all])
  
+    
     return (
         <div className="project-index-container">
             <ul className="projects-index-grid">

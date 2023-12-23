@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from "react-redux"
-import { formatDate } from "../../utils/dateFormat"
+import { useDispatch } from "react-redux"
+import { formatDateString } from "../../utils/dateFormat"
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-regular-svg-icons'
@@ -14,7 +14,7 @@ const CommentIndexItem = ({currentUserId, comment}) => {
     const dispatch = useDispatch()
     const author = comment.author
     const [openEdit, setOpenEdit] = useState(false)
-    const formattedDate = formatDate(comment.createdAt)
+    const formattedDate = formatDateString(comment.createdAt)
 
     const handleDelete = e => {
         e.preventDefault

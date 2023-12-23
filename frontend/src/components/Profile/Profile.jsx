@@ -26,13 +26,13 @@ function Profile () {
     if (currUser || user) {
         return (
             <div className='profile-container'>
-                <h2 className='profile-title title'>
+                <h1 className='profile-title title'>
                     {profileOwner? (
                         `${capitalizeFirstLetter(currUser.username)}'s Projects`
                         ) : (
                             user? (`${capitalizeFirstLetter(user.username)}'s Projects`) : "404 Profile NOT FOUND"
                             )}
-                </h2>
+                </h1>
                     {profileOwner? (
                         <ProjectIndex currentUser={currUser} projectOwner={profileOwner}/>
                     ):(

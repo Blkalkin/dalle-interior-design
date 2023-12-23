@@ -13,20 +13,15 @@ const ProjectDetailsShow = () => {
     const project = useSelector(selectProject(projectId))
     const photos = project?.photoUrls
     const currUser = useSelector(state => state.session.user)
-    const [isCurrUser, setIsCurrUser] = useState(false)
+    const isCurrUser = currUser && currUser._id === project?.author._id
     const [openEdit, setOpenEdit] = useState(false)
 
-
-    if (currUser){
-        if (project?.author === currUser._id) setIsCurrUser(true)
-    }
-    
     
     useEffect(()=> {
         if (!project){
             dispatch(fetchProject(projectId))
         }
-    },[dispatch, project])
+    },[dispatch, projectId, project])
 
     const openEditModal =(e) => {
         e.preventDefault();
@@ -48,7 +43,7 @@ const ProjectDetailsShow = () => {
                         : null}
                 </>
                 }
-               {/* <div className="photos-and-comments-comtainer"> */}
+               <div className="photos-and-comments-container">
                     <ul className="projects-index-grid-PDS">
                         {photos.map((photo, idx)=> {
                             return (
@@ -62,7 +57,7 @@ const ProjectDetailsShow = () => {
                         <CommentIndex project={project} />
                     </div>
                 </div>
-            // </div>
+            </div>
         )
     }
 }

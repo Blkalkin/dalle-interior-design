@@ -3,11 +3,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background-color: pink; */
+    margin-top: 50px;
+    min-width: 700px;
 }
 
-.project-title-PDS{
-    margin-top: 7vh;
+.project-title-PDS {
     font-size: 40px;
 }
 
@@ -20,23 +20,29 @@
     height: 2vh;
 }
 
-.photos-and-comments-comtainer{
+.photos-and-comments-container{
     display: flex;
-    margin-top: 5vh ;
-    /* background-color: blue; */
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1400px;
+    min-width: 1280px;
+    margin-top: 80px;
 }
 
 
 .projects-index-grid-PDS {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    width: 800px;
+    /* display: grid;
     justify-content: center;
     grid-template-columns: repeat(3, 1fr); 
-    gap: 1.5vw; 
     flex-wrap: wrap;
-    padding-top: 4%;
-    margin-right: 40vw;
     min-width: 850px;
-    /* background-color: aquamarine; */
+    background-color: aquamarine; */
   }
 
   .photoimage {
@@ -55,14 +61,12 @@
 }
 
 .comments-area{
-    position: absolute;
     display: flex;
     justify-content: center;
-    align-items: center;
     border: rgb(229, 176, 44) dashed 2px;
-    padding-right: 2vw;
-    padding-top: 2vh;
-    margin-top: 13vh;
-    margin-left: 50vw;
-    min-width: 550px;
+    /* width: 500px; */
+    min-height: 550px;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
 }

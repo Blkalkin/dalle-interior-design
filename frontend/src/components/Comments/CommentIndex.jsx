@@ -25,33 +25,31 @@ const CommentIndex = ({project}) => {
         return arr;
       }
     
+    if (currentUser) comments = moveCurrentUserToTop(comments, currentUser._id)
     
-    comments = moveCurrentUserToTop(comments, currentUser?._id)
 
     useEffect(()=> {
-        if (project){
-            dispatch(fetchComments(project._id))
-        }
+        dispatch(fetchComments(project._id))
     },[dispatch, project])
 
 
     const handleSubmit = e => {
         e.preventDefault()
-        const payload = {
-            authorId: currentUser._id,
-            projectId: project._id,
-            body
+        if (currentUser) {
+            const payload = {
+                authorId: currentUser._id,
+                projectId: project._id,
+                body
+            }
+            dispatch(addComment(payload))
         }
-
-        dispatch(addComment(payload))
-
         setBody("")
     }
    
     
     return (
         <ul className="comments-container">
-            <h2 className="title">Share some thoughts on {author.username}'s project:</h2>
+            <h2 className="title">{`Share some thoughts on ${author.username}'s project:`}</h2>
             <div className="comment-add-container">
                 <textarea 
                      className="text"
