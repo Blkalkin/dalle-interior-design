@@ -104,7 +104,11 @@ const commentReducer = (state = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_COMMENTS:
-            return action.comments
+            let obj = {}
+            for (const comment of action.comments){
+                obj[comment._id] = comment;
+            }
+            return obj
         case RECEIVE_COMMENT:
             newState[action.comment._id] = action.comment
             return newState

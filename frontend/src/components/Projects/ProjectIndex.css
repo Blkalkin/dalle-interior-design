@@ -4,9 +4,10 @@
     align-items: center;
     min-height: 620px;
     min-width: 1000px;
+    width: inherit;
     /* background-color: pink; */
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
+    /* background-color: #f5f5f5; */
+    /* border: 1px solid #ccc; */
 }
 
 .project-header {
@@ -22,9 +23,4 @@
     gap: 35px; 
     flex-wrap: wrap;
     padding: 0;
-    /* padding-left: 11%;
-    padding-right: 11%; 
-    padding-top: 3%;
-    background-color: aquamarine; */
-    
   }

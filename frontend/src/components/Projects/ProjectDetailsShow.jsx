@@ -13,17 +13,15 @@ const ProjectDetailsShow = () => {
     const project = useSelector(selectProject(projectId))
     const photos = project?.photoUrls
     const currUser = useSelector(state => state.session.user)
-    const [isCurrUser, setIsCurrUser] = useState(false)
+    const isCurrUser = currUser && currUser._id === project?.author._id
     const [openEdit, setOpenEdit] = useState(false)
 
-    if (currUser){
-        if (project?.author === currUser._id) setIsCurrUser(true)
-    }
-    
     
     useEffect(()=> {
-        dispatch(fetchProject(projectId))
-    },[dispatch, projectId])
+        if (!project){
+            dispatch(fetchProject(projectId))
+        }
+    },[dispatch, projectId, project])
 
     const openEditModal =(e) => {
         e.preventDefault();
@@ -40,26 +38,26 @@ const ProjectDetailsShow = () => {
                 <>
                     <div className="project-title-PDS title">{project.title}</div>
                     <div className="project-description-PDS text">{project.description}</div>
-                    {currUser?._id !== project.author ? 
+                    {isCurrUser ? 
                         <img onClick={openEditModal} className='edit-PDS' src={editIcon} alt="" />
                         : null}
                 </>
                 }
-               {/* <div className="photos-and-comments-comtainer"> */}
+               <div className="photos-and-comments-container">
                     <ul className="projects-index-grid-PDS">
-                        {photos.map((photo, idx)=> {
-                            return (
-                                <Link key={idx}>
-                                    <img  src={photo} alt="photos" className="photo-PDS" />
+                        {photos.map((photo, idx) => 
+                            <li key={idx} className="photo-PDS">
+                                <Link >
+                                    <img  src={photo} alt="photos"/>
                                 </Link>
-                            );
-                        })}
+                            </li>
+                        )}
                     </ul> 
                     <div className='comments-area'>
-                        <CommentIndex projectId={projectId} />
+                        <CommentIndex project={project} />
                     </div>
                 </div>
-            // </div>
+            </div>
         )
     }
 }

@@ -13,7 +13,7 @@ function NavBar () {
     const button = e.target.value
     switch (button) {
       case "create project":
-        navigate('/createProject')
+        navigate('/create-project')
         break;
       case "sign-up":
         navigate('/signup')

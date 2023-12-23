@@ -39,7 +39,8 @@ router.get('/user/:userId', async (req, res, next) => {
     }
     try {
       const projects = await Project.find({ author: user._id })
-                                .populate("author", "_id username");
+                                .populate("author", "_id username")
+                                .sort({ createdAt: "asc"});
       return res.json(projects);
     }
     catch(err) {
@@ -52,6 +53,7 @@ router.get("/", async (req, res) => {
    try {
       const projects = await Project.find()
                                     .populate("author", "_id username")
+                                    .sort({ createdAt: "asc"});
       return res.json(projects)
    }
    catch(err) {
@@ -107,7 +109,10 @@ router.post('/', upload.single('photo'), async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   let project;
   try {
-    project = await Project.findById(req.params.id);
+    project = await Project.findById(req.params.id)
+                          .populate("author", "_id username");
+                          
+                            
   } catch(err) {
     const error = new Error('Project not found');
     error.statusCode = 404;

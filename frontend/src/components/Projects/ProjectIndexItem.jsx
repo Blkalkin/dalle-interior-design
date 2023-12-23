@@ -2,24 +2,30 @@ import { Link } from 'react-router-dom';
 import "./ProjectIndexItem.css"
 import { formatDate, formatDateString } from '../../utils/dateFormat';
 import deleteIcon from '../../../assets/icons/trash.png'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteProject } from '../../store/project';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
-const ProjectIndexItem = ({project, idx}) => {
+const ProjectIndexItem = ({project}) => {
     const dispatch = useDispatch()
     const lastImage = project.photoUrls[project.photoUrls.length - 1]
+    const currentUser = useSelector(state => state.session.user)
+    const projectOwner = currentUser && currentUser._id === project.author._id
 
+
+    
     return (
         <li className='project-details-container'>
             <h3 className="title">{project.title}</h3>
-            <Link className='single-project text' to={`/projectDetails/${project._id}`}>
+            <Link className='single-project text' to={`/project-details/${project._id}`}>
               <img className='single-project-img' src={lastImage} alt="test" />
             </Link>
             <div className='bottom-details'>
                 <h4 className='text'>{formatDateString(project.createdAt)}</h4>
-                <img onClick={()=> dispatch(deleteProject(project._id, idx))} src={deleteIcon} className='deleteIcon' alt="delete" />
+                {projectOwner? (
+                    <img onClick={()=> dispatch(deleteProject(project._id))} src={deleteIcon} className='deleteIcon' alt="delete" />
+                ):(null)}
             </div>
         </li>
     )

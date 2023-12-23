@@ -4,28 +4,30 @@ import { useEffect } from "react"
 import { useDispatch, useSelector} from "react-redux"
 import { fetchProjects, fetchUserProjects, selectProjectsArray } from "../../store/project"
 
-const ProjectIndex = ({title, user}) => {
+const ProjectIndex = ({user, currentUser, all}) => {
     const dispatch = useDispatch()
     const projects = useSelector(selectProjectsArray)
-
+    
 
     useEffect(()=> {
       if(user) {
-          dispatch(fetchUserProjects(user._id))
+        dispatch(fetchUserProjects(user._id))
+      } else if (currentUser) {
+        dispatch(fetchUserProjects(currentUser._id))
       } else {
-          dispatch(fetchProjects())
+        dispatch(fetchProjects())
       }
-    },[dispatch, user])
+
+    },[dispatch, user, currentUser, all])
  
+    
     return (
         <div className="project-index-container">
-            <h2 className="title project-header">{title}</h2>
             <ul className="projects-index-grid">
-                {projects.map((project, idx) => (
+                {projects.map((project) => (
                     <ProjectIndexItem
                         key={project._id}
                         project={project}
-                        idx={idx}
                     />
                 ))}
             </ul>

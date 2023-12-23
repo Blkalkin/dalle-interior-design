@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from "react-redux"
-import { formatDate } from "../../utils/dateFormat"
+import { useDispatch } from "react-redux"
+import { formatDateString } from "../../utils/dateFormat"
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-regular-svg-icons'
@@ -14,7 +14,8 @@ const CommentIndexItem = ({currentUserId, comment}) => {
     const dispatch = useDispatch()
     const author = comment.author
     const [openEdit, setOpenEdit] = useState(false)
-    const formattedDate = formatDate(comment.createdAt)
+    const formattedDate = formatDateString(comment.createdAt)
+    
 
     const handleDelete = e => {
         e.preventDefault
@@ -30,12 +31,12 @@ const CommentIndexItem = ({currentUserId, comment}) => {
 
     return (
         <li className="comment-details">
-            <Link to={`/profile/${author._id}`}>
                 <h4>
+                <Link to={`/profile/${author._id}`}>
                     <FontAwesomeIcon className="author-icon" icon={faCircleUser} size={"lg"}/>
                     <span className="author-name title">{author?.username}</span>
+                </Link>
                 </h4>
-            </Link>
             {openEdit ? 
                 <EditComment body={comment.body} setOpenEdit={setOpenEdit} commentId={comment._id}/> 
                 : 

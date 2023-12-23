@@ -5,12 +5,13 @@ import CommentIndexItem from "./CommentIndexItem"
 import "./CommentIndex.css"
 
 
-const CommentIndex = ({projectId}) => {
+const CommentIndex = ({project}) => {
     const dispatch = useDispatch()
     let comments = useSelector(selectCommentsArray)
     const currentUser = useSelector(state => state.session.user)
     const [body, setBody] = useState("")
-    const author = useSelector(state => state.projects[0].author.username)
+    const author = project.author
+ 
     
     function moveCurrentUserToTop(arr, authorId) {
         const index = arr.findIndex(item => item.author._id === authorId);
@@ -24,32 +25,31 @@ const CommentIndex = ({projectId}) => {
         return arr;
       }
     
+    if (currentUser) comments = moveCurrentUserToTop(comments, currentUser._id)
     
-    comments = moveCurrentUserToTop(comments, currentUser?._id)
 
     useEffect(()=> {
-        if (projectId){
-            dispatch(fetchComments(projectId))
-        }
-    },[dispatch, projectId])
+        dispatch(fetchComments(project._id))
+    },[dispatch, project])
 
 
     const handleSubmit = e => {
         e.preventDefault()
-        const payload = {
-            authorId: currentUser._id,
-            projectId,
-            body
+        if (currentUser) {
+            const payload = {
+                authorId: currentUser._id,
+                projectId: project._id,
+                body
+            }
+            dispatch(addComment(payload))
         }
-
-        dispatch(addComment(payload))
-
         setBody("")
     }
-
+   
+    
     return (
         <ul className="comments-container">
-            <h2 className="title">Share some thoughts on {author}'s project:</h2>
+            <h2 className="title">{`Share some thoughts on ${author.username}'s project:`}</h2>
             <div className="comment-add-container">
                 <textarea 
                      className="text"

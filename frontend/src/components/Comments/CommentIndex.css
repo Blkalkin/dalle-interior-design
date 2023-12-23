@@ -3,27 +3,26 @@
     display: flex;
     flex-direction: column;
     list-style: none;
-    /* remove later */
-
-    width: 500px;
+    width: 420px;
     gap: 10px;
+    padding: 0;
 }
 
 .comment-add-container {
     display: flex;
     flex-direction: column;
-    width: 500px;
+    /* width: 430px; */
   }
   
 .comment-add-container textarea {
-width: 100%;
-box-sizing: border-box;
-padding: 10px;
-margin-bottom: 10px;
-resize: none;
-border: 1px solid #ccc;
-border-radius: 4px;
-font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 10px;
+    resize: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
 }
 
 .comment-add-container button {
@@ -38,5 +37,5 @@ font-size: 14px;
 }
 
 .comment-add-container button:hover {
-background-color: #2979ff;
+    background-color: #2979ff;
 }

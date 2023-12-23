@@ -3,11 +3,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background-color: pink; */
+    margin-top: 50px;
+    min-width: 700px;
 }
 
-.project-title-PDS{
-    margin-top: 7vh;
+.project-title-PDS {
     font-size: 40px;
 }
 
@@ -20,49 +20,63 @@
     height: 2vh;
 }
 
-.photos-and-comments-comtainer{
+.photos-and-comments-container{
     display: flex;
-    margin-top: 5vh ;
-    /* background-color: blue; */
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1400px;
+    min-width: 1334px;
+    margin-top: 80px;
+    margin-bottom: 80px;
 }
 
 
 .projects-index-grid-PDS {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 17px;
+    padding: 0;
+    margin: 0;
+    width: 850px;
+    list-style: none;
+    /* display: grid;
     justify-content: center;
     grid-template-columns: repeat(3, 1fr); 
-    gap: 1.5vw; 
     flex-wrap: wrap;
-    padding-top: 4%;
-    margin-right: 40vw;
     min-width: 850px;
-    /* background-color: aquamarine; */
+    background-color: aquamarine; */
   }
 
-  .photoimage {
-    width: 100%;
-    object-fit: cover;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+.projects-index-grid-PDS a {
+    width: 250px;
+    height: 250px;
 }
 
 .photo-PDS {
-    min-height: 250px;
-    min-width: 250px;
-    height: 250px;
-    width: 250px;
+    display: block;
+    /* min-height: 250px; */
+    /* min-width: 250px; */
+    /* height: 250px; */
+    width: 270px;
+    height: 270px;
+}
+
+.photo-PDS img {
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    width: inherit;
+    height: inherit;
 }
 
 .comments-area{
-    position: absolute;
     display: flex;
     justify-content: center;
-    align-items: center;
     border: rgb(229, 176, 44) dashed 2px;
-    padding-right: 2vw;
-    padding-top: 2vh;
-    margin-top: 13vh;
-    margin-left: 50vw;
-    min-width: 550px;
+    border-radius: 15px;
+    /* width: 500px; */
+    min-height: 570px;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }

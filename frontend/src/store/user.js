@@ -9,12 +9,19 @@ const receiveUser = user => ({
 })
 
 
-export const getUser = userId => returnUser(userId)
 
-const returnUser = (userId) => async dispatch => {
+
+export const fetchUser = (userId) => async dispatch => {
     const res = await jwtFetch(`/api/users/${userId}`)
-    const user = await res.json();
-    return dispatch(receiveUser(user))
+    let data;
+
+    if (res.ok) {
+        data = await res.json()
+        dispatch(receiveUser(data))
+    } else {
+        data = await res.json()
+        throw data
+    }
 }
 
 // const initialState = {
