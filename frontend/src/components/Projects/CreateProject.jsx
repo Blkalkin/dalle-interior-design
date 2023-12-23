@@ -29,7 +29,7 @@ const CreateProject = () => {
         setTitle(e.target.value)
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("photo", image)
@@ -37,9 +37,12 @@ const CreateProject = () => {
         formData.append("authorId", currentUserId)
         formData.append("public", isPublic)
 
-        setImageLoading(true);
-        const res = await dispatch(createProject(formData))
-        navigate(`/edit-project/${res._id}`)
+        // setImageLoading(true);
+        dispatch(createProject(formData)).catch(res =>
+            res._id ? navigate(`/edit-project/${res._id}`) : null
+        )
+        
+        
     }
 
 
@@ -51,7 +54,8 @@ const CreateProject = () => {
     const handleImg2Click = (promptImg) => {
         setImage(promptImg)
     }
-    console.log(image)
+
+
     return (
         <div className='whole-create-project-container'>
             <div className='upload-photo-section'> 

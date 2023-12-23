@@ -66,26 +66,29 @@ export const fetchProject = projectId => async(dispatch) => {
 }
 
 export const createProject = project => async(dispatch) => {
-    const jwtToken = localStorage.getItem("jwtToken");
     let authToken;
+    let data;
+    const jwtToken = localStorage.getItem("jwtToken");
     if (jwtToken) authToken = 'Bearer ' +  jwtToken;
+    
+    const res =  await fetch("/api/projects", {
+        method: "POST",
+        headers:{
+            "Authorization": authToken,
+            "CSRF-Token": getCookie("CSRF-TOKEN")
+        },
+        body: project
+    });
 
-    try{
-        const res =  await fetch("/api/projects", {
-            method: "POST",
-            headers:{
-                "Authorization": authToken,
-                "CSRF-Token": getCookie("CSRF-TOKEN")
-            },
-            body: project
-        });
-        const data = await res.json();
+    if (res.ok) {
+        data = await res.json();
         dispatch(receiveProject(data))
-        return data
-    } catch(err) {
-        const res = await err.json();
-        console.log(res)
+        throw data
+    } else {
+        data = await res.json()
+        throw data
     }
+
 }
 
 export const editProject = (projectId, project) => async(dispatch) => {
