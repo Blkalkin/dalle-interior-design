@@ -45,13 +45,13 @@ const ProjectDetailsShow = () => {
                 }
                <div className="photos-and-comments-container">
                     <ul className="projects-index-grid-PDS">
-                        {photos.map((photo, idx)=> {
-                            return (
-                                <Link key={idx}>
-                                    <img  src={photo} alt="photos" className="photo-PDS" />
+                        {photos.map((photo, idx) => 
+                            <li key={idx} className="photo-PDS">
+                                <Link >
+                                    <img  src={photo} alt="photos"/>
                                 </Link>
-                            );
-                        })}
+                            </li>
+                        )}
                     </ul> 
                     <div className='comments-area'>
                         <CommentIndex project={project} />
