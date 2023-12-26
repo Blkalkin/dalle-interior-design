@@ -68,7 +68,7 @@ router.get("/", async (req, res) => {
       ? Project.find(query)
       : Project.find())
       .populate("author", "_id username")
-      .sort({ createdAt: "asc" });
+      .sort({ createdAt: "desc" });
 
     return res.json(projects);
   } catch (err) {
