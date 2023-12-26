@@ -26,7 +26,7 @@ const CommunityFilter = () => {
     return (
         <div className="community-filter-container">
             {categories.map((category,idx) => 
-                <Link className='community-filter-item' key={idx}>
+                <Link to={`/community/${category.type}`} className='community-filter-item' key={idx}>
                     <img src={category.image} alt="" />
                     <h3 className='title'>{capitalizeFirstLetter(category.type)}</h3>
                 </Link>

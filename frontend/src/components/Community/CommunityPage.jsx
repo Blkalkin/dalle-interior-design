@@ -13,7 +13,7 @@ function CommunityPage () {
                 {keyword? 
                 <>
                     <h1 className="community-title title">Results for {keyword}</h1>
-                    <ProjectIndex/>
+                    <ProjectIndex keyword={keyword}/>
                 </>
                 :
                 <>

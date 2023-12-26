@@ -29,7 +29,7 @@ function NavBar () {
 
   const handleSearch = e => {
     e.preventDefault()
-    navigate("/community")
+    navigate(`/community/${searchInput}`)
     setSearchInput("")
   }
 
@@ -58,9 +58,11 @@ function NavBar () {
             </div>
           }
         </div>
-          <div className='navbar-search'>
-            <button onClick={handleSearch}><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
-            <input type="text" onChange={e => setSearchInput(e.target.value)} value={searchInput}/>
+          <div>
+            <form className='navbar-search' onSubmit={handleSearch}>
+              <button ><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
+              <input type="text" onChange={e => setSearchInput(e.target.value)} value={searchInput}/>
+            </form>
           </div>
       </div>
 
