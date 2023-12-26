@@ -1,13 +1,13 @@
 // FilesDragAndDrop.jsx
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import './FilesDragAndDrop.css';
 
-const FilesDragAndDrop = ({ setImage, image }) => {
+const FilesDragAndDrop = ({ setImage }) => {
   const drop = useRef(null);
   const fileInput = useRef(null);
   const [welcome, setWelcome] = useState(true);
-  const [moreThanOnePhoto, setMoreThanOnePhoto] = useState(false);
+  // const [moreThanOnePhoto, setMoreThanOnePhoto] = useState(false);
   const [fileLoaded, setFileLoaded] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [imgFileOk, setImageFileOk] = useState(true);
@@ -33,7 +33,7 @@ const FilesDragAndDrop = ({ setImage, image }) => {
  
     const previewURL = URL.createObjectURL(file);
     setImagePreview(previewURL);
-    setMoreThanOnePhoto(false);
+    // setMoreThanOnePhoto(false);
     setFileLoaded(true);
     setWelcome(false);
     setImageFileOk(true);
@@ -45,7 +45,7 @@ const FilesDragAndDrop = ({ setImage, image }) => {
     e.stopPropagation();
     setWelcome(false);
     setFileLoaded(false);
-    setMoreThanOnePhoto(false);
+    // setMoreThanOnePhoto(false);
     setImageFileOk(true);
     setImagePreview(null);
   };
@@ -56,7 +56,7 @@ const FilesDragAndDrop = ({ setImage, image }) => {
     setDragging(true);
     setWelcome(false);
     setFileLoaded(false);
-    setMoreThanOnePhoto(false);
+    // setMoreThanOnePhoto(false);
     setImageFileOk(true);
     setImagePreview(null);
   };
@@ -79,7 +79,7 @@ const FilesDragAndDrop = ({ setImage, image }) => {
     files = [...e.dataTransfer.files];
 
     if (files.length > 1) {
-      setMoreThanOnePhoto(true);
+      // setMoreThanOnePhoto(true);
       setWelcome(false);
       setDragging(false);
       files.length = 0;
@@ -104,7 +104,7 @@ const FilesDragAndDrop = ({ setImage, image }) => {
     setImagePreview(previewURL);
 
     setDragging(false);
-    setMoreThanOnePhoto(false);
+    // setMoreThanOnePhoto(false);
     setFileLoaded(true);
     setWelcome(false);
     setImageFileOk(true);
@@ -117,7 +117,7 @@ const FilesDragAndDrop = ({ setImage, image }) => {
     e.preventDefault();
     e.stopPropagation();
     setWelcome(true);
-    setMoreThanOnePhoto(false);
+    // setMoreThanOnePhoto(false);
     setFileLoaded(false);
     setImageFileOk(true);
     setImage(null);

@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import "./ProjectIndexItem.css"
-import { formatDate, formatDateString } from '../../utils/Helper_Functions';
+import { formatDateString } from '../../utils/Helper_Functions';
 import deleteIcon from '../../../assets/icons/trash.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteProject } from '../../store/project';
-import { useEffect, useState } from 'react';
+
 
 
 const ProjectIndexItem = ({project}) => {

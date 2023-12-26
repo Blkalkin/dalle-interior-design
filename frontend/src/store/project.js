@@ -112,19 +112,20 @@ export const addImage = (projectId, url) => async(dispatch) => {
 }
 
 export const deleteProject = (projectId) => async(dispatch) => {
-    try {
-        const res = await jwtFetch(`/api/projects/${projectId}`,{
-            method: "DELETE"
-        })
 
-        return dispatch(removeProject(projectId))
-        
-    } catch(err) {
-        const res = await err.json()
-        console.log(res)
+    const res = await jwtFetch(`/api/projects/${projectId}`,{
+        method: "DELETE"
+    })
+
+    if (res.ok){
+        dispatch(removeProject(projectId))
+    } else {
+        const data = await res.json()
+        throw data
     }
+        
+    
 }
-
 export const selectProject = projectId => state => state.projects[projectId]
 export const selectProjects = state => state.projects
 
@@ -134,10 +135,9 @@ export const selectProjectsArray = createSelector(selectProjects, project =>
 
 const projectReducer = (state = {}, action) => {
     const newState = Object.assign({}, state)
-    
+    const obj = {}
     switch (action.type) {
         case RECEIVE_PROJECTS:
-            let obj = {}
             for (const project of action.projects){
                 obj[project._id] = project;
             }

@@ -33,7 +33,7 @@ function NavBar () {
     setSearchInput("")
   }
 
-  const logoutUser = e => {
+  const logoutUser = () => {
       dispatch(logout());
   };
 
