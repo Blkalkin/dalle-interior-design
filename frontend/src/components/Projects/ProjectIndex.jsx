@@ -25,6 +25,7 @@ const ProjectIndex = ({user, currentUser, keyword}) => {
     
     return (
         <div className="project-index-container">
+          {projects.length === 0 ? <h2 className="title">Nothing found for {keyword}</h2> : null}
             <ul className="projects-index-grid">
                 {projects.map((project) => (
                     <ProjectIndexItem

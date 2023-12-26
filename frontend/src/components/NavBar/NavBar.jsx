@@ -61,7 +61,12 @@ function NavBar () {
           <div>
             <form className='navbar-search' onSubmit={handleSearch}>
               <button ><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
-              <input type="text" onChange={e => setSearchInput(e.target.value)} value={searchInput}/>
+              <input 
+              type="text" 
+              onChange={e => setSearchInput(e.target.value)} 
+              value={searchInput}
+              placeholder='Search Roominate'
+              />
             </form>
           </div>
       </div>
