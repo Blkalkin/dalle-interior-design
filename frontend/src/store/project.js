@@ -27,7 +27,7 @@ export const fetchProjects = keyword => async(dispatch) => {
     try {
         const res = await jwtFetch(path)
         const projects = await res.json()
-        return dispatch(receiveProjects(projects))
+        dispatch(receiveProjects(projects))
     } catch(err) {
         const data = await err.json()
         console.log(data)
