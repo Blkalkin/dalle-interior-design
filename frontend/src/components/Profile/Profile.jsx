@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ProjectIndex from '../Projects/ProjectIndex';
 import { fetchUser } from '../../store/user';
 import { useEffect } from "react"
+import { capitalizeFirstLetter } from '../../utils/Helper_Functions';
 
 
 function Profile () {
@@ -14,9 +15,7 @@ function Profile () {
     const user = useSelector(state => state.users[userId])
     const profileOwner = currUser && currUser._id === userId
     
-    const capitalizeFirstLetter = str => {
-        if (str) return str.charAt(0).toUpperCase() + str.slice(1); 
-    }
+
 
     useEffect (() => {
         dispatch(fetchUser(userId))

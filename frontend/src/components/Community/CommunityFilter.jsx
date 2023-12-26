@@ -9,6 +9,8 @@ import entryway from "../../../assets/project-filter-images/entryway.png"
 import laundry from "../../../assets/project-filter-images/laundry.png"
 
 import "./CommunityFilter.css"
+import { capitalizeFirstLetter } from '../../utils/Helper_Functions'
+
 const CommunityFilter = () => {
     const categories = [
         {"type":"kitchen", "image": kitchen},
@@ -24,9 +26,9 @@ const CommunityFilter = () => {
     return (
         <div className="community-filter-container">
             {categories.map((category,idx) => 
-                <Link className='community-filter-item'>
+                <Link className='community-filter-item' key={idx}>
                     <img src={category.image} alt="" />
-                    <h3 className='title'>{category.type}</h3>
+                    <h3 className='title'>{capitalizeFirstLetter(category.type)}</h3>
                 </Link>
             )}
         </div>

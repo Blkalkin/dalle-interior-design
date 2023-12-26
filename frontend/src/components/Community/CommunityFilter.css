@@ -23,7 +23,7 @@
     width: inherit;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    filter: blur(0.5px);
+    /* filter: blur(0.5px); */
 }
 
 .community-filter-item h3{
