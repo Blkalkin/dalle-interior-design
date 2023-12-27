@@ -29,7 +29,7 @@ function NavBar () {
 
   return (
     <div className='whole-navbar'>
-      <Link className='project-name-NB'>
+      <Link className='MERN-title'>
         <img className='nav-logo' src="https://media.istockphoto.com/id/673584626/vector/wizard.jpg?s=612x612&w=0&k=20&c=byLcsx_78OpIzs7dH6hbV7_K7aR60rmP7IZ3KHwW8-U=" alt="" />
         Roominate
       </Link>
@@ -37,6 +37,7 @@ function NavBar () {
        {!loggedIn ?
        <>
           <Link to={'/community'} className='text community-LO'>Community Feed</Link>
+          <Link to={'/meetTheTeam'} className='text team-LO'>Meet the Team</Link>
           <div className='right-navlinks-logged-out'>
             <Link to={'/login'} className='text log-in'>Log In</Link>
             {/* <Link to={'/signup'} className='text get-started'>Get Started</Link> */}
@@ -48,6 +49,7 @@ function NavBar () {
         <div className='left-navlinks-logged-in'>
             <Link to={`/profile/${currUser._id}`} className='text projects'>Your Projects</Link>
             <Link to={'/community'} className='text community'>Community</Link>
+            <Link to={'/meetTheTeam'} className='text team'>Meet the Team</Link>
         </div>
         <div className='right-navlinks-logged-in'>
             {/* <Link to={'/createProject'} className='text create-project'>create project</Link> */}

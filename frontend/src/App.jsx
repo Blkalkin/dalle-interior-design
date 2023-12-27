@@ -12,6 +12,8 @@ import { getCurrentUser } from './store/session';
 import CreateProject from './components/Projects/CreateProject';
 import EditProject from './components/EditProjectPage/EditProject';
 import ProjectDetailsShow from './components/Projects/ProjectDetailsShow';
+import MeetTheTeam from './components/MeetTheTeam/MeetTheTeam';
+
 
 
 
@@ -61,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "project-details/:projectId",
         element: <ProjectDetailsShow/>
+      },
+      {
+        path: "meetTheTeam",
+        element: <MeetTheTeam />
       }
     ]
   },

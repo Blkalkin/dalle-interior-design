@@ -17,20 +17,29 @@
     height: 50px;
 }
 
-.project-name-NB {
+.MERN-title {
     display: flex;
     align-items: center;
     text-decoration: none;
     font-size: 35px;
     color:  rgb(210, 154, 15);
+    min-width: 200px;
+    /* background-color: purple; */
 }
 
 .community-LO {
     color: rgb(111, 157, 185);
-    /* margin-left: 2vw; */
-    /* min-width: 140px; */
+    min-width: 140px;
     /* font-size: 18px; */
     /* background-color: aquamarine; */
+}
+
+.team-LO {
+    margin-right: 53vw;
+    color: rgb(111, 157, 185);
+    /* background-color: aqua; */
+    min-width: 120px;
+
 }
 
 .right-navlinks-logged-out{
@@ -52,25 +61,36 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    /* height: 4vh; */
-    min-width: 230px;
+    margin-right: 50vw;
+    width: 370px;
+    min-width: 370px;
     color: rgb(111, 157, 185);
     /* background-color: hotpink; */
 }
 
-.community {
+.projects{
+    margin-left: 2vw;
     color: rgb(111, 157, 185);
+    min-width: 120px;
 }
 
-.projects{
+.community {
     color: rgb(111, 157, 185);
+    min-width: 120px;
 }
+
+.team {
+    color: rgb(111, 157, 185);
+    min-width: 120px;
+}
+
 
 .right-navlinks-logged-in {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 15px;
+    margin-right: 2vw;
     /* background-color: pink; */
 }
 
@@ -96,11 +116,6 @@
 
 .get-started {
     font-size: 20px;
-    /* padding-top: 6px;
-    padding-bottom: 6px;
-    padding-left: 11px;
-    padding-right: 11px;
-    border-radius: 20px; */
     color: white;
     height: 42px;
     width: 140px;
@@ -117,3 +132,9 @@
     color: rgb(111, 157, 185);
     min-width: 60px;
 }
+
+
+
+
+
+
