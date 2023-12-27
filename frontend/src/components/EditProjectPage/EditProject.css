@@ -7,8 +7,6 @@
   top: 0;
   background-color: white;
   padding-top: 50px;
-  position: absolute;
-  z-index: 100;
 }
 
 .first-photo {
@@ -113,4 +111,28 @@ transition: stroke 0.3s ease;
 
 .star-icon:hover path {
 fill: gold;
+}
+
+
+.mode-select-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.mode-select-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mode-select-buttons button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  height: 35px;
+  background-color: rgb(229, 176, 44);
+  color: white;
+}
+
+.mode-select-buttons button:hover {
+  background-color: rgb(203, 157, 40);
 }

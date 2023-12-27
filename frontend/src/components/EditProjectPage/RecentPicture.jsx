@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './EditProject.css'
 import ProjectFlowModal from './ProjectFlowModal';
-import { editImage, removeImage } from '../../store/photoGen';
+import { removeImage, standardImageEdit, creativeImageEdit } from '../../store/photoGen';
 import { addImage, editProject } from '../../store/project';
 import { useDispatch } from 'react-redux';
 
@@ -11,6 +11,8 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
     const [starFilled, setStarFilled] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [newPrompt, setNewPrompt] = useState("")
+    const [modeSelect, setModeSelect] = useState(false)
+    const [mode, setMode] = useState(null)
 
     const handleClick = (boxName) => {
         if (boxName === 'firstBox') {
@@ -30,34 +32,60 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
     };
 
     const handleSavingImage = () => {
-        // const photoUrls = [...photoUrls, newImage];
-        // this should generate the new image
         if (!newImages) return
-        // console.log(newImages.imageGenerated)
-
         dispatch(addImage(projectId, {url: newImages.imageGenerated}))
-        // const newUrls = [...photoUrls, newImages.imageGenerated];
-        // const payload = {
-        //     photoUrls: newUrls
-        // }
-        // dispatch(editProject(projectId, payload))
         dispatch(removeImage())
-        // setStarFilled(!starFilled);
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        const payload = {
-            imagePath: photoUrls[photoUrls.length-1],
-            userPrompt: newPrompt
+        let payload;
+        switch (mode) {
+          case "Standard":
+            payload = {
+              imagePath: photoUrls[photoUrls.length-1],
+              userPrompt: newPrompt
+             }
+            // dispatch(standardImageEdit(payload))
+            console.log(mode)
+            break;
+          case "Creative":
+             payload = { 
+              imageUrl: photoUrls[photoUrls.length-1],
+              promptText: newPrompt
+            }
+            // dispatch(creativeImageEdit(payload))
+            break
+          default:
+            break;
         }
-        dispatch(editImage(payload))
-        // console.log(newImages)
+      
     }
 
     const handleChange = (event) => {
         setNewPrompt(event.target.value);
       };
+
+    const handleModeSelect = e => {
+      const field = e.target.innerHTML
+
+      switch (field) {
+        case "Standard":
+          setModeSelect(true)
+          setMode(field)
+          break;
+        case "Creative":
+          setModeSelect(true)
+          setMode(field)
+          break
+        case "Change Mode":
+          setModeSelect(false)
+          setMode(null)
+        default:
+          break;
+      }
+
+    }
 
 
     return (
@@ -87,17 +115,29 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
               <path d="M12 2l2.591 7.82H22l-6.711 4.872 2.591 7.82L12 17.64l-6.879 4.872 2.591-7.82L2 9.82h7.409L12 2z"/>
             </svg>
           </label>
-
         {showModal && <ProjectFlowModal photoUrls={photoUrls} closeModal={closeModal} />}
-        <form onSubmit={handleSubmit}>
-                        <input
-                            type="text"
-                            value={newPrompt}
-                            onChange={handleChange}
-                            placeholder="Enter text"
-                        />
-                        <button type="submit">Submit</button>
-                    </form>
+        {modeSelect ?
+          <div>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    value={newPrompt}
+                    onChange={handleChange}
+                    placeholder="Enter text"
+                />
+                <button type="submit">Submit</button>
+            </form>
+            <button onClick={handleModeSelect}>Change Mode</button>
+          </div>
+        :
+          <div className='mode-select-container'>
+            <h3>Select editing mode</h3>
+            <div className='mode-select-buttons'>
+              <button onClick={handleModeSelect}>Standard</button>
+              <button onClick={handleModeSelect}>Creative</button>
+            </div>
+          </div>
+        }
       </>
     )
 }

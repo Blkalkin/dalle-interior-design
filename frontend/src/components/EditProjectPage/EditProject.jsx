@@ -17,12 +17,11 @@ function EditProject () {
     const newImages = useSelector(state => state.newImages)
     const [finishedModal, setFinishedModal] = useState(false);
 
-
     useEffect (() => {
-        if (projectId){
+        if (!project){
             dispatch(fetchProject(projectId))
         }
-    }, [dispatch, projectId])
+    }, [dispatch, project])
 
     const closeFinishModal = () => {
         setFinishedModal(false);
@@ -40,7 +39,11 @@ function EditProject () {
             <>
                 <div className='project-page' >
                     <h1>{project.title}</h1>
-                    <RecentPicture photoUrls={project.photoUrls} newImages={newImages} projectId={projectId}/>
+                    <RecentPicture 
+                        photoUrls={project.photoUrls} 
+                        newImages={newImages} 
+                        projectId={projectId}
+                    />
                     <button onClick={() => setFinishedModal(true)}>Done?</button>
                 </div>
                 {finishedModal && <FinishedModal photoUrls={project.photoUrls} closeFinishModal={closeFinishModal} projectId={projectId}/>}
