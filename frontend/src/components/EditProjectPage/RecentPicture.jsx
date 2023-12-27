@@ -46,7 +46,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
               imagePath: photoUrls[photoUrls.length-1],
               userPrompt: newPrompt
              }
-            // dispatch(standardImageEdit(payload))
+            dispatch(standardImageEdit(payload))
             console.log(mode)
             break;
           case "Creative":
@@ -54,7 +54,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
               imageUrl: photoUrls[photoUrls.length-1],
               promptText: newPrompt
             }
-            // dispatch(creativeImageEdit(payload))
+            dispatch(creativeImageEdit(payload))
             break
           default:
             break;
@@ -81,6 +81,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
         case "Change Mode":
           setModeSelect(false)
           setMode(null)
+          setNewPrompt("")
         default:
           break;
       }
