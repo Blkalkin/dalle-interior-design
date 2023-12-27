@@ -119,6 +119,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
         {modeSelect ?
           <div>
             <form onSubmit={handleSubmit}>
+                <h3>{mode} Edit</h3>
                 <input
                     type="text"
                     value={newPrompt}

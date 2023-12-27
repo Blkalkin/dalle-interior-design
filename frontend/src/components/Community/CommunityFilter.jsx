@@ -17,7 +17,7 @@ const CommunityFilter = () => {
         {"type": "bath", "image": bathroom}, 
         {"type": "bedroom", "image": bedroom}, 
         {"type": "living", "image": living}, 
-        {"type": "dinning", "image": dinning}, 
+        {"type": "dining", "image": dinning}, 
         {"type": "office", "image": office}, 
         {"type": "entry", "image": entryway}, 
         {"type": "laundry", "image": laundry}
