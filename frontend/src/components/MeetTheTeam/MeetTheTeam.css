@@ -1,0 +1,51 @@
+.team-whole-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* background-color: purple; */
+
+}
+.top-section {
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+    /* background-color: pink; */
+}
+
+.team-card { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-bottom: 10px;
+    font-size: 30px;
+    border:  rgb(210, 154, 15) solid 2px;
+    margin-left: 5vw;
+    /* background-color: red; */
+    width: 400px;
+    min-width: 400px;
+    color:rgb(49, 114, 154);
+}
+
+
+.team-photo {
+width: 300px;
+margin-bottom: 15px;
+}
+
+.github,
+.linkedIn {
+    height: 8vh;
+}
+
+.bottom-section {
+    margin-top: 50px;
+    display: flex;
+    margin-bottom: 30vh;
+
+}
