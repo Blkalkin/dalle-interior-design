@@ -10,14 +10,15 @@ const CreateProject = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [title, setTitle] = useState("");
-    const [image, setImage] = useState("");
+    const [image, setImage] = useState();
     const [isPublic, setIsPublic] = useState("true");
-    const [imageLoading, setImageLoading] = useState(false);
+    const [photo1Selected, setPhoto1Selected] = useState(false)
+    const [photo2Selected, setPhoto2Selected] = useState(false)
     const promptImg1 = "https://images.havenly.com/unsafe/1200x804/filters:quality(50)/https://s3.amazonaws.com/static.havenly.com/prod/assets/boards/2689428/board_2689428_ee033abc";
     const promptImg2 = "https://images.havenly.com/unsafe/800x800/filters:quality(50)/https://s3.amazonaws.com/static.havenly.com/assets/c52f4982-96d3-4026-8689-2712e501fca2";
     const currentUserId = useSelector(state => state.session.user._id);
-    const photo1 = useRef()
-    const photo2 = useRef()
+    const photo1 = useRef(null)
+    const photo2 = useRef(null)
 
 
     // const updateImage = (e) => {
@@ -37,7 +38,6 @@ const CreateProject = () => {
         formData.append("authorId", currentUserId)
         formData.append("public", isPublic)
 
-        // setImageLoading(true);
         dispatch(createProject(formData)).catch(res =>
             res._id ? navigate(`/edit-project/${res._id}`) : null
         )
@@ -46,14 +46,48 @@ const CreateProject = () => {
     }
 
 
-    const handleImg1Click = (promptImg) => {
-        setImage(promptImg)
-        photo1.style.border.red
+    const handleImg1Click = (img) => {
+        const selectedImg = photo1.current;
+
+        if (photo1Selected) {
+            setImage()
+            selectedImg.classList.remove('highlighted')
+            setPhoto1Selected(false)
+        } else {
+            if (photo2Selected) {
+                const img2 = photo2.current;
+                img2.classList.remove("highlighted")
+            }
+            setImage(img) // not sure why setImage is not working
+            setPhoto1Selected(true)
+            selectedImg.classList.add("highlighted")
+        }
     }
 
-    const handleImg2Click = (promptImg) => {
-        setImage(promptImg)
+    const handleImg2Click = (img) => {
+        const selectedImg = photo2.current;
+
+        if (photo2Selected) {
+            setImage()
+            console.log("am i here? ")
+            selectedImg.classList.remove("highlighted")
+            setPhoto2Selected(false)
+        } else if (!photo2Selected && photo1Selected) {            
+            const img1 = photo1.current;
+            img1.classList.remove("highlighted")
+            setImage(img)
+            setPhoto2Selected(true)
+            selectedImg.classList.add("highlighted")
+            console.log(image, "am i here 2")
+        } else if (!photo2Selected) {
+            setImage(img)
+            console.log(image, "am i here 3 ")
+            setPhoto2Selected(true)
+           selectedImg.classList.add("highlighted")
+        }
+        console.log(image)
     }
+    
 
 
     return (
@@ -79,7 +113,6 @@ const CreateProject = () => {
                     <div className='form-btns'>
                         <button className='privacy-btn text' onClick={()=> setIsPublic(!isPublic)}> {isPublic ? "Your project will be public" : "Your project will be private"}</button>
                         <button className='submit-new-project-btn text' type='submit'>Create </button>
-                        {(imageLoading) && <p>Loading...</p>}
                      </div>
                 </form>
             </div>
