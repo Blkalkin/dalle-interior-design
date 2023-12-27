@@ -50,16 +50,33 @@ router.get('/user/:userId', async (req, res, next) => {
 
 
 router.get("/", async (req, res) => {
-   try {
-      const projects = await Project.find()
-                                    .populate("author", "_id username")
-                                    .sort({ createdAt: "asc"});
-      return res.json(projects)
-   }
-   catch(err) {
-    return res.json([])
-   }
-})
+  try {
+    const { keyword } = req.query;
+
+    const query = {};
+
+   
+    if (keyword) {
+      query.$or = [
+        { title: { $regex: new RegExp(keyword, "i") } },
+        { description: { $regex: new RegExp(keyword, "i") } }
+      ];
+    }
+
+
+    const projects = await (Object.keys(query).length
+      ? Project.find(query)
+      : Project.find())
+      .populate("author", "_id username")
+      .sort({ createdAt: "desc" });
+
+    return res.json(projects);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 
 
 

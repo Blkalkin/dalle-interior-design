@@ -54,7 +54,16 @@ const router = createBrowserRouter([
       },
       {
         path: "community",
-        element: <CommunityPage/>
+        children: [
+          {
+            index: true,
+            element: <CommunityPage/>
+          },
+          {
+            path: ":keyword",
+            element: <CommunityPage/>
+          }
+        ]
       },
       {
         path: "edit-project/:projectId",

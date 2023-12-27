@@ -8,8 +8,8 @@ import photo5 from '../../../assets/landingPagePhotos/3-bathroom-after.png'
 import photo6 from '../../../assets/landingPagePhotos/4-kids-room-before.jpeg'
 import photo7 from '../../../assets/landingPagePhotos/4-kids-room-after.png'
 import { useCallback, useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+
+
 
 
 function LandingPage() {

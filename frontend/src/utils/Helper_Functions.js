@@ -45,3 +45,7 @@ export function formatDateString(dateString) {
 
   return new Intl.DateTimeFormat('en-US', options).format(new Date(dateString));
 }
+
+export const capitalizeFirstLetter = str => {
+  if (str) return str.charAt(0).toUpperCase() + str.slice(1); 
+}

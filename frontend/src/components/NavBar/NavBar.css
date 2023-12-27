@@ -13,6 +13,16 @@
     padding-right: 20px;
 }
 
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.navbar-middle {
+    display: flex;
+}
+
 .nav-logo {
     height: 50px;
 }
@@ -29,17 +39,14 @@
 
 .community-LO {
     color: rgb(111, 157, 185);
-    min-width: 140px;
+    /* min-width: 140px; */
     /* font-size: 18px; */
     /* background-color: aquamarine; */
 }
 
 .team-LO {
-    margin-right: 53vw;
     color: rgb(111, 157, 185);
-    /* background-color: aqua; */
-    min-width: 120px;
-
+    /* min-width: 120px; */
 }
 
 .right-navlinks-logged-out{
@@ -61,27 +68,31 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin-right: 50vw;
+    /* margin-right: 50vw; */
     width: 370px;
     min-width: 370px;
     color: rgb(111, 157, 185);
-    /* background-color: hotpink; */
+}
+
+.left-navlinks-logged-out {
+    display: flex;
+    gap: 20px;
 }
 
 .projects{
-    margin-left: 2vw;
+    /* margin-left: 2vw; */
     color: rgb(111, 157, 185);
     min-width: 120px;
 }
 
 .community {
     color: rgb(111, 157, 185);
-    min-width: 120px;
+    /* min-width: 120px; */
 }
 
 .team {
     color: rgb(111, 157, 185);
-    min-width: 120px;
+    /* min-width: 120px; */
 }
 
 
@@ -133,8 +144,36 @@
     min-width: 60px;
 }
 
+.navbar-search {
+    display: flex;
+    height: 35px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+}
+
+.navbar-search:focus-within {
+    border: 1px solid
+}
 
 
+.navbar-search button {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border: none;
+    width: 40px;
+    cursor: pointer;
+}
 
+.navbar-search input {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border: none;
+    width: 15vw;
+    min-width: 150px;
+    padding-left: 10px;
+}
 
+.navbar-search input:focus {
+    outline: none;
+}
 

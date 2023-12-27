@@ -3,7 +3,6 @@ import { createSelector } from 'reselect';
 
 const RECEIVE_PROJECTS = "RECEIVE_PROJECTS"
 const RECEIVE_PROJECT = "RECEIVE_PROJECT"
-const RECEIVE_UPDATED_PROJECT = "RECEIVE_UPDATED_PROJECT"
 const REMOVE_PROJECT = "REMOVE_PROJECT"
 
 export const receiveProjects = projects => ({
@@ -16,26 +15,19 @@ export const receiveProject = project => ({
     project
 })
 
-export const receiveUpdatedProject = project => ({
-    type: RECEIVE_UPDATED_PROJECT,
-    project
-})
-
 export const removeProject = projectId => ({
     type: REMOVE_PROJECT,
     projectId
 })
 
-export const receiveImage = project => ({
-    type: ADD_IMAGE,
-    project
-})
 
-export const fetchProjects = () => async(dispatch) => {
+export const fetchProjects = keyword => async(dispatch) => {
+    const path =  keyword ? `/api/projects/?keyword=${keyword}` : "/api/projects"
+
     try {
-        const res = await jwtFetch("/api/projects")
+        const res = await jwtFetch(path)
         const projects = await res.json()
-        return dispatch(receiveProjects(projects))
+        dispatch(receiveProjects(projects))
     } catch(err) {
         const data = await err.json()
         console.log(data)
@@ -98,7 +90,7 @@ export const editProject = (projectId, project) => async(dispatch) => {
             body: JSON.stringify(project)
         });
         const data = await res.json();
-        return dispatch(receiveUpdatedProject(data))
+        return dispatch(receiveProject(data))
     } catch(err) {
         const res = await err.json();
         console.log(res)
@@ -120,19 +112,20 @@ export const addImage = (projectId, url) => async(dispatch) => {
 }
 
 export const deleteProject = (projectId) => async(dispatch) => {
-    try {
-        const res = await jwtFetch(`/api/projects/${projectId}`,{
-            method: "DELETE"
-        })
 
-        return dispatch(removeProject(projectId))
-        
-    } catch(err) {
-        const res = await err.json()
-        console.log(res)
+    const res = await jwtFetch(`/api/projects/${projectId}`,{
+        method: "DELETE"
+    })
+
+    if (res.ok){
+        dispatch(removeProject(projectId))
+    } else {
+        const data = await res.json()
+        throw data
     }
+        
+    
 }
-
 export const selectProject = projectId => state => state.projects[projectId]
 export const selectProjects = state => state.projects
 
@@ -142,10 +135,9 @@ export const selectProjectsArray = createSelector(selectProjects, project =>
 
 const projectReducer = (state = {}, action) => {
     const newState = Object.assign({}, state)
-    
+    const obj = {}
     switch (action.type) {
         case RECEIVE_PROJECTS:
-            let obj = {}
             for (const project of action.projects){
                 obj[project._id] = project;
             }

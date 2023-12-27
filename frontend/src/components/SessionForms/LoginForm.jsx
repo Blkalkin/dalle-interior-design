@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './SessionForms.css';
 import { login } from '../../store/session';
@@ -7,7 +7,6 @@ import { clearSessionErrors } from '../../store/errorReducer/SessionError';
 
 function LoginForm () {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const loggedIn = useSelector(state => !!state.session.user);
@@ -73,7 +72,7 @@ function LoginForm () {
         onClick={handleDemoSubmit}
       />
         <div className="links-auth text">
-          <Link to={'/signup'}>Don't have an account? Signup</Link>
+          <Link to={'/signup'}>{"Don't have an account? Signup"}</Link>
         </div>
     </form>
   );
