@@ -5,6 +5,7 @@ import { logout } from '../../store/session';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
+import CreateProjectModal from '../Projects/CreateProjectModal';
 
 function NavBar () {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ function NavBar () {
   const loggedIn = useSelector(state => !!state.session.user);
   const currUser = useSelector(state => state.session.user)
   const [searchInput, setSearchInput] = useState("")
+  const [openModal, setOpenModal] = useState(false)
 
   const handleButton = e => {
     const button = e.target.value
@@ -82,11 +84,12 @@ function NavBar () {
           </div>
        :
         <div className='right-navlinks-logged-in'>
-            <button className='text create-project' onClick={handleButton} value="create project">Create Project</button>
+            <button className='text create-project' onClick={() => setOpenModal(true)} value="create project">Create Project</button>
             <Link to={'/'} onClick={logoutUser} className='text log-out'>Log Out</Link>
         </div>
         }
       </div>
+        {openModal ? <CreateProjectModal setOpenModal={setOpenModal}/> : null}
     </div>
   );
 }
