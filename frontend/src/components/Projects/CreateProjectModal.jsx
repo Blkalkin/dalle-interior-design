@@ -91,12 +91,11 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
         
     }
 
-
     if (image && step === 1) setStep(2)
 
     return (
         <div className="create-project-background">
-            <div className="create-project-modal" ref={modalRef} style={step === 3 ? {width: "900px"} : null}>
+            <div className="create-project-modal" ref={modalRef} style={step === 3 ? {width: "900px", transitionDuration: "200ms"} : null}>
                 <div className="create-project-modal-header">
                     <button onClick={handleBackStep}><FontAwesomeIcon size="lg" icon={faLeftLong} /></button>
                     <h2 className="title">{headerTitle[step]}</h2>
