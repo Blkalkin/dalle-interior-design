@@ -7,6 +7,12 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons'
+import Switch from '@mui/material/Switch';
+import { createProject } from "../../store/project";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLeftLong } from '@fortawesome/free-solid-svg-icons'
 
 const CreateProjectModal = ({setOpenModal, authorId}) => {
     const navigate = useNavigate()
@@ -24,6 +30,21 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
         3: "Create New Project"
     }
 
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+          if (modalRef.current && !modalRef.current.contains(event.target)) {
+            setOpenModal(false)
+          }
+        };
+
+        document.addEventListener("mousedown", handleOutsideClick);
+
+        return () => {
+            document.removeEventListener("mousedown", handleOutsideClick);
+        };
+
+      }, [setOpenModal]);
+    
     const handleBackStep = () => {
         switch (step) {
             case 1:
@@ -48,24 +69,44 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                 break;
             case 2:
                 setStep(3)
+                break
             case 3:
+                handleForm()
                 break
             default:
                 break;
         }
     }
 
-    
+    const handleForm = () => {
+        const formData = new FormData();
+        formData.append("photo", image)
+        formData.append("title", title)
+        formData.append("authorId", authorId)
+        formData.append("public", isPublic)
+
+        const closeModal = (projectId) => {
+            navigate(`/edit-project/${projectId}`)
+            setOpenModal(false)
+        }
+
+        dispatch(createProject(formData)).catch(res =>
+            res._id ?  closeModal(res._id) : null
+        )
+        
+        
+    }
+
+
     if (image && step === 1) setStep(2)
 
     return (
         <div className="create-project-background">
-            <div className="create-project-modal" ref={modalRef} style={step === 3 ? {width: "900px", transitionDuration: "200ms"} : null}>
+            <div className="create-project-modal" style={step === 3 ? {width: "900px"} : null}>
                 <div className="create-project-modal-header">
-                    <button onClick={() => setStep(step - 1)}>backstep</button>
+                    <button onClick={handleBackStep}>⬅️</button>
                     <h2 className="title">{title[step]}</h2>
-                    <button onClick={() => setOpenModal(false)}>close</button>
-                    <button onClick={() => setStep(step + 1)}>next</button>
+                    <button onClick={handleForwardStep}>next</button>
                 </div>
                 <div className="create-project-modal-content">
                     {step === 1 ? <div className="create-modal-step-1"><FilesDragAndDrop setImage={setImage}/></div> : null}
@@ -73,6 +114,14 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                     {step === 3 && image ? 
                     <div className="create-modal-step-3">
                         <img src={URL.createObjectURL(image)} alt="" />
+                        <form>
+                            <input type="text" placeholder="Project Title"/>
+                            <textarea placeholder="Write a Description(optional)"></textarea>
+                            <label className="switch">
+                                <input type="checkbox"/>
+                                <span className="slider"></span>
+                            </label>
+                        </form>
                     </div> : null}
                 </div>
             </div>
