@@ -14,7 +14,8 @@ body {
 
 
 .body {
-    display: flex;
-    flex-direction: column;
+    width: inherit;
+    /* display: flex;
+    flex-direction: column; */
     margin-top: 100px;
 }
