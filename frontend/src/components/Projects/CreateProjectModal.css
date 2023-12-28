@@ -24,21 +24,18 @@
 }
 
 .create-project-modal-header {
-    width: inherit;
+    width: 95%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);;
 }
 
 .create-project-modal-header button {
     border: none;
     background: none;
     cursor: pointer;
-    /* height: 15px; */
-    padding-left: 15px;
-    padding-right: 15px;
-    font-size: 20px;
+    height: 15px;
+    padding: 0;
 }
 
 .create-project-modal-content {
@@ -69,54 +66,12 @@
 }
 
 .create-modal-step-3 {
-    display: flex;
     height: 100%;
     width: 100%;
 }
 
 .create-modal-step-3 img{
     height: inherit;
-    object-fit: cover;
     width: 75%;
     border-bottom-left-radius: 15px;
-}
-
-.create-modal-step-3 form {
-    display: flex;
-    flex-direction: column;
-    margin-top: 15px;
-    width: 25%;
-    gap: 10px;
-}
-
-.create-modal-step-3 form input {
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    text-align: center;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 20px;
-}
-
-.create-modal-step-3 form textarea {
-    width: 100%;
-    height: 150px;
-    box-sizing: border-box;
-    padding: 10px;
-    margin-bottom: 10px;
-    resize: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-.create-modal-step-3 label {
-    padding-left: 10px;
-}
-.create-modal-step-3 form textarea:focus {
-    outline: none;
-}
-
-.create-modal-step-3 form input:focus {
-    outline: none;
 }
