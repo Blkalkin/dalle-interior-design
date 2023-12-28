@@ -30,6 +30,21 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
         3: "Create New Project"
     }
 
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+          if (modalRef.current && !modalRef.current.contains(event.target)) {
+            setOpenModal(false)
+          }
+        };
+
+        document.addEventListener("mousedown", handleOutsideClick);
+
+        return () => {
+            document.removeEventListener("mousedown", handleOutsideClick);
+        };
+
+      }, [setOpenModal]);
+    
     const handleBackStep = () => {
         switch (step) {
             case 1:
@@ -54,14 +69,35 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                 break;
             case 2:
                 setStep(3)
+                break
             case 3:
+                handleForm()
                 break
             default:
                 break;
         }
     }
 
-    
+    const handleForm = () => {
+        const formData = new FormData();
+        formData.append("photo", image)
+        formData.append("title", title)
+        formData.append("authorId", authorId)
+        formData.append("public", isPublic)
+
+        const closeModal = (projectId) => {
+            navigate(`/edit-project/${projectId}`)
+            setOpenModal(false)
+        }
+
+        dispatch(createProject(formData)).catch(res =>
+            res._id ?  closeModal(res._id) : null
+        )
+        
+        
+    }
+
+
     if (image && step === 1) setStep(2)
         2: "Image Preview",
         3: "Create New Project"
