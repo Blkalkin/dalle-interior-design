@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import './FilesDragAndDrop.css';
 
-const FilesDragAndDrop = ({ setImage }) => {
+const FilesDragAndDrop = ({ setImage, setStep }) => {
   const drop = useRef(null);
   const fileInput = useRef(null);
   const [welcome, setWelcome] = useState(true);
