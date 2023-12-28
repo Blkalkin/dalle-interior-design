@@ -89,7 +89,7 @@ function NavBar () {
         </div>
         }
       </div>
-        {openModal ? <CreateProjectModal setOpenModal={setOpenModal}/> : null}
+        {openModal ? <CreateProjectModal setOpenModal={setOpenModal} authorId={currUser._id}/> : null}
     </div>
   );
 }
