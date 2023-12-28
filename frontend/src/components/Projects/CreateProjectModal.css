@@ -37,9 +37,10 @@
     border: none;
     background: none;
     cursor: pointer;
-    height: 15px;
+    /* height: 15px; */
     padding-left: 15px;
     padding-right: 15px;
+    font-size: 20px;
 }
 
 .create-project-modal-content {
