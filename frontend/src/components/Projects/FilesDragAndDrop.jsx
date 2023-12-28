@@ -30,7 +30,6 @@ const FilesDragAndDrop = ({ setImage }) => {
 
   const handleFileInput = (e) => {
     const file = e.target.files[0];
- 
     const previewURL = URL.createObjectURL(file);
     setImagePreview(previewURL);
     // setMoreThanOnePhoto(false);
@@ -70,12 +69,12 @@ const FilesDragAndDrop = ({ setImage }) => {
     setImage(null)
   };
 
-  let files;
-
+  
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
-
+    let files;
+    
     files = [...e.dataTransfer.files];
 
     if (files.length > 1) {
@@ -141,11 +140,11 @@ const FilesDragAndDrop = ({ setImage }) => {
         {dragging ? 'Drop that file down low' : null}
         {!imgFileOk ? 'Please upload a png, jpg, or jpeg ' : null}
       </div>
-        <button 
+        {/* <button 
           className='remove-image-button text'
           onClick={removeImg}>
           Clear Selected Photo
-        </button>
+        </button> */}
         <input
         ref={fileInput}
         type='file'
