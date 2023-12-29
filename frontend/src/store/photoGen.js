@@ -13,7 +13,7 @@ export const removeImage = () => ({
     emptyState: {}
 })
 
-export const editImage = (image) =>  async(dispatch) => {
+export const standardImageEdit = (image) =>  async(dispatch) => {
     console.log("making new image...")
     const res = await jwtFetch("/api/images/generate-image", {
         method: "POST",
@@ -27,6 +27,19 @@ export const editImage = (image) =>  async(dispatch) => {
     }
 
 }
+
+export const creativeImageEdit = image => async(dispatch) => {
+    const res = await jwtFetch("/api/images/generate-prompt-image",{
+        method: "POST",
+        body: JSON.stringify(image)
+    })
+
+    if (res.ok) {
+        let data = await res.json()
+        dispatch(receiveNewImage(data))
+    }
+}
+
 
 const newImageReducer = (state = {}, action) => {
     switch (action.type) {
