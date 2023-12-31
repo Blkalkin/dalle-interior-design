@@ -1,19 +1,12 @@
 import { useEffect, useRef, useState } from "react"
 import "./CreateProjectModal.css"
 import FilesDragAndDrop from './FilesDragAndDrop'
-import Switch from '@mui/material/Switch';
 import { createProject } from "../../store/project";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLeftLong } from '@fortawesome/free-solid-svg-icons'
-import Switch from '@mui/material/Switch';
-import { createProject } from "../../store/project";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLeftLong } from '@fortawesome/free-solid-svg-icons'
-import { green } from "@mui/material/colors";
+import { faLeftLong, faX } from '@fortawesome/free-solid-svg-icons'
+
 
 
 const CreateProjectModal = ({setOpenModal, authorId}) => {
@@ -121,8 +114,8 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
         <div className="create-project-background">
             <div className="create-project-modal" ref={modalRef} style={step === 3 ? {width: "809px"} : null}>
                 <div className="create-project-modal-header">
-                    <button onClick={handleBackStep}>⬅️</button>
-                    <h2 className="title">{title[step]}</h2>
+                    <button onClick={handleBackStep}><FontAwesomeIcon size="lg" icon={faLeftLong} /></button>
+                    <h2 className="title">{headerTitle[step]}</h2>
                     <button onClick={handleForwardStep}>next</button>
                 </div>
                 <div className="create-project-modal-content">
@@ -140,7 +133,7 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                             </textarea>
                             <p>Setting project public will allow other users to view your project</p>
                             <div className="switch-container">
-                                <label>Public</label>
+                                <label>{isPublic ? "Public" : "Private"}</label>
                                 <input type="checkbox" id="check" checked={isPublic} onChange={() => setIsPublic(!isPublic)}/>
                                 <label for="check" className="switch"></label>
                             </div>
