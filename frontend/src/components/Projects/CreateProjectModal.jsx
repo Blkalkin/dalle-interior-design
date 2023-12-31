@@ -30,6 +30,43 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
         3: "Create New Project"
     }
 
+    const handleBackStep = () => {
+        switch (step) {
+            case 1:
+                setOpenModal(false)
+                break;
+            case 2:
+                setImage(null)
+                setStep(1)
+                break
+            case 3:
+                setStep(2);
+                break
+            default:
+                break;
+        }
+    }
+
+    const handleForwardStep = () => {
+        switch (step) {
+            case 1:
+                image ? setStep(2) : null
+                break;
+            case 2:
+                setStep(3)
+            case 3:
+                break
+            default:
+                break;
+        }
+    }
+
+    
+    if (image && step === 1) setStep(2)
+        2: "Image Preview",
+        3: "Create New Project"
+    }
+
     useEffect(() => {
         const handleOutsideClick = (event) => {
           if (modalRef.current && !modalRef.current.contains(event.target)) {
