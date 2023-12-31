@@ -64,6 +64,7 @@
 }
 
 .create-modal-step-2 img {
+    object-fit: cover;
     height: inherit;
     width: inherit;
     border-bottom-left-radius: 15px;
@@ -80,15 +81,15 @@
 .create-modal-step-3 img{
     height: inherit;
     object-fit: cover;
-    width: 75%;
+    width: 74%;
     border-bottom-left-radius: 15px;
 }
 
 .create-modal-step-3 form {
     display: flex;
     flex-direction: column;
+    width: 26%;
     margin-top: 15px;
-    width: 25%;
     gap: 10px;
 }
 
@@ -113,6 +114,10 @@
     font-size: 14px;
 }
 
+.create-modal-step-3 form p {
+    padding-left: 5px;
+}
+
 .create-modal-step-3 label {
     padding-left: 10px;
 }
@@ -122,4 +127,47 @@
 
 .create-modal-step-3 form input:focus {
     outline: none;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 5px;
+}
+.checkbox-container input {
+    display: none;
+}
+
+.checkbox-container label {
+    padding: 0;
+}
+.switch {
+    background-color: rgb(195, 192, 192);
+    width: 45px;
+    height: 22px;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.switch::before {
+    position: absolute;
+    content: "";
+    background-color: #fff;
+    width: 17px;
+    height: 17px;
+    border-radius: 20px;
+    margin-top: 2.01px;
+    margin-left: 3px;
+    transition: 200ms;
+}
+
+input:checked + .switch {
+    background-color: rgb(126, 185, 38);
+}
+
+input:checked + .switch::before {
+    transform: translateX(22px)
 }
