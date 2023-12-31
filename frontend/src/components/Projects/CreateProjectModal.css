@@ -21,6 +21,7 @@
     height: 600px;
     border-radius: 15px;
     background: white;
+    transition: 100ms;
 }
 
 .create-project-modal-header {
@@ -129,23 +130,23 @@
     outline: none;
 }
 
-.checkbox-container {
+.switch-container {
     display: flex;
     align-items: center;
     gap: 10px;
     padding-left: 5px;
 }
-.checkbox-container input {
+.switch-container input {
     display: none;
 }
 
-.checkbox-container label {
+.switch-container label {
     padding: 0;
 }
 .switch {
     background-color: rgb(195, 192, 192);
     width: 45px;
-    height: 22px;
+    height: 23px;
     border-radius: 20px;
     position: relative;
     cursor: pointer;
@@ -156,11 +157,11 @@
     position: absolute;
     content: "";
     background-color: #fff;
-    width: 17px;
-    height: 17px;
+    width: 19px;
+    height: 19px;
     border-radius: 20px;
     margin-top: 2.01px;
-    margin-left: 3px;
+    margin-left: 2px;
     transition: 200ms;
 }
 
