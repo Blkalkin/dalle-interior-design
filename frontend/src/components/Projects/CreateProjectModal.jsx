@@ -115,12 +115,11 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
         )
     }
 
-    console.log(isPublic)
     if (image && step === 1) setStep(2)
 
     return (
         <div className="create-project-background">
-            <div className="create-project-modal" ref={modalRef} style={step === 3 ? {width: "900px"} : null}>
+            <div className="create-project-modal" ref={modalRef} style={step === 3 ? {width: "809px"} : null}>
                 <div className="create-project-modal-header">
                     <button onClick={handleBackStep}>⬅️</button>
                     <h2 className="title">{title[step]}</h2>
@@ -139,10 +138,12 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                             value={description}
                             onChange={e => setDescription(e.target.value)}>
                             </textarea>
-                            <label>
-                                Public
-                                <Switch checked={isPublic} onChange={() => setIsPublic(!isPublic)} defaultChecked/>
-                            </label>
+                            <p>Setting project public will allow other users to view your project</p>
+                            <div className="switch-container">
+                                <label>Public</label>
+                                <input type="checkbox" id="check" checked={isPublic} onChange={() => setIsPublic(!isPublic)}/>
+                                <label for="check" className="switch"></label>
+                            </div>
                         </form>
                     </div> : null}
                 </div>
