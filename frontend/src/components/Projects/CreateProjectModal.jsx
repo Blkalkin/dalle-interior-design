@@ -13,6 +13,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons'
+import { green } from "@mui/material/colors";
+
 
 const CreateProjectModal = ({setOpenModal, authorId}) => {
     const navigate = useNavigate()
@@ -78,30 +80,8 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
         }
     }
 
-    const handleForm = () => {
-        const formData = new FormData();
-        formData.append("photo", image)
-        formData.append("title", title)
-        formData.append("authorId", authorId)
-        formData.append("public", isPublic)
-
-        const closeModal = (projectId) => {
-            navigate(`/edit-project/${projectId}`)
-            setOpenModal(false)
-        }
-
-        dispatch(createProject(formData)).catch(res =>
-            res._id ?  closeModal(res._id) : null
-        )
-        
-        
-    }
-
 
     if (image && step === 1) setStep(2)
-        2: "Image Preview",
-        3: "Create New Project"
-    }
 
     useEffect(() => {
         const handleOutsideClick = (event) => {
@@ -117,39 +97,6 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
         };
 
       }, [setOpenModal]);
-    
-    const handleBackStep = () => {
-        switch (step) {
-            case 1:
-                setOpenModal(false)
-                break;
-            case 2:
-                setImage(null)
-                setStep(1)
-                break
-            case 3:
-                setStep(2);
-                break
-            default:
-                break;
-        }
-    }
-
-    const handleForwardStep = () => {
-        switch (step) {
-            case 1:
-                image ? setStep(2) : null
-                break;
-            case 2:
-                setStep(3)
-                break
-            case 3:
-                handleForm()
-                break
-            default:
-                break;
-        }
-    }
 
     const handleForm = () => {
         const formData = new FormData();
@@ -166,16 +113,14 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
         dispatch(createProject(formData)).catch(res =>
             res._id ?  closeModal(res._id) : null
         )
-        
-        
     }
 
-
+    console.log(isPublic)
     if (image && step === 1) setStep(2)
 
     return (
         <div className="create-project-background">
-            <div className="create-project-modal" style={step === 3 ? {width: "900px"} : null}>
+            <div className="create-project-modal" ref={modalRef} style={step === 3 ? {width: "900px"} : null}>
                 <div className="create-project-modal-header">
                     <button onClick={handleBackStep}>⬅️</button>
                     <h2 className="title">{title[step]}</h2>
@@ -187,12 +132,16 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                     {step === 3 && image ? 
                     <div className="create-modal-step-3">
                         <img src={URL.createObjectURL(image)} alt="" />
-                        <form>
-                            <input type="text" placeholder="Project Title"/>
-                            <textarea placeholder="Write a Description(optional)"></textarea>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider"></span>
+                        <form onSubmit={e => e.preventDefault()}>
+                            <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Project Title"/>
+                            <textarea 
+                            placeholder="Write a Description (optional)"
+                            value={description}
+                            onChange={e => setDescription(e.target.value)}>
+                            </textarea>
+                            <label>
+                                Public
+                                <Switch checked={isPublic} onChange={() => setIsPublic(!isPublic)} defaultChecked/>
                             </label>
                         </form>
                     </div> : null}
