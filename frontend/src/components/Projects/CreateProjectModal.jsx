@@ -33,9 +33,11 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
         };
 
         document.addEventListener("mousedown", handleOutsideClick);
+        document.body.style.overflow = "hidden"
 
         return () => {
             document.removeEventListener("mousedown", handleOutsideClick);
+            document.body.style.overflow = ""
         };
 
       }, [setOpenModal]);
@@ -72,24 +74,6 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                 break;
         }
     }
-
-
-    if (image && step === 1) setStep(2)
-
-    useEffect(() => {
-        const handleOutsideClick = (event) => {
-          if (modalRef.current && !modalRef.current.contains(event.target)) {
-            setOpenModal(false)
-          }
-        };
-
-        document.addEventListener("mousedown", handleOutsideClick);
-
-        return () => {
-            document.removeEventListener("mousedown", handleOutsideClick);
-        };
-
-      }, [setOpenModal]);
 
     const handleForm = () => {
         const formData = new FormData();
@@ -131,7 +115,7 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                             value={description}
                             onChange={e => setDescription(e.target.value)}>
                             </textarea>
-                            <p>Setting project public will allow other users to view your project</p>
+                            <p>Setting project public, will allow other users to view your project</p>
                             <div className="switch-container">
                                 <label>{isPublic ? "Public" : "Private"}</label>
                                 <input type="checkbox" id="check" checked={isPublic} onChange={() => setIsPublic(!isPublic)}/>
