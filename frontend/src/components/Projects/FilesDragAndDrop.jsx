@@ -128,7 +128,7 @@ const FilesDragAndDrop = ({ setImage }) => {
         {welcome ? (
             <div className='drop-text'>
                 <span>Hey, drop me a photo here!</span>
-                <span>Or select one of the photos below</span>
+                {/* <span>Or select one of the photos below</span> */}
             </div>
         ) : null}
         {/* {fileLoaded ? imagePreview && <img src={imagePreview} alt='Dropped Image' className='preview-image' /> : null} */}
