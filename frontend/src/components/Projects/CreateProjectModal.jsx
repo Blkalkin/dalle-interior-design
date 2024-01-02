@@ -119,7 +119,7 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                             <div className="switch-container">
                                 <label>{isPublic ? "Public" : "Private"}</label>
                                 <input type="checkbox" id="check" checked={isPublic} onChange={() => setIsPublic(!isPublic)}/>
-                                <label for="check" className="switch"></label>
+                                <label htmlFor="check" className="switch"></label>
                             </div>
                         </form>
                     </div> : null}

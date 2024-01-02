@@ -109,15 +109,6 @@ const FilesDragAndDrop = ({ setImage }) => {
     setImage(files[0]);
   };
 
-  const removeImg = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setWelcome(true);
-    setFileLoaded(false);
-    setImageFileOk(true);
-    setImage(null);
-    setImagePreview(null);
-  };
 
   return (
       <div ref={drop} id='drag-area'  
