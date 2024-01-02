@@ -61,7 +61,8 @@ const FilesDragAndDrop = ({ setImage }) => {
     setImage(null)
   };
 
-  
+  let files;
+
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
