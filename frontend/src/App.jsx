@@ -48,10 +48,10 @@ const router = createBrowserRouter([
         path: "profile/:userId",
         element: <Profile/>
       },
-      {
-        path: "create-project",
-        element: <ProtectedRoute component={CreateProject}/>
-      },
+      // {
+      //   path: "create-project",
+      //   element: <ProtectedRoute component={CreateProject}/>
+      // },
       {
         path: "community",
         children: [
