@@ -10,7 +10,7 @@ const FilesDragAndDrop = ({ setImage }) => {
   const [fileLoaded, setFileLoaded] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [imgFileOk, setImageFileOk] = useState(true);
-  // const [imagePreview, setImagePreview] = useState(null);
+
 
   useEffect(() => {
     drop.current.addEventListener('dragover', handleDragOver);
@@ -29,8 +29,6 @@ const FilesDragAndDrop = ({ setImage }) => {
 
   const handleFileInput = (e) => {
     const file = e.target.files[0];
-    // const previewURL = URL.createObjectURL(file);
-    // setImagePreview(previewURL);
     setFileLoaded(true);
     setWelcome(false);
     setImageFileOk(true);
@@ -43,7 +41,6 @@ const FilesDragAndDrop = ({ setImage }) => {
     setWelcome(false);
     setFileLoaded(false);
     setImageFileOk(true);
-    // setImagePreview(null);
   };
 
   const handleDragEnter = (e) => {
@@ -53,7 +50,6 @@ const FilesDragAndDrop = ({ setImage }) => {
     setWelcome(false);
     setFileLoaded(false);
     setImageFileOk(true);
-    // setImagePreview(null);
   };
 
   const handleDragLeave = (e) => {
@@ -97,10 +93,6 @@ const FilesDragAndDrop = ({ setImage }) => {
       return;
     }
 
-
-    // const previewURL = URL.createObjectURL(files[0]);
-    // setImagePreview(previewURL);
-
     setDragging(false);
     setFileLoaded(true);
     setWelcome(false);
@@ -110,16 +102,6 @@ const FilesDragAndDrop = ({ setImage }) => {
     setImage(files[0]);
   };
 
-  // const removeImg = (e) => {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   setWelcome(true);
-  //   setFileLoaded(false);
-  //   setImageFileOk(true);
-  //   setImage(null);
-  //   setImagePreview(null);
-  // };
-
   return (
       <div ref={drop} id='drag-area'  
         className='FilesDragAndDrop FilesDragAndDrop__area'
@@ -128,10 +110,8 @@ const FilesDragAndDrop = ({ setImage }) => {
         {welcome ? (
             <div className='drop-text'>
                 <span>Hey, drop me a photo here!</span>
-                {/* <span>Or select one of the photos below</span> */}
             </div>
         ) : null}
-        {/* {fileLoaded ? imagePreview && <img src={imagePreview} alt='Dropped Image' className='preview-image' /> : null} */}
         {dragging ? 'Drop that file down low' : null}
         {!imgFileOk ? 'Please upload a png, jpg, or jpeg ' : null}
         <input
