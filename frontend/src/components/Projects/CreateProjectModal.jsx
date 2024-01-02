@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react"
 import "./CreateProjectModal.css"
 import FilesDragAndDrop from './FilesDragAndDrop'
-import Switch from '@mui/material/Switch';
 import { createProject } from "../../store/project";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLeftLong } from '@fortawesome/free-solid-svg-icons'
+import { faLeftLong, faX } from '@fortawesome/free-solid-svg-icons'
+
+
 
 const CreateProjectModal = ({setOpenModal, authorId}) => {
     const navigate = useNavigate()
@@ -32,9 +33,11 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
         };
 
         document.addEventListener("mousedown", handleOutsideClick);
+        document.body.style.overflow = "hidden"
 
         return () => {
             document.removeEventListener("mousedown", handleOutsideClick);
+            document.body.style.overflow = ""
         };
 
       }, [setOpenModal]);
@@ -87,19 +90,17 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
         dispatch(createProject(formData)).catch(res =>
             res._id ?  closeModal(res._id) : null
         )
-        
-        
     }
 
     if (image && step === 1) setStep(2)
 
     return (
         <div className="create-project-background">
-            <div className="create-project-modal" ref={modalRef} style={step === 3 ? {width: "900px", transitionDuration: "200ms"} : null}>
+            <div className="create-project-modal" ref={modalRef} style={step === 3 ? {width: "809px"} : null}>
                 <div className="create-project-modal-header">
-                    <button onClick={handleBackStep}><FontAwesomeIcon size="lg" icon={faLeftLong} /></button>
+                    <button onClick={handleBackStep}><FontAwesomeIcon size="lg" icon={step === 1 ? faX : faLeftLong} /></button>
                     <h2 className="title">{headerTitle[step]}</h2>
-                    <button onClick={handleForwardStep}>next</button>
+                    <button onClick={handleForwardStep}>{step === 3 ? "Submit" : "Next"}</button>
                 </div>
                 <div className="create-project-modal-content">
                     {step === 1 ? <div className="create-modal-step-1"><FilesDragAndDrop setImage={setImage}/></div> : null}
@@ -110,14 +111,16 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                         <form onSubmit={e => e.preventDefault()}>
                             <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Project Title"/>
                             <textarea 
-                            placeholder="Write a Description (optional)"
-                            value={description}
-                            onChange={e => setDescription(e.target.value)}>
+                                placeholder="Write a Description (optional)"
+                                value={description}
+                                onChange={e => setDescription(e.target.value)}>
                             </textarea>
-                            <label>
-                                Public
-                                <Switch checked={isPublic} onChange={() => setIsPublic(!isPublic)} defaultChecked/>
-                            </label>
+                            <p>Setting project public, will allow other users to view your project</p>
+                            <div className="switch-container">
+                                <label>{isPublic ? "Public" : "Private"}</label>
+                                <input type="checkbox" id="check" checked={isPublic} onChange={() => setIsPublic(!isPublic)}/>
+                                <label for="check" className="switch"></label>
+                            </div>
                         </form>
                     </div> : null}
                 </div>

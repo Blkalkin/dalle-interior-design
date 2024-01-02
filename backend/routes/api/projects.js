@@ -40,7 +40,7 @@ router.get('/user/:userId', async (req, res, next) => {
     try {
       const projects = await Project.find({ author: user._id })
                                 .populate("author", "_id username")
-                                .sort({ createdAt: "asc"});
+                                .sort({ createdAt: "desc"});
       return res.json(projects);
     }
     catch(err) {
