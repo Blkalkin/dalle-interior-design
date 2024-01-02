@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import './MeetTheTeam.css'
 import matt from "../../../assets/Team-pics/matt.jpg"
+import balaji from "../../../assets/Team-pics/balaji.jpeg"
+
 const MeetTheTeam = () => {
     return (
         <div className="team-whole-container">        
@@ -44,7 +46,7 @@ const MeetTheTeam = () => {
                     </div>
                 </div>
                 <div className="team-card text"> 
-                    <img className='team-photo'  src="https://www.giantbomb.com/a/uploads/scale_small/13/135472/1891758-001bulbasaur.png" alt="" />
+                    <img className='team-photo'  src={balaji}alt="" />
                     Balaji Rajan Kumaravel Rajan
                     <div className="team-links">
                         <Link to='https://github.com/Blkalkin' target="_blank">
