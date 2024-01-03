@@ -3,7 +3,7 @@ const router = express.Router();
 const { OpenAI } = require('openai');
 const fs = require('fs');
 const Jimp = require('jimp');
-require('dotenv').config({ path: '../../.env' });
+//require('dotenv').config({ path: '../../.env' });
 
 
 
@@ -84,7 +84,7 @@ class ImageProcessor {
           let response_text = response.choices[0].message.content;
           let formatted_text = response_text.replace(/\n/g, ' ');
           formatted_text = formatted_text.slice(0, 1000);
-          console.log(formatted_text)
+          //console.log(formatted_text)
         
           const baseImageStream = fs.createReadStream('image_generation/route-images/cropped_image.png');
           const maskImageStream = fs.createReadStream('image_generation/route-images/output.png');
