@@ -1,5 +1,5 @@
 import './EditProject.css'
-import { editProject, fetchProject, selectProject } from '../../store/project'
+import {fetchProject, selectProject } from '../../store/project'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react"
@@ -27,10 +27,10 @@ function EditProject () {
         setFinishedModal(false);
     };
 
-    const doneButton = async (e) => {
-        e.preventDefault();
-        setFinishedModal(true)
-    }
+    // const doneButton = async (e) => {
+    //     e.preventDefault();
+    //     setFinishedModal(true)
+    // }
 
 
 

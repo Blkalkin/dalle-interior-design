@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './EditProject.css'
 import ProjectFlowModal from './ProjectFlowModal';
 import { removeImage, standardImageEdit, creativeImageEdit } from '../../store/photoGen';
-import { addImage, editProject } from '../../store/project';
+import { addImage} from '../../store/project';
 import { useDispatch } from 'react-redux';
 
 function RecentPicture ({photoUrls, newImages, projectId}) {
@@ -82,6 +82,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
           setModeSelect(false)
           setMode(null)
           setNewPrompt("")
+          break
         default:
           break;
       }
