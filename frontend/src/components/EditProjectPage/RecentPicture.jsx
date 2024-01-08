@@ -105,7 +105,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
       if (imageLoading) {
         return <img src='https://media.tenor.com/XUIieA-J-vMAAAAi/loading.gif' alt='Image is loading' className='img-size'/>
       } else {
-        return <div className='waiting-text text'>Awaiting your next idea!</div>
+        return <div className='waiting-text title'>Awaiting your next idea . . .</div>
       }
     }
 
@@ -117,19 +117,12 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
           <div className="image-box" onClick={() => handleClick('firstBox')}>
             {photoUrls[photoUrls.length-1] && <img src={photoUrls[photoUrls.length-1]} alt={photoUrls[photoUrls.length-1]} />}
           </div>
-          <div className="image-box" onClick={() => handleClick('secondBox')}>
-            { tempDisplay ? tempDisplayInfo()
-            : {newImages} && (
-              <>
-                <img src={newImages.imageGenerated} alt={newImages.imageGenerated} />
-              </>
-            )}
-          </div>
-        </div>
-          <label className='text'> Save Image
+
+          <div className='project-options-RP'>
+          <label className='text save-img'> Save Image
             <svg
               className="star-icon"
-              width="24"
+              width="20"
               height="24"
               viewBox="0 0 24 24"
               fill={starFilled ? 'gold' : 'none'}
@@ -141,37 +134,47 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
           </label>
         {showModal && <ProjectFlowModal photoUrls={photoUrls} closeModal={closeModal} />}
         {modeSelect ?
-          <div>
+          <div className='middle-box'>
+            <h3 className='mode-RP'>{mode} Mode</h3>
             <form onSubmit={handleSubmit}>
-                <h3>{mode} Edit</h3>
                 <div className='mode-select-buttons'>
-                <input
-                    className='submit-form text'
-                    type="text"
-                    value={newPrompt}
-                    onChange={handleChange}
-                    placeholder="What do you want to change about this space?!"
-                />
+                  <input
+                      className='submit-form text'
+                      type="text"
+                      value={newPrompt}
+                      onChange={handleChange}
+                      placeholder="Tell me what you want, what you really, REALLY, want."
+                  />
                   <div className='submit-button text'>
+                    <button className='text' onClick={handleModeSelect}>Switch Mode</button>
                     <button className='text' type="submit">Submit</button>
                   </div>
-                </div>
-                <div></div>
-                <div className='mode-select-buttons'>
-                  <button className='text' onClick={handleModeSelect}>Change Mode</button>
                 </div>
             </form>
           </div>
         :
           <div className='mode-select-container'>
-            <h3 className='mode-text text'>Select editing mode</h3>
+            <h3 className='mode-text text'>Choose Your Mood: </h3>
             <div className='mode-select-buttons'>
-              <button className='text' onClick={handleModeSelect}>Standard</button>
+              <button className='text btn-text' onClick={handleModeSelect}>Standard</button>
               <div className='space-between'></div>
-              <button className='text' onClick={handleModeSelect}>Creative</button>
+              <button className='text btn-text' onClick={handleModeSelect}>Creative</button>
             </div>
           </div>
         }
+          </div>
+
+          
+          <div className="image-box" onClick={() => handleClick('secondBox')}>
+            { tempDisplay ? tempDisplayInfo()
+            : {newImages} && (
+              <>
+                <img src={newImages.imageGenerated} alt={newImages.imageGenerated} />
+              </>
+            )}
+          </div>
+        </div>
+  
       </>
     )
 }
