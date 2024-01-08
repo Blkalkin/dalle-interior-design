@@ -20,7 +20,7 @@ const commentsRouter = require('./routes/api/comments');
 const csrfRouter = require('./routes/api/csrf');
 const projectsRouter = require('./routes/api/projects');
 const imagesRouter = require('./routes/api/images');
-
+const rateLimitMiddleware = require("./routes/api/limit");
 
 
 const app = express();
@@ -50,7 +50,11 @@ app.use('/api/users', usersRouter);
 app.use('/api/comments', commentsRouter);
 app.use('/api/csrf', csrfRouter);
 app.use('/api/projects', projectsRouter);
+
+app.use('/api/images', rateLimitMiddleware) // this comes first so it goes through the middle ware then 
+
 app.use('/api/images', imagesRouter);
+
 
 
 
