@@ -6,7 +6,6 @@
   width: 100%;
   top: 0;
   background-color: white;
-  padding-top: 50px;
 }
 
 .first-photo {
@@ -25,13 +24,14 @@ border: 1px solid #ccc;
 }
 
 .image-box {
-width: 300px; /* Set your preferred width */
+width: 300px;
 height: 300px;
 border: 1px solid #000;
 display: flex;
 justify-content: center;
 align-items: center;
 cursor: pointer;
+border: rgb(111, 157, 185) dotted 5px;
 }
 
 .image-box img {
@@ -97,8 +97,8 @@ box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 .star-icon {
-width: 24px;
-height: 24px;
+width: 36px;
+height: 36px;
 fill: none;
 transition: fill 0.3s ease;
 }
@@ -121,18 +121,61 @@ fill: gold;
 
 .mode-select-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .mode-select-buttons button {
   cursor: pointer;
   border: none;
   border-radius: 8px;
-  height: 35px;
+  height: 55px;
   background-color: rgb(229, 176, 44);
   color: white;
+  padding: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
 }
 
 .mode-select-buttons button:hover {
   background-color: rgb(203, 157, 40);
+}
+
+label {
+  font-size: 32px;
+}
+
+.waiting-text {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: darkgreen;
+}
+
+.project-text {
+  font-size: 60px;
+}
+
+.mode-text {
+  text-align: center;
+}
+
+.submit-button {
+  margin-left: 5px;
+}
+
+.submit-form {
+  width: 600px
+}
+
+.img-size {
+  height: 30px;
+  width: 30px
 }

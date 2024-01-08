@@ -59,7 +59,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
             console.log(mode)
             break;
           case "Creative":
-             payload = { 
+             payload = {
               imageUrl: photoUrls[photoUrls.length-1],
               promptText: newPrompt
             }
@@ -72,7 +72,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
           default:
             break;
         }
-      
+
     }
 
     const handleChange = (event) => {
@@ -103,9 +103,9 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
 
     const tempDisplayInfo = () => {
       if (imageLoading) {
-        return <img src='https://media.tenor.com/XUIieA-J-vMAAAAi/loading.gif' alt='Image is loading'/>
+        return <img src='https://media.tenor.com/XUIieA-J-vMAAAAi/loading.gif' alt='Image is loading' className='img-size'/>
       } else {
-        return <div>Awaiting your next idea!</div>
+        return <div className='waiting-text text'>Awaiting your next idea!</div>
       }
     }
 
@@ -113,7 +113,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
     return (
         <>
         <div className="image-container">
-        
+
           <div className="image-box" onClick={() => handleClick('firstBox')}>
             {photoUrls[photoUrls.length-1] && <img src={photoUrls[photoUrls.length-1]} alt={photoUrls[photoUrls.length-1]} />}
           </div>
@@ -126,7 +126,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
             )}
           </div>
         </div>
-          <label> Save Image
+          <label className='text'> Save Image
             <svg
               className="star-icon"
               width="24"
@@ -144,22 +144,31 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
           <div>
             <form onSubmit={handleSubmit}>
                 <h3>{mode} Edit</h3>
+                <div className='mode-select-buttons'>
                 <input
+                    className='submit-form text'
                     type="text"
                     value={newPrompt}
                     onChange={handleChange}
                     placeholder="What do you want to change about this space?!"
                 />
-                <button type="submit">Submit</button>
+                  <div className='submit-button text'>
+                    <button className='text' type="submit">Submit</button>
+                  </div>
+                </div>
+                <div></div>
+                <div className='mode-select-buttons'>
+                  <button className='text' onClick={handleModeSelect}>Change Mode</button>
+                </div>
             </form>
-            <button onClick={handleModeSelect}>Change Mode</button>
           </div>
         :
           <div className='mode-select-container'>
-            <h3>Select editing mode</h3>
+            <h3 className='mode-text text'>Select editing mode</h3>
             <div className='mode-select-buttons'>
-              <button onClick={handleModeSelect}>Standard</button>
-              <button onClick={handleModeSelect}>Creative</button>
+              <button className='text' onClick={handleModeSelect}>Standard</button>
+              <div className='space-between'></div>
+              <button className='text' onClick={handleModeSelect}>Creative</button>
             </div>
           </div>
         }

@@ -38,13 +38,15 @@ function EditProject () {
         return (
             <>
                 <div className='project-page' >
-                    <h1>{project.title}</h1>
-                    <RecentPicture 
-                        photoUrls={project.photoUrls} 
-                        newImages={newImages} 
+                    <h1 className='project-text title'>{project.title}</h1>
+                    <RecentPicture
+                        photoUrls={project.photoUrls}
+                        newImages={newImages}
                         projectId={projectId}
                     />
-                    <button onClick={() => setFinishedModal(true)}>Done?</button>
+                    <div className='mode-select-buttons'>
+                        <button className='text' onClick={() => setFinishedModal(true)}>Done?</button>
+                    </div>
                 </div>
                 {finishedModal && <FinishedModal photoUrls={project.photoUrls} closeFinishModal={closeFinishModal} projectId={projectId}/>}
             </>
