@@ -13,6 +13,8 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
     const [newPrompt, setNewPrompt] = useState("")
     const [modeSelect, setModeSelect] = useState(false)
     const [mode, setMode] = useState(null)
+    const [imageLoading, setImageLoading] = useState(false)
+    const [tempDisplay, setTempDisplay] = useState(true)
 
     const handleClick = (boxName) => {
         if (boxName === 'firstBox') {
@@ -35,10 +37,13 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
         if (!newImages) return
         dispatch(addImage(projectId, {url: newImages.imageGenerated}))
         dispatch(removeImage())
+        setTempDisplay(true)
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setTempDisplay(true)
+        setImageLoading(true)
         let payload;
         switch (mode) {
           case "Standard":
@@ -46,7 +51,11 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
               imagePath: photoUrls[photoUrls.length-1],
               userPrompt: newPrompt
              }
-            dispatch(standardImageEdit(payload))
+            const standardRes = await dispatch(standardImageEdit(payload))
+            if (standardRes) {
+              setImageLoading(false)
+              setTempDisplay(false)
+            }
             console.log(mode)
             break;
           case "Creative":
@@ -54,7 +63,11 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
               imageUrl: photoUrls[photoUrls.length-1],
               promptText: newPrompt
             }
-            dispatch(creativeImageEdit(payload))
+            const creativeRes = dispatch(creativeImageEdit(payload))
+            if (creativeRes.ok) {
+              setImageLoading(false)
+              setTempDisplay(false)
+            }
             break
           default:
             break;
@@ -88,22 +101,32 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
 
     }
 
+    const tempDisplayInfo = () => {
+      if (imageLoading) {
+        return <img src='https://media.tenor.com/XUIieA-J-vMAAAAi/loading.gif' alt='Image is loading'/>
+      } else {
+        return <div>Awaiting your next idea!</div>
+      }
+    }
+
 
     return (
         <>
         <div className="image-container">
+        
           <div className="image-box" onClick={() => handleClick('firstBox')}>
             {photoUrls[photoUrls.length-1] && <img src={photoUrls[photoUrls.length-1]} alt={photoUrls[photoUrls.length-1]} />}
           </div>
           <div className="image-box" onClick={() => handleClick('secondBox')}>
-            {{newImages} && (
+            { tempDisplay ? tempDisplayInfo()
+            : {newImages} && (
               <>
                 <img src={newImages.imageGenerated} alt={newImages.imageGenerated} />
               </>
             )}
           </div>
         </div>
-          <label> Save This Image?
+          <label> Save Image
             <svg
               className="star-icon"
               width="24"
@@ -125,7 +148,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
                     type="text"
                     value={newPrompt}
                     onChange={handleChange}
-                    placeholder="Enter text"
+                    placeholder="What do you want to change about this space?!"
                 />
                 <button type="submit">Submit</button>
             </form>
