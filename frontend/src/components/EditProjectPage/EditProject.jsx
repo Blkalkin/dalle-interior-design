@@ -21,7 +21,7 @@ function EditProject () {
         if (!project){
             dispatch(fetchProject(projectId))
         }
-    }, [dispatch, project])
+    }, [dispatch, project, projectId])
 
     const closeFinishModal = () => {
         setFinishedModal(false);

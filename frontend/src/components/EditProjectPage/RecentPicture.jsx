@@ -4,6 +4,7 @@ import ProjectFlowModal from './ProjectFlowModal';
 import { removeImage, standardImageEdit, creativeImageEdit } from '../../store/photoGen';
 import { addImage, editProject } from '../../store/project';
 import { useDispatch } from 'react-redux';
+import InPainting from './InPainting';
 
 function RecentPicture ({photoUrls, newImages, projectId}) {
     const dispatch = useDispatch()
@@ -112,6 +113,10 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
 
     return (
         <>
+        {mode === "Creative" ? <div className="modal-background">
+            <InPainting projectImage={photoUrls[photoUrls.length-1]}/>
+        </div> : null}
+        
         <div className="image-container">
 
           <div className="image-box" onClick={() => handleClick('firstBox')}>
