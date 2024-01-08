@@ -6,7 +6,6 @@
   width: 100%;
   top: 0;
   background-color: white;
-  padding-top: 50px;
 }
 
 .first-photo {
@@ -25,13 +24,14 @@ border: 1px solid #ccc;
 }
 
 .image-box {
-width: 300px; /* Set your preferred width */
+width: 300px;
 height: 300px;
 border: 1px solid #000;
 display: flex;
 justify-content: center;
 align-items: center;
 cursor: pointer;
+border: rgb(111, 157, 185) dotted 5px;
 }
 
 .image-box img {
@@ -128,9 +128,17 @@ fill: gold;
   cursor: pointer;
   border: none;
   border-radius: 8px;
-  height: 35px;
+  height: 55px;
   background-color: rgb(229, 176, 44);
   color: white;
+}
+
+.mode-change {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .mode-select-buttons button:hover {
