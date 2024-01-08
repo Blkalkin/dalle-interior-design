@@ -100,9 +100,9 @@ const CreateProject = () => {
                 </div>
                 <form className='new-project-form' onSubmit={handleSubmit}>
                     <label className='title-label text'>
-                        Name your project:
+                        Give your awesome project a name:
                         <input 
-                        className='title-input' 
+                        className='title-input text' 
                         placeholder="Required" 
                         type="text" 
                         onChange={updateTitle} 
@@ -111,7 +111,7 @@ const CreateProject = () => {
                     </label>
                     
                     <div className='form-btns'>
-                        <button className='privacy-btn text' onClick={()=> setIsPublic(!isPublic)}> {isPublic ? "Your project will be public" : "Your project will be private"}</button>
+                        <button className='privacy-btn text' onClick={()=> setIsPublic(!isPublic)}> {isPublic ? "Public" : "Private"}</button>
                         <button className='submit-new-project-btn text' type='submit'>Create </button>
                      </div>
                 </form>
