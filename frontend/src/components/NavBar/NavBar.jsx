@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
 import CreateProjectModal from '../Projects/CreateProjectModal';
-import CreateProjectModal from '../Projects/CreateProjectModal';
 
 function NavBar () {
   const dispatch = useDispatch();

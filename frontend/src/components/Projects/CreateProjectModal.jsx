@@ -98,9 +98,9 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
         <div className="create-project-background">
             <div className="create-project-modal" ref={modalRef} style={step === 3 ? {width: "809px"} : null}>
                 <div className="create-project-modal-header">
-                    <button onClick={handleBackStep}><FontAwesomeIcon size="lg" icon={faLeftLong} /></button>
+                    <button onClick={handleBackStep}><FontAwesomeIcon size="lg" icon={step === 1 ? faX : faLeftLong} /></button>
                     <h2 className="title">{headerTitle[step]}</h2>
-                    <button onClick={handleForwardStep}>next</button>
+                    <button onClick={handleForwardStep}>{step === 3 ? "Submit" : "Next"}</button>
                 </div>
                 <div className="create-project-modal-content">
                     {step === 1 ? <div className="create-modal-step-1"><FilesDragAndDrop setImage={setImage}/></div> : null}
@@ -111,9 +111,9 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                         <form onSubmit={e => e.preventDefault()}>
                             <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Project Title"/>
                             <textarea 
-                            placeholder="Write a Description (optional)"
-                            value={description}
-                            onChange={e => setDescription(e.target.value)}>
+                                placeholder="Write a Description (optional)"
+                                value={description}
+                                onChange={e => setDescription(e.target.value)}>
                             </textarea>
                             <p>Setting project public, will allow other users to view your project</p>
                             <div className="switch-container">
