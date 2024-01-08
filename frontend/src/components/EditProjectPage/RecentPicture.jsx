@@ -59,7 +59,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
             console.log(mode)
             break;
           case "Creative":
-             payload = { 
+             payload = {
               imageUrl: photoUrls[photoUrls.length-1],
               promptText: newPrompt
             }
@@ -72,7 +72,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
           default:
             break;
         }
-      
+
     }
 
     const handleChange = (event) => {
@@ -113,7 +113,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
     return (
         <>
         <div className="image-container">
-        
+
           <div className="image-box" onClick={() => handleClick('firstBox')}>
             {photoUrls[photoUrls.length-1] && <img src={photoUrls[photoUrls.length-1]} alt={photoUrls[photoUrls.length-1]} />}
           </div>
@@ -144,15 +144,20 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
           <div>
             <form onSubmit={handleSubmit}>
                 <h3>{mode} Edit</h3>
+                <div className='mode-select-buttons'>
                 <input
                     type="text"
                     value={newPrompt}
                     onChange={handleChange}
                     placeholder="What do you want to change about this space?!"
                 />
-                <button type="submit">Submit</button>
+                  <button type="submit">Submit</button>
+                </div>
+                <div></div>
+                <div className='mode-change'>
+                  <button onClick={handleModeSelect}>Change Mode</button>
+                </div>
             </form>
-            <button onClick={handleModeSelect}>Change Mode</button>
           </div>
         :
           <div className='mode-select-container'>

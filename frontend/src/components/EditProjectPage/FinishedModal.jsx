@@ -41,7 +41,9 @@ const FinishedModal = ({photoUrls, closeFinishModal, projectId}) => {
                       onChange={handleChange}
                       placeholder="New Project Description"
                     />
-                    <button type="submit">FINISH</button>
+                    <div className="mode-select-buttons">
+                      <button type="submit">FINISH</button>
+                    </div>
                   </form>
                 </div>
               </div>
