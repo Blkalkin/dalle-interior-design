@@ -28,7 +28,7 @@ const FinishedModal = ({photoUrls, closeFinishModal, projectId}) => {
             <div className="modal">
               <div className="modal-content">
                 <span className="close" onClick={closeFinishModal}>&times;</span>
-                <h2>Finished?</h2>
+                <h2 className='text'>Finished?</h2>
                 <div className="image-gallery">
                   {photoUrls.map((url, index) => (
                     <img key={index} src={url} alt={`Image ${index + 1}`} />
