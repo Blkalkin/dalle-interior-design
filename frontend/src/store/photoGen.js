@@ -24,6 +24,7 @@ export const standardImageEdit = (image) =>  async(dispatch) => {
         console.log("Render Compete!")
         let data = await res.json()
         dispatch(receiveNewImage(data))
+        return data
     }
 
 }
@@ -37,6 +38,7 @@ export const creativeImageEdit = image => async(dispatch) => {
     if (res.ok) {
         let data = await res.json()
         dispatch(receiveNewImage(data))
+        return res
     }
 }
 
