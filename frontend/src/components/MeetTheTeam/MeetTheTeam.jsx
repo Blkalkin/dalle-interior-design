@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import './MeetTheTeam.css'
 import matt from "../../../assets/Team-pics/matt.jpg"
 import balaji from "../../../assets/Team-pics/balaji.jpeg"
+import ashley from "../../../assets/Team-pics/ashley.png"
 
 const MeetTheTeam = () => {
     return (
@@ -34,7 +35,7 @@ const MeetTheTeam = () => {
             </div>
             <div className="bottom-section">
                 <div className="team-card text"> 
-                    <img className='team-photo' src="https://scontent-lax3-1.xx.fbcdn.net/v/t1.6435-9/71829370_10215311429792888_532611176320729088_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=7a1959&_nc_ohc=usqzJ9SAOToAX9xTAPD&_nc_ht=scontent-lax3-1.xx&oh=00_AfDoVLbs27nLYIwk_xV_SbyFQYYcKzTifKJthiL-nVUhng&oe=65B3012C" alt="" />
+                    <img className='team-photo' src={ashley} alt="" />
                     Ashley Yan
                     <div className="team-links"> 
                         <Link to="https://github.com/Asyan77" target="_blank">

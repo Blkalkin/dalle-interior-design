@@ -19,8 +19,14 @@
 .projects-index-grid {
     /* position: absolute; */
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Creates 4 columns with equal width */
+    grid-template-columns: repeat(4, 1fr); /* Creates 4 columns with equal width */
     gap: 35px; 
     flex-wrap: wrap;
     padding: 0;
+  }
+
+  .created-text {
+    font-size: 12px;
+    font-weight: 200;
+    /* color: rgb(111, 157, 185); */
   }
