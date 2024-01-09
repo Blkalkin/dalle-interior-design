@@ -22,7 +22,7 @@ const ProjectIndexItem = ({project}) => {
               <img className='single-project-img' src={lastImage} alt="test" />
             </Link>
             <div className='bottom-details'>
-                <h4 className='text'>{formatDateString(project.createdAt)}</h4>
+                <h4 className='text created-text'>Created {formatDateString(project.createdAt)}</h4>
                 {projectOwner? (
                     <img onClick={()=> dispatch(deleteProject(project._id))} src={deleteIcon} className='deleteIcon' alt="delete" />
                 ):(null)}
