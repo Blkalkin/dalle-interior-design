@@ -27,7 +27,9 @@ const PhotoModal = (props) => {
         <div className='modal-background'>
             <div className='modal-content' ref={modalRef}>
                 <div>
-                    <span className="close" onClick={props.closePhotoModal}>&times;</span>
+                    <div className='close-container'>
+                        <span className="close" onClick={props.closePhotoModal}>&times;</span>
+                    </div>
                     <img className='enlarged-photo' src={props.url} alt="" />
                 </div>  
             </div>

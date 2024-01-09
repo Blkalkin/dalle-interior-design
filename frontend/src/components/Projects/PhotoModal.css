@@ -6,5 +6,10 @@
 
 .close {
     position: absolute;
-    left: 1260px;
+    margin-right: 5px;
+}
+
+.close-container {
+    display: flex;
+    justify-content: end;
 }
