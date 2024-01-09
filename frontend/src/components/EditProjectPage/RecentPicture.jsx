@@ -55,6 +55,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
             if (standardRes) {
               setImageLoading(false)
               setTempDisplay(false)
+              setNewPrompt("")
             }
             console.log(mode)
             break;
@@ -103,76 +104,70 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
 
     const tempDisplayInfo = () => {
       if (imageLoading) {
-        return <img src='https://media.tenor.com/XUIieA-J-vMAAAAi/loading.gif' alt='Image is loading' className='img-size'/>
+        return <img src='https://media.tenor.com/XUIieA-J-vMAAAAi/loading.gif' alt='Image is loading' className='loading-img'/>
       } else {
-        return <div className='waiting-text text'>Awaiting your next idea!</div>
+        return <div className='waiting-text title'>Awaiting your next idea . . .</div>
       }
     }
 
 
     return (
-        <>
-        <div className="image-container">
-
+     
+      <div className="image-container">
           <div className="image-box" onClick={() => handleClick('firstBox')}>
             {photoUrls[photoUrls.length-1] && <img src={photoUrls[photoUrls.length-1]} alt={photoUrls[photoUrls.length-1]} />}
           </div>
+
+          <div className='project-options-RP'>
+            <label className='text save-img'> Save Image
+              <svg
+                className="star-icon"
+                width="20"
+                height="24"
+                viewBox="0 0 24 24"
+                fill={starFilled ? 'gold' : 'none'}
+                onMouseEnter={() => handleStarHover(!starFilled)}
+                onClick={() => handleSavingImage()}
+              >
+                <path d="M12 2l2.591 7.82H22l-6.711 4.872 2.591 7.82L12 17.64l-6.879 4.872 2.591-7.82L2 9.82h7.409L12 2z"/>
+              </svg>
+            </label>
+            {showModal && <ProjectFlowModal photoUrls={photoUrls} closeModal={closeModal} />}
+            {modeSelect ?
+              <div className='middle-box'>
+                <h3 className='mode-RP'>{mode} Mode</h3>
+                <form className='mode-select-buttons'>
+                  <input
+                      className='submit-form text'
+                      type="text"
+                      value={newPrompt}
+                      onChange={handleChange}
+                      placeholder="Tell me what you want, what you really, REALLY, want."
+                  />
+                  <div className='submit-button-box'>
+                    <button className='submit-button text' onClick={handleModeSelect}>Switch Mode</button>
+                    <button className='submit-button text' onClick={handleSubmit}>Submit</button>
+                  </div>
+                </form>
+              </div>
+            :
+              <div className='mode-select-container'>
+                <h3 className='mode-RP'>Choose Your Mood: </h3>
+                <div className='mode-select-buttons'>
+                  <button className='text btn-text' onClick={handleModeSelect}>Standard</button>
+                  <button className='text btn-text' onClick={handleModeSelect}>Creative</button>
+                </div>
+              </div>
+            }
+          </div>
+
           <div className="image-box" onClick={() => handleClick('secondBox')}>
             { tempDisplay ? tempDisplayInfo()
             : {newImages} && (
-              <>
                 <img src={newImages.imageGenerated} alt={newImages.imageGenerated} />
-              </>
             )}
           </div>
         </div>
-          <label className='text'> Save Image
-            <svg
-              className="star-icon"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill={starFilled ? 'gold' : 'none'}
-              onMouseEnter={() => handleStarHover(!starFilled)}
-              onClick={() => handleSavingImage()}
-            >
-              <path d="M12 2l2.591 7.82H22l-6.711 4.872 2.591 7.82L12 17.64l-6.879 4.872 2.591-7.82L2 9.82h7.409L12 2z"/>
-            </svg>
-          </label>
-        {showModal && <ProjectFlowModal photoUrls={photoUrls} closeModal={closeModal} />}
-        {modeSelect ?
-          <div>
-            <form onSubmit={handleSubmit}>
-                <h3>{mode} Edit</h3>
-                <div className='mode-select-buttons'>
-                <input
-                    className='submit-form text'
-                    type="text"
-                    value={newPrompt}
-                    onChange={handleChange}
-                    placeholder="What do you want to change about this space?!"
-                />
-                  <div className='submit-button text'>
-                    <button className='text' type="submit">Submit</button>
-                  </div>
-                </div>
-                <div></div>
-                <div className='mode-select-buttons'>
-                  <button className='text' onClick={handleModeSelect}>Change Mode</button>
-                </div>
-            </form>
-          </div>
-        :
-          <div className='mode-select-container'>
-            <h3 className='mode-text text'>Select editing mode</h3>
-            <div className='mode-select-buttons'>
-              <button className='text' onClick={handleModeSelect}>Standard</button>
-              <div className='space-between'></div>
-              <button className='text' onClick={handleModeSelect}>Creative</button>
-            </div>
-          </div>
-        }
-      </>
     )
 }
 
