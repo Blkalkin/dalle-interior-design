@@ -3,3 +3,8 @@
     height: 650px;
     width: 650px;
 }
+
+.close {
+    position: absolute;
+    left: 1260px;
+}
