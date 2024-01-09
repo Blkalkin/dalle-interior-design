@@ -86,7 +86,7 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
             navigate(`/edit-project/${projectId}`)
             setOpenModal(false)
         }
-        console.log(formData)
+    
         dispatch(createProject(formData)).catch(res =>
             res._id ?  closeModal(res._id) : null
         )
