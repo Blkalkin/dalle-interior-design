@@ -7,11 +7,10 @@ const FilesDragAndDrop = ({ setImage }) => {
   const drop = useRef(null);
   const fileInput = useRef(null);
   const [welcome, setWelcome] = useState(true);
-  // const [moreThanOnePhoto, setMoreThanOnePhoto] = useState(false);
   const [fileLoaded, setFileLoaded] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [imgFileOk, setImageFileOk] = useState(true);
-  const [imagePreview, setImagePreview] = useState(null);
+
 
   useEffect(() => {
     drop.current.addEventListener('dragover', handleDragOver);
@@ -30,10 +29,6 @@ const FilesDragAndDrop = ({ setImage }) => {
 
   const handleFileInput = (e) => {
     const file = e.target.files[0];
- 
-    const previewURL = URL.createObjectURL(file);
-    setImagePreview(previewURL);
-    // setMoreThanOnePhoto(false);
     setFileLoaded(true);
     setWelcome(false);
     setImageFileOk(true);
@@ -45,9 +40,7 @@ const FilesDragAndDrop = ({ setImage }) => {
     e.stopPropagation();
     setWelcome(false);
     setFileLoaded(false);
-    // setMoreThanOnePhoto(false);
     setImageFileOk(true);
-    setImagePreview(null);
   };
 
   const handleDragEnter = (e) => {
@@ -56,9 +49,7 @@ const FilesDragAndDrop = ({ setImage }) => {
     setDragging(true);
     setWelcome(false);
     setFileLoaded(false);
-    // setMoreThanOnePhoto(false);
     setImageFileOk(true);
-    setImagePreview(null);
   };
 
   const handleDragLeave = (e) => {
@@ -70,18 +61,20 @@ const FilesDragAndDrop = ({ setImage }) => {
     setImage(null)
   };
 
-  let files;
-
+  
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
-
+    let files;
+    
     files = [...e.dataTransfer.files];
 
     if (files.length > 1) {
-      // setMoreThanOnePhoto(true);
       setWelcome(false);
       setDragging(false);
+      setFileLoaded(false);
+      setImageFileOk(false);
+      setImage(null)
       files.length = 0;
       return;
     }
@@ -96,15 +89,11 @@ const FilesDragAndDrop = ({ setImage }) => {
       setFileLoaded(false);
       setDragging(false);
       setImageFileOk(false);
+      setImage(null)
       return;
     }
 
-
-    const previewURL = URL.createObjectURL(files[0]);
-    setImagePreview(previewURL);
-
     setDragging(false);
-    // setMoreThanOnePhoto(false);
     setFileLoaded(true);
     setWelcome(false);
     setImageFileOk(true);
@@ -113,47 +102,26 @@ const FilesDragAndDrop = ({ setImage }) => {
     setImage(files[0]);
   };
 
-  const removeImg = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setWelcome(true);
-    // setMoreThanOnePhoto(false);
-    setFileLoaded(false);
-    setImageFileOk(true);
-    setImage(null);
-    setImagePreview(null);
-  };
-
   return (
-    <>
       <div ref={drop} id='drag-area'  
         className='FilesDragAndDrop FilesDragAndDrop__area'
-        style={ fileLoaded? { border: "none", height: "300px" } : null }
         onClick={() => fileInput.current.click()}
       >
         {welcome ? (
             <div className='drop-text'>
                 <span>Hey, drop me a photo here!</span>
-                <span>Or select one of the photos below</span>
             </div>
         ) : null}
-        {fileLoaded ? imagePreview && <img src={imagePreview} alt='Dropped Image' className='preview-image' /> : null}
         {dragging ? 'Drop that file down low' : null}
         {!imgFileOk ? 'Please upload a png, jpg, or jpeg ' : null}
-      </div>
-        <button 
-          className='remove-image-button text'
-          onClick={removeImg}>
-          Clear Selected Photo
-        </button>
         <input
-        ref={fileInput}
-        type='file'
-        accept='image/*'
-        onChange={handleFileInput}
-        style={{ display: 'none' }}
-      />
-    </>
+          ref={fileInput}
+          type='file'
+          accept='image/*'
+          onChange={handleFileInput}
+          style={{ display: 'none' }}
+        />
+      </div>
   );
 };
 

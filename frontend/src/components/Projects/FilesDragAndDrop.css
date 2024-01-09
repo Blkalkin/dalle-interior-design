@@ -9,7 +9,7 @@
   flex-flow: column nowrap;
   font-size: 24px;
   color: #555555;
-  border: 2px  rgb(229, 176, 44) dashed;
+  /* border: 2px  rgb(229, 176, 44) dashed; */
   border-radius: 12px;
   margin-bottom: 8px;
   cursor: pointer;
