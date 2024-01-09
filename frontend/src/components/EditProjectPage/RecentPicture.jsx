@@ -111,7 +111,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
 
 
     return (
-        <>
+     
         <div className="image-container">
 
           <div className="image-box" onClick={() => handleClick('firstBox')}>
@@ -119,63 +119,59 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
           </div>
 
           <div className='project-options-RP'>
-          <label className='text save-img'> Save Image
-            <svg
-              className="star-icon"
-              width="20"
-              height="24"
-              viewBox="0 0 24 24"
-              fill={starFilled ? 'gold' : 'none'}
-              onMouseEnter={() => handleStarHover(!starFilled)}
-              onClick={() => handleSavingImage()}
-            >
-              <path d="M12 2l2.591 7.82H22l-6.711 4.872 2.591 7.82L12 17.64l-6.879 4.872 2.591-7.82L2 9.82h7.409L12 2z"/>
-            </svg>
-          </label>
-        {showModal && <ProjectFlowModal photoUrls={photoUrls} closeModal={closeModal} />}
-        {modeSelect ?
-          <div className='middle-box'>
-            <h3 className='mode-RP'>{mode} Mode</h3>
-            <form onSubmit={handleSubmit}>
+            <label className='text save-img'> Save Image
+              <svg
+                className="star-icon"
+                width="20"
+                height="24"
+                viewBox="0 0 24 24"
+                fill={starFilled ? 'gold' : 'none'}
+                onMouseEnter={() => handleStarHover(!starFilled)}
+                onClick={() => handleSavingImage()}
+              >
+                <path d="M12 2l2.591 7.82H22l-6.711 4.872 2.591 7.82L12 17.64l-6.879 4.872 2.591-7.82L2 9.82h7.409L12 2z"/>
+              </svg>
+            </label>
+            {showModal && <ProjectFlowModal photoUrls={photoUrls} closeModal={closeModal} />}
+            {modeSelect ?
+              <div className='middle-box'>
+                <h3 className='mode-RP'>{mode} Mode</h3>
+                <form>
+                    <div className='mode-select-buttons'>
+                      <input
+                          className='submit-form text'
+                          type="text"
+                          value={newPrompt}
+                          onChange={handleChange}
+                          placeholder="Tell me what you want, what you really, REALLY, want."
+                      />
+                      <div className='submit-button text'>
+                        <button className='text' onClick={handleSubmit}>Submit</button>
+                        <button className='text' onClick={handleModeSelect}>Switch Mode</button>
+                      </div>
+                    </div>
+                </form>
+              </div>
+            :
+              <div className='mode-select-container'>
+                <h3 className='mode-RP'>Choose Your Mood: </h3>
                 <div className='mode-select-buttons'>
-                  <input
-                      className='submit-form text'
-                      type="text"
-                      value={newPrompt}
-                      onChange={handleChange}
-                      placeholder="Tell me what you want, what you really, REALLY, want."
-                  />
-                  <div className='submit-button text'>
-                    <button className='text' onClick={handleModeSelect}>Switch Mode</button>
-                    <button className='text' type="submit">Submit</button>
-                  </div>
+                  <button className='text btn-text' onClick={handleModeSelect}>Standard</button>
+                  <div className='space-between'></div>
+                  <button className='text btn-text' onClick={handleModeSelect}>Creative</button>
                 </div>
-            </form>
-          </div>
-        :
-          <div className='mode-select-container'>
-            <h3 className='mode-text text'>Choose Your Mood: </h3>
-            <div className='mode-select-buttons'>
-              <button className='text btn-text' onClick={handleModeSelect}>Standard</button>
-              <div className='space-between'></div>
-              <button className='text btn-text' onClick={handleModeSelect}>Creative</button>
-            </div>
-          </div>
-        }
-          </div>
+              </div>
+            }
+      </div>
 
           
           <div className="image-box" onClick={() => handleClick('secondBox')}>
             { tempDisplay ? tempDisplayInfo()
             : {newImages} && (
-              <>
                 <img src={newImages.imageGenerated} alt={newImages.imageGenerated} />
-              </>
             )}
           </div>
         </div>
-  
-      </>
     )
 }
 
