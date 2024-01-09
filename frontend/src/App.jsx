@@ -49,10 +49,6 @@ const router = createBrowserRouter([
         element: <Profile/>
       },
       {
-        path: "create-project",
-        element: <ProtectedRoute component={CreateProject}/>
-      },
-      {
         path: "community",
         children: [
           {
