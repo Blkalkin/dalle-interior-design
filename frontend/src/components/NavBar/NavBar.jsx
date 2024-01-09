@@ -5,6 +5,8 @@ import { logout } from '../../store/session';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
+import CreateProjectModal from '../Projects/CreateProjectModal';
+
 
 function NavBar () {
   const dispatch = useDispatch();
@@ -12,12 +14,13 @@ function NavBar () {
   const loggedIn = useSelector(state => !!state.session.user);
   const currUser = useSelector(state => state.session.user)
   const [searchInput, setSearchInput] = useState("")
+  const [modalOpen, setModalOpen] = useState(false)
 
   const handleButton = e => {
     const button = e.target.value
     switch (button) {
       case "create project":
-        navigate('/create-project')
+        setModalOpen(true)
         break;
       case "sign-up":
         navigate('/signup')
@@ -87,6 +90,7 @@ function NavBar () {
         </div>
         }
       </div>
+      {modalOpen && <CreateProjectModal setOpenModal={setModalOpen} authorId={currUser._id}/>}
     </div>
   );
 }
