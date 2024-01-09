@@ -82,7 +82,7 @@ const FilesDragAndDrop = ({ setImage }) => {
 
     // Convert canvas back to image
     const resizedImage = new Image();
-    resizedImage.src = canvas.toDataURL('image/jpeg'); // You can change the format if needed
+    resizedImage.src = canvas.toDataURL('image/png');
 
     return resizedImage;
   };
