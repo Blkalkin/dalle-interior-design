@@ -59,6 +59,7 @@ object-fit: cover;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: purple;
   /* background-color: gray; */
 }
 
@@ -169,7 +170,7 @@ fill: gold;
   background-color: rgb(203, 157, 40);
 }
 
-label {
+.save-img {
   font-size: 32px;
 }
 
@@ -186,30 +187,32 @@ label {
   font-size: 60px;
 }
 
-.mode-text {
+
+.submit-button-box {
+  /* background-color: red; */
+  display: flex;
+  justify-content: space-evenly;
 
 }
 
 .submit-button {
-  margin-left: 5px;
-  display: flex;
-  /* background-color: red; */
-  justify-content: space-evenly;
-  
+  width: 130px;
 }
 
 .submit-form {
   text-wrap: wrap;
   height: 200px;
-  width: 300px;
+  min-width: 300px;
   font-size: 15px;
+  overflow: auto;
   overflow-wrap: break-word;
+  padding-left: 13px;
+  padding-right: 13px;
   border: rgb(111, 157, 185) solid 1px;
 }
 
-.img-size {
-  height: 30px;
-  width: 30px
+.loading-img {
+height: 10px;
 }
 
 
@@ -231,4 +234,21 @@ label {
   color: rgb(111, 157, 185);
   font-family: 'Noto Serif Display', serif;
   text-align: center;
+}
+
+.done-btn {
+  margin-bottom: 50px;
+  background-color: purple;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  height: 55px;
+  color: white;
+  padding: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

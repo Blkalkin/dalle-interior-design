@@ -55,6 +55,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
             if (standardRes) {
               setImageLoading(false)
               setTempDisplay(false)
+              setNewPrompt("")
             }
             console.log(mode)
             break;
@@ -103,7 +104,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
 
     const tempDisplayInfo = () => {
       if (imageLoading) {
-        return <img src='https://media.tenor.com/XUIieA-J-vMAAAAi/loading.gif' alt='Image is loading' className='img-size'/>
+        return <img src='https://media.tenor.com/XUIieA-J-vMAAAAi/loading.gif' alt='Image is loading' className='loading-img'/>
       } else {
         return <div className='waiting-text title'>Awaiting your next idea . . .</div>
       }
@@ -112,8 +113,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
 
     return (
      
-        <div className="image-container">
-
+      <div className="image-container">
           <div className="image-box" onClick={() => handleClick('firstBox')}>
             {photoUrls[photoUrls.length-1] && <img src={photoUrls[photoUrls.length-1]} alt={photoUrls[photoUrls.length-1]} />}
           </div>
@@ -136,20 +136,18 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
             {modeSelect ?
               <div className='middle-box'>
                 <h3 className='mode-RP'>{mode} Mode</h3>
-                <form>
-                    <div className='mode-select-buttons'>
-                      <input
-                          className='submit-form text'
-                          type="text"
-                          value={newPrompt}
-                          onChange={handleChange}
-                          placeholder="Tell me what you want, what you really, REALLY, want."
-                      />
-                      <div className='submit-button text'>
-                        <button className='text' onClick={handleSubmit}>Submit</button>
-                        <button className='text' onClick={handleModeSelect}>Switch Mode</button>
-                      </div>
-                    </div>
+                <form className='mode-select-buttons'>
+                  <input
+                      className='submit-form text'
+                      type="text"
+                      value={newPrompt}
+                      onChange={handleChange}
+                      placeholder="Tell me what you want, what you really, REALLY, want."
+                  />
+                  <div className='submit-button-box'>
+                    <button className='submit-button text' onClick={handleModeSelect}>Switch Mode</button>
+                    <button className='submit-button text' onClick={handleSubmit}>Submit</button>
+                  </div>
                 </form>
               </div>
             :
@@ -157,14 +155,12 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
                 <h3 className='mode-RP'>Choose Your Mood: </h3>
                 <div className='mode-select-buttons'>
                   <button className='text btn-text' onClick={handleModeSelect}>Standard</button>
-                  <div className='space-between'></div>
                   <button className='text btn-text' onClick={handleModeSelect}>Creative</button>
                 </div>
               </div>
             }
-      </div>
+          </div>
 
-          
           <div className="image-box" onClick={() => handleClick('secondBox')}>
             { tempDisplay ? tempDisplayInfo()
             : {newImages} && (
