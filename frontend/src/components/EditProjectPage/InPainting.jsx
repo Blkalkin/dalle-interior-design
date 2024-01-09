@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const InPainting = ({projectImage}) => {
   const [originalImage, setOriginalImage] = useState('');
+  const [imageRendered, setImageRendered] = useState(false)
   const canvasRef = useRef(null);
   console.log(canvasRef)
 
@@ -121,16 +122,21 @@ const InPainting = ({projectImage}) => {
     link.href = canvas.toDataURL();
     link.click();
   };
-  useEffect(()=> {
-    fileSelected(projectImage)
-  },[projectImage])
+
+  // useEffect(() => {
+  //   if (projectImage) {
+  //     setImageRendered(true);
+  //   }
+  // }, [projectImage]);
   
+  fileSelected(projectImage)
+
   return (
     <div style={styles.container}>
       <h2 style={styles.title}>Mark what would like to change</h2>
       <div>
         <div style={styles.title}>
-          2. Use the mouse to erase parts of the photo that should be edited by AI
+          Use the mouse to erase parts of the photo that should be edited by AI
         </div>
         <div></div>
         <canvas ref={canvasRef} width={600} height={600} style={styles.outerCanvas}></canvas>
@@ -173,7 +179,7 @@ const styles = {
     width: '45vw',
     height: '45vw',
     border: '1px solid black',
-    // background: "white"
+    background: "white"
   },
   buttonContainer: {
     marginVertical: '8px',
