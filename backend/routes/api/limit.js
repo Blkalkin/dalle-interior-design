@@ -1,4 +1,4 @@
-import { rateLimit } from 'express-rate-limit'
+const rateLimit = require('express-rate-limit');
 
 // Rate limit middleware
 const rateLimitMiddleware = rateLimit({
