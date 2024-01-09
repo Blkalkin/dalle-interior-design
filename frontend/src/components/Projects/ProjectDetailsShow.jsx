@@ -6,6 +6,7 @@ import './ProjectDetailsShow.css'
 import CommentIndex from "../Comments/CommentIndex"
 import editIcon from '../../../assets/icons/editIcon.png'
 import EditProjectDetails from "./EditProjectDetails"
+import PhotoModal from "./PhotoModal";
 
 const ProjectDetailsShow = () => {
     const dispatch = useDispatch()
@@ -15,6 +16,10 @@ const ProjectDetailsShow = () => {
     const currUser = useSelector(state => state.session.user)
     const isCurrUser = currUser && currUser._id === project?.author._id
     const [openEdit, setOpenEdit] = useState(false)
+    const [showPhotoModal, setShowPhotoModal] = useState(false)
+    const [photoUrl, setPhotoUrl] = useState('')
+
+    
 
     
     useEffect(()=> {
@@ -30,6 +35,14 @@ const ProjectDetailsShow = () => {
         setOpenEdit(true)
     }
 
+    const closePhotoModal = () => {
+        setShowPhotoModal(false);
+    };
+
+    const enlargePhoto = (url) => {
+        setShowPhotoModal(true);
+        setPhotoUrl(url);
+    }
 
     if(project) {
         return (
@@ -45,10 +58,11 @@ const ProjectDetailsShow = () => {
                 }
                <div className="photos-and-comments-container">
                     <ul className="projects-index-grid-PDS">
+                        {showPhotoModal && < PhotoModal url={photoUrl} closePhotoModal={closePhotoModal} />}
                         {photos.map((photo, idx) => 
                             <li key={idx} className="photo-PDS">
-                                <Link >
-                                    <img  src={photo} alt="photos"/>
+                                <Link onClick={() => enlargePhoto(photo)} >
+                                    <img src={photo} alt="photos" />
                                 </Link>
                             </li>
                         )}
