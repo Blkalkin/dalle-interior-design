@@ -1,5 +1,4 @@
 .enlarged-photo {
-    object-fit: contain;
     height: 650px;
     width: 650px;
 }
@@ -13,3 +12,4 @@
     display: flex;
     justify-content: end;
 }
+
