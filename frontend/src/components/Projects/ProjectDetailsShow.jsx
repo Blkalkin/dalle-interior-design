@@ -45,6 +45,7 @@ const ProjectDetailsShow = () => {
         setShowPhotoModal(true);
         setPhotoUrl(url);
         setPhotoIdx(idx)
+        setPhotoIdx(idx)
     }
 
     if (project) {
