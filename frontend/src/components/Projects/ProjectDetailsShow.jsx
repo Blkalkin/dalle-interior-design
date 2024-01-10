@@ -22,7 +22,7 @@ const ProjectDetailsShow = () => {
 
     const [loggedIn, setLoggedIn] = useState(false)
 
-    
+
     useEffect(()=> {
         currUser ? setLoggedIn(true) : null
         dispatch(fetchProject(projectId))
@@ -54,7 +54,7 @@ const ProjectDetailsShow = () => {
                 <>
                     <div className="project-title-PDS title">{project.title}</div>
                     <div className="project-description-PDS text">{project.description}</div>
-                    {isCurrUser ? 
+                    {isCurrUser ?
                         <img onClick={openEditModal} className='edit-PDS' src={editIcon} alt="" />
                         : null}
                 </>
@@ -63,19 +63,19 @@ const ProjectDetailsShow = () => {
                     <div>
                         <ul className="projects-index-grid-PDS">
                             {showPhotoModal && < PhotoModal url={photoUrl} closePhotoModal={closePhotoModal} photoIdx={photoIdx}/>}
-                            {photos.map((photo, idx) => 
+                            {photos.map((photo, idx) =>
                                 <li key={idx} className="photo-PDS">
                                     <Link onClick={() => enlargePhoto(photo, idx)} >
                                         <img src={photo} alt="photos" />
                                     </Link>
                                 </li>
                             )}
-                        </ul> 
+                        </ul>
                     </div>
                     <div className='comments-area'>
                          {/* <h2 className="title comments-title">{`Share some thoughts on ${project.author.username}'s project:`}</h2> */}
                          <h2 className="title comments-title">{`Comments on ${project.author.username}'s project:`}</h2>
-                
+
                         <CommentIndex project={project} loggedIn={loggedIn} />
                     </div>
                 </div>
