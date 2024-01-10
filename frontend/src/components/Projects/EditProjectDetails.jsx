@@ -40,7 +40,8 @@ const EditProjectDetails = ({title, description, projectId, setOpenEdit}) => {
                     type="text"
                     value={newDescription}
                     onChange={updateDescription} 
-                    className='text text-EPD'/>
+                    className='text text-EPD'
+                    placeholder='add your project description here' />
             </form>
             <button className='cancel-EPD text' onClick={()=> setOpenEdit(false)}>Cancel</button>
             <button className='update-EPD text' onClick={handleSubmit}>Update</button>
