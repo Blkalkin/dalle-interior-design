@@ -197,17 +197,25 @@ fill: gold;
 
 .submit-button {
   width: 130px;
+  margin: 5px;
+
 }
 
 .submit-form {
   text-wrap: wrap;
   height: 200px;
-  min-width: 300px;
+  /* min-width: 250px; */
+  /* width: 80%; */
   font-size: 15px;
-  overflow: auto;
+  /* overflow: auto; */
   overflow-wrap: break-word;
   padding-left: 13px;
   padding-right: 13px;
+  margin-left: 10px;
+  margin-right: 5%;
+  margin-left: 5%;
+
+
   border: rgb(111, 157, 185) solid 1px;
 }
 
