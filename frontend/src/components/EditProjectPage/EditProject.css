@@ -279,3 +279,18 @@ height: 100px;
   justify-content: center;
   align-items: center;
 }
+
+.mode-info-container {
+  display: flex;
+  justify-content: center;
+  height: 600px;
+  width: inherit;
+
+}
+
+.mode-info-content {
+  width: 500px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
