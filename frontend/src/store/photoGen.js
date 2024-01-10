@@ -19,12 +19,15 @@ export const standardImageEdit = (image) =>  async(dispatch) => {
         method: "POST",
         body: JSON.stringify(image)
     })
-
+    console.log("are we here?")
     if (res.ok) {
         console.log("Render Compete!")
         let data = await res.json()
         dispatch(receiveNewImage(data))
-        return data
+        return res
+    } else {
+        console.log(res)
+        // return res
     }
 
 }
