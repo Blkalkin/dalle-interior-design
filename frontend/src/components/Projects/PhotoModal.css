@@ -1,4 +1,15 @@
 .enlarged-photo {
+    object-fit: contain;
     height: 650px;
     width: 650px;
+}
+
+.close {
+    position: absolute;
+    margin-right: 5px;
+}
+
+.close-container {
+    display: flex;
+    justify-content: end;
 }
