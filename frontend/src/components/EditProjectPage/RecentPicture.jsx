@@ -60,9 +60,12 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
              }
             const standardRes = await dispatch(standardImageEdit(payload))
             if (standardRes) {
+              // console.log("broken path works")
               setImageLoading(false)
               setTempDisplay(false)
               setNewPrompt("")
+            } else {
+              // console.log(standardRes.statusText)
             }
             console.log(mode)
             break;
@@ -125,7 +128,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
 
 
     return (
-     
+
       <div className="image-container">
           <div className="image-box" onClick={() => handleClick('firstBox')}>
             {photoUrls[photoUrls.length-1] && <img src={photoUrls[photoUrls.length-1]} alt={photoUrls[photoUrls.length-1]} />}

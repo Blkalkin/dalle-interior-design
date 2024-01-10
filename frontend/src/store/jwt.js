@@ -8,10 +8,10 @@
   }
 
   async function jwtFetch(url, options = {}) {
-  
+
     options.method = options.method || "GET";
     options.headers = options.headers || {};
-  
+
     const jwtToken = localStorage.getItem("jwtToken");
     if (jwtToken) options.headers["Authorization"] = 'Bearer ' + jwtToken;
 
@@ -23,9 +23,9 @@
 
 
     const res = await fetch(url, options);
-
+    // console.log(res)
     if (res.status >= 400) throw res;
-
+    // console.log("here")
     return res;
   }
 
