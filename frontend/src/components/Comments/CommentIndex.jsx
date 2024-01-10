@@ -30,7 +30,7 @@ const CommentIndex = ({project}) => {
 
     useEffect(()=> {
         dispatch(fetchComments(project._id))
-    },[dispatch, project])
+    },[dispatch, project.id])
 
 
     const handleSubmit = e => {

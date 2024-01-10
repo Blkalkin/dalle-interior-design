@@ -57,16 +57,18 @@ const ProjectDetailsShow = () => {
                 </>
                 }
                <div className="photos-and-comments-container">
-                    <ul className="projects-index-grid-PDS">
-                        {showPhotoModal && < PhotoModal url={photoUrl} closePhotoModal={closePhotoModal} />}
-                        {photos.map((photo, idx) => 
-                            <li key={idx} className="photo-PDS">
-                                <Link onClick={() => enlargePhoto(photo)} >
-                                    <img src={photo} alt="photos" />
-                                </Link>
-                            </li>
-                        )}
-                    </ul> 
+                    <div>
+                        <ul className="projects-index-grid-PDS">
+                            {showPhotoModal && < PhotoModal url={photoUrl} closePhotoModal={closePhotoModal} />}
+                            {photos.map((photo, idx) => 
+                                <li key={idx} className="photo-PDS">
+                                    <Link onClick={() => enlargePhoto(photo)} >
+                                        <img src={photo} alt="photos" />
+                                    </Link>
+                                </li>
+                            )}
+                        </ul> 
+                    </div>
                     <div className='comments-area'>
                         <CommentIndex project={project} />
                     </div>
