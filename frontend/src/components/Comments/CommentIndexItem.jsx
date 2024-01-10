@@ -28,6 +28,7 @@ const CommentIndexItem = ({currentUserId, comment}) => {
         if(openEdit) return
         setOpenEdit(true)
     }
+    console.log(comment)
 
     return (
         <li className="comment-details">

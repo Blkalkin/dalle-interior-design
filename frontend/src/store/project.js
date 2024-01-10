@@ -90,6 +90,7 @@ export const editProject = (projectId, project) => async(dispatch) => {
             body: JSON.stringify(project)
         });
         const data = await res.json();
+        console.log(data)
         return dispatch(receiveProject(data))
     } catch(err) {
         const res = await err.json();
