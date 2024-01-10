@@ -212,9 +212,28 @@ fill: gold;
 }
 
 .loading-img {
-height: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  /* background-color: pink; */
 }
 
+.loading-img img {
+display: flex;
+justify-content: center;
+align-items: center;
+/* background-color: purple; */
+height: 100px;
+}
+
+.loading-img div {
+  margin-top: 100px;
+  text-align: center;
+ font-size: 70px;
+}
 
 .btn-text {
   display: flex;

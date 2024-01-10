@@ -104,7 +104,12 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
 
     const tempDisplayInfo = () => {
       if (imageLoading) {
-        return <img src='https://media.tenor.com/XUIieA-J-vMAAAAi/loading.gif' alt='Image is loading' className='loading-img'/>
+        return (
+          <div className='loading-img'>
+            <div className='text'>Image is loading</div>
+            <img src='https://media.tenor.com/XUIieA-J-vMAAAAi/loading.gif' alt='Image is loading' />
+         </div>
+          )
       } else {
         return <div className='waiting-text title'>Awaiting your next idea . . .</div>
       }
