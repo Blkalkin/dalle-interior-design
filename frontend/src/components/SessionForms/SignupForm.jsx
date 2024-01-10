@@ -57,7 +57,7 @@ function SignupForm () {
 
   const handleDemoSubmit = (e) => {
     e.preventDefault();
-    dispatch(login({ email: "demo-user@appacademy.io", password: "password" }));
+    dispatch(login({ email: "demo@email.com", password: "password" }));
   }
 
   if(loggedIn) return <Navigate to={`/profile/${currUser._id}`} replace={true}/>
