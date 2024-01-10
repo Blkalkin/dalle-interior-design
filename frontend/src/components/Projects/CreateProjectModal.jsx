@@ -29,17 +29,17 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
     }
 
     useEffect(() => {
-        const handleOutsideClick = (event) => {
-          if (modalRef.current && !modalRef.current.contains(event.target)) {
-            setOpenModal(false)
-          }
-        };
+        // const handleOutsideClick = (event) => {
+        //   if (modalRef.current && !modalRef.current.contains(event.target)) {
+        //     setOpenModal(false)
+        //   }
+        // };
 
-        document.addEventListener("mousedown", handleOutsideClick);
+        // document.addEventListener("mousedown", handleOutsideClick);
         document.body.style.overflow = "hidden"
 
         return () => {
-            document.removeEventListener("mousedown", handleOutsideClick);
+            // document.removeEventListener("mousedown", handleOutsideClick);
             document.body.style.overflow = ""
         };
 
@@ -112,34 +112,46 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                 <div className="create-project-modal-header">
                     <button className="header-icon-btns" onClick={handleBackStep}><FontAwesomeIcon size="lg" icon={step === 1 ? faX : faLeftLong} /></button>
 
-                    <h2 className="title">{headerTitle[step]}</h2>
-                    <button className="text " onClick={handleForwardStep}>{step === 3 ? "Submit" : "Next"}</button>
+                        <h2 className="title">{headerTitle[step]}</h2>
+                        <button className="text " onClick={handleForwardStep}>{step === 3 ? "Submit" : "Next"}</button>
+                    </div>
+                    <div className="create-project-modal-content">
+                        {step === 1 ?
+                            <>
+                                <div className="create-modal-step-1">
+                                    <FilesDragAndDrop setImage={setImage}/>
+                                </div>
+                            </>
+                            : null}
+                        {step === 2 && image ? <div className="create-modal-step-2"><img  src={URL.createObjectURL(image)}></img></div> : null}
+                        {step === 3 && image ?
+                        <div className="create-modal-step-3">
+                            <img src={URL.createObjectURL(image)} alt="" />
+                            <form className="new-project--modal-form" onSubmit={e => e.preventDefault()}>
+                                <input className="text" type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Project Title"/>
+                                <textarea
+                                    className="text"
+                                    placeholder="Write a Description (optional)"
+                                    value={description}
+                                    onChange={e => setDescription(e.target.value)}>
+                                </textarea>
+                                <div className="switch-container">
+                                    <label className="text">{isPublic ? "Public" : "Private"}</label>
+                                    <input type="checkbox" id="check" checked={isPublic} onChange={() => setIsPublic(!isPublic)}/>
+                                    <label htmlFor="check" className="switch"></label>
+                                </div>
+                                <p className="text setting-text">Public setting allows other users to view your project</p>
+                            </form>
+                        </div> : null}
+                    </div>
                 </div>
-                <div className="create-project-modal-content">
-                    {step === 1 ? <div className="create-modal-step-1"><FilesDragAndDrop setImage={setImage}/></div> : null}
-                    {step === 2 && image ? <div className="create-modal-step-2"><img  src={URL.createObjectURL(image)}></img></div> : null}
-                    {step === 3 && image ?
-                    <div className="create-modal-step-3">
-                        <img src={URL.createObjectURL(image)} alt="" />
-                        <form className="new-project--modal-form" onSubmit={e => e.preventDefault()}>
-                            <input className="text" type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Project Title"/>
-                            <textarea
-                                className="text"
-                                placeholder="Write a Description (optional)"
-                                value={description}
-                                onChange={e => setDescription(e.target.value)}>
-                            </textarea>
-                            <div className="switch-container">
-                                <label className="text">{isPublic ? "Public" : "Private"}</label>
-                                <input type="checkbox" id="check" checked={isPublic} onChange={() => setIsPublic(!isPublic)}/>
-                                <label htmlFor="check" className="switch"></label>
-                            </div>
-                            <p className="text setting-text">Public setting allows other users to view your project</p>
-                        </form>
-                    </div> : null}
-                </div>
+                {step === 1 ?
+                <>
+                    <ExampleModal />
+                </>
+            : null}
             </div>
-        </div>
+        </>
     )
 }
 
