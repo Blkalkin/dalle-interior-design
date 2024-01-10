@@ -18,7 +18,8 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
     const [description, setDescription] = useState("")
     const [isPublic, setIsPublic] = useState(true)
     const modalRef = useRef(null)
-
+    
+    console.log(image)
     const headerTitle = {
         1: "Upload Room Image",
         2: "Image Preview",
