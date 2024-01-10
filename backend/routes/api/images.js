@@ -11,7 +11,8 @@ class ImageProcessor {
     constructor() {
       this.openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
     }
-  
+    
+    
     async processImage(imagePath, outputPath) {
         try {
             // Read and save the image as input
@@ -101,7 +102,7 @@ class ImageProcessor {
         };
     }
 
-    async generateImagePrompt(imagePath,userPrompt){
+    async generateImagePrompt(imagePath, base64Image, userPrompt){
       const response = await this.openai.chat.completions.create({
         model: "gpt-4-vision-preview",
         max_tokens: 4096,
@@ -126,17 +127,19 @@ class ImageProcessor {
             {
                 role: "user",
                 content: [
-                    { type: "text", text: promptText + "use the input as a guide to shape the description, the output needs to be just detailed descriptions and locations in the photo" },
+                    { type: "text", text: userPrompt + "use the input as a guide to shape the description, the output needs to be just detailed descriptions and locations in the photo" },
                     {
-                        type: "image_url",
-                        image_url: { "url": imageUrl },
+                      type: 'image_url',
+                      image_url: {
+                          url: `data:image/jpeg;base64,${base64Image}`
+                      }
                     },
                 ],
             },
         ],
     });
 
-    //console.log(descriptionResponse);
+    //console.log(response);
     let responseText = response.choices[0].message.content;
     //console.log(responseText);
     let formattedText = responseText.replace(/\n/g, ' ');
@@ -145,8 +148,9 @@ class ImageProcessor {
         model: "dall-e-3",
         prompt: formattedText + "DO NOT REVISE THIS DESCRIPTION IT IS EXTEREMELY DETAILED, DO NOT REDUCE ITS LENGTH"
       });
+    //console.log(image_generated.data[0].url)
     return { 
-      formattedText: formattedText, 
+      formattedText: image_generated.data[0].revised_prompt, 
       imageGenerated: image_generated.data[0].url
     };
     }
@@ -182,10 +186,13 @@ router.post('/generate-image', async (req, res) => {
 router.post('/generate-prompt-image', async (req, res) => {
     try {
       const { imagePath, userPrompt } = req.body;
-      const response = await imageProcessor.generateImagePrompt(imagePath, userPrompt)
+      let image = await Jimp.read(imagePath);
+      await image.writeAsync("image_generation/route-images/input.png");
+      const base64Image = ImageProcessor.imageToBase64("image_generation/route-images/input.png");
+      const response = await imageProcessor.generateImagePrompt(imagePath, base64Image, userPrompt)
       res.json(response);
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error in route:', error);
         res.status(500).send('An error occurred: ' + error.message);
     }
 });
