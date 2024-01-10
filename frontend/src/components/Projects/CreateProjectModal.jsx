@@ -98,9 +98,10 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
         <div className="create-project-background">
             <div className="create-project-modal" ref={modalRef} style={step === 3 ? {width: "809px"} : null}>
                 <div className="create-project-modal-header">
-                    <button onClick={handleBackStep}><FontAwesomeIcon size="lg" icon={step === 1 ? faX : faLeftLong} /></button>
+                    <button className="header-icon-btns" onClick={handleBackStep}><FontAwesomeIcon size="lg" icon={step === 1 ? faX : faLeftLong} /></button>
+              
                     <h2 className="title">{headerTitle[step]}</h2>
-                    <button onClick={handleForwardStep}>{step === 3 ? "Submit" : "Next"}</button>
+                    <button className="text " onClick={handleForwardStep}>{step === 3 ? "Submit" : "Next"}</button>
                 </div>
                 <div className="create-project-modal-content">
                     {step === 1 ? <div className="create-modal-step-1"><FilesDragAndDrop setImage={setImage}/></div> : null}
@@ -108,19 +109,20 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                     {step === 3 && image ? 
                     <div className="create-modal-step-3">
                         <img src={URL.createObjectURL(image)} alt="" />
-                        <form onSubmit={e => e.preventDefault()}>
-                            <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Project Title"/>
+                        <form className="new-project--modal-form" onSubmit={e => e.preventDefault()}>
+                            <input className="text" type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Project Title"/>
                             <textarea 
+                                className="text"
                                 placeholder="Write a Description (optional)"
                                 value={description}
                                 onChange={e => setDescription(e.target.value)}>
                             </textarea>
-                            <p>Setting project public, will allow other users to view your project</p>
                             <div className="switch-container">
-                                <label>{isPublic ? "Public" : "Private"}</label>
+                                <label className="text">{isPublic ? "Public" : "Private"}</label>
                                 <input type="checkbox" id="check" checked={isPublic} onChange={() => setIsPublic(!isPublic)}/>
                                 <label htmlFor="check" className="switch"></label>
                             </div>
+                            <p className="text setting-text">Public setting allows other users to view your project</p>
                         </form>
                     </div> : null}
                 </div>
