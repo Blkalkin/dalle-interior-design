@@ -10,7 +10,7 @@ const CommentIndex = ({project}) => {
     let comments = useSelector(selectCommentsArray)
     const currentUser = useSelector(state => state.session.user)
     const [body, setBody] = useState("")
-    const author = project.author
+    const [author, setAuthor] = useState(project.author)
  
     
     function moveCurrentUserToTop(arr, authorId) {
@@ -30,7 +30,7 @@ const CommentIndex = ({project}) => {
 
     useEffect(()=> {
         dispatch(fetchComments(project._id))
-    },[dispatch, project.id])
+    },[dispatch, project._id, project])
 
 
     const handleSubmit = e => {
