@@ -18,7 +18,7 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
     const [description, setDescription] = useState("")
     const [isPublic, setIsPublic] = useState(true)
     const modalRef = useRef(null)
-    
+
 
     const headerTitle = {
         1: "Upload Room Image",
@@ -42,7 +42,7 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
         };
 
       }, [setOpenModal]);
-    
+
     const handleBackStep = () => {
         switch (step) {
             case 1:
@@ -87,7 +87,7 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
             navigate(`/edit-project/${projectId}`)
             setOpenModal(false)
         }
-    
+
         dispatch(createProject(formData)).catch(res =>
             res._id ?  closeModal(res._id) : null
         )
@@ -100,19 +100,19 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
             <div className="create-project-modal" ref={modalRef} style={step === 3 ? {width: "809px"} : null}>
                 <div className="create-project-modal-header">
                     <button className="header-icon-btns" onClick={handleBackStep}><FontAwesomeIcon size="lg" icon={step === 1 ? faX : faLeftLong} /></button>
-              
+
                     <h2 className="title">{headerTitle[step]}</h2>
                     <button className="text " onClick={handleForwardStep}>{step === 3 ? "Submit" : "Next"}</button>
                 </div>
                 <div className="create-project-modal-content">
                     {step === 1 ? <div className="create-modal-step-1"><FilesDragAndDrop setImage={setImage}/></div> : null}
                     {step === 2 && image ? <div className="create-modal-step-2"><img  src={URL.createObjectURL(image)}></img></div> : null}
-                    {step === 3 && image ? 
+                    {step === 3 && image ?
                     <div className="create-modal-step-3">
                         <img src={URL.createObjectURL(image)} alt="" />
                         <form className="new-project--modal-form" onSubmit={e => e.preventDefault()}>
                             <input className="text" type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Project Title"/>
-                            <textarea 
+                            <textarea
                                 className="text"
                                 placeholder="Write a Description (optional)"
                                 value={description}
