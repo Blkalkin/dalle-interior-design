@@ -18,11 +18,10 @@ const ProjectDetailsShow = () => {
     const [openEdit, setOpenEdit] = useState(false)
     const [showPhotoModal, setShowPhotoModal] = useState(false)
     const [photoUrl, setPhotoUrl] = useState('')
+    const [photoIdx, setPhotoIdx] = useState(null)
+
     const [loggedIn, setLoggedIn] = useState(false)
 
-    // if (currUser && currUser._id === project?.author._id) {
-    //     setIsCurrUser(true)
-    // }
     
     useEffect(()=> {
         currUser ? setLoggedIn(true) : null
@@ -40,9 +39,10 @@ const ProjectDetailsShow = () => {
         setShowPhotoModal(false);
     };
 
-    const enlargePhoto = (url) => {
+    const enlargePhoto = (url, idx) => {
         setShowPhotoModal(true);
         setPhotoUrl(url);
+        setPhotoIdx(idx)
     }
 
     console.log(isCurrUser, "is current user??")
@@ -62,10 +62,10 @@ const ProjectDetailsShow = () => {
                <div className="photos-and-comments-container">
                     <div>
                         <ul className="projects-index-grid-PDS">
-                            {showPhotoModal && < PhotoModal url={photoUrl} closePhotoModal={closePhotoModal} />}
+                            {showPhotoModal && < PhotoModal url={photoUrl} closePhotoModal={closePhotoModal} photoIdx={photoIdx}/>}
                             {photos.map((photo, idx) => 
                                 <li key={idx} className="photo-PDS">
-                                    <Link onClick={() => enlargePhoto(photo)} >
+                                    <Link onClick={() => enlargePhoto(photo, idx)} >
                                         <img src={photo} alt="photos" />
                                     </Link>
                                 </li>
