@@ -1,6 +1,6 @@
-// FilesDragAndDrop.jsx
 import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import Resizer from 'react-image-file-resizer';
 import './FilesDragAndDrop.css';
 
 const FilesDragAndDrop = ({ setImage }) => {
@@ -17,20 +17,47 @@ const FilesDragAndDrop = ({ setImage }) => {
     drop.current.addEventListener('dragenter', handleDragEnter);
     drop.current.addEventListener('dragleave', handleDragLeave);
 
-    // return () => {
-    //   drop.current.removeEventListener('dragover', handleDragOver);
-    //   drop.current.removeEventListener('drop', handleDrop);
-    //   drop.current.removeEventListener('dragenter', handleDragEnter);
-    //   drop.current.removeEventListener('dragleave', handleDragLeave);
-    // };
   }, []);
 
-  const handleFileInput = (e) => {
+  const resizeImage = (file, maxWidth, maxHeight) => {
+    return new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        maxWidth,
+        maxHeight,
+        'PNG',
+        0,
+        0,
+        (uri) => {
+          resolve(uri);
+        },
+        'base64',
+        maxWidth,
+        maxHeight
+      );
+    });
+  };
+
+  const imageToFile = (resizedImage) => {
+    const binaryData = atob(resizedImage.split(',')[1]);
+    const uint8Array = new Uint8Array(binaryData.length);
+    for (let i = 0; i < binaryData.length; i++) {
+      uint8Array[i] = binaryData.charCodeAt(i);
+    }
+    return new File([new Blob([uint8Array], { type: 'image/png' })], 'image.png', { type: 'image/png' });
+  };
+
+  const handleFileInput = async (e) => {
     const file = e.target.files[0];
     setFileLoaded(true);
     setWelcome(false);
     setImageFileOk(true);
-    setImage(file);
+
+    // Resize the image
+    const resizedImage = await resizeImage(file, 1024, 1024);
+
+    // Set the resized image
+    setImage(imageToFile(resizedImage));
   };
 
   const handleDragOver = (e) => {
@@ -59,35 +86,7 @@ const FilesDragAndDrop = ({ setImage }) => {
     setImage(null);
   };
 
-  const resizeImage = (image, maxWidth, maxHeight) => {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-
-    // Calculate new dimensions while maintaining aspect ratio
-    let newWidth, newHeight;
-    if (image.width > image.height) {
-      newWidth = maxWidth;
-      newHeight = (maxWidth / image.width) * image.height;
-    } else {
-      newHeight = maxHeight;
-      newWidth = (maxHeight / image.height) * image.width;
-    }
-
-    // Set canvas dimensions
-    canvas.width = newWidth;
-    canvas.height = newHeight;
-
-    // Draw image onto canvas
-    ctx.drawImage(image, 0, 0, newWidth, newHeight);
-
-    // Convert canvas back to image
-    const resizedImage = new Image();
-    resizedImage.src = canvas.toDataURL('image/png');
-
-    return resizedImage;
-  };
-
-  const handleDrop = (e) => {
+  const handleDrop = async (e) => {
     e.preventDefault();
     e.stopPropagation();
     let files = [...e.dataTransfer.files];
@@ -107,7 +106,6 @@ const FilesDragAndDrop = ({ setImage }) => {
       files[0]?.type !== 'image/jpeg' &&
       files[0]?.type !== 'image/png'
     ) {
-      files.length = 0;
       setWelcome(false);
       setFileLoaded(false);
       setDragging(false);
@@ -121,17 +119,11 @@ const FilesDragAndDrop = ({ setImage }) => {
     setWelcome(false);
     setImageFileOk(true);
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const image = new Image();
-      image.src = e.target.result;
+    // Resize the image
+    const resizedImage = await resizeImage(files[0], 1024, 1024);
 
-      const resizedImage = resizeImage(image, 1024, 1024);
-
-      setImage(resizedImage);
-    };
-
-    reader.readAsDataURL(files[0]);
+    // Set the resized image
+    setImage(imageToFile(resizedImage));
   };
 
   return (
