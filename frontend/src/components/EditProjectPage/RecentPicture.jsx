@@ -16,6 +16,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
     const [imageLoading, setImageLoading] = useState(false)
     const [tempDisplay, setTempDisplay] = useState(true)
 
+
     const handleClick = (boxName) => {
         if (boxName === 'firstBox') {
             //open modal to view all images in photoUrls
@@ -39,7 +40,8 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
         dispatch(removeImage())
         setTempDisplay(true)
     }
-
+    
+   
     const handleSubmit = async (e) => {
         e.preventDefault();
         setTempDisplay(true)
@@ -61,10 +63,10 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
             break;
           case "Creative":
              payload = {
-              imageUrl: photoUrls[photoUrls.length-1],
-              promptText: newPrompt
+              imagePath: photoUrls[photoUrls.length-1],
+              userPrompt: newPrompt
             }
-            const creativeRes = dispatch(creativeImageEdit(payload))
+            const creativeRes = await dispatch(creativeImageEdit(payload))
             if (creativeRes.ok) {
               setImageLoading(false)
               setTempDisplay(false)
@@ -81,6 +83,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
       };
 
     const handleModeSelect = e => {
+    
       const field = e.target.innerHTML
 
       switch (field) {
@@ -141,7 +144,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
             {modeSelect ?
               <div className='middle-box'>
                 <h3 className='mode-RP'>{mode} Mode</h3>
-                <form className='mode-select-buttons'>
+                <form className='mode-select-buttons' onSubmit={e => e.preventDefault()}>
                   <input
                       className='submit-form text'
                       type="text"
@@ -150,7 +153,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
                       placeholder="Tell me what you want, what you really, REALLY, want."
                   />
                   <div className='submit-button-box'>
-                    <button className='submit-button text' onClick={handleModeSelect}>Switch Mode</button>
+                    <button className='submit-button text' onClick={() => setModeSelect(null)}>Switch Mode</button>
                     <button className='submit-button text' onClick={handleSubmit}>Submit</button>
                   </div>
                 </form>

@@ -32,18 +32,41 @@ export const standardImageEdit = (image) =>  async(dispatch) => {
 
 }
 
-export const creativeImageEdit = image => async(dispatch) => {
-    const res = await jwtFetch("/api/images/generate-prompt-image",{
+
+export const creativeImageEdit = (image) =>  async(dispatch) => {
+    console.log("making new image...")
+    const res = await jwtFetch("/api/images/generate-prompt-image", {
         method: "POST",
         body: JSON.stringify(image)
     })
+    console.log("are we here?")
 
     if (res.ok) {
+        console.log("Render Compete!")
+        
         let data = await res.json()
+        console.log(data)
         dispatch(receiveNewImage(data))
         return res
+    } else {
+        let data = await res.json()
+        console.log(data)
+        // return res
     }
+
 }
+// export const creativeImageEdit = image => async(dispatch) => {
+//     const res = await jwtFetch("/api/images/generate-prompt-image",{
+//         method: "POST",
+//         body: JSON.stringify(image)
+//     })
+
+//     if (res.ok) {
+//         let data = await res.json()
+//         dispatch(receiveNewImage(data))
+//         return res
+//     }
+// }
 
 
 const newImageReducer = (state = {}, action) => {
