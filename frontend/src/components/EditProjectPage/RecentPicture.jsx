@@ -15,6 +15,9 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
     const [mode, setMode] = useState(null)
     const [imageLoading, setImageLoading] = useState(false)
     const [tempDisplay, setTempDisplay] = useState(true)
+    // const [openForm, setOpenForm] = useState(null)
+
+    // mode ? setOpenForm(true) : setOpenForm(false)
 
     const handleClick = (boxName) => {
         if (boxName === 'firstBox') {
@@ -81,6 +84,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
       };
 
     const handleModeSelect = e => {
+    
       const field = e.target.innerHTML
 
       switch (field) {
@@ -141,7 +145,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
             {modeSelect ?
               <div className='middle-box'>
                 <h3 className='mode-RP'>{mode} Mode</h3>
-                <form className='mode-select-buttons'>
+                <form className='mode-select-buttons' onSubmit={e => e.preventDefault()}>
                   <input
                       className='submit-form text'
                       type="text"
@@ -150,7 +154,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
                       placeholder="Tell me what you want, what you really, REALLY, want."
                   />
                   <div className='submit-button-box'>
-                    <button className='submit-button text' onClick={handleModeSelect}>Switch Mode</button>
+                    <button className='submit-button text' onClick={() => setModeSelect(null)}>Switch Mode</button>
                     <button className='submit-button text' onClick={handleSubmit}>Submit</button>
                   </div>
                 </form>
