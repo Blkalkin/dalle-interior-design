@@ -14,11 +14,14 @@ const ProjectDetailsShow = () => {
     const project = useSelector(selectProject(projectId))
     const photos = project?.photoUrls
     const currUser = useSelector(state => state.session.user)
-    const isCurrUser = currUser._id === project?.author._id
+    const [isCurrUser, setIsCurrUser] = useState( currUser && currUser._id === project?.author._id)
     const [openEdit, setOpenEdit] = useState(false)
     const [showPhotoModal, setShowPhotoModal] = useState(false)
     const [photoUrl, setPhotoUrl] = useState('')
 
+    // if (currUser && currUser._id === project?.author._id) {
+    //     setIsCurrUser(true)
+    // }
     
     useEffect(()=> {
         if (!project){
