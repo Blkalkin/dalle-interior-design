@@ -4,7 +4,6 @@ import './PhotoModal.css'
 
 const PhotoModal = (props) => {
     const modalRef = useRef(null)
-    console.log("url in modal component: ", props.url)
 
     useEffect(() => {
         const handleOutsideClick = (event) => {
@@ -30,7 +29,7 @@ const PhotoModal = (props) => {
                     <div className='close-container'>
                         <span className="close" onClick={props.closePhotoModal}>&times;</span>
                     </div>
-                    <img className='enlarged-photo' src={props.url} alt="" />
+                    <img className='enlarged-photo' src={props.url} alt="" style={props.photoIdx === 0 ? { objectFit: "cover" } : { objectFit: "contain" }}/>
                 </div>  
             </div>
         </div>
