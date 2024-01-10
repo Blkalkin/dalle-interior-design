@@ -29,4 +29,21 @@
 .edit-links {
     display: flex;
     justify-content: space-between;
+    width: 140px;
+    margin-left: 65%;
+    /* background-color: rgb(89, 120, 147) */
+    ;
+}
+.date-PDS {
+    font-weight: 100;
+    font-size: 12px;
+    /* mar-left: 20px; */
+}
+
+.update-PDS {
+    /* margin-left: 20px */
+}
+
+.edit-PDS {
+height: 15px;
 }

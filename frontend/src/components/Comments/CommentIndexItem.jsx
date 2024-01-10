@@ -41,11 +41,11 @@ const CommentIndexItem = ({currentUserId, comment}) => {
                 <EditComment body={comment.body} setOpenEdit={setOpenEdit} commentId={comment._id}/> 
                 : 
             <div className="comment-body text">
-                <p>{formattedDate}</p>
                 <p>{comment.body}</p>
                 {currentUserId === author._id ? 
                 <div className="edit-links">
-                    <img onClick={openEditModal} className='edit-PDS' src={editIcon} alt="" />
+                    <p className="text date-PDS">{formattedDate}</p>
+                    <img onClick={openEditModal} className='edit-PDS update-PDS' src={editIcon} alt="" />
                     <img onClick={handleDelete} className='edit-PDS' src={deleteIcon} alt="" />
                 </div>
                 : null }
