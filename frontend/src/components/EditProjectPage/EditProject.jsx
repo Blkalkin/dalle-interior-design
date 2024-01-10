@@ -49,6 +49,21 @@ function EditProject () {
                  
                 </div>
                 {finishedModal && <FinishedModal photoUrls={project.photoUrls} closeFinishModal={closeFinishModal} projectId={projectId}/>}
+                <div className='mode-info-container'>
+                    <div className='mode-info-content text'>
+                        <h3>What are the modes?</h3>
+                        <h3>Standard</h3>
+                        <div className='step-1 steps'>
+                            <p>Elevate your existing space by enhancing its current layout and features. Ideal for practical redesigns and clear thematic updates, we focus on refining and optimizing your space to better suit your style and needs while respecting its original structure and character.</p>
+                        </div>
+                        
+                        <h3>Creative</h3>
+                        <div className='step-1 steps'>
+                            <p>Unleash our creativity to transform your space with bold, imaginative designs that merge audacious style with practicality. Expect a bespoke living masterpiece, uniquely tailored to your personality and preferences, where innovative and daring elements create an unforgettable and inspiring environment.</p>
+                        </div>
+                     
+                    </div>
+                </div>
             </>
         )
     } else {
