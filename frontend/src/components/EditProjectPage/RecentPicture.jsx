@@ -15,9 +15,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
     const [mode, setMode] = useState(null)
     const [imageLoading, setImageLoading] = useState(false)
     const [tempDisplay, setTempDisplay] = useState(true)
-    // const [openForm, setOpenForm] = useState(null)
 
-    // mode ? setOpenForm(true) : setOpenForm(false)
 
     const handleClick = (boxName) => {
         if (boxName === 'firstBox') {
@@ -42,7 +40,8 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
         dispatch(removeImage())
         setTempDisplay(true)
     }
-
+    
+   
     const handleSubmit = async (e) => {
         e.preventDefault();
         setTempDisplay(true)
@@ -64,10 +63,10 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
             break;
           case "Creative":
              payload = {
-              imageUrl: photoUrls[photoUrls.length-1],
-              promptText: newPrompt
+              imagePath: photoUrls[photoUrls.length-1],
+              userPrompt: newPrompt
             }
-            const creativeRes = dispatch(creativeImageEdit(payload))
+            const creativeRes = await dispatch(creativeImageEdit(payload))
             if (creativeRes.ok) {
               setImageLoading(false)
               setTempDisplay(false)
