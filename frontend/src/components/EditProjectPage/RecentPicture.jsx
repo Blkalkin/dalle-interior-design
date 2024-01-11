@@ -29,7 +29,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
       return () => {
         dispatch(removeImage())
       }
-    },[])
+    },[dispatch])
 
     const closeModal = () => {
         setShowModal(false);
@@ -114,7 +114,8 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
       if (imageLoading) {
         return (
           <div className='loading-img'>
-            <div className='text'>Image incoming</div>
+            <div className='text main-text'>Image incoming</div>
+            <div className='text sub-text'>(images can take up to 60 seconds to load)</div>
             <img src='https://media.tenor.com/XUIieA-J-vMAAAAi/loading.gif' alt='Image is loading' />
          </div>
           )

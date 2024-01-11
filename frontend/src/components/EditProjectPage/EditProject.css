@@ -231,6 +231,16 @@ fill: gold;
   /* background-color: pink; */
 }
 
+.sub-text{
+  font-size: 18px;
+}
+
+.main-text {
+  margin-top: 70px;
+  text-align: center;
+  font-size: 70px;
+}
+
 .loading-img img {
 display: flex;
 justify-content: center;
@@ -239,11 +249,6 @@ align-items: center;
 height: 100px;
 }
 
-.loading-img div {
-  margin-top: 100px;
-  text-align: center;
- font-size: 70px;
-}
 
 .btn-text {
   display: flex;
@@ -298,3 +303,4 @@ height: 100px;
   flex-direction: column;
   text-align: center;
 }
+

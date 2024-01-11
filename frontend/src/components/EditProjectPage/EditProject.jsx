@@ -44,8 +44,8 @@ function EditProject () {
                         newImages={newImages}
                         projectId={projectId}
                     />
-                    {newImages.imageGenerated ? 
-                        <button className='text done-btn' onClick={() => setFinishedModal(true)}>Love what I got, all done!</button>
+                    {project.photoUrls.length >= 2 ? 
+                        <button className='text done-btn' onClick={doneButton}>Love what I got, all done!</button>
                     : null}
                  
                 </div>
