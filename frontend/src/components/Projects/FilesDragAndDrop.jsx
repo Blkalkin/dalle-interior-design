@@ -86,10 +86,13 @@ const FilesDragAndDrop = ({ setImage }) => {
     setImage(null);
   };
 
+
   const handleDrop = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    let files = [...e.dataTransfer.files];
+    let files;
+
+    files = [...e.dataTransfer.files];
 
     if (files.length > 1) {
       setWelcome(false);
@@ -127,27 +130,25 @@ const FilesDragAndDrop = ({ setImage }) => {
   };
 
   return (
-    <div
-      ref={drop}
-      id="drag-area"
-      className="FilesDragAndDrop FilesDragAndDrop__area"
-      onClick={() => fileInput.current.click()}
-    >
-      {welcome ? (
-        <div className="drop-text">
-          <span>Hey, drop me a photo here!</span>
-        </div>
-      ) : null}
-      {dragging ? 'Drop that file down low' : null}
-      {!imgFileOk ? 'Please upload a png, jpg, or jpeg ' : null}
-      <input
-        ref={fileInput}
-        type="file"
-        accept="image/*"
-        onChange={handleFileInput}
-        style={{ display: 'none' }}
-      />
-    </div>
+      <div ref={drop} id='drag-area'
+        className='FilesDragAndDrop FilesDragAndDrop__area'
+        onClick={() => fileInput.current.click()}
+      >
+        {welcome ? (
+            <div className='drop-text'>
+                <span>Hey, drop me a photo here!</span>
+            </div>
+        ) : null}
+        {dragging ? 'Drop that file down low' : null}
+        {!imgFileOk ? 'Please upload a png, jpg, or jpeg ' : null}
+        <input
+          ref={fileInput}
+          type='file'
+          accept='image/*'
+          onChange={handleFileInput}
+          style={{ display: 'none' }}
+        />
+      </div>
   );
 };
 

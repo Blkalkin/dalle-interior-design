@@ -233,3 +233,9 @@ input:checked + .switch::before {
 .text-ex {
   z-index: 1;
 }
+
+.text.disabled {
+    cursor: not-allowed;
+    color: #999999;
+    /* Add any other styles as needed */
+}

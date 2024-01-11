@@ -113,7 +113,17 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                     <button className="header-icon-btns" onClick={handleBackStep}><FontAwesomeIcon size="lg" icon={step === 1 ? faX : faLeftLong} /></button>
 
                         <h2 className="title">{headerTitle[step]}</h2>
-                        <button className="text " onClick={handleForwardStep}>{step === 3 ? "Submit" : "Next"}</button>
+                        {step !== 3 ? (
+                                <button className={`text ${!image ? 'disabled' : ''}`} onClick={handleForwardStep}>
+                                    Next
+                                </button>
+                        ) : (
+                            <>
+                                <button className={`text ${!title ? 'disabled' : ''}`} onClick={handleForwardStep}>
+                                    Submit
+                                </button>
+                            </>
+                        )}
                     </div>
                     <div className="create-project-modal-content">
                         {step === 1 ?
