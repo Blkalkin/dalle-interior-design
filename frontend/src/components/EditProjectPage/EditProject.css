@@ -53,9 +53,10 @@ object-fit: cover;
   /* background-color: greenyellow; */
 }
 
-.save-img{
-  width: 215px;
-  margin-left: 46px;
+.save-img {
+  font-size: 22px;
+  width: 165px;
+  /* margin-left: 36px; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -67,6 +68,7 @@ object-fit: cover;
 max-width: 100%;
 max-height: 100%;
 }
+
 .modal-background {
 position: fixed;
 top: 0;
@@ -152,7 +154,7 @@ fill: gold;
   cursor: pointer;
   border: none;
   border-radius: 8px;
-  height: 55px;
+  height: 45px;
   background-color: rgb(229, 176, 44);
   color: white;
   padding: 20px;
@@ -168,10 +170,6 @@ fill: gold;
 
 .mode-select-buttons button:hover {
   background-color: rgb(203, 157, 40);
-}
-
-.save-img {
-  font-size: 32px;
 }
 
 .waiting-text {
@@ -192,14 +190,17 @@ fill: gold;
   /* background-color: red; */
   display: flex;
   justify-content: space-evenly;
-
+  margin-top: 20px;
 }
 
 .submit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 130px;
   margin: 5px;
-
 }
+
 
 .submit-form {
   text-wrap: wrap;
@@ -224,8 +225,9 @@ fill: gold;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
+  height: 80%;
   width: 100%;
+  margin-bottom: 80px;
   /* background-color: pink; */
 }
 
@@ -264,6 +266,7 @@ height: 100px;
 }
 
 .done-btn {
+  /* position: absolute; */
   margin-bottom: 50px;
   background-color: purple;
   cursor: pointer;
@@ -272,9 +275,9 @@ height: 100px;
   height: 55px;
   color: white;
   padding: 20px;
-  margin-bottom: 10px;
+  /* margin-bottom: 300px; */
   margin-top: 10px;
-  font-size: 20px;
+  font-size: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -293,4 +296,5 @@ height: 100px;
   display: flex;
   align-items: center;
   flex-direction: column;
+  text-align: center;
 }
