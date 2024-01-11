@@ -21,7 +21,6 @@ const ProjectDetailsShow = () => {
     const [photoIdx, setPhotoIdx] = useState(null)
     const [loggedIn, setLoggedIn] = useState(false)
     const [username, setUsername] = useState(false)
-    const [username, setUsername] = useState(false)
 
 
     useEffect(()=> {
