@@ -209,22 +209,27 @@ input:checked + .switch::before {
     transform: translateX(22px)
 }
 
-.example-image-list {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0;
-    display: flex;
-    gap: 10px;
+
+.create-modal-step-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.example-image-list img {
-    width: 80px;
-    height: auto;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
+.images-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.example-image-list img:hover {
-    transform: scale(1.1);
+.images-container img {
+  max-width: 100%;
+  height: auto;
+  max-height: 180px;
+  margin-bottom: 5px;
+}
+
+.text-ex {
+  z-index: 1;
 }
