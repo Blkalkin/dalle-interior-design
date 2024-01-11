@@ -15,12 +15,7 @@ const CommentIndexItem = ({currentUserId, comment}) => {
     const author = comment.author
     const [openEdit, setOpenEdit] = useState(false)
     const formattedDate = formatDateString(comment.createdAt)
-    
-
-    const handleDelete = e => {
-        e.preventDefault
-        dispatch(deleteComment(comment._id))
-    }
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
 
     const openEditModal =(e) => {
         e.preventDefault();
@@ -47,9 +42,20 @@ const CommentIndexItem = ({currentUserId, comment}) => {
                 <div className="edit-links">
                     <p className="text date-PDS">{formattedDate}</p>
                     <img onClick={openEditModal} className='edit-PDS update-PDS' src={editIcon} alt="" />
-                    <img onClick={handleDelete} className='edit-PDS' src={deleteIcon} alt="" />
+                    <img onClick={() => setShowDeleteModal(true)} className='edit-PDS' src={deleteIcon} alt="" />
                 </div>
                 : null }
+                { showDeleteModal && <div className='modal-background'>
+                    <div className='modal-content text'>
+                        <div className='delete-confirmation-div'>
+                            <p>Delete this comment?</p>  
+                            <p>
+                                <span onClick={() => dispatch(deleteComment(comment._id))}> Yes &nbsp;&nbsp;&nbsp;&nbsp;</span> 
+                                <span onClick={() => setShowDeleteModal(false)}> No </span> 
+                            </p>
+                        </div>
+                    </div>
+                </div>}
             </div>
             }
             
