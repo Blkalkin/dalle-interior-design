@@ -156,7 +156,7 @@ router.patch('/:id/edit', upload.single('photo'), async (req, res, next) => {
     return next(error);
   }try {
     project.title = req.body.title || project.title;
-    project.description = req.body.description || project.description ;
+    project.description = req.body.description
     project.public = req.body.public || project.public;
     project.photoUrls = req.body.photoUrls || project.photoUrls;
 
