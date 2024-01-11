@@ -101,7 +101,7 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
         formData.append("authorId", authorId)
         formData.append("public", isPublic)
 
-        console.log("photo", formData.get("photo"));
+        // console.log("photo", formData.get("photo"));
         // "photo http://127.0.0.1:5173/src/components/Projects/images/test1.png" vs file
         const closeModal = (projectId) => {
             navigate(`/edit-project/${projectId}`)
