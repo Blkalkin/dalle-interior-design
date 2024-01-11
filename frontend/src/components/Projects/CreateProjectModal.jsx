@@ -7,8 +7,6 @@ import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLeftLong, faX } from '@fortawesome/free-solid-svg-icons'
 
-
-
 const CreateProjectModal = ({setOpenModal, authorId}) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -18,7 +16,7 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
     const [description, setDescription] = useState("")
     const [isPublic, setIsPublic] = useState(true)
     const modalRef = useRef(null)
-    
+    const [error,setError] = useState(false)
 
     const headerTitle = {
         1: "Upload Room Image",
@@ -63,7 +61,7 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
     const handleForwardStep = () => {
         switch (step) {
             case 1:
-                image ? setStep(2) : null
+                image ? setStep(2) : errorMessage
                 break;
             case 2:
                 setStep(3)
@@ -73,6 +71,15 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                 break
             default:
                 break;
+        }
+    }
+
+    const errorMessage = () => {
+        setError(true)
+        if (!image) {
+            return <div>Please add your image to continue</div>
+        } else if (!title) {
+            return <div>Project must include a title</div>
         }
     }
 
@@ -99,19 +106,28 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
         <div className="create-project-background">
             <div className="create-project-modal" ref={modalRef} style={step === 3 ? {width: "809px"} : null}>
                 <div className="create-project-modal-header">
-                    <button className="header-icon-btns" onClick={handleBackStep}><FontAwesomeIcon size="lg" icon={step === 1 ? faX : faLeftLong} /></button>
+                {step === 1 ? 
+                     <button className="header-icon-btns" onClick={handleBackStep}><FontAwesomeIcon size="lg" icon={faX} /></button>
+                    : null }
+                {step === 2 ?
+                    <div className="text go-back"  onClick={handleBackStep} >Undo Photo</div>
+                : null }
+                {step === 3 ? 
+                     <button className="header-icon-btns" onClick={handleBackStep}><FontAwesomeIcon size="lg" icon={faLeftLong} /></button>
+                    : null }
               
                     <h2 className="title">{headerTitle[step]}</h2>
                     <button className="text " onClick={handleForwardStep}>{step === 3 ? "Submit" : "Next"}</button>
                 </div>
                 <div className="create-project-modal-content">
-                    {step === 1 ? <div className="create-modal-step-1"><FilesDragAndDrop setImage={setImage}/></div> : null}
+                    {error ? errorMessage : null}
+                    {step === 1 && !error ? <div className="create-modal-step-1"><FilesDragAndDrop setImage={setImage}/></div> : null}
                     {step === 2 && image ? <div className="create-modal-step-2"><img  src={URL.createObjectURL(image)}></img></div> : null}
                     {step === 3 && image ? 
                     <div className="create-modal-step-3">
                         <img src={URL.createObjectURL(image)} alt="" />
                         <form className="new-project--modal-form" onSubmit={e => e.preventDefault()}>
-                            <input className="text" type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Project Title"/>
+                            <input className="text" type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Title (required)"/>
                             <textarea 
                                 className="text"
                                 placeholder="Write a Description (optional)"
