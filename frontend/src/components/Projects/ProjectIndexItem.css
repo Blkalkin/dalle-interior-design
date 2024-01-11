@@ -39,3 +39,8 @@
 .deleteIcon{
     height: 17px;
 }
+
+.delete-confirmation-div {
+    background-color: white;
+    padding: 10px;
+}
