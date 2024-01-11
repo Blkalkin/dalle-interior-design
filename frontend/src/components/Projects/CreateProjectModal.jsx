@@ -115,6 +115,8 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                 <div className="create-project-modal-content">
                     {error ? errorMessage : null}
                     {step === 1 && !error ? <div className="create-modal-step-1"><FilesDragAndDrop setImage={setImage}/></div> : null}
+                    {error ? errorMessage : null}
+                    {step === 1 && !error ? <div className="create-modal-step-1"><FilesDragAndDrop setImage={setImage}/></div> : null}
                     {step === 2 && image ? <div className="create-modal-step-2"><img  src={URL.createObjectURL(image)}></img></div> : null}
                     {step === 3 && image ?
                     <div className="create-modal-step-3">

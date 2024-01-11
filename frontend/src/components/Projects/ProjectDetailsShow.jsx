@@ -21,13 +21,17 @@ const ProjectDetailsShow = () => {
     const [photoIdx, setPhotoIdx] = useState(null)
     const [loggedIn, setLoggedIn] = useState(false)
     const [username, setUsername] = useState(false)
+    const [username, setUsername] = useState(false)
 
 
     useEffect(()=> {
 
+
         currUser ? setLoggedIn(true) : null
         // currUser ? setIsCurrUser(true) : null
+        // currUser ? setIsCurrUser(true) : null
         dispatch(fetchProject(projectId))
+    },[dispatch, projectId, currUser, openEdit])
     },[dispatch, projectId, currUser, openEdit])
 
     const openEditModal =(e) => {
