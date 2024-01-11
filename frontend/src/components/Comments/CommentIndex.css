@@ -6,6 +6,11 @@
     width: 420px;
     gap: 10px;
     padding: 0;
+  
+}
+
+.comments-title {
+    text-align: center;
 }
 
 .comment-add-container {

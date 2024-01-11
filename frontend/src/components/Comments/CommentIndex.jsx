@@ -11,26 +11,27 @@ const CommentIndex = ({project}) => {
     const currentUser = useSelector(state => state.session.user)
     const [body, setBody] = useState("")
     const [author, setAuthor] = useState(project.author)
- 
+    const [loggedIn, setLoggedIn] = useState(false)
     
     function moveCurrentUserToTop(arr, authorId) {
         const index = arr.findIndex(item => item.author._id === authorId);
-      
+        
         if (index !== -1) {
-          const itemToMove = arr.splice(index, 1)[0];
-          arr.unshift(itemToMove);
+            const itemToMove = arr.splice(index, 1)[0];
+            arr.unshift(itemToMove);
         } else {
             return arr
         }
         return arr;
-      }
+    }
     
     if (currentUser) comments = moveCurrentUserToTop(comments, currentUser._id)
     
-
+    
     useEffect(()=> {
+        currentUser ? setLoggedIn(true) : null
         dispatch(fetchComments(project._id))
-    },[dispatch, project._id, project])
+    },[dispatch, project._id, project, currentUser ])
 
 
     const handleSubmit = e => {
@@ -49,17 +50,25 @@ const CommentIndex = ({project}) => {
     
     return (
         <ul className="comments-container">
-            <h2 className="title">{`Share some thoughts on ${author.username}'s project:`}</h2>
-            <div className="comment-add-container">
-                <textarea 
-                     className="text"
-                    id="commentInput" 
-                    placeholder="Add a comment..."
-                    value={body}
-                    onChange={e => setBody(e.target.value)}
-                ></textarea>
-                <button onClick={handleSubmit} className="title">Comment</button>
-            </div>
+            {loggedIn ? 
+            <>
+                <h2 className="title comments-title">{`Share some thoughts on ${author.username}'s project:`}</h2>
+                <div className="comment-add-container">
+                    <textarea 
+                        className="text"
+                        id="commentInput" 
+                        placeholder="Add a comment..."
+                        value={body}
+                        onChange={e => setBody(e.target.value)}
+                        ></textarea>
+                    <button onClick={handleSubmit} className="title">Comment</button>
+                </div>
+            </>
+            : 
+            <>
+                <h2 className="title comments-title">{`Comments on ${author.username}'s project:`}</h2>
+                <div className="text">Log in to share your thoughts!</div>
+            </> }
             
             {comments.map(comment => 
                 <CommentIndexItem
