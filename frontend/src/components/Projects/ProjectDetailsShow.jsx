@@ -75,7 +75,9 @@ const ProjectDetailsShow = () => {
                     </div>
                     <div className='comments-area'>
                         {loggedIn ? 
-                         <h2 className="title comments-title">{`Share your thoughts on ${project.author.username}'s project:`}</h2> 
+                         <h2 className="title comments-title">
+                            Share your thoughts on <Link to={`/profile/${project.author._id}`}><span>{project.author.username}'s</span></Link> project:
+                        </h2> 
                          : <h2 className="title comments-title">{`Comments on ${project.author.username}'s project:`}</h2>
                         }
                 
