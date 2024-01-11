@@ -31,7 +31,6 @@ const ProjectDetailsShow = () => {
         // currUser ? setIsCurrUser(true) : null
         dispatch(fetchProject(projectId))
     },[dispatch, projectId, currUser, openEdit])
-    },[dispatch, projectId, currUser, openEdit])
 
     const openEditModal =(e) => {
         e.preventDefault();
