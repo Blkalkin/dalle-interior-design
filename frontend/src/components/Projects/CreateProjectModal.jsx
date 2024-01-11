@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLeftLong, faX } from '@fortawesome/free-solid-svg-icons'
+import ExampleModal from "./ExampleImagesModal";
+
+
 
 const CreateProjectModal = ({setOpenModal, authorId}) => {
     const navigate = useNavigate()
@@ -113,10 +116,7 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                     <button className="text " onClick={handleForwardStep}>{step === 3 ? "Submit" : "Next"}</button>
                 </div>
                 <div className="create-project-modal-content">
-                    {error ? errorMessage : null}
-                    {step === 1 && !error ? <div className="create-modal-step-1"><FilesDragAndDrop setImage={setImage}/></div> : null}
-                    {error ? errorMessage : null}
-                    {step === 1 && !error ? <div className="create-modal-step-1"><FilesDragAndDrop setImage={setImage}/></div> : null}
+                    {step === 1 ? <div className="create-modal-step-1"><FilesDragAndDrop setImage={setImage}/></div> : null}
                     {step === 2 && image ? <div className="create-modal-step-2"><img  src={URL.createObjectURL(image)}></img></div> : null}
                     {step === 3 && image ?
                     <div className="create-modal-step-3">

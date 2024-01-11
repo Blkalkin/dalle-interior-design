@@ -66,6 +66,13 @@
     /* background-color: pink; */
 }
 
+.create-modal-second {
+    flex: 1;
+    height: 100%;
+    overflow: auto;
+    padding: 20px;
+}
+
 .create-modal-step-2 {
     height: 100%;
     width: inherit;
@@ -189,4 +196,3 @@ input:checked + .switch {
 input:checked + .switch::before {
     transform: translateX(22px)
 }
-

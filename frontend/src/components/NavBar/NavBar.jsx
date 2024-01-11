@@ -48,12 +48,12 @@ function NavBar () {
           Roominate
         </Link>
         <div className='navbar-left-links'>
-          {!loggedIn ? 
+          {!loggedIn ?
             <div className='left-navlinks-logged-out'>
               <Link to={'/community'} className='text community-LO'>Community Feed</Link>
               <Link to={'/meetTheTeam'} className='text team-LO'>Meet the Team</Link>
             </div>
-          : 
+          :
             <div className='left-navlinks-logged-in'>
               <Link to={`/profile/${currUser._id}`} className='text projects'>Your Projects</Link>
               <Link to={'/community'} className='text community'>Community</Link>
@@ -64,9 +64,9 @@ function NavBar () {
           <div>
             <form className='navbar-search' onSubmit={handleSearch}>
               <button ><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
-              <input 
-              type="text" 
-              onChange={e => setSearchInput(e.target.value)} 
+              <input
+              type="text"
+              onChange={e => setSearchInput(e.target.value)}
               value={searchInput}
               placeholder='Search Roominate'
               />

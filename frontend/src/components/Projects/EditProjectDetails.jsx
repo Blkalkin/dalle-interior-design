@@ -31,17 +31,16 @@ const EditProjectDetails = ({title, description, projectId, setOpenEdit}) => {
     return (
         <div className='form-container-EPD'>
             <form className='form-EPD'>
-                <input 
+                <input
                     type="text"
                     value={newTitle}
-                    onChange={updateTitle} 
+                    onChange={updateTitle}
                     className='title title-EPD'/>
-                <input 
+                <input
                     type="text"
                     value={newDescription}
-                    onChange={updateDescription} 
-                    className='text text-EPD'
-                    placeholder='add your project description here' />
+                    onChange={updateDescription}
+                    className='text text-EPD'/>
             </form>
             <button className='cancel-EPD text' onClick={()=> setOpenEdit(false)}>Cancel</button>
             <button className='update-EPD text' onClick={handleSubmit}>Update</button>
