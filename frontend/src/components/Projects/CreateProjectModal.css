@@ -237,5 +237,4 @@ input:checked + .switch::before {
 .text.disabled {
     cursor: not-allowed;
     color: #999999;
-    /* Add any other styles as needed */
 }
