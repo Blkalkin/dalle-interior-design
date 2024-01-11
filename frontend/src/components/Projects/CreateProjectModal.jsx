@@ -21,6 +21,7 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
     const modalRef = useRef(null)
 
     const [error,setError] = useState(false)
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
 
     const headerTitle = {
@@ -45,6 +46,22 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
         };
 
       }, [setOpenModal]);
+
+      useEffect(() => {
+        let timeoutId;
+
+        if (isButtonDisabled) {
+          // Set a timeout to enable the button after 5 seconds
+          timeoutId = setTimeout(() => {
+            setIsButtonDisabled(false);
+          }, 5000);
+        }
+
+        return () => {
+          // Clear the timeout if the component unmounts before the 5 seconds
+          clearTimeout(timeoutId);
+        };
+      }, [isButtonDisabled]);
 
     const handleBackStep = () => {
         switch (step) {
@@ -75,6 +92,7 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                 setStep(3)
                 break
             case 3:
+                setIsButtonDisabled(true)
                 handleForm()
                 break
             default:
@@ -114,6 +132,7 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
     if (image && step === 1) setStep(2)
 
     return (
+        <>
         <div className="create-project-background">
             <div className="create-project-modal" ref={modalRef} style={step === 3 ? {width: "809px"} : null}>
                 <div className="create-project-modal-header">
@@ -126,7 +145,7 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                                 </button>
                         ) : (
                             <>
-                                <button className={`text ${!title ? 'disabled' : ''}`} onClick={handleForwardStep}>
+                                <button className={`text ${!title ? 'disabled' : ''} ${isButtonDisabled ? 'disabled' : ''}`} onClick={handleForwardStep} >
                                     Submit
                                 </button>
                             </>
