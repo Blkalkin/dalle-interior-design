@@ -1,9 +1,15 @@
 import "./CreateProjectModal.css"
 import test from '../../components/Projects/images/test1.png'
 import test1 from './images/test2.png'
-import test2 from './images/test3.png'
+import test3 from './images/test4.png'
 
-const ExampleModal = () => {
+const ExampleModal = ({setImage, setPresetInUse}) => {
+    const selectImage = (e) => {
+        const srcValue = e.target.src;
+        setImage(srcValue);
+        setPresetInUse(true)
+    };
+
     return (
         <>
             <div className="create-project-modal-right">
@@ -11,12 +17,12 @@ const ExampleModal = () => {
 
                     <div className="create-modal-step-1">
                         <div className="text-ex text">
-                            Example Images (Drag)
+                            Example Images (Click to Select)
                         </div>
                         <div className="images-container">
-                            <img src={test} alt="Error loading" />
-                            <img src={test1} alt="Error loading" />
-                            <img src={test2} alt="Error Loading" />
+                            <img src={test} alt="Error loading" onClick={selectImage}/>
+                            <img src={test1} alt="Error loading" onClick={selectImage}/>
+                            <img src={test3} alt="Error loading" onClick={selectImage}/>
                         </div>
                     </div>
                 </div>

@@ -18,9 +18,11 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [isPublic, setIsPublic] = useState(true)
+    const [presetInUse, setPresetInUse] = useState(false)
     const modalRef = useRef(null)
 
     const [error,setError] = useState(false)
+
 
     const headerTitle = {
         1: "Upload Room Image",
@@ -133,10 +135,11 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                                 </div>
                             </>
                             : null}
-                        {step === 2 && image ? <div className="create-modal-step-2"><img  src={URL.createObjectURL(image)}></img></div> : null}
+                        {step === 2 && image && !presetInUse ? <div className="create-modal-step-2"><img src={URL.createObjectURL(image)}></img></div> : null}
+                        {step === 2 && image && presetInUse ? <div className="create-modal-step-2"><img src={image}></img></div> : null}
                         {step === 3 && image ?
                         <div className="create-modal-step-3">
-                            <img src={URL.createObjectURL(image)} alt="" />
+                            {!presetInUse ? <img src={URL.createObjectURL(image)} alt="" /> : <img src={image} alt="" />}
                             <form className="new-project--modal-form" onSubmit={e => e.preventDefault()}>
                                 <input className="text" type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Project Title"/>
                                 <textarea
@@ -157,7 +160,7 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                 </div>
                 {step === 1 ?
                 <>
-                    <ExampleModal />
+                    <ExampleModal setImage={setImage} setPresetInUse={setPresetInUse}/>
                 </>
             : null}
             </div>

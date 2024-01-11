@@ -22,7 +22,7 @@
     border-radius: 15px;
     background: white;
     transition: 100ms;
-    margin-right: 150px;
+    margin-right: 100px;
 }
 .create-project-modal-right {
     display: flex;
