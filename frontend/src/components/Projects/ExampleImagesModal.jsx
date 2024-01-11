@@ -3,11 +3,31 @@ import test from '../../components/Projects/images/test1.png'
 import test1 from './images/test2.png'
 import test3 from './images/test4.png'
 
-const ExampleModal = ({setImage, setPresetInUse}) => {
+const ExampleModal = ({setImage}) => {
+
+    function getFileAsBlob(filePath) {
+        const reader = new FileReader();
+
+        fetch(filePath)
+        .then(response => response.arrayBuffer())
+        .then(buffer => {
+          // Load the ArrayBuffer into the FileReader
+        reader.onload = function (event) {
+            const blob = new Blob([event.target.result], { type: 'image/png' });
+            setImage(blob)
+        }
+
+          reader.readAsArrayBuffer(new Blob([buffer]));
+        })
+        .catch(error => {
+          console.error('Error reading file:', error);
+        });
+        console.log("here")
+    }
+
     const selectImage = (e) => {
         const srcValue = e.target.src;
-        setImage(srcValue);
-        setPresetInUse(true)
+        getFileAsBlob(srcValue)
     };
 
     return (
