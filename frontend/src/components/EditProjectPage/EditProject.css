@@ -99,6 +99,9 @@ float: right;
 font-size: 28px;
 font-weight: bold;
 cursor: pointer;
+margin-left: 16%;
+margin-bottom: 20px;
+/* background-color: pink; */
 }
 
 .close:hover,
@@ -148,6 +151,7 @@ fill: gold;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* align-items: center; */
 }
 
 .mode-select-buttons button {
@@ -160,6 +164,14 @@ fill: gold;
   padding: 20px;
   margin-bottom: 10px;
   margin-top: 10px;
+}
+
+.finished{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 300;
+  font-size: 18px;
 }
 
 .space-between {
