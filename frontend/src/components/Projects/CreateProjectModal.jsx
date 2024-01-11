@@ -55,6 +55,9 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
             case 2:
                 setImage(null)
                 setPresetInUse(false)
+                setTitle("")
+                setDescription("")
+                setIsPublic(true)
                 setStep(1)
                 break
             case 3:
@@ -92,11 +95,14 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
 
     const handleForm = () => {
         const formData = new FormData();
+
         formData.append("photo", image)
         formData.append("title", title)
         formData.append("authorId", authorId)
         formData.append("public", isPublic)
 
+        console.log("photo", formData.get("photo"));
+        // "photo http://127.0.0.1:5173/src/components/Projects/images/test1.png" vs file
         const closeModal = (projectId) => {
             navigate(`/edit-project/${projectId}`)
             setOpenModal(false)
@@ -138,9 +144,29 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                             : null}
                         {step === 2 && image && !presetInUse ? <div className="create-modal-step-2"><img src={URL.createObjectURL(image)}></img></div> : null}
                         {step === 2 && image && presetInUse ? <div className="create-modal-step-2"><img src={image}></img></div> : null}
-                        {step === 3 && image ?
+                        {step === 3 && image && !presetInUse ?
                         <div className="create-modal-step-3">
-                            {!presetInUse ? <img src={URL.createObjectURL(image)} alt="" /> : <img src={image} alt="" />}
+                            <img src={URL.createObjectURL(image)} alt="" />
+                            <form className="new-project--modal-form" onSubmit={e => e.preventDefault()}>
+                                <input className="text" type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Project Title"/>
+                                <textarea
+                                    className="text"
+                                    placeholder="Write a Description (optional)"
+                                    value={description}
+                                    onChange={e => setDescription(e.target.value)}>
+                                </textarea>
+                                <div className="switch-container">
+                                    <label className="text">{isPublic ? "Public" : "Private"}</label>
+                                    <input type="checkbox" id="check" checked={isPublic} onChange={() => setIsPublic(!isPublic)}/>
+                                    <label htmlFor="check" className="switch"></label>
+                                </div>
+                                <p className="text setting-text">Public setting allows other users to view your project</p>
+                            </form>
+                        </div> : null}
+
+                        {step === 3 && image && presetInUse ?
+                        <div className="create-modal-step-3">
+                            <img src={image} alt="" />
                             <form className="new-project--modal-form" onSubmit={e => e.preventDefault()}>
                                 <input className="text" type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Project Title"/>
                                 <textarea

@@ -39,6 +39,7 @@ const FilesDragAndDrop = ({ setImage }) => {
   };
 
   const imageToFile = (resizedImage) => {
+    console.log("IMG", resizedImage)
     const binaryData = atob(resizedImage.split(',')[1]);
     const uint8Array = new Uint8Array(binaryData.length);
     for (let i = 0; i < binaryData.length; i++) {
