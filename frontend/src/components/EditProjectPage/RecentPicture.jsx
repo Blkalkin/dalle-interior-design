@@ -1,13 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './EditProject.css'
 import ProjectFlowModal from './ProjectFlowModal';
 import { removeImage, standardImageEdit, creativeImageEdit } from '../../store/photoGen';
-import { addImage, editProject } from '../../store/project';
+import { addImage } from '../../store/project';
 import { useDispatch } from 'react-redux';
 
 function RecentPicture ({photoUrls, newImages, projectId}) {
     const dispatch = useDispatch()
-
     const [starFilled, setStarFilled] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [newPrompt, setNewPrompt] = useState("")
@@ -25,6 +24,12 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
             // open modal to view image better
         }
     };
+
+    useEffect(()=> {
+      return () => {
+        dispatch(removeImage())
+      }
+    },[])
 
     const closeModal = () => {
         setShowModal(false);
@@ -109,7 +114,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
       if (imageLoading) {
         return (
           <div className='loading-img'>
-            <div className='text'>Image is loading</div>
+            <div className='text'>Image incoming</div>
             <img src='https://media.tenor.com/XUIieA-J-vMAAAAi/loading.gif' alt='Image is loading' />
          </div>
           )
@@ -126,20 +131,9 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
             {photoUrls[photoUrls.length-1] && <img src={photoUrls[photoUrls.length-1]} alt={photoUrls[photoUrls.length-1]} />}
           </div>
 
+
           <div className='project-options-RP'>
-            <label className='text save-img'> Save Image
-              <svg
-                className="star-icon"
-                width="20"
-                height="24"
-                viewBox="0 0 24 24"
-                fill={starFilled ? 'gold' : 'none'}
-                onMouseEnter={() => handleStarHover(!starFilled)}
-                onClick={() => handleSavingImage()}
-              >
-                <path d="M12 2l2.591 7.82H22l-6.711 4.872 2.591 7.82L12 17.64l-6.879 4.872 2.591-7.82L2 9.82h7.409L12 2z"/>
-              </svg>
-            </label>
+          
             {showModal && <ProjectFlowModal photoUrls={photoUrls} closeModal={closeModal} />}
             {modeSelect ?
               <div className='middle-box'>
@@ -153,11 +147,26 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
                       placeholder="Tell me what you want, what you really, REALLY, want."
                   />
                   <div className='submit-button-box'>
-                    <button className='submit-button text' onClick={() => setModeSelect(null)}>Switch Mode</button>
                     <button className='submit-button text' onClick={handleSubmit}>Submit</button>
+                    <button className='submit-button text' onClick={() => setModeSelect(null)}>Switch Mode</button>
                   </div>
                 </form>
-              </div>
+                { newImages.imageGenerated ? 
+                  <label className='text save-img'> Save Image
+                    <svg
+                      className="star-icon"
+                      width="20"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill={starFilled ? 'gold' : 'none'}
+                      onMouseEnter={() => handleStarHover(!starFilled)}
+                      onClick={() => handleSavingImage()}
+                      >
+                      <path d="M12 2l2.591 7.82H22l-6.711 4.872 2.591 7.82L12 17.64l-6.879 4.872 2.591-7.82L2 9.82h7.409L12 2z"/>
+                    </svg>
+                  </label>
+              : null }
+            </div>
             :
               <div className='mode-select-container'>
                 <h3 className='mode-RP'>Choose Your Mood: </h3>

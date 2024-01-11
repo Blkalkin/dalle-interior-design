@@ -18,16 +18,16 @@ const ProjectDetailsShow = () => {
     const [openEdit, setOpenEdit] = useState(false)
     const [showPhotoModal, setShowPhotoModal] = useState(false)
     const [photoUrl, setPhotoUrl] = useState('')
+    const [loggedIn, setLoggedIn] = useState(false)
 
     // if (currUser && currUser._id === project?.author._id) {
     //     setIsCurrUser(true)
     // }
     
     useEffect(()=> {
-        if (!project){
-            dispatch(fetchProject(projectId))
-        }
-    },[dispatch, projectId, project])
+        currUser ? setLoggedIn(true) : null
+        dispatch(fetchProject(projectId))
+    },[dispatch, projectId])
 
     const openEditModal =(e) => {
         e.preventDefault();
@@ -46,8 +46,8 @@ const ProjectDetailsShow = () => {
     }
 
     console.log(isCurrUser, "is current user??")
+    if (project) {
 
-    if(project) {
         return (
             <div className="project-details-page">
                 {openEdit ? <EditProjectDetails public={project.public} title={project.title} description={project.description} projectId={projectId} setOpenEdit={setOpenEdit}/> :
@@ -73,7 +73,10 @@ const ProjectDetailsShow = () => {
                         </ul> 
                     </div>
                     <div className='comments-area'>
-                        <CommentIndex project={project} />
+                         {/* <h2 className="title comments-title">{`Share some thoughts on ${project.author.username}'s project:`}</h2> */}
+                         <h2 className="title comments-title">{`Comments on ${project.author.username}'s project:`}</h2>
+                
+                        <CommentIndex project={project} loggedIn={loggedIn} />
                     </div>
                 </div>
             </div>

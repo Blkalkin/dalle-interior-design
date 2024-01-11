@@ -5,13 +5,12 @@ import CommentIndexItem from "./CommentIndexItem"
 import "./CommentIndex.css"
 
 
-const CommentIndex = ({project}) => {
+const CommentIndex = ({project, loggedIn}) => {
     const dispatch = useDispatch()
     let comments = useSelector(selectCommentsArray)
     const currentUser = useSelector(state => state.session.user)
     const [body, setBody] = useState("")
-    const [author, setAuthor] = useState(project.author)
-    const [loggedIn, setLoggedIn] = useState(false)
+   
     
     function moveCurrentUserToTop(arr, authorId) {
         const index = arr.findIndex(item => item.author._id === authorId);
@@ -29,7 +28,6 @@ const CommentIndex = ({project}) => {
     
     
     useEffect(()=> {
-        currentUser ? setLoggedIn(true) : null
         dispatch(fetchComments(project._id))
     },[dispatch, project._id, project, currentUser ])
 
@@ -47,12 +45,10 @@ const CommentIndex = ({project}) => {
         setBody("")
     }
    
-    
+
     return (
         <ul className="comments-container">
             {loggedIn ? 
-            <>
-                <h2 className="title comments-title">{`Share some thoughts on ${author.username}'s project:`}</h2>
                 <div className="comment-add-container">
                     <textarea 
                         className="text"
@@ -63,12 +59,8 @@ const CommentIndex = ({project}) => {
                         ></textarea>
                     <button onClick={handleSubmit} className="title">Comment</button>
                 </div>
-            </>
             : 
-            <>
-                <h2 className="title comments-title">{`Comments on ${author.username}'s project:`}</h2>
-                <div className="text">Log in to share your thoughts!</div>
-            </> }
+              <div className="text">Log in to share your thoughts!</div> }
             
             {comments.map(comment => 
                 <CommentIndexItem
@@ -79,6 +71,7 @@ const CommentIndex = ({project}) => {
             )}
         </ul>
     )
+
 }
 
 export default CommentIndex

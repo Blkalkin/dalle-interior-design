@@ -44,8 +44,9 @@ function EditProject () {
                         newImages={newImages}
                         projectId={projectId}
                     />
-                  
-                    <button className='text done-btn' onClick={() => setFinishedModal(true)}>I love what I got, all done!</button>
+                    {newImages.imageGenerated ? 
+                        <button className='text done-btn' onClick={() => setFinishedModal(true)}>Love what I got, all done!</button>
+                    : null}
                  
                 </div>
                 {finishedModal && <FinishedModal photoUrls={project.photoUrls} closeFinishModal={closeFinishModal} projectId={projectId}/>}
