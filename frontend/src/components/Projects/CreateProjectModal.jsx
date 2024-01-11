@@ -54,6 +54,7 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
                 break;
             case 2:
                 setImage(null)
+                setPresetInUse(false)
                 setStep(1)
                 break
             case 3:
