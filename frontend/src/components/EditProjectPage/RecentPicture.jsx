@@ -17,8 +17,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
     const [photoCount, setPhotoCount] = useState(photoUrls.length)
     const count = photoUrls.length
 
-    console.log(photoCount, "photoCount #1")
-    console.log(count, 'count')
+
 
 
     const handleClick = (boxName) => {
@@ -44,17 +43,16 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
         setStarFilled(isHovered);
     };
 
-    const handleSavingImage = async ()=> {
+    const handleSavingImage = () => {
         if (!newImages) return
         setPhotoCount(photoCount + 1)
-        console.log(photoCount, "photoCount #4")
-        console.log(count, 'count')
-        const url = await dispatch(addImage(projectId, {url: newImages.imageGenerated}))
-        setPhotoCount(count)
-        console.log(photoCount, "photoCount #5")
-        console.log(count, 'count')
-        dispatch(removeImage())
-        setTempDisplay(true)
+       
+        dispatch(addImage(projectId, {url: newImages.imageGenerated})).finally(() => {
+          dispatch(removeImage())
+          setPhotoCount(count)
+        })
+        
+   
     }
     
    
@@ -76,7 +74,6 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
               setTempDisplay(false)
               setNewPrompt("")
             }
-            console.log(mode)
             break;
           case "Creative":
              payload = {
@@ -116,6 +113,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
           setModeSelect(false)
           setMode(null)
           setNewPrompt("")
+          break
         default:
           break;
       }
@@ -137,8 +135,6 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
     }
 
     const savingImage = () => {
-      console.log(photoCount, "photoCount #2")
-      console.log(count, 'count')
       if (photoUrls.length === photoCount) {
         return (
           <label className='text save-img'> Save Image
@@ -156,8 +152,6 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
         </label>
         )
       } else {
-        console.log(photoCount, "photoCount #3")
-        console.log(count, 'count')
         return (
            <div className='text'>Saving
               <img className='save-loading' src='https://media.tenor.com/XUIieA-J-vMAAAAi/loading.gif' alt='Image is saving' />
@@ -174,12 +168,11 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
      
       <div className="image-container">
           <div className="image-box" onClick={() => handleClick('firstBox')}>
-            {photoUrls[photoUrls.length-1] && <img src={photoUrls[photoUrls.length-1]} alt={photoUrls[photoUrls.length-1]} />}
+            <img src={photoUrls[photoUrls.length-1]} alt={photoUrls[photoUrls.length-1]}/>
           </div>
 
 
           <div className='project-options-RP'>
-          
             {showModal && <ProjectFlowModal photoUrls={photoUrls} closeModal={closeModal} />}
             {modeSelect ?
               <div className='middle-box'>
@@ -198,7 +191,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
                   </div>
                 </form>
                 {/* { savingImage()} */}
-                { newImages.imageGenerated ? 
+                { newImages ? 
                   savingImage()
               : null }
             </div>
@@ -214,10 +207,8 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
           </div>
 
           <div className="image-box" onClick={() => handleClick('secondBox')}>
-            { tempDisplay ? tempDisplayInfo()
-            : {newImages} && (
-                <img src={newImages.imageGenerated} alt={newImages.imageGenerated} />
-            )}
+            { tempDisplay ? tempDisplayInfo() : null }
+            {newImages ? <img src={newImages.imageGenerated} alt={newImages.imageGenerated}/> : null }
           </div>
         </div>
     )

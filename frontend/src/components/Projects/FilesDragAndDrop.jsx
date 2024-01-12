@@ -7,7 +7,6 @@ const FilesDragAndDrop = ({ setImage }) => {
   const drop = useRef(null);
   const fileInput = useRef(null);
   const [welcome, setWelcome] = useState(true);
-  const [fileLoaded, setFileLoaded] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [imgFileOk, setImageFileOk] = useState(true);
 
@@ -17,7 +16,7 @@ const FilesDragAndDrop = ({ setImage }) => {
     drop.current.addEventListener('dragenter', handleDragEnter);
     drop.current.addEventListener('dragleave', handleDragLeave);
 
-  }, []);
+  },);
 
   const resizeImage = (file, maxWidth, maxHeight) => {
     return new Promise((resolve) => {
@@ -49,7 +48,6 @@ const FilesDragAndDrop = ({ setImage }) => {
 
   const handleFileInput = async (e) => {
     const file = e.target.files[0];
-    setFileLoaded(true);
     setWelcome(false);
     setImageFileOk(true);
 
@@ -64,7 +62,6 @@ const FilesDragAndDrop = ({ setImage }) => {
     e.preventDefault();
     e.stopPropagation();
     setWelcome(false);
-    setFileLoaded(false);
     setImageFileOk(true);
   };
 
@@ -73,7 +70,6 @@ const FilesDragAndDrop = ({ setImage }) => {
     e.stopPropagation();
     setDragging(true);
     setWelcome(false);
-    setFileLoaded(false);
     setImageFileOk(true);
   };
 
@@ -94,7 +90,6 @@ const FilesDragAndDrop = ({ setImage }) => {
     if (files.length > 1) {
       setWelcome(false);
       setDragging(false);
-      setFileLoaded(false);
       setImageFileOk(false);
       setImage(null);
       files.length = 0;
@@ -107,7 +102,6 @@ const FilesDragAndDrop = ({ setImage }) => {
       files[0]?.type !== 'image/png'
     ) {
       setWelcome(false);
-      setFileLoaded(false);
       setDragging(false);
       setImageFileOk(false);
       setImage(null);
@@ -115,7 +109,7 @@ const FilesDragAndDrop = ({ setImage }) => {
     }
 
     setDragging(false);
-    setFileLoaded(true);
+    // setFileLoaded(true);
     setWelcome(false);
     setImageFileOk(true);
 

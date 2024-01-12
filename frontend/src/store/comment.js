@@ -30,7 +30,6 @@ export const fetchComments = projectId => async(dispatch) => {
         return dispatch(receiveComments(comments))
     } catch(err) {
         const res = await err.json()
-        console.log(res)
     }
 
 }
@@ -42,7 +41,6 @@ export const fetchComment = commentId => async(dispatch) => {
         return dispatch(receiveComment(comment))
     } catch(err) {
         const res = await err.json()
-        console.log(res)
     }
 }
 
@@ -56,7 +54,6 @@ export const editComment = (commentId, comment) => async dispatch => {
         return dispatch(receiveComment(data))
     } catch(err) {
         const res = await err.json()
-        console.log(res)
     }
 }
 
@@ -83,7 +80,6 @@ export const addComment = comment => async dispatch => {
         return dispatch(receiveComment(data))
     } catch(err) {
         const res = await err.json()
-        console.log(res)
     }
 }
 
@@ -108,7 +104,6 @@ const commentReducer = (state = {}, action) => {
             newState[action.comment._id] = action.comment
             return newState
         case REMOVE_COMMENT:
-            console.log(newState)
             delete newState[action.commentId]
             return newState
         default:
