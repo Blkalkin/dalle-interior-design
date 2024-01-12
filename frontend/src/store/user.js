@@ -24,9 +24,7 @@ export const fetchUser = (userId) => async dispatch => {
     }
 }
 
-// const initialState = {
-//     userSearch: null
-// };
+
 
 const userReducer = (state = {}, action) => {
     const newState = {...state}

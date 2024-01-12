@@ -1,7 +1,7 @@
 import './EditProject.css'
 import { editProject, fetchProject, selectProject } from '../../store/project'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from "react"
 import RecentPicture from './RecentPicture';
 import FinishedModal from './FinishedModal';
@@ -11,17 +11,22 @@ import FinishedModal from './FinishedModal';
 
 
 function EditProject () {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { projectId } = useParams();
     const project = useSelector(selectProject(projectId))
     const newImages = useSelector(state => state.newImages)
     const [finishedModal, setFinishedModal] = useState(false);
+    const currUser = useSelector(state => state.session.user)
+    const isAuthor = currUser && currUser._id === project?.author._id
+
+   
+    if (project) isAuthor ? null : navigate('/')
+    
 
     useEffect (() => {
-        if (!project){
-            dispatch(fetchProject(projectId))
-        }
-    }, [dispatch, project])
+        if (!project) dispatch(fetchProject(projectId))
+    }, [dispatch, project, projectId])
 
     const closeFinishModal = () => {
         setFinishedModal(false);
@@ -67,8 +72,6 @@ function EditProject () {
                 </div>
             </>
         )
-    } else {
-        // navigate(`/createProject`)
     }
 }
 
