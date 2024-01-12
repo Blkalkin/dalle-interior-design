@@ -43,7 +43,7 @@ export const creativeImageEdit = (image) =>  async(dispatch) => {
         return res
     } else {
         let data = await res.json()
-        // return res
+        throw data
     }
 
 }

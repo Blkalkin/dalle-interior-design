@@ -30,6 +30,7 @@ export const fetchComments = projectId => async(dispatch) => {
         return dispatch(receiveComments(comments))
     } catch(err) {
         const res = await err.json()
+        throw res
     }
 
 }
@@ -41,6 +42,7 @@ export const fetchComment = commentId => async(dispatch) => {
         return dispatch(receiveComment(comment))
     } catch(err) {
         const res = await err.json()
+        throw res
     }
 }
 
@@ -54,6 +56,7 @@ export const editComment = (commentId, comment) => async dispatch => {
         return dispatch(receiveComment(data))
     } catch(err) {
         const res = await err.json()
+        throw res
     }
 }
 
@@ -80,6 +83,7 @@ export const addComment = comment => async dispatch => {
         return dispatch(receiveComment(data))
     } catch(err) {
         const res = await err.json()
+        throw res
     }
 }
 

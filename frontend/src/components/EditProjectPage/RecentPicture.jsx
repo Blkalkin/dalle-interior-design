@@ -68,23 +68,21 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
               imagePath: photoUrls[photoUrls.length-1],
               userPrompt: newPrompt
              }
-            const standardRes = await dispatch(standardImageEdit(payload))
-            if (standardRes) {
+            dispatch(standardImageEdit(payload)).finally(() => {
               setImageLoading(false)
               setTempDisplay(false)
               setNewPrompt("")
-            }
+            })
             break;
           case "Creative":
              payload = {
               imagePath: photoUrls[photoUrls.length-1],
               userPrompt: newPrompt
             }
-            const creativeRes = await dispatch(creativeImageEdit(payload))
-            if (creativeRes.ok) {
+            dispatch(creativeImageEdit(payload)).finally(() => {
               setImageLoading(false)
               setTempDisplay(false)
-            }
+            })
             break
           default:
             break;
