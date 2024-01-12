@@ -16,17 +16,24 @@ function EditProject () {
     const { projectId } = useParams();
     const project = useSelector(selectProject(projectId))
     const newImages = useSelector(state => state.newImages)
-    const [finishedModal, setFinishedModal] = useState(false);
     const currUser = useSelector(state => state.session.user)
-    const isAuthor = currUser && currUser._id === project?.author._id
+    const [finishedModal, setFinishedModal] = useState(false);
+    const [firstLoad, setFirstLoad] = useState(true)
 
-   
-    if (project) isAuthor ? null : navigate('/')
     
-
+    if (project && currUser) {
+        if (firstLoad) {
+            const isAuthor = currUser && currUser._id === project.author._id
+            isAuthor ? null : navigate('/')
+            setFirstLoad(false)
+        }
+    }
+    
+    
     useEffect (() => {
         if (!project) dispatch(fetchProject(projectId))
     }, [dispatch, project, projectId])
+
 
     const closeFinishModal = () => {
         setFinishedModal(false);
