@@ -316,3 +316,7 @@ height: 100px;
   text-align: center;
 }
 
+.save-loading {
+  /* margin-top: 30px; */
+  width: 60px;
+}
