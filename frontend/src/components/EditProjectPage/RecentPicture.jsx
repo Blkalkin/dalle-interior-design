@@ -14,6 +14,11 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
     const [mode, setMode] = useState(null)
     const [imageLoading, setImageLoading] = useState(false)
     const [tempDisplay, setTempDisplay] = useState(true)
+    const [photoCount, setPhotoCount] = useState(photoUrls.length)
+    const count = photoUrls.length
+
+    console.log(photoCount, "photoCount #1")
+    console.log(count, 'count')
 
 
     const handleClick = (boxName) => {
@@ -39,9 +44,15 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
         setStarFilled(isHovered);
     };
 
-    const handleSavingImage = () => {
+    const handleSavingImage = async ()=> {
         if (!newImages) return
-        dispatch(addImage(projectId, {url: newImages.imageGenerated}))
+        setPhotoCount(photoCount + 1)
+        console.log(photoCount, "photoCount #4")
+        console.log(count, 'count')
+        const url = await dispatch(addImage(projectId, {url: newImages.imageGenerated}))
+        setPhotoCount(count)
+        console.log(photoCount, "photoCount #5")
+        console.log(count, 'count')
         dispatch(removeImage())
         setTempDisplay(true)
     }
@@ -49,6 +60,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
    
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setPhotoCount(count);
         setTempDisplay(true)
         setImageLoading(true)
         let payload;
@@ -124,6 +136,39 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
       }
     }
 
+    const savingImage = () => {
+      console.log(photoCount, "photoCount #2")
+      console.log(count, 'count')
+      if (photoUrls.length === photoCount) {
+        return (
+          <label className='text save-img'> Save Image
+          <svg
+            className="star-icon"
+            width="20"
+            height="24"
+            viewBox="0 0 24 24"
+            fill={starFilled ? 'gold' : 'none'}
+            onMouseEnter={() => handleStarHover(!starFilled)}
+            onClick={() => handleSavingImage()}
+            >
+            <path d="M12 2l2.591 7.82H22l-6.711 4.872 2.591 7.82L12 17.64l-6.879 4.872 2.591-7.82L2 9.82h7.409L12 2z"/>
+          </svg>
+        </label>
+        )
+      } else {
+        console.log(photoCount, "photoCount #3")
+        console.log(count, 'count')
+        return (
+           <div className='text'>Saving
+              <img className='save-loading' src='https://media.tenor.com/XUIieA-J-vMAAAAi/loading.gif' alt='Image is saving' />
+           </div>
+      
+        )
+      }
+    }
+
+
+
 
     return (
      
@@ -152,20 +197,9 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
                     <button className='submit-button text' onClick={() => setModeSelect(null)}>Switch Mode</button>
                   </div>
                 </form>
+                {/* { savingImage()} */}
                 { newImages.imageGenerated ? 
-                  <label className='text save-img'> Save Image
-                    <svg
-                      className="star-icon"
-                      width="20"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill={starFilled ? 'gold' : 'none'}
-                      onMouseEnter={() => handleStarHover(!starFilled)}
-                      onClick={() => handleSavingImage()}
-                      >
-                      <path d="M12 2l2.591 7.82H22l-6.711 4.872 2.591 7.82L12 17.64l-6.879 4.872 2.591-7.82L2 9.82h7.409L12 2z"/>
-                    </svg>
-                  </label>
+                  savingImage()
               : null }
             </div>
             :
