@@ -20,7 +20,7 @@ const PhotoModal = (props) => {
             document.body.style.overflow = ""
         };
 
-      }, [props.closePhotoModal]);
+      }, [props]);
 
     return (
         <div className='modal-background'>

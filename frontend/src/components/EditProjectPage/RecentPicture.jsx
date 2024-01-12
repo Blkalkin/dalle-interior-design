@@ -17,8 +17,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
     const [photoCount, setPhotoCount] = useState(photoUrls.length)
     const count = photoUrls.length
 
-    console.log(photoCount, "photoCount #1")
-    console.log(count, 'count')
+
 
 
     const handleClick = (boxName) => {
@@ -47,12 +46,8 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
     const handleSavingImage = async ()=> {
         if (!newImages) return
         setPhotoCount(photoCount + 1)
-        console.log(photoCount, "photoCount #4")
-        console.log(count, 'count')
         const url = await dispatch(addImage(projectId, {url: newImages.imageGenerated}))
         setPhotoCount(count)
-        console.log(photoCount, "photoCount #5")
-        console.log(count, 'count')
         dispatch(removeImage())
         setTempDisplay(true)
     }
@@ -76,7 +71,6 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
               setTempDisplay(false)
               setNewPrompt("")
             }
-            console.log(mode)
             break;
           case "Creative":
              payload = {
@@ -116,6 +110,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
           setModeSelect(false)
           setMode(null)
           setNewPrompt("")
+          break
         default:
           break;
       }
@@ -137,8 +132,6 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
     }
 
     const savingImage = () => {
-      console.log(photoCount, "photoCount #2")
-      console.log(count, 'count')
       if (photoUrls.length === photoCount) {
         return (
           <label className='text save-img'> Save Image
@@ -156,8 +149,6 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
         </label>
         )
       } else {
-        console.log(photoCount, "photoCount #3")
-        console.log(count, 'count')
         return (
            <div className='text'>Saving
               <img className='save-loading' src='https://media.tenor.com/XUIieA-J-vMAAAAi/loading.gif' alt='Image is saving' />

@@ -14,19 +14,14 @@ const ProjectDetailsShow = () => {
     const project = useSelector(selectProject(projectId))
     const photos = project?.photoUrls
     const currUser = useSelector(state => state.session.user)
-    const [isCurrUser, setIsCurrUser] = useState( currUser && currUser._id === project?.author._id)
+    const isCurrUser = currUser && currUser._id === project?.author._id
     const [openEdit, setOpenEdit] = useState(false)
     const [showPhotoModal, setShowPhotoModal] = useState(false)
     const [photoUrl, setPhotoUrl] = useState('')
     const [photoIdx, setPhotoIdx] = useState(null)
-    const [loggedIn, setLoggedIn] = useState(false)
-    const [username, setUsername] = useState(false)
 
     
     useEffect(()=> {
-       
-        currUser ? setLoggedIn(true) : null
-        // currUser ? setIsCurrUser(true) : null
         dispatch(fetchProject(projectId))
     },[dispatch, projectId, currUser, openEdit])
 
@@ -74,14 +69,14 @@ const ProjectDetailsShow = () => {
                         </ul> 
                     </div>
                     <div className='comments-area'>
-                        {loggedIn ? 
+                        {currUser ? 
                          <h2 className="title comments-title">
                             Share your thoughts on <Link to={`/profile/${project.author._id}`} className="user-link title"><span>{project.author.username}'s</span></Link> project:
                         </h2> 
                          : <h2 className="title comments-title">{`Comments on ${project.author.username}'s project:`}</h2>
                         }
                 
-                        <CommentIndex project={project} loggedIn={loggedIn} />
+                        <CommentIndex project={project} loggedIn={currUser} />
                     </div>
                 </div>
             </div>

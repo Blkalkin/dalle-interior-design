@@ -14,19 +14,16 @@ export const removeImage = () => ({
 })
 
 export const standardImageEdit = (image) =>  async(dispatch) => {
-    console.log("making new image...")
     const res = await jwtFetch("/api/images/generate-image", {
         method: "POST",
         body: JSON.stringify(image)
     })
-    console.log("are we here?")
+
     if (res.ok) {
-        console.log("Render Compete!")
         let data = await res.json()
         dispatch(receiveNewImage(data))
         return res
     } else {
-        console.log(res)
         // return res
     }
 
@@ -34,23 +31,18 @@ export const standardImageEdit = (image) =>  async(dispatch) => {
 
 
 export const creativeImageEdit = (image) =>  async(dispatch) => {
-    console.log("making new image...")
+   
     const res = await jwtFetch("/api/images/generate-prompt-image", {
         method: "POST",
         body: JSON.stringify(image)
     })
-    console.log("are we here?")
 
     if (res.ok) {
-        console.log("Render Compete!")
-        
         let data = await res.json()
-        console.log(data)
         dispatch(receiveNewImage(data))
         return res
     } else {
         let data = await res.json()
-        console.log(data)
         // return res
     }
 

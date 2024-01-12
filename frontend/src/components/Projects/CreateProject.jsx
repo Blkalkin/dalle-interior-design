@@ -69,7 +69,6 @@ const CreateProject = () => {
 
         if (photo2Selected) {
             setImage()
-            console.log("am i here? ")
             selectedImg.classList.remove("highlighted")
             setPhoto2Selected(false)
         } else if (!photo2Selected && photo1Selected) {            
@@ -78,14 +77,11 @@ const CreateProject = () => {
             setImage(img)
             setPhoto2Selected(true)
             selectedImg.classList.add("highlighted")
-            console.log(image, "am i here 2")
         } else if (!photo2Selected) {
             setImage(img)
-            console.log(image, "am i here 3 ")
             setPhoto2Selected(true)
            selectedImg.classList.add("highlighted")
         }
-        console.log(image)
     }
     
 

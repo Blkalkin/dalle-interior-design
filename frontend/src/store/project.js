@@ -30,7 +30,6 @@ export const fetchProjects = keyword => async(dispatch) => {
         dispatch(receiveProjects(projects))
     } catch(err) {
         const data = await err.json()
-        console.log(data)
     }
 }
 
@@ -41,7 +40,6 @@ export const fetchUserProjects = (userId) => async(dispatch) => {
         return dispatch(receiveProjects(projects))
     } catch(err) {
         const data = await err.json()
-        console.log(data)
     }
 
 }
@@ -53,7 +51,6 @@ export const fetchProject = projectId => async(dispatch) => {
         return dispatch(receiveProject(project))
     } catch(err) {
         const res = await err.json()
-        console.log(res)
     }
 }
 
@@ -90,11 +87,9 @@ export const editProject = (projectId, project) => async(dispatch) => {
             body: JSON.stringify(project)
         });
         const data = await res.json();
-        console.log(data)
         return dispatch(receiveProject(data))
     } catch(err) {
         const res = await err.json();
-        console.log(res)
     }
 }
 
@@ -109,7 +104,6 @@ export const addImage = (projectId, url) => async(dispatch) => {
          return data
     } catch(err) {
         const res = await err.json();
-        console.log(res)
     }
 }
 
