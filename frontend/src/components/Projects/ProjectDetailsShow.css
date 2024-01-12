@@ -3,8 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
-    min-width: 700px;
+    width: inherit;
+    min-width: 1118px;
 }
 
 .project-title-PDS {
@@ -24,43 +24,34 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    max-width: 1400px;
-    min-width: 1334px;
-    margin-top: 80px;
-    margin-bottom: 80px;
+    max-width: 1200px;
+    min-width: 800px;
+    margin-top: 50px;
 }
 
 
 .projects-index-grid-PDS {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 17px;
     padding: 0;
     margin: 0;
-    width: 850px;
+    width: 680px;
     list-style: none;
-    /* display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(3, 1fr); 
-    flex-wrap: wrap;
-    min-width: 850px;
-    background-color: aquamarine; */
   }
 
-.projects-index-grid-PDS a {
-    width: 250px;
-    height: 250px;
-}
-
+  
 .photo-PDS {
-    display: block;
-    /* min-height: 250px; */
-    /* min-width: 250px; */
-    /* height: 250px; */
-    width: 270px;
-    height: 270px;
+    display: flex;
+    width: 200px;
+    height: 200px;
 }
-
+    
+.photo-PDS a {
+    width: inherit;
+    height: inherit;
+}
 .photo-PDS img {
     object-fit: cover;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
@@ -77,10 +68,15 @@
     border-radius: 15px;
     /* width: 500px; */
     min-height: 570px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
     padding-top: 30px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.comments-area h2 {
+    width: 420px;
+    text-align: center;
 }
 
 .user-link {
