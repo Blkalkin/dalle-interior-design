@@ -18,7 +18,7 @@ const CreateProjectModal = ({setOpenModal, authorId}) => {
     const [isPublic, setIsPublic] = useState(true)
     const modalRef = useRef(null)
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-    const [error,setError] = useState(false)
+    // const [error,setError] = useState(false)
 
     const headerTitle = {
         1: "Upload Room Image",
