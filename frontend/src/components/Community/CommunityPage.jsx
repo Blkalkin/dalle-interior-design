@@ -7,8 +7,10 @@ function CommunityPage () {
     const {keyword} = useParams()
 
     return (
-        <>
-            <CommunityFilter/>
+        <>  
+            <div className="community-top">
+                <CommunityFilter/>
+            </div>
             <div className="community-container">
                 {keyword? 
                 <>

@@ -21,12 +21,10 @@ function EditProject () {
     const [firstLoad, setFirstLoad] = useState(true)
 
     
-    if (project && currUser) {
-        if (firstLoad) {
-            const isAuthor = currUser && currUser._id === project.author._id
-            isAuthor ? null : navigate('/')
-            setFirstLoad(false)
-        }
+    if (project && currUser && firstLoad) {
+        const isAuthor = currUser && currUser._id === project.author._id
+        isAuthor ? null : navigate('/')
+        setFirstLoad(false)
     }
     
     
