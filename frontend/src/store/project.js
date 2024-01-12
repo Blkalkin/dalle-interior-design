@@ -100,8 +100,8 @@ export const addImage = (projectId, url) => async(dispatch) => {
             body: JSON.stringify(url)
         });
         const data = await res.json();
-         dispatch(receiveProject(data))
-         return data
+        dispatch(receiveProject(data))
+        return data
     } catch(err) {
         const res = await err.json();
     }

@@ -61,12 +61,12 @@ export const creativeImageEdit = (image) =>  async(dispatch) => {
 // }
 
 
-const newImageReducer = (state = {}, action) => {
+const newImageReducer = (state = null, action) => {
     switch (action.type) {
         case RECEIVE_NEW_IMAGE:
             return action.image
         case REMOVE_NEW_IMAGE:
-            return action.emptyState
+            return null
         default:
             return state
     }

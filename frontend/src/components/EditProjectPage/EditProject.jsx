@@ -48,20 +48,17 @@ function EditProject () {
 
     if (project) {
         return (
-            <>
-                <div className='project-page' >
-                    <h1 className='project-text title'>{project.title}</h1>
-                    <RecentPicture
-                        photoUrls={project.photoUrls}
-                        newImages={newImages}
-                        projectId={projectId}
-                    />
-                    {project.photoUrls.length >= 2 ? 
-                        <button className='text done-btn' onClick={doneButton}>Love what I got, all done!</button>
-                    : null}
-                 
-                </div>
+            <div className='project-page' >
                 {finishedModal && <FinishedModal photoUrls={project.photoUrls} closeFinishModal={closeFinishModal} projectId={projectId}/>}
+                <h1 className='project-text title'>{project.title}</h1>
+                <RecentPicture
+                    photoUrls={project.photoUrls}
+                    newImages={newImages}
+                    projectId={projectId}
+                />
+                {project.photoUrls.length >= 2 ? 
+                    <button className='text done-btn' onClick={doneButton}>Love what I got, all done!</button>
+                : null}
                 <div className='mode-info-container'>
                     <div className='mode-info-content text'>
                         <h3>What are the modes?</h3>
@@ -74,10 +71,9 @@ function EditProject () {
                         <div className='step-1 steps'>
                             <p>Unleash our creativity to transform your space with bold, imaginative designs that merge audacious style with practicality. Expect a bespoke living masterpiece, uniquely tailored to your personality and preferences, where innovative and daring elements create an unforgettable and inspiring environment.</p>
                         </div>
-                     
                     </div>
                 </div>
-            </>
+            </div>
         )
     }
 }

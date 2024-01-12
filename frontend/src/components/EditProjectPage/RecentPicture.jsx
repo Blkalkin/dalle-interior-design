@@ -43,13 +43,16 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
         setStarFilled(isHovered);
     };
 
-    const handleSavingImage = async ()=> {
+    const handleSavingImage = () => {
         if (!newImages) return
         setPhotoCount(photoCount + 1)
-        const url = await dispatch(addImage(projectId, {url: newImages.imageGenerated}))
-        setPhotoCount(count)
-        dispatch(removeImage())
-        setTempDisplay(true)
+       
+        dispatch(addImage(projectId, {url: newImages.imageGenerated})).finally(() => {
+          dispatch(removeImage())
+          setPhotoCount(count)
+        })
+        
+   
     }
     
    
@@ -165,12 +168,11 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
      
       <div className="image-container">
           <div className="image-box" onClick={() => handleClick('firstBox')}>
-            {photoUrls[photoUrls.length-1] && <img src={photoUrls[photoUrls.length-1]} alt={photoUrls[photoUrls.length-1]} />}
+            <img src={photoUrls[photoUrls.length-1]} alt={photoUrls[photoUrls.length-1]}/>
           </div>
 
 
           <div className='project-options-RP'>
-          
             {showModal && <ProjectFlowModal photoUrls={photoUrls} closeModal={closeModal} />}
             {modeSelect ?
               <div className='middle-box'>
@@ -189,7 +191,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
                   </div>
                 </form>
                 {/* { savingImage()} */}
-                { newImages.imageGenerated ? 
+                { newImages ? 
                   savingImage()
               : null }
             </div>
@@ -205,10 +207,8 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
           </div>
 
           <div className="image-box" onClick={() => handleClick('secondBox')}>
-            { tempDisplay ? tempDisplayInfo()
-            : {newImages} && (
-                <img src={newImages.imageGenerated} alt={newImages.imageGenerated} />
-            )}
+            { tempDisplay ? tempDisplayInfo() : null }
+            {newImages ? <img src={newImages.imageGenerated} alt={newImages.imageGenerated}/> : null }
           </div>
         </div>
     )
