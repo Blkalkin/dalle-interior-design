@@ -1,59 +1,59 @@
 .whole-landing-page{
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
+    width: inherit;
+    min-width: 900px;
+    /* justify-content: center; */
+    gap: 10px;
 }
 
 .photos-container {
+    width: 100%;
+    max-width: 1000px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    margin-top: 10vh;
-    
+    justify-content: space-around;    
 }
 
 .landing-photo {
-    width: 45vw;
-    height: 70vh;
+    width: 400px;
+    height: 400px;
 }
 
-.before {
-    margin-right: 2vw;
-}
 
 .how-it-works-container {
-    margin-top: 10vh;
+    /* margin-top: 10vh; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 70%;
-    font-size: 70px;
-
-    /* background-color: purple; */
+    /* max-width: 900px; */
+    /* min-width: 690px; */
+    width: 100%;
+    font-size: 50px;
 }
 
 .steps {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
-    margin-bottom: 10vh;
+    max-width: 750px;
+    margin-bottom: 20px;
     border-bottom:  rgb(229, 176, 44) solid 2px;
-    /* background-color: yellow; */
 
 }
 
 .count {
-    font-size: 100px;
+    font-size: 45px;
 }
 
 .steps-text {
-    font-size: 30px;
-    width: 50vw;
+    font-size: 20px;
     text-overflow: wrap;
     display: flex;
     align-items: center;
-    /* background-color: aquamarine; */
+    width: 650px;
 }
 
 .new-project{

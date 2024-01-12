@@ -1,8 +1,10 @@
 .community-filter-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    gap: 20px;
+    width: 100%;
+    min-width: 1300px;
+    max-width: 1450px;
     margin-bottom: 20px;
 }
 
