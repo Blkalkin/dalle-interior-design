@@ -9,7 +9,6 @@ import SignupForm from './components/SessionForms/SignupForm';
 import Profile from './components/Profile/Profile';
 import CommunityPage from './components/Community/CommunityPage';
 import { getCurrentUser } from './store/session';
-import CreateProject from './components/Projects/CreateProject';
 import EditProject from './components/EditProjectPage/EditProject';
 import ProjectDetailsShow from './components/Projects/ProjectDetailsShow';
 import MeetTheTeam from './components/MeetTheTeam/MeetTheTeam';

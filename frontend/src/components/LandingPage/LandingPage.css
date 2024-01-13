@@ -17,18 +17,15 @@
 }
 
 .landing-photo {
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
 }
 
 
 .how-it-works-container {
-    /* margin-top: 10vh; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* max-width: 900px; */
-    /* min-width: 690px; */
     width: 100%;
     font-size: 50px;
 }
@@ -39,7 +36,8 @@
     align-items: center;
     width: 100%;
     max-width: 750px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
     border-bottom:  rgb(229, 176, 44) solid 2px;
 
 }
