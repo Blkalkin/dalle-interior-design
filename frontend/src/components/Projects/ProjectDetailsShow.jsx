@@ -71,7 +71,7 @@ const ProjectDetailsShow = () => {
                     <div className='comments-area'>
                         {currUser ? 
                          <h2 className="title comments-title">
-                            Share your thoughts on <Link to={`/profile/${project.author._id}`} className="user-link title"><span>{project.author.username}'s</span></Link> project:
+                            Share your thoughts on <Link to={`/profile/${project.author._id}`} className="user-link title"><span>{`${project.author.username}'s`}</span></Link> project:
                         </h2> 
                          : <h2 className="title comments-title">{`Comments on ${project.author.username}'s project:`}</h2>
                         }

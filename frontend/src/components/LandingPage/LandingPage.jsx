@@ -52,7 +52,7 @@ function LandingPage() {
 
       <div className='step-3 steps'>
          <div className='count'>03</div>
-         <div className='steps-text text'> Star and save the photos you like. One you're satisfied, click done to view your newly created project portfolio</div>
+         <div className='steps-text text'> {"Star and save the photos you like. One you're satisfied, click done to view your newly created project portfolio"}</div>
       </div>
 
       <div className='step-4 steps'>

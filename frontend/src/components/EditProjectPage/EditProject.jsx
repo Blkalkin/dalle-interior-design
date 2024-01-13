@@ -1,5 +1,5 @@
 import './EditProject.css'
-import { editProject, fetchProject, selectProject } from '../../store/project'
+import { fetchProject, selectProject } from '../../store/project'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from "react"
