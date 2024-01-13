@@ -11,13 +11,13 @@
     display: flex;
     flex-direction: row;
     margin-top: 40px;
-    /* background-color: pink; */
+    gap: 35px;
 }
 
 .team-card { 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding-top: 30px;
     padding-right: 30px;
@@ -25,28 +25,33 @@
     padding-bottom: 10px;
     font-size: 30px;
     border:  rgb(210, 154, 15) solid 2px;
-    margin-left: 5vw;
-    /* background-color: red; */
-    width: 400px;
-    min-width: 400px;
+    width: 320px;
     color:rgb(49, 114, 154);
     text-align: center;
 }
 
 
 .team-photo {
-width: 300px;
-margin-bottom: 15px;
+    object-fit: cover;
+    width: 300px;
+    height: 325px;
+    margin-bottom: 15px;
+}
+
+.team-links {
+    display: flex;
+    gap: 10px;
 }
 
 .github,
 .linkedIn {
-    height: 8vh;
+    height: 35px;
+    width: 35px;
 }
 
 .bottom-section {
     margin-top: 50px;
     display: flex;
     margin-bottom: 30vh;
-
+    gap: 35px;
 }
