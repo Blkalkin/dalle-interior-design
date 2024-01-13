@@ -38,43 +38,45 @@ function LoginForm () {
   if(loggedIn) return <Navigate to={`/profile/${currUser._id}`} replace={true}/>
 
   return (
-    <form className="session-form" onSubmit={handleSubmit}>
-      <h2>Log In</h2>
-      <div className="errors text">{errors?.email}</div>
-      <label>
-        <span>Email</span>
-        <input type="text"
-         className='text'
-          value={email}
-          onChange={update('email')}
-          placeholder="Email"
+    <div className='session-page'>
+      <form className="session-form" onSubmit={handleSubmit}>
+        <h2>Log In</h2>
+        <div className="errors text">{errors?.email}</div>
+        <label>
+          <span>Email</span>
+          <input type="text"
+          className='text'
+            value={email}
+            onChange={update('email')}
+            placeholder="Email"
+          />
+        </label>
+        <div className="errors text">{errors?.password}</div>
+        <label>
+          <span>Password</span>
+          <input type="password"
+          className='text'
+            value={password}
+            onChange={update('password')}
+            placeholder="Password"
+          />
+        </label>
+        <input
+          type="submit"
+          className='text'
+          value="Log In"
         />
-      </label>
-      <div className="errors text">{errors?.password}</div>
-      <label>
-        <span>Password</span>
-        <input type="password"
-         className='text'
-          value={password}
-          onChange={update('password')}
-          placeholder="Password"
+        <input
+          type="submit"
+          className='text'
+          value="Log In As Demo"
+          onClick={handleDemoSubmit}
         />
-      </label>
-      <input
-        type="submit"
-        className='text'
-        value="Log In"
-      />
-       <input
-        type="submit"
-        className='text'
-        value="Log In As Demo"
-        onClick={handleDemoSubmit}
-      />
-        <div className="links-auth text">
-          <Link to={'/signup'}>{"Don't have an account? Signup"}</Link>
-        </div>
-    </form>
+          <div className="links-auth text">
+            <Link to={'/signup'}>{"Don't have an account? Signup"}</Link>
+          </div>
+      </form>
+    </div>
   );
 }
 
