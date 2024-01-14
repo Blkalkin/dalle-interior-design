@@ -1,25 +1,17 @@
-  /* body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-  } */
+.session-page {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
 
-
-  .session-form {
-    position: absolute;
-    margin-top: 20vh;
-    margin-left: 40vw;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    border: rgb(229, 176, 44) solid 2px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 300px;
-  }
+.session-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  border: rgb(229, 176, 44) solid 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
 
   .session-form h2 {
     text-align: center;
