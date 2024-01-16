@@ -75,6 +75,53 @@ Here's how we solved these issues:
     `  
 
   
+
+### Backend Routes
+Node and Express were used for Roominate's backend, but some routes were more challenging to create than others. Our Project
+creation route required integration with AWS S3:
+
+```
+router.post('/', upload.single('photo'), async (req, res, next) => {
+  
+  const imageName = randomImageName();
+
+  const newProject = new Project({
+    title: req.body.title,
+    description: req.body.description,
+    photoUrls: req.body.photoUrls,
+    public: req.body.public,
+    author: req.body.authorId
+  });
+  
+  newProject.photoUrls=[`https://dalle-interior-design-dev.s3.us-west-1.amazonaws.com/${imageName}`]
+
+  const params = {
+    Bucket: awsBucketName,
+    Key: imageName,
+    Body: req.file.buffer,
+    ContentType: req.file.mimetype
+  }
+
+  try{
+    newProject.author = await User.findById(req.body.authorId);
+  }catch(err) {
+    const error = new Error(err);
+    error.statusCode = 404;
+    error.errors = { message: "No user found with that id" };
+    return next(error);
+  }try {
+    const command = new PutObjectCommand(params);
+    const uploadedPhoto = await s3.send(command);
+    let project = await newProject.save();
+    project = await project.populate('author', '_id');
+    return res.json(project);
+  }catch(err) {
+    const error = new Error(err);
+    error.statusCode = 422;
+    return next(error);
+  }
+})
+```
 ## Include screenshots of anything that looks pretty
 
   
