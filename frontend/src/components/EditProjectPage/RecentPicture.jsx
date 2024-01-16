@@ -18,8 +18,6 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
     const count = photoUrls.length
 
 
-
-
     const handleClick = (boxName) => {
         if (boxName === 'firstBox') {
             //open modal to view all images in photoUrls
@@ -55,6 +53,32 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
         })
     }
     
+    const savingImage = () => {
+      if (photoUrls.length === photoCount) {
+        return (
+          <label className='text save-img'> Save Image
+          <svg
+            className="star-icon"
+            width="20"
+            height="24"
+            viewBox="0 0 24 24"
+            fill={starFilled ? 'gold' : 'none'}
+            onMouseEnter={() => handleStarHover(!starFilled)}
+            onClick={() => handleSavingImage()}
+            >
+            <path d="M12 2l2.591 7.82H22l-6.711 4.872 2.591 7.82L12 17.64l-6.879 4.872 2.591-7.82L2 9.82h7.409L12 2z"/>
+          </svg>
+        </label>
+        )
+      } else {
+        return (
+           <div className='text'>Saving
+              <img className='save-loading' src='https://media.tenor.com/XUIieA-J-vMAAAAi/loading.gif' alt='Image is saving' />
+           </div>
+      
+        )
+      }
+    }
    
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -132,36 +156,6 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
         return <div className='waiting-text title'>Awaiting your next idea . . .</div>
       }
     }
-
-    const savingImage = () => {
-      if (photoUrls.length === photoCount) {
-        return (
-          <label className='text save-img'> Save Image
-          <svg
-            className="star-icon"
-            width="20"
-            height="24"
-            viewBox="0 0 24 24"
-            fill={starFilled ? 'gold' : 'none'}
-            onMouseEnter={() => handleStarHover(!starFilled)}
-            onClick={() => handleSavingImage()}
-            >
-            <path d="M12 2l2.591 7.82H22l-6.711 4.872 2.591 7.82L12 17.64l-6.879 4.872 2.591-7.82L2 9.82h7.409L12 2z"/>
-          </svg>
-        </label>
-        )
-      } else {
-        return (
-           <div className='text'>Saving
-              <img className='save-loading' src='https://media.tenor.com/XUIieA-J-vMAAAAi/loading.gif' alt='Image is saving' />
-           </div>
-      
-        )
-      }
-    }
-
-
-
 
     return (
      
