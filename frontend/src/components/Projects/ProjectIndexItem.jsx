@@ -31,8 +31,8 @@ const ProjectIndexItem = ({project}) => {
                         <div className='delete-confirmation-div'>
                             <p>Delete this project?</p>  
                             <p>
-                                <span onClick={() => dispatch(deleteProject(project._id))}>Yes&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-                                <span onClick={() => setShowDeleteModal(false)}> No </span> 
+                                <span className='delete-options' onClick={() => dispatch(deleteProject(project._id))}>Yes&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+                                <span className='delete-options' onClick={() => setShowDeleteModal(false)}> No </span> 
                             </p>
                         </div>
                     </div>

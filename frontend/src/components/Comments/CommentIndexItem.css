@@ -44,3 +44,24 @@
 .edit-PDS {
 height: 15px;
 }
+
+.delete-confirmation {
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: rgb(111, 157, 185) solid 3px;
+    height: 80px;
+}
+.delete-text{
+    padding-bottom: 10px;
+}
+.delete-options {
+    cursor: pointer;
+}
+
+.delete-options:hover{
+    color: purple;
+}
