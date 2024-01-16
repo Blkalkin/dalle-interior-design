@@ -77,7 +77,7 @@ Here's how we solved these issues:
   
 
 ### Backend Routes
-Node and Express were used for Roominate's backend, but some routes were more challenging to create than others. Our Project
+Node and Express were used for Roominate's backend, and some routes were more challenging to create than others. Our Project
 creation route required integration with AWS S3:
 
 ```
