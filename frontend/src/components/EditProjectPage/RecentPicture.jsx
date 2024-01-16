@@ -50,9 +50,9 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
         dispatch(addImage(projectId, {url: newImages.imageGenerated})).finally(() => {
           dispatch(removeImage())
           setPhotoCount(count)
+          setTempDisplay(true)
+          setImageLoading(false)
         })
-        
-   
     }
     
    
@@ -61,6 +61,7 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
         setPhotoCount(count);
         setTempDisplay(true)
         setImageLoading(true)
+        dispatch(removeImage())
         let payload;
         switch (mode) {
           case "Standard":
@@ -188,7 +189,6 @@ function RecentPicture ({photoUrls, newImages, projectId}) {
                     <button className='submit-button text' onClick={() => setModeSelect(null)}>Switch Mode</button>
                   </div>
                 </form>
-                {/* { savingImage()} */}
                 { newImages ? 
                   savingImage()
               : null }
