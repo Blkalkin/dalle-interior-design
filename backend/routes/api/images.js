@@ -3,7 +3,7 @@ const router = express.Router();
 const { OpenAI } = require('openai');
 const fs = require('fs');
 const Jimp = require('jimp');
-require('dotenv').config({ path: '../../.env' });
+//require('dotenv').config({ path: '../../.env' });
 
 
 
