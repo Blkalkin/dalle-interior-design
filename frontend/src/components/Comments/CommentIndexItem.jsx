@@ -47,11 +47,11 @@ const CommentIndexItem = ({currentUserId, comment}) => {
                 : null }
                 { showDeleteModal && <div className='modal-background'>
                     <div className='modal-content text'>
-                        <div className='delete-confirmation-div'>
-                            <p>Delete this comment?</p>  
+                        <div className='delete-confirmation'>
+                            <p className="delete-text">Delete this comment?</p>  
                             <p>
-                                <span onClick={() => dispatch(deleteComment(comment._id))}> Yes &nbsp;&nbsp;&nbsp;&nbsp;</span> 
-                                <span onClick={() => setShowDeleteModal(false)}> No </span> 
+                                <span className='delete-options' onClick={() => dispatch(deleteComment(comment._id))}> Yes &nbsp;&nbsp;&nbsp;&nbsp;</span> 
+                                <span className='delete-options' onClick={() => setShowDeleteModal(false)}> No </span> 
                             </p>
                         </div>
                     </div>

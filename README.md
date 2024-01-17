@@ -22,7 +22,7 @@ This app uses the following open-source packages:
 
   
 ### Components
-A few challenging features to integrate into our app were saving images, 
+A few challenging features to integrate into our app were saving images, backend routing with AWS S3,
 Here's how we solved these issues: 
 
 1. Saving Images - Upon recieving a new image you can choose to save it. You should only see the `save` option when a new photo is loaded. Also, you should only be able to see the `done` button when you have saved at least one photo. These buttons are conditionally rendered by manipulating the photoCount and state in different parts of the code. We are also condtionally rendering each display/loading message  and image based on which process you're currently in while creating your project. 
@@ -73,11 +73,11 @@ Here's how we solved these issues:
         setImageLoading(true)
         dispatch(removeImage())
     `  
+  ![save1](frontend/assets/readMeImgs/save1.png)
+  ![save2](frontend/assets/readMeImgs/save2.png)
 
   
-
-### Backend Routes
-Node and Express were used for Roominate's backend, and some routes were more challenging to create than others. Our Project
+2. Backend Routes - Node and Express were used for Roominate's backend, and some routes were more challenging to create than others. Our Project
 creation route required integration with AWS S3:
 
 ```
@@ -121,8 +121,7 @@ router.post('/', upload.single('photo'), async (req, res, next) => {
     return next(error);
   }
 })
-```
-## Include screenshots of anything that looks pretty
+``
 
   
 ## Future Features! 
