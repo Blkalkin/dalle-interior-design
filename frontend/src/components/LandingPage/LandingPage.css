@@ -22,7 +22,10 @@
 }
 
 
+
+
 .how-it-works-container {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,7 +33,14 @@
     font-size: 50px;
 }
 
+.welcome{
+    color: rgb(210, 154, 15);
+    font-size: 20px;
+    margin-top: 20px;
+}
+
 .steps {
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
