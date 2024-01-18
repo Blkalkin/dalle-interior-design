@@ -6,6 +6,8 @@
 
 Roominate is a tool to help you design your home. Select/upload a photo of the area you'd like to upgrade, and either draw creative inspiration or dictate specific upgrades and changes you already have in mind for your space. Build your portfolio of projects, share with the community, see what other's are working on, comment and share your ideas and thoughts!
 
+  ![project](frontend/assets/readMeImgs/usage.gif)
+
 ### Tech Stack
 This app uses the following open-source packages:
 
@@ -23,7 +25,7 @@ This app uses the following open-source packages:
 
 
 ### Components
-A few challenging features to integrate into our app were saving images, backend routing with AWS S3,
+A few challenging features to integrate into our app were saving images, creating a searchbar, adding comments, and backend routing with AWS S3,
 Here's how we solved these issues:
 
 1. Saving Images - Upon recieving a new image you can choose to save it. You should only see the `save` option when a new photo is loaded. Also, you should only be able to see the `done` button when you have saved at least one photo. These buttons are conditionally rendered by manipulating the photoCount and state in different parts of the code. We are also condtionally rendering each display/loading message  and image based on which process you're currently in while creating your project.
@@ -124,6 +126,20 @@ router.post('/', upload.single('photo'), async (req, res, next) => {
 })
 ```
 
+## Highlights
+
+1. Search Bar - We implemented a search bar where you can choose to either search for a project in the search bar or utilize the premade search bar to find designs you are interested in.
+
+  ![searchbar](frontend/assets/readMeImgs/searchbar.gif)
+
+2. Comments - App your comments to any public project to view what others think!
+
+  ![comments](frontend/assets/readMeImgs/comments.gif)
+
 
 ## Future Features!
 - Suggested Shopping - See an item in a photo that you'd like to buy? We plan to incorporate a feature that will link you to where you can purchase a similar product
+
+- Faster Page Loading - To enhance page loading speed, we intend to display a limited set of project images on the community page instead of rendering all projects at once. By incorporating separate pages for scrolling through projects, we aim to optimize user experience and alleviate the strain on the system, particularly as our user base expands.
+
+- Searching for users - Our search bar currently only can view public projects. We would like to implement a search component to find other users whose page you want to view.
