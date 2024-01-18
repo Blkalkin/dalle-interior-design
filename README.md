@@ -6,8 +6,6 @@
 
 Roominate is a tool to help you design your home. Select/upload a photo of the area you'd like to upgrade, and either draw creative inspiration or dictate specific upgrades and changes you already have in mind for your space. Build your portfolio of projects, share with the community, see what other's are working on, comment and share your ideas and thoughts!
 
-  ![project](frontend/assets/readMeImgs/project.gif)
-
 ### Tech Stack
 This app uses the following open-source packages:
 
