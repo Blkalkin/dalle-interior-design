@@ -4,7 +4,7 @@
 
 ### Basic Overview
 
-Roominate is a tool to help you design your home. Select/upload a photo of the area you'd like to upgrade, and either draw creative inspiration or dictate specific upgrades and changes you already have in mind for your space. Build your portfolio of projects, share with the community, see what other's are working on, comment and share your ideas and thoughts!
+Roominate, powered by OpenAI's Dall-E 3 & Dall-E 2 photo generator, is a tool to help you design your home. Select/upload a photo of the area you'd like to upgrade, and either draw creative inspiration or dictate specific upgrades and changes you already have in mind for your space. Build your portfolio of projects, share with the community, see what other's are working on, comment and share your ideas and thoughts!
 
   ![project](frontend/assets/readMeImgs/usage.gif)
 
