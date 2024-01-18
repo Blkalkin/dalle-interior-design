@@ -42,7 +42,7 @@ function LandingPage() {
 
     <div className='how-it-works-container text'> How it works
       <div className='welcome-box'>
-        <div className='welcome text'>Powered by OpenAI's Dall-E 3 & Dall-E 2 </div>
+        <div className='welcome text'>Powered by OpenAI Dall-E 3 & Dall-E 2 </div>
       </div>
       <div className='step-1 steps'>
          <div className='count'>01</div>
